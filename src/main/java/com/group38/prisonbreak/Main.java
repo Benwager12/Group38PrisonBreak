@@ -1,3 +1,5 @@
+package com.group38.prisonbreak;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -22,6 +24,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.net.URISyntaxException;
 
 /**
  * Sample application that demonstrates the use of JavaFX Canvas for a Game.
@@ -70,11 +74,12 @@ public class Main extends Application {
 	 * Setup the new application.
 	 * @param primaryStage The stage that is to be used for the application.
 	 */
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws URISyntaxException {
 		// Load images. Note we use png images with a transparent background.
-		playerImage = new Image("player.png");
-		dirtImage = new Image("dirt.png");
-		iconImage = new Image("icon.png");
+		System.out.println();
+		playerImage = new Image(getClass().getResource("player.png").toURI().toString());
+		dirtImage = new Image(getClass().getResource("dirt.png").toURI().toString());
+		iconImage = new Image(getClass().getResource("icon.png").toURI().toString());
 
 		// Build the GUI 
 		Pane root = buildGUI();
