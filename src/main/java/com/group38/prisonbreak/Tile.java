@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class Tile implements Drawable {
 
-    private static HashMap<Integer, Color> colourMap = new HashMap<>() {{
+    private static final HashMap<Integer, Color> colourMap = new HashMap<>() {{
         put(0, Color.rgb(253, 101, 105));
         put(1, Color.rgb(107, 255, 109));
         put(2, Color.rgb(104, 104, 252));
