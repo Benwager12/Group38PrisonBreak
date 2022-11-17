@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <Canvas id="gameCanvas" height="454.0" width="799.0" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <BorderPane id="gameInfoPane" prefHeight="45.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <left>
+            <HBox id="levelHbox" prefHeight="46.0" prefWidth="215.0" spacing="10.0" BorderPane.alignment="TOP_CENTER">
+               <children>
+                  <Text id="levelLabel" strokeType="OUTSIDE" strokeWidth="10.0" text="LEVEL:">
+                     <font>
+                        <Font name="Copperplate Gothic Light" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text id="levelNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="15.0" top="5.0" />
+               </padding>
+            </HBox>
+         </left>
+         <right>
+            <HBox id="scoreHBox" alignment="TOP_RIGHT" prefHeight="46.0" prefWidth="215.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text id="scoreLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE:">
+                     <font>
+                        <Font name="Copperplate Gothic Light" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text id="scoreNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="000">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets right="15.0" top="5.0" />
+               </padding>
+            </HBox>
+         </right>
+         <center>
+            <Text id="timeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00" textAlignment="CENTER" wrappingWidth="347.4452739953995" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Copperplate Gothic Bold" size="30.0" />
+               </font>
+            </Text>
+         </center>
+      </BorderPane>
+   </top>
+</BorderPane>

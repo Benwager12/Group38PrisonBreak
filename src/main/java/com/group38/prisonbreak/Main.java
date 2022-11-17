@@ -77,9 +77,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws URISyntaxException {
 		// Load images. Note we use png images with a transparent background.
 		System.out.println();
-		playerImage = new Image(getClass().getResource("player.png").toURI().toString());
-		dirtImage = new Image(getClass().getResource("dirt.png").toURI().toString());
-		iconImage = new Image(getClass().getResource("icon.png").toURI().toString());
+		playerImage = new Image(getClass().getResource("images/player.png").toURI().toString());
+		dirtImage = new Image(getClass().getResource("images/dirt.png").toURI().toString());
+		iconImage = new Image(getClass().getResource("images/icon.png").toURI().toString());
 
 		// Build the GUI 
 		Pane root = buildGUI();
