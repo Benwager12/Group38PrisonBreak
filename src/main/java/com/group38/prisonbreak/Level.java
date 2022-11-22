@@ -1,4 +1,28 @@
 package com.group38.prisonbreak;
 
-public class Level {
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.fxml.FXMLLoader;
+
+public class Level extends Application {
+
+    public void start(Stage primaryStage) {
+        try {
+            Pane root = (Pane)FXMLLoader.load(getClass().
+                    getResource("fxml/level-view.fxml"));
+            Scene scene = new Scene(root,800,500);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }
+
