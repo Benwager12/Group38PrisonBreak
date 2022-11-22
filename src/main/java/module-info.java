@@ -4,5 +4,8 @@ module com.group38.prisonbreak {
 
 
     opens com.group38.prisonbreak to javafx.fxml;
+    opens com.group38.prisonbreak.controllers to javafx.fxml;
+
     exports com.group38.prisonbreak;
+    exports com.group38.prisonbreak.controllers;
 }
