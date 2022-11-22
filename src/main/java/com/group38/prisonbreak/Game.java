@@ -21,7 +21,7 @@ public class Game extends Application {
         Pane root = null;
 
         try {
-            root = FXMLLoader.load(FileUtilities.getResource("level/level-view.fxml"));
+            root = FXMLLoader.load(FileUtilities.getResource("fxml/level-view.fxml"));
         } catch (IOException e) {
             System.out.println("Couldn't find level view.");
             System.exit(-1);
@@ -35,7 +35,7 @@ public class Game extends Application {
         primaryStage.show();
         primaryStage.setTitle("Prison Break");
 
-        String iconLocation = FileUtilities.getResourceURI("images/Group38LogoRS.png");
+        String iconLocation = FileUtilities.getResourceURI("images/cellblock38.png");
         if (iconLocation != null) {
             primaryStage.getIcons().add(new Image(iconLocation));
         }
