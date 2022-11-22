@@ -27,7 +27,7 @@ public class Tile implements Drawable {
     // colours that make up the tile
     private final Color[] colours = new Color[4];
 
-    // the Item thats on the tile
+    // the Item that's on the tile
     private Item item;
     /**
      * creates a tile instance with set colours
@@ -88,5 +88,4 @@ public class Tile implements Drawable {
     public Item getItem() {
         return item;
     }
-
 }
