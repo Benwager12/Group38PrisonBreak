@@ -1,31 +1,39 @@
+/**
+ * A Class that implements an Entity
+ * @author Matthew Salter (986488)
+ */
+
 package com.group38.prisonbreak.utilities;
 
-import com.group38.prisonbreak.GameManager;
-
-/**
- * The abstract class for the entity.
- * @author Ben Wager (2108500)
- */
 public abstract class Entity {
 
-    private int tileX;
-    private int tileY;
+    private int x;
+    private int y;
     private int direction;
+
+    public Entity(int xPos, int yPos, int direction) {
+        x = xPos;
+        y = yPos;
+        this.direction = direction;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 
     public int getDirection() {
         return direction;
     }
 
-    public int getTileX() {
-        return tileX;
+    public void setDirection(int direction) {
+        this.direction = direction;
     }
 
-    public int getTileY() {
-        return tileY;
-    }
+    //TO DO
+    //itemInteraction()
 
-    public void onItemInteraction(Item it) {
-        it.interact();
-        GameManager.tiles[tileY][tileX].removeItem();;
-    }
 }
