@@ -14,18 +14,23 @@ import java.util.HashMap;
 
 public class Tile implements Drawable {
 
+    // map of ints to Javafx Colors
     private static final HashMap<Integer, Color> colourMap = new HashMap<>() {{
-        put(0, Color.rgb(253, 101, 105));
-        put(1, Color.rgb(107, 255, 109));
-        put(2, Color.rgb(104, 104, 252));
-        put(3, Color.rgb(255, 245, 138));
-        put(4, Color.rgb(41, 255, 254));
-        put(5, Color.rgb(253, 5, 253));
+        put(0, Color.rgb(253, 101, 105)); // Red
+        put(1, Color.rgb(107, 255, 109)); // Green
+        put(2, Color.rgb(104, 104, 252)); // Blue
+        put(3, Color.rgb(255, 245, 138)); // Yellow
+        put(4, Color.rgb(41, 255, 254));  // Cyan
+        put(5, Color.rgb(253, 5, 253));  // Magenta
     }};
 
-    // all the colours on the tile
+    // colours that make up the tile
     private final Color[] colours = new Color[4];
 
+    /**
+     * creates a tile instance with set colours
+     * @param colours array of ints (0-5) that represent the colours
+     */
     public Tile(int[] colours) {
         for (int i = 0; i < 4; i++) {
             this.colours[i] = colourMap.get(colours[i]);
