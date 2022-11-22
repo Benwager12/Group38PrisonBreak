@@ -1,6 +1,6 @@
 /**
  * A Class that implements a tile
- * @aurhor Daniel Banks, Ben Wager
+ * @aurhor Daniel Banks (2107922), Ben Wager (2108500)
  */
 
 package com.group38.prisonbreak;
@@ -27,6 +27,8 @@ public class Tile implements Drawable {
     // colours that make up the tile
     private final Color[] colours = new Color[4];
 
+    // the Item thats on the tile
+    private Item item;
     /**
      * creates a tile instance with set colours
      * @param colours array of ints (0-5) that represent the colours
@@ -64,5 +66,27 @@ public class Tile implements Drawable {
         return false;
     }
 
+    /**
+     * sets the item on the tile
+     * @param item the item to set
+     */
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    /**
+     * removes the item from the tile
+     */
+    public void removeItem() {
+        item = null;
+    }
+
+    /**
+     * gets the item on the tile
+     * @return item
+     */
+    public Item getItem() {
+        return item;
+    }
 
 }
