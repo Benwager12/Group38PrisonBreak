@@ -1,8 +1,3 @@
-/**
- * A Class that implements a tile
- * @author Daniel Banks (2107922), Ben Wager (2108500)
- */
-
 package com.group38.prisonbreak.utilities;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -10,6 +5,11 @@ import javafx.scene.paint.Color;
 
 import java.util.Arrays;
 import java.util.HashMap;
+
+/**
+ * A Class that implements a tile
+ * @author Daniel Banks (2107922), Ben Wager (2108500)
+ */
 
 public class Tile implements Drawable {
 
