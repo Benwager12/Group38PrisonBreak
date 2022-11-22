@@ -9,11 +9,17 @@ import javafx.fxml.FXMLLoader;
 
 public class Game extends Application {
 
+    // Size of the scene
+    private static final int WIDTH = 800;
+    private static final int HEIGHT = 446;
+
     public void start(Stage primaryStage) {
         try {
             Pane root = (Pane)FXMLLoader.load(getClass().
                     getResource("fxml/level-view.fxml"));
-            Scene scene = new Scene(root,800,500);
+            Scene scene = new Scene(root,WIDTH,HEIGHT);
+            primaryStage.setMinWidth(WIDTH);
+            primaryStage.setMinHeight(HEIGHT);
             primaryStage.setScene(scene);
             primaryStage.show();
             primaryStage.setTitle("Prison Break");
