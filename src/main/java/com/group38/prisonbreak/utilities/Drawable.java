@@ -1,4 +1,4 @@
-package com.group38.prisonbreak;
+package com.group38.prisonbreak.utilities;
 
 import javafx.scene.canvas.GraphicsContext;
 

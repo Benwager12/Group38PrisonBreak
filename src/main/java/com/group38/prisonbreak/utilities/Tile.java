@@ -1,12 +1,11 @@
 /**
  * A Class that implements a tile
- * @aurhor Daniel Banks (2107922), Ben Wager (2108500)
+ * @author Daniel Banks (2107922), Ben Wager (2108500)
  */
 
-package com.group38.prisonbreak;
+package com.group38.prisonbreak.utilities;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import java.util.Arrays;
@@ -67,16 +66,14 @@ public class Tile implements Drawable {
     }
 
     /**
-     * sets the item on the tile
-     * @param item the item to set
+     * Sets the item on the tile
+     * @param item The item to set
      */
     public void setItem(Item item) {
         this.item = item;
     }
 
-    /**
-     * removes the item from the tile
-     */
+    /** Removes the item from the tile */
     public void removeItem() {
         item = null;
     }
