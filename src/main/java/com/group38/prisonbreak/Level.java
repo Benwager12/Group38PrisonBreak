@@ -62,7 +62,10 @@ public class Level {
     }
 
     private Tile nextTile(int posX, int posY, int direction) {
+        // Checks if direction is Up/Down (X)
         boolean isX = direction == 1 || direction == 3;
+
+        // Checks if direction is negative (Up/Left)
         boolean isNegative = direction == 0 || direction == 3;
 
         int newX = isX ?  posX + (isNegative ? -1 : 1) : posX;
