@@ -19,6 +19,24 @@ import java.util.Scanner;
 public class FileUtilities {
     private static Game gameInstance;
 
+   /* public static void main(String[] args) {
+        testReadFile("INSERT FILE PATH HERE");
+    }
+
+    */
+
+    /* public static void testReadFile(String fileName) {
+        try {
+            File file = new File(fileName);
+            Scanner scanner = new Scanner(file);
+            readInfo(scanner);
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("An error occured");
+            e.printStackTrace();
+        }
+    } */
+
     public static void setGameInstance(Game gameInstance) {
         FileUtilities.gameInstance = gameInstance;
     }
@@ -102,9 +120,10 @@ public class FileUtilities {
 
         for(int i = 0; i < numOfItems; i++) {
             String itemType = in.next();
+            System.out.println(itemType);
             int itemXPos = in.nextInt();
             int itemYPos = in.nextInt();
-            String metadata = in.next(); //NEXT LINE??
+            String metadata = in.next();
             Item nextItem = null;
             switch (itemType) {
                 case "M":
@@ -128,7 +147,6 @@ public class FileUtilities {
             }
             items[i] = nextItem;
         }
-
-        return null;
+        return items;
     }
 }
