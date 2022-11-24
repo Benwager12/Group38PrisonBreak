@@ -3,6 +3,9 @@
 package com.group38.prisonbreak.utilities;
 
 import com.group38.prisonbreak.Game;
+import com.group38.prisonbreak.enemies.FloorThief;
+import com.group38.prisonbreak.enemies.FlyingAssassin;
+import com.group38.prisonbreak.enemies.SmartThief;
 import com.group38.prisonbreak.items.*;
 import javafx.scene.image.Image;
 
@@ -94,6 +97,8 @@ public class FileUtilities {
         int[] playerLocation = readPlayerLocation(in);
         int numOfItems = in.nextInt();
         Item[] items = readItems(in, numOfItems);
+        int numOfEnemies = in.nextInt();
+        Enemy[] enemies = readEnemies(in, numOfEnemies);
         in.close();
     }
 
@@ -146,5 +151,26 @@ public class FileUtilities {
             items[i] = nextItem;
         }
         return items;
+    }
+
+    private static Enemy[] readEnemies(Scanner in, int numOfEnemies) {
+        Enemy[] enemies = new Enemy[numOfEnemies];
+
+        for(int i = 0; i < numOfEnemies; i++) {
+            String itemType = in.next();
+
+            int enemyXPos = in.nextInt();
+            int enemyYPos = in.nextInt();
+            int direction = in.nextInt();
+
+            Enemy nextEnemy = switch (itemType) {
+                case "H" -> new FlyingAssassin(enemyXPos, enemyYPos, direction);
+                case "F" -> new FloorThief(enemyXPos, enemyYPos, direction);
+                case "S" -> new SmartThief(enemyXPos, enemyYPos, direction);
+                default -> null;
+            };
+            enemies[i] = nextEnemy;
+        }
+        return enemies;
     }
 }
