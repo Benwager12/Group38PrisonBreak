@@ -20,12 +20,12 @@ public class Tile implements Drawable {
 
     // map of ints to Javafx Colors
     private static final HashMap<Integer, Color> colourMap = new HashMap<>() {{
-        put(0, Color.rgb(253, 101, 105)); // Red
-        put(1, Color.rgb(107, 255, 109)); // Green
-        put(2, Color.rgb(104, 104, 252)); // Blue
-        put(3, Color.rgb(255, 245, 138)); // Yellow
-        put(4, Color.rgb(41, 255, 254));  // Cyan
-        put(5, Color.rgb(253, 5, 253));  // Magenta
+        put(0, Color.rgb(253, 101, 105, .5)); // Red
+        put(1, Color.rgb(107, 255, 109, .5)); // Green
+        put(2, Color.rgb(104, 104, 252, .5)); // Blue
+        put(3, Color.rgb(255, 245, 138, .5)); // Yellow
+        put(4, Color.rgb(41, 255, 254, .5));  // Cyan
+        put(5, Color.rgb(253, 5, 253, .5));  // Magenta
     }};
 
     // colours that make up the tile
