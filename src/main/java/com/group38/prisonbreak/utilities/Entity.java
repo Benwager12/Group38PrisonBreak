@@ -33,9 +33,7 @@ public abstract class Entity {
         this.direction = direction;
     }
 
-    public void move() {
-
-    }
+    public abstract void move();
 
     //TO DO
     //itemInteraction()
