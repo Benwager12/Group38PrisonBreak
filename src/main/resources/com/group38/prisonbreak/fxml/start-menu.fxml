@@ -14,7 +14,7 @@
          <children>
             <ImageView id="gameLogo" fitHeight="128.0" fitWidth="309.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../Documents/Uni/2nd Year/CS-230/cell block 38/cellblock38.png" />
+                  <Image url="@../images/cellblock38.png" />
                </image>
             </ImageView>
             <Button id="newGameButton" mnemonicParsing="false" text="New Game" textAlignment="CENTER">
