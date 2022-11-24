@@ -6,4 +6,9 @@ public class Player extends Entity {
 
         super(xPos, yPos, direction);
     }
+
+    @Override
+    public void move() {
+        
+    }
 }
