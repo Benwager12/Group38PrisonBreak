@@ -10,14 +10,14 @@ import javafx.scene.canvas.GraphicsContext;
 public interface Drawable {
 
     /**
-     * Draw the item
+     * Draw the item.
      * @param g The graphics context
      */
     void draw(GraphicsContext g);
 
-    /** The X coordinate */
+    /** The X coordinate. */
     int X = 0;
 
-    /** The Y coordinate */
+    /** The Y coordinate. */
     int Y = 0;
 }
