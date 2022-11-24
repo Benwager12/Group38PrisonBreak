@@ -1,8 +1,10 @@
 package com.group38.prisonbreak.utilities;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -12,6 +14,9 @@ import java.util.HashMap;
  */
 
 public class Tile implements Drawable {
+
+    // Background image for Tiles
+    private static final Image image = FileUtilities.loadImageFromResource("images/tile.png");
 
     // map of ints to Javafx Colors
     private static final HashMap<Integer, Color> colourMap = new HashMap<>() {{
