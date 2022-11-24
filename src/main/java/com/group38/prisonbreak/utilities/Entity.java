@@ -33,6 +33,10 @@ public abstract class Entity {
         this.direction = direction;
     }
 
+    public void move() {
+
+    }
+
     //TO DO
     //itemInteraction()
 
