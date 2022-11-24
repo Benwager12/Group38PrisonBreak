@@ -13,4 +13,9 @@ public class Gate extends Item {
 
     }
 
+    @Override
+    public String getImagePath() {
+        return "images/items/gate.png";
+    }
+
 }

@@ -13,4 +13,9 @@ public class Lever extends Item {
 
     }
 
+    @Override
+    public String getImagePath() {
+        return "images/items/lever.png";
+    }
+
 }
