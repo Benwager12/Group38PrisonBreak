@@ -32,6 +32,10 @@ public class Level {
         this.entities = entities;
     }
 
+    public Entity[] getEntities() {
+        return entities;
+    }
+
     /**
      * Draws all the Tiles onto the level
      */
