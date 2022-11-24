@@ -3,6 +3,7 @@
 package com.group38.prisonbreak.utilities;
 
 import com.group38.prisonbreak.Game;
+import com.group38.prisonbreak.items.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -97,6 +98,32 @@ public class FileUtilities {
     }
 
     private static Item[] readItems(Scanner in, int numOfItems) {
+        Item[] items = new Item[numOfItems];
+
+        for(int i = 0; i < numOfItems; i++) {
+            String itemType = in.next();
+            Item nextItem;
+            switch (itemType) {
+                case "M":
+                    nextItem = new Loot();
+                    break;
+                case "C":
+                    nextItem = new Clock();
+                    break;
+                case "G":
+                    nextItem = new Gate();
+                    break;
+                case "L":
+                    nextItem = new Lever();
+                    break;
+                case "B":
+                    nextItem = new Bomb();
+                    break;
+                case "D":
+                    nextItem = new Door();
+                    break;
+            }
+        }
 
         return null;
     }
