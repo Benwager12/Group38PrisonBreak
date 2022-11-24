@@ -13,4 +13,9 @@ public class Door extends Item {
 
     }
 
+    @Override
+    public String getImagePath() {
+        return "images/items/door.png";
+    }
+
 }

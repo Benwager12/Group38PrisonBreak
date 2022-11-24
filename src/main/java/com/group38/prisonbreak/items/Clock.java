@@ -12,4 +12,9 @@ public class Clock extends Item {
     public void interact() {
         // TODO: Implement the clock
     }
+
+    @Override
+    public String getImagePath() {
+        return "images/items/clock.png";
+    }
 }

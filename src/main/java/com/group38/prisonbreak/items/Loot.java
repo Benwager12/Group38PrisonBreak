@@ -13,4 +13,9 @@ public class Loot extends Item {
 
     }
 
+    @Override
+    public String getImagePath() {
+        return "images/items/loot.png";
+    }
+
 }
