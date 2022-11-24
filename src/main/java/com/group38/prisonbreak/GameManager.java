@@ -11,7 +11,7 @@ import javafx.util.Duration;
 /**
  * A singleton class that holds everything in the level.
  *
- * @author Ben Wager (2108500)
+ * @author Ben Wager (2108500), Daniel Banks (2107922)
  */
 public class GameManager {
 
@@ -23,10 +23,14 @@ public class GameManager {
 
     private static final Timeline entityTimeLine = new Timeline(new KeyFrame(Duration.millis(500), event -> moveEntities()));
     private static final Timeline smartThiefTimeLine = new Timeline(new KeyFrame(Duration.millis(1250), event -> moveSmartThief()));
+    private static final Timeline timeTimeLine = new Timeline(new KeyFrame(Duration.millis(1000), event -> changeTime()));
+
 
     public static void startTimelines() {
         entityTimeLine.setCycleCount(Animation.INDEFINITE);
         smartThiefTimeLine.setCycleCount(Animation.INDEFINITE);
+        timeTimeLine.setCycleCount(Animation.INDEFINITE);
+
     }
 
     private static void moveEntities() {
@@ -43,5 +47,9 @@ public class GameManager {
                 entity.move();
             }
         }
+    }
+
+    private static void changeTime() {
+        // TODO: add timer
     }
 }
