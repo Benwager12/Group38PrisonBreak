@@ -2,6 +2,7 @@ package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.utilities.Entity;
 import com.group38.prisonbreak.utilities.Tile;
+import javafx.scene.paint.Color;
 
 /**
  * A Class that stores the data about a level
@@ -52,9 +53,27 @@ public class Level {
      * @param posY Y position of the entity
      * @return boolean - If the move is valid
      */
-    public boolean canMove(int direction, int posX, int posY) {
-        // TODO: implement can move
-        return true;
+    public boolean canMove(int posX, int posY, int direction) {
+        return nextTile(posX, posY, direction) != null;
     }
 
+    private Tile nextTile(int posX, int posY, int direction) {
+        boolean isX = direction == 1 || direction == 3;
+        boolean isNegative = direction == 0 || direction == 3;
+
+        int newX = isX ?  posX + (isNegative ? -1 : 1) : posX;
+        int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
+
+        Tile nextTile = tiles[newY][newX];
+
+        while (tiles[newY] != null && tiles[newY][newX] != null) {
+            System.out.printf("%d %d%n", newY, newX);
+            if (nextTile.hasColours(tiles[posY][posX].getColours())) {
+                return nextTile;
+            }
+            // Do stuff
+            nextTile = tiles[isX ? (isNegative ? --newX : ++newX) : newX][!isX ? (isNegative ? --newY : ++newY) : newY];
+        }
+        return null;
+    }
 }
