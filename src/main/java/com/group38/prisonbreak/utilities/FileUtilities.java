@@ -45,7 +45,6 @@ public class FileUtilities {
     }
 
 
-
     public static URL getResource(String path) {
         return gameInstance.getClass().getResource(path);
     }
@@ -61,11 +60,13 @@ public class FileUtilities {
     }
 
     private static void readInfo(Scanner in) {
-        int tileWidth = in.nextInt();
-        int tileHeight = in.nextInt();
+        int levelWidth = in.nextInt();
+        int levelHeight = in.nextInt();
 
-        Tile[][] tiles = readTiles(in, tileWidth, tileHeight);
+        Tile[][] tiles = readTiles(in, levelWidth, levelHeight);
         int[] playerLocation = readPlayerLocation(in);
+        int numOfItems = in.nextInt();
+        Item[] items = readItems(in, numOfItems);
         in.close();
     }
 
@@ -95,8 +96,8 @@ public class FileUtilities {
         };
     }
 
-    private static Item[] readItems(Scanner in, int itemAmount) {
-        // TODO: Implement read items
+    private static Item[] readItems(Scanner in, int numOfItems) {
+
         return null;
     }
 }
