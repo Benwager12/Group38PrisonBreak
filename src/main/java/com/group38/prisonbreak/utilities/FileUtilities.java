@@ -14,7 +14,7 @@ import java.util.Scanner;
 /**
  * Generalised utilities for files.
  *
- * @author Daniel Banks (2107922), Ben Wager (2108500)
+ * @author Daniel Banks (2107922), Ben Wager (2108500), Matthew Salter (986488)
  */
 public class FileUtilities {
     private static Game gameInstance;
@@ -102,27 +102,31 @@ public class FileUtilities {
 
         for(int i = 0; i < numOfItems; i++) {
             String itemType = in.next();
-            Item nextItem;
+            int itemXPos = in.nextInt();
+            int itemYPos = in.nextInt();
+            String metadata = in.next(); //NEXT LINE??
+            Item nextItem = null;
             switch (itemType) {
                 case "M":
-                    nextItem = new Loot();
+                    nextItem = new Loot(itemXPos, itemYPos, metadata);
                     break;
                 case "C":
-                    nextItem = new Clock();
+                    nextItem = new Clock(itemXPos, itemYPos, metadata);
                     break;
                 case "G":
-                    nextItem = new Gate();
+                    nextItem = new Gate(itemXPos, itemYPos, metadata);
                     break;
                 case "L":
-                    nextItem = new Lever();
+                    nextItem = new Lever(itemXPos, itemYPos, metadata);
                     break;
                 case "B":
-                    nextItem = new Bomb();
+                    nextItem = new Bomb(itemXPos, itemYPos, metadata);
                     break;
                 case "D":
-                    nextItem = new Door();
+                    nextItem = new Door(itemXPos, itemYPos, metadata);
                     break;
             }
+            items[i] = nextItem;
         }
 
         return null;
