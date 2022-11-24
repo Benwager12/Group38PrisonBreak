@@ -4,6 +4,8 @@ package com.group38.prisonbreak.utilities;
 
 import com.group38.prisonbreak.Game;
 import com.group38.prisonbreak.items.*;
+import javafx.scene.image.Image;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,12 +22,10 @@ public class FileUtilities {
     private static Game gameInstance;
 
    /* public static void main(String[] args) {
-        testReadFile("INSERT FILE PATH HERE");
+        testReadFile("C:\\Users\\danie\\OneDrive - Swansea University\\CS-230\\Code\\src\\main\\resources\\com\\group38\\prisonbreak\\testFiles\\Test.txt");
     }
 
-    */
-
-    /* public static void testReadFile(String fileName) {
+    public static void testReadFile(String fileName) {
         try {
             File file = new File(fileName);
             Scanner scanner = new Scanner(file);
@@ -78,6 +78,14 @@ public class FileUtilities {
         }
     }
 
+    public static Image loadImageFromResource(String resourcePath) {
+        String path = getResourceURI(resourcePath);
+        if (path == null) {
+            return null;
+        }
+        return new Image(path);
+    }
+
     private static void readInfo(Scanner in) {
         int levelWidth = in.nextInt();
         int levelHeight = in.nextInt();
@@ -120,31 +128,21 @@ public class FileUtilities {
 
         for(int i = 0; i < numOfItems; i++) {
             String itemType = in.next();
-            System.out.println(itemType);
+
             int itemXPos = in.nextInt();
             int itemYPos = in.nextInt();
+
             String metadata = in.next();
-            Item nextItem = null;
-            switch (itemType) {
-                case "M":
-                    nextItem = new Loot(itemXPos, itemYPos, metadata);
-                    break;
-                case "C":
-                    nextItem = new Clock(itemXPos, itemYPos, metadata);
-                    break;
-                case "G":
-                    nextItem = new Gate(itemXPos, itemYPos, metadata);
-                    break;
-                case "L":
-                    nextItem = new Lever(itemXPos, itemYPos, metadata);
-                    break;
-                case "B":
-                    nextItem = new Bomb(itemXPos, itemYPos, metadata);
-                    break;
-                case "D":
-                    nextItem = new Door(itemXPos, itemYPos, metadata);
-                    break;
-            }
+
+            Item nextItem = switch (itemType) {
+                case "M" -> new Loot(itemXPos, itemYPos, metadata);
+                case "C" -> new Clock(itemXPos, itemYPos, metadata);
+                case "G" -> new Gate(itemXPos, itemYPos, metadata);
+                case "L" -> new Lever(itemXPos, itemYPos, metadata);
+                case "B" -> new Bomb(itemXPos, itemYPos, metadata);
+                case "D" -> new Door(itemXPos, itemYPos, metadata);
+                default -> null;
+            };
             items[i] = nextItem;
         }
         return items;
