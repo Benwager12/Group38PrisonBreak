@@ -68,17 +68,21 @@ public class Level {
         // Checks if direction is negative (Up/Left)
         boolean isNegative = direction == 0 || direction == 3;
 
+        // X Position of the next Tile (Based on Direction)
         int newX = isX ?  posX + (isNegative ? -1 : 1) : posX;
+
+        // Y Position of the next Tile (Based on Direction)
         int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
 
         Tile nextTile = tiles[newY][newX];
 
+        // Iterates through all the Tiles; from the Current Tile to the edge
         while (tiles[newY] != null && tiles[newY][newX] != null) {
             System.out.printf("%d %d%n", newY, newX);
             if (nextTile.hasColours(tiles[posY][posX].getColours())) {
                 return nextTile;
             }
-            // Do stuff
+            // Gets the next Tile
             nextTile = tiles[isX ? (isNegative ? --newX : ++newX) : newX][!isX ? (isNegative ? --newY : ++newY) : newY];
         }
         return null;
