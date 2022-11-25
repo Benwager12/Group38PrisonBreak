@@ -3,6 +3,7 @@
 package com.group38.prisonbreak.utilities;
 
 import com.group38.prisonbreak.Game;
+import com.group38.prisonbreak.Level;
 import com.group38.prisonbreak.enemies.FloorThief;
 import com.group38.prisonbreak.enemies.FlyingAssassin;
 import com.group38.prisonbreak.enemies.SmartThief;
@@ -25,7 +26,7 @@ public class FileUtilities {
     private static Game gameInstance;
 
    /* public static void main(String[] args) {
-        testReadFile("C:\\Users\\danie\\OneDrive - Swansea University\\CS-230\\Code\\src\\main\\resources\\com\\group38\\prisonbreak\\testFiles\\Test.txt");
+        testReadFile("C:\\Users\\danie\\OneDrive - Swansea University\\CS-230\\Code\\src\\main\\resources\\com\\group38\\prisonbreak\\testFiles\\0.level");
     }
 
     public static void testReadFile(String fileName) {
@@ -44,13 +45,15 @@ public class FileUtilities {
         FileUtilities.gameInstance = gameInstance;
     }
 
-    public static void readLevel(String levelName) {
-        String levelPath = getResourceURI(String.format("level/%s.level", levelName));
+    public static Level readLevel(String levelName) {
+        String levelPath = getResourceURI(String.format("levels/%s.level", levelName));
 
         if (levelPath == null) {
             System.out.println("Level does not exist.");
             System.exit(-1);
         }
+
+        levelPath = levelPath.substring(6, levelPath.length());
 
         File file = new File(levelPath);
         Scanner scanner = null;
@@ -58,12 +61,12 @@ public class FileUtilities {
             scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
             System.out.println("Can't find the level file.");
+            e.printStackTrace();
             System.exit(-1);
         }
 
         // This is the level data
-        readInfo(scanner);
-
+        return readInfo(scanner);
     }
 
 
@@ -89,7 +92,7 @@ public class FileUtilities {
         return new Image(path);
     }
 
-    private static void readInfo(Scanner in) {
+    private static Level readInfo(Scanner in) {
         int levelWidth = in.nextInt();
         int levelHeight = in.nextInt();
 
@@ -99,12 +102,14 @@ public class FileUtilities {
         Item[] items = readItems(in, numOfItems);
         int numOfEnemies = in.nextInt();
         Enemy[] enemies = readEnemies(in, numOfEnemies);
+
         in.close();
+
+        return new Level(0, tiles, enemies);
     }
 
     private static Tile[][] readTiles(Scanner in, int width, int height) {
         Tile[][] tiles = new Tile[height][width];
-        System.out.println(width + " " + height);
 
         for (int h = 0; h < height; h++) {
             for (int w = 0; w < width; w++) {

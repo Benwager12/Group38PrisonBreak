@@ -1,31 +1,39 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.GameManager;
+import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class LevelController {
 
     @FXML
-    private Label levelNumberLabel;
+    private Text levelNumberLabel;
 
     @FXML
-    private Label timeLabel;
+    private Text timeLabel;
 
     @FXML
-    private Label scoreNumberLabel;
+    private Text scoreNumberLabel;
 
-    @FXML
-    private Canvas gameCanvas;
+    @FXML private Canvas gameCanvas;
 
-    private GraphicsContext gc;
+    private GraphicsContext g;
 
     public void drawCanvas() {
-        if (gc == null) {
-            gc = gameCanvas.getGraphicsContext2D();
+        if (g == null) {
+            g = gameCanvas.getGraphicsContext2D();
         }
 
-        // TODO: Draw the scene
+        GameManager.level.draw(g);
+    }
+
+    public void onMouseClickCanvas(MouseEvent mouseEvent) {
+        System.out.println(gameCanvas);
+        GameManager.level = FileUtilities.readLevel("0");
+        drawCanvas();
     }
 }
