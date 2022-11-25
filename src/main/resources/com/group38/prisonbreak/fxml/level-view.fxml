@@ -9,19 +9,19 @@
 
 <BorderPane id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LevelController">
    <center>
-      <Canvas id="gameCanvas" height="400.0" width="800.0" BorderPane.alignment="CENTER" />
+      <Canvas fx:id="gameCanvas" height="400.0" onMouseClicked="#onMouseClickCanvas" width="800.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <BorderPane id="gameInfoPane" prefHeight="45.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <BorderPane id="gameInfoPane" fx:id="gameInfoPane" prefHeight="45.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
-            <HBox id="levelHbox" prefHeight="46.0" prefWidth="215.0" spacing="10.0" BorderPane.alignment="TOP_CENTER">
+            <HBox id="levelHbox" fx:id="levelHbox" prefHeight="46.0" prefWidth="215.0" spacing="10.0" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <Text id="levelLabel" strokeType="OUTSIDE" strokeWidth="10.0" text="LEVEL:">
+                  <Text fx:id="levelLabel" strokeType="OUTSIDE" strokeWidth="10.0" text="LEVEL:">
                      <font>
                         <Font name="Copperplate Gothic Light" size="30.0" />
                      </font>
                   </Text>
-                  <Text id="levelNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                  <Text fx:id="levelNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="30.0" />
                      </font>
@@ -33,14 +33,14 @@
             </HBox>
          </left>
          <right>
-            <HBox id="scoreHBox" alignment="TOP_RIGHT" prefHeight="46.0" prefWidth="215.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <HBox id="scoreHBox" fx:id="scoreHBox" alignment="TOP_RIGHT" prefHeight="46.0" prefWidth="215.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text id="scoreLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE:">
+                  <Text id="scoreLabel" fx:id="scoreLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE:">
                      <font>
                         <Font name="Copperplate Gothic Light" size="30.0" />
                      </font>
                   </Text>
-                  <Text id="scoreNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="000">
+                  <Text id="scoreNumberLabel" fx:id="scoreNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="000">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="30.0" />
                      </font>
@@ -52,7 +52,7 @@
             </HBox>
          </right>
          <center>
-            <Text id="timeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00" textAlignment="CENTER" wrappingWidth="347.4452739953995" BorderPane.alignment="CENTER">
+            <Text fx:id="timeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00" textAlignment="CENTER" wrappingWidth="347.4452739953995" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Copperplate Gothic Bold" size="30.0" />
                </font>
