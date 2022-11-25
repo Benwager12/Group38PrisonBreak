@@ -46,16 +46,10 @@ public class FileUtilities {
     }
 
     public static Level readLevel(String levelName) {
-        String levelPath = getResourceURI(String.format("levels/%s.level", levelName));
-
-        if (levelPath == null) {
-            System.out.println("Level does not exist.");
-            System.exit(-1);
-        }
-
-        levelPath = levelPath.substring(6, levelPath.length());
+        String levelPath = getResourcePath(String.format("levels/%s.level", levelName));
 
         File file = new File(levelPath);
+
         Scanner scanner = null;
         try {
             scanner = new Scanner(file);
@@ -76,12 +70,20 @@ public class FileUtilities {
 
     public static String getResourceURI(String path) {
         URL resource = getResource(path);
-
+        if (resource == null) {
+            return null;
+        }
         try {
             return resource.toURI().toString();
         } catch (URISyntaxException e) {
             return null;
         }
+    }
+
+    public static String getResourcePath(String path) {
+        String uri = getResourceURI(path);
+        assert uri != null;
+        return uri.substring(6, uri.length()).replaceAll("%20", " ");
     }
 
     public static Image loadImageFromResource(String resourcePath) {
