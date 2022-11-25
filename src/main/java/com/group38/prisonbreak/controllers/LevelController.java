@@ -32,7 +32,6 @@ public class LevelController {
     }
 
     public void onMouseClickCanvas(MouseEvent mouseEvent) {
-        System.out.println(gameCanvas);
         GameManager.level = FileUtilities.readLevel("0");
         drawCanvas();
     }
