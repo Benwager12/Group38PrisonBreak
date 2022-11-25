@@ -33,9 +33,9 @@ public class Game extends Application {
         primaryStage.setMinHeight(HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setTitle("Prison Break");
+        primaryStage.setTitle("Cell Block 38");
 
-        String iconLocation = FileUtilities.getResourceURI("images/cellblock38.png");
+        String iconLocation = FileUtilities.getResourceURI("images/mainMenu/CellBlock38Icon.png");
         if (iconLocation != null) {
             primaryStage.getIcons().add(new Image(iconLocation));
         }

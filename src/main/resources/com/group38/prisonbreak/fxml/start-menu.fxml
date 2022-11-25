@@ -18,7 +18,7 @@
                <children>
                   <ImageView id="gameLogo" fitHeight="128.0" fitWidth="309.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@..\images\mainMenu\GameLogo.png" />
+                        <Image url="@../images/mainMenu/GameLogo.png" />
                      </image>
                   </ImageView>
                   <StackPane prefHeight="34.0" prefWidth="428.0">
@@ -33,7 +33,7 @@
                         </Button>
                         <ImageView fitHeight="150.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@..\images\mainMenu\NewGameButton.png" />
+                              <Image url="@../images/mainMenu/NewGameButton.png" />
                            </image>
                            <StackPane.margin>
                               <Insets top="10.0" />
