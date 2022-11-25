@@ -12,10 +12,9 @@ import java.util.HashMap;
  * @author Daniel Banks (2107922), Ben Wager (2108500)
  */
 
-public class Tile implements Drawable {
+public class Tile {
 
-    // Background image for Tiles
-    private static final Image image = FileUtilities.loadImageFromResource("images/tile.png");
+
 
     // map of ints to Javafx Colors
     private static final HashMap<Integer, Color> colourMap = new HashMap<>() {{
@@ -41,12 +40,6 @@ public class Tile implements Drawable {
             this.colours[i] = colourMap.get(colours[i]);
         }
     }
-
-    @Override
-    public void draw(GraphicsContext g) {
-
-    }
-
     /**
      * Gets all the colours of the tile
      * @return Color[]

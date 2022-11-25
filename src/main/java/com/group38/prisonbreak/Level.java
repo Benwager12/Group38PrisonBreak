@@ -1,15 +1,21 @@
 package com.group38.prisonbreak;
 
+import com.group38.prisonbreak.utilities.Drawable;
 import com.group38.prisonbreak.utilities.Entity;
+import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.Tile;
-import javafx.scene.paint.Color;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  * A Class that stores the data about a level
  * @author Daniel Banks (2107922)
  */
 
-public class Level {
+public class Level implements Drawable {
+
+    // Background image for Tiles
+    private static final Image tileImage = FileUtilities.loadImageFromResource("images/GameImages/tile.png");
 
     // The level Number
     private final int levelNumber;
@@ -39,14 +45,26 @@ public class Level {
     /**
      * Draws all the Tiles onto the level
      */
-    private void drawTiles() {
+    private void drawTiles(GraphicsContext g) {
+        int tileYAmt = tiles.length;
+        int tileXAmt = tiles[0].length;
 
+        int canvasWidth = (int) g.getCanvas().getWidth();
+        int canvasHeight = (int) g.getCanvas().getHeight();
+
+        int sideLength = getTileSideLength(this, canvasWidth, canvasHeight);
+
+        for (int y = 0; y < tileYAmt * tileYAmt * sideLength + (sideLength * tileYAmt); y+= sideLength + 1) {
+            for (int x = 0; x < tileXAmt * sideLength + (sideLength * tileXAmt); x+= sideLength + 1) {
+                g.drawImage(Level.tileImage, x, y, sideLength, sideLength);
+            }
+        }
     }
 
     /**
      * Draws all Entities onto the level
      */
-    private void drawEntities(){
+    private void drawEntities(GraphicsContext g){
 
     }
 
@@ -86,5 +104,24 @@ public class Level {
             nextTile = tiles[isX ? (isNegative ? --newX : ++newX) : newX][!isX ? (isNegative ? --newY : ++newY) : newY];
         }
         return null;
+    }
+
+    /**
+     * @param g The graphics context
+     */
+    @Override
+    public void draw(GraphicsContext g) {
+        drawTiles(g);
+        drawEntities(g);
+    }
+
+    private static int getTileSideLength(Level level, int width, int height) {
+        int tileYAmt = level.tiles.length;
+        int tileXAmt  = level.tiles[0].length;
+
+        int tileXWidth = width / tileXAmt;
+        int tileYWidth = height / tileYAmt;
+
+        return Math.min(tileXWidth, tileYWidth);
     }
 }
