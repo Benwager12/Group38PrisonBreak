@@ -18,13 +18,14 @@ public class Game extends Application {
 
     public void start(Stage primaryStage) {
         FileUtilities.setGameInstance(this);
-        Pane root = null;
 
+        FXMLLoader loader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
+
+        Pane root = null;
         try {
-            root = FXMLLoader.load(FileUtilities.getResource("fxml/level-view.fxml"));
+            root = loader.load();
         } catch (IOException e) {
-            System.out.println("Couldn't find level view.");
-            System.exit(-1);
+            throw new RuntimeException(e);
         }
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
