@@ -41,7 +41,6 @@ public abstract class Entity {
 
     public abstract void move();
 
-    //TO DO
-    //itemInteraction()
+    public abstract void itemInteract();
 
 }
