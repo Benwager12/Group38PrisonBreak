@@ -80,9 +80,11 @@ public class GameManager {
      *  moves the smart thief
      */
     private static void moveSmartThief() {
-        for (Entity entity : level.getEntities()) {
-            if (entity instanceof SmartThief) {
-                entity.move();
+        if (level != null) {
+            for (Entity entity : level.getEntities()) {
+                if (entity instanceof SmartThief) {
+                    entity.move();
+                }
             }
         }
     }
@@ -95,7 +97,7 @@ public class GameManager {
         time--;
 
         if (time <= 0) {
-            stopTimeLines();
+            //stopTimeLines();
         }
     }
 
