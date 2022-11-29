@@ -9,7 +9,7 @@ public class Clock extends Item {
     }
 
     @Override
-    public void interact() {
+    public void interact(boolean isPlayer) {
         // TODO: Implement the clock
     }
 

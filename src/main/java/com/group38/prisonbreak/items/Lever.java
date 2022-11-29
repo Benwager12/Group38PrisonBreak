@@ -9,7 +9,7 @@ public class Lever extends Item {
     }
 
     @Override
-    public void interact() {
+    public void interact(boolean isPlayer) {
 
     }
 

@@ -9,7 +9,7 @@ public class Gate extends Item {
     }
 
     @Override
-    public void interact() {
+    public void interact(boolean isPlayer) {
 
     }
 
