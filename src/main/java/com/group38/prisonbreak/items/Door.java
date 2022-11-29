@@ -4,13 +4,14 @@ import com.group38.prisonbreak.utilities.Item;
 
 public class Door extends Item {
 
-    public Door(String metadata) {
+    public Door() {
         //Implement Constructor
     }
 
     @Override
-    public void interact(boolean isPlayer) {
-
+    public boolean interact(boolean isPlayer) {
+        // TODO
+        return true;
     }
 
     @Override

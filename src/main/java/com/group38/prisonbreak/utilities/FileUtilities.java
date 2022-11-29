@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -48,6 +50,9 @@ public class FileUtilities {
     public static Level readLevel(String levelName) {
         String levelPath = getResourcePath(String.format("levels/%s.level", levelName));
 
+        if (System.getProperty("os.name").equals("Mac OS X")) {
+            levelPath = "/" + levelPath;
+        }
         File file = new File(levelPath);
 
         Scanner scanner = null;
@@ -100,8 +105,17 @@ public class FileUtilities {
 
         Tile[][] tiles = readTiles(in, levelWidth, levelHeight);
         int[] playerLocation = readPlayerLocation(in);
+        Player p = new Player(playerLocation[0], playerLocation[1], playerLocation[2]);
+
         int numOfItems = in.nextInt();
-        Item[] items = readItems(in, numOfItems);
+        HashMap<int[], Item> items = readItems(in, numOfItems);
+
+        for (int[] itemPosition : items.keySet()) {
+            Tile currentTile = tiles[itemPosition[1]][itemPosition[0]];
+            currentTile.setItem(items.get(itemPosition));
+            tiles[itemPosition[1]][itemPosition[0]] = currentTile;
+        }
+
         int numOfEnemies = in.nextInt();
         Enemy[] enemies = readEnemies(in, numOfEnemies);
 
@@ -135,39 +149,33 @@ public class FileUtilities {
         };
     }
 
-    private static Item[] readItems(Scanner in, int numOfItems) {
-        Item[] items = new Item[numOfItems];
+    private static HashMap<int[], Item> readItems(Scanner in, int numOfItems) {
+        HashMap<int[], Item> itemMap = new HashMap<>();
 
         for(int i = 0; i < numOfItems; i++) {
             String itemType = in.next();
 
-            int itemXPos = in.nextInt();
-            int itemYPos = in.nextInt();
+            int[] itemPosition = new int[]{in.nextInt(), in.nextInt()};
 
-            String metadata = in.next();
-
-            Item nextItem = switch (itemType) {
-                case "M" -> new Loot(itemXPos, itemYPos, metadata);
-                case "C" -> new Clock(itemXPos, itemYPos, metadata);
-                case "G" -> new Gate(itemXPos, itemYPos, metadata);
-                case "L" -> new Lever(itemXPos, itemYPos, metadata);
-                case "B" -> new Bomb(itemXPos, itemYPos, metadata);
-                case "D" -> new Door(itemXPos, itemYPos, metadata);
-                default -> null;
-            };
-            items[i] = nextItem;
+            switch (itemType) {
+                case "M" -> itemMap.put(itemPosition, new Loot(in.next()));
+                case "C" -> itemMap.put(itemPosition, new Clock());
+                case "G" -> itemMap.put(itemPosition, new Gate(in.next()));
+                case "L" -> itemMap.put(itemPosition, new Lever(in.next()));
+                case "B" -> itemMap.put(itemPosition, new Bomb());
+                case "D" -> itemMap.put(itemPosition, new Door());
+            }
         }
-        return items;
+        return itemMap;
     }
 
     private static int convertDirection(String directionString) {
-
         int direction = switch (directionString) {
             case "L" -> 3;
             case "R" -> 1;
             case "U" -> 0;
             case "D" -> 2;
-            default -> 0;
+            default -> 88;
         };
         return direction;
     }
@@ -176,30 +184,36 @@ public class FileUtilities {
         Enemy[] enemies = new Enemy[numOfEnemies];
         Enemy nextEnemy = null;
 
+        // <x, <y, enemy>>
+        HashMap<Integer[], Enemy> enemyMap = new HashMap<>();
+
         for(int i = 0; i < numOfEnemies; i++) {
             String enemyType = in.next();
             int enemyXPos;
             int enemyYPos;
-            String directionString;
             int direction;
             int chosenColour = 0;
 
-            if (enemyType.equals("H")) {
-                enemyXPos = in.nextInt();
-                enemyYPos = in.nextInt();
-                direction = convertDirection(in.next());
-                nextEnemy = new FlyingAssassin(enemyXPos, enemyYPos, direction);
-            } else if (enemyType.equals("F")) {
-                enemyXPos = in.nextInt();
-                enemyYPos = in.nextInt();
-                direction = convertDirection(in.next());
-                chosenColour = in.nextInt();
-                nextEnemy = new FloorThief(enemyXPos, enemyYPos, direction,chosenColour);
-            } else if(enemyType.equals("S")) {
-                enemyXPos = in.nextInt();
-                enemyYPos = in.nextInt();
-                direction = convertDirection(in.next());
-                nextEnemy = new SmartThief(enemyXPos, enemyYPos, direction);
+            switch (enemyType) {
+                case "H" -> {
+                    enemyXPos = in.nextInt();
+                    enemyYPos = in.nextInt();
+                    direction = convertDirection(in.next());
+                    nextEnemy = new FlyingAssassin(enemyXPos, enemyYPos, direction);
+                }
+                case "F" -> {
+                    enemyXPos = in.nextInt();
+                    enemyYPos = in.nextInt();
+                    direction = convertDirection(in.next());
+                    chosenColour = in.nextInt();
+                    nextEnemy = new FloorThief(enemyXPos, enemyYPos, direction, chosenColour);
+                }
+                case "S" -> {
+                    enemyXPos = in.nextInt();
+                    enemyYPos = in.nextInt();
+                    direction = convertDirection(in.next());
+                    nextEnemy = new SmartThief(enemyXPos, enemyYPos, direction);
+                }
             }
 
             enemies[i] = nextEnemy;

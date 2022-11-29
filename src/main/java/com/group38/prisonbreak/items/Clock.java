@@ -12,12 +12,13 @@ public class Clock extends Item {
     }
 
     @Override
-    public void interact(boolean isPlayer) {
+    public boolean interact(boolean isPlayer) {
         if (isPlayer) {
             GameManager.addTime(CLOCK_AMOUNT);
         } else {
             GameManager.removeTime(CLOCK_AMOUNT);
         }
+        return true;
     }
 
     @Override
