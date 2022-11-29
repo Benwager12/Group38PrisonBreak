@@ -26,10 +26,11 @@ public class Loot extends Item {
      * @param isPlayer Is the entity a player
      */
     @Override
-    public void interact(boolean isPlayer) {
+    public boolean interact(boolean isPlayer) {
         if (isPlayer) {
             GameManager.collectMoney(moneyAmount);
         }
+        return true;
     }
 
     @Override

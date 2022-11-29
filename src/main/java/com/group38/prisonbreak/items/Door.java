@@ -9,8 +9,9 @@ public class Door extends Item {
     }
 
     @Override
-    public void interact(boolean isPlayer) {
-
+    public boolean interact(boolean isPlayer) {
+        // TODO
+        return true;
     }
 
     @Override

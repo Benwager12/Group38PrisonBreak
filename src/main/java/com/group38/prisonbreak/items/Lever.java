@@ -21,10 +21,11 @@ public class Lever extends Item {
     }
 
     @Override
-    public void interact(boolean isPlayer) {
+    public boolean interact(boolean isPlayer) {
         if (isPlayer) {
             GameManager.openLever(colour);
         }
+        return true;
     }
 
     @Override

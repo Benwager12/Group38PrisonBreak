@@ -14,10 +14,11 @@ public class Bomb extends Item {
     private final int BOMB_ACTIVATE_TIME = 3;
 
     @Override
-    public void interact(boolean isPlayer) {
+    public boolean interact(boolean isPlayer) {
         if (GameManager.time > 3) {
             GameManager.time = BOMB_ACTIVATE_TIME;
         }
+        return false;
     }
 
     @Override
