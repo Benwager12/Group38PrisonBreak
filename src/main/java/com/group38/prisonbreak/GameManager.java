@@ -23,6 +23,9 @@ public class GameManager {
     // Time left in the game
     public static int time;
 
+    // Checks if the lever has been pulled
+    public static boolean hasLeverBeenPulled = false;
+
     // Tick timeline for the entities to move every 500 milliseconds
     private static final Timeline entityTimeLine =
             new Timeline(new KeyFrame(Duration.millis(500), event -> moveEntities()));
@@ -77,6 +80,13 @@ public class GameManager {
         if (time <= 0) {
             // GAME OVER
         }
+    }
+
+    public static void addTime(int amount) {
+        time += amount;
+    }
+    public static void removeTime(int amount) {
+        time += amount;
     }
 
     /**
