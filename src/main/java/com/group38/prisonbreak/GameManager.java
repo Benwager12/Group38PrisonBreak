@@ -96,4 +96,12 @@ public class GameManager {
     public static void collectMoney(int moneyAmount) {
         money += moneyAmount;
     }
+
+    /**
+     * Opens the gates that are on the given colour
+     * @param colour the colour that the lever is on
+     */
+    public static void openLever(int colour) {
+        // TODO: Get the hash map of gates in level and set the has lever been pulled to true
+    }
 }
