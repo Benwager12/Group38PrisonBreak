@@ -194,7 +194,7 @@ public class FileUtilities {
                 enemyYPos = in.nextInt();
                 direction = convertDirection(in.next());
                 chosenColour = in.nextInt();
-                nextEnemy = new FloorThief(enemyXPos, enemyYPos, direction);
+                nextEnemy = new FloorThief(enemyXPos, enemyYPos, direction,chosenColour);
             } else if(enemyType.equals("S")) {
                 enemyXPos = in.nextInt();
                 enemyYPos = in.nextInt();
