@@ -66,8 +66,6 @@ public class Level implements Drawable {
      * Draws all the Tiles onto the level
      */
     private void drawTiles(GraphicsContext g) {
-        int tileYAmt = tiles.length;
-        int tileXAmt = tiles[0].length;
 
         int canvasWidth = (int) g.getCanvas().getWidth();
         int canvasHeight = (int) g.getCanvas().getHeight();
@@ -77,9 +75,23 @@ public class Level implements Drawable {
         int tileXDraw = 0;
         int tileYDraw = 0;
 
-        for (int y = 0; y < tileYAmt; y++) {
-            for (int x = 0; x < tileXAmt; x++) {
+        for (int y = 0; y < getHeight(); y++) {
+            for (int x = 0; x < getWidth(); x++) {
                 g.drawImage(Level.tileImage, tileXDraw, tileYDraw, sideLength, sideLength);
+                Tile t = getTile(x, y);
+
+                int tileColourSL = sideLength / 2; // Tile colour side length
+
+                // Loop through every colour in tile
+                for (int col = 0; col < t.getColours().length; col++) {
+                    g.setFill(t.getColours()[col]);
+
+                    // Ternary checks to fill the correct part of the square
+                    g.fillRect(tileXDraw + (col == 1 || col == 3 ? tileColourSL : 0),
+                            tileYDraw + (col == 2 || col == 3 ? tileColourSL : 0),
+                            tileColourSL, tileColourSL);
+                }
+
                 tileXDraw += sideLength;
             }
             tileXDraw = 0;
@@ -150,7 +162,7 @@ public class Level implements Drawable {
         drawEntities(g);
     }
 
-    private static int getTileSideLength(Level level, int width, int height) {
+    public static int getTileSideLength(Level level, int width, int height) {
         int tileYAmt = level.tiles.length;
         int tileXAmt  = level.tiles[0].length;
 
@@ -158,5 +170,13 @@ public class Level implements Drawable {
         int tileYWidth = height / tileYAmt;
 
         return Math.min(tileXWidth, tileYWidth);
+    }
+
+    public int getWidth() {
+        return tiles[0].length;
+    }
+
+    public int getHeight() {
+        return tiles.length;
     }
 }
