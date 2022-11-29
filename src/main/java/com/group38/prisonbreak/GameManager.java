@@ -78,4 +78,12 @@ public class GameManager {
             // GAME OVER
         }
     }
+
+    /**
+     * Adds money to the total money collected
+     * @param moneyAmount The amount of money collected by the player
+     */
+    public static void collectMoney(int moneyAmount) {
+        money += moneyAmount;
+    }
 }
