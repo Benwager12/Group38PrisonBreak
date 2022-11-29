@@ -9,6 +9,6 @@ public class Player extends Entity {
 
     @Override
     public void move() {
-        
+
     }
 }

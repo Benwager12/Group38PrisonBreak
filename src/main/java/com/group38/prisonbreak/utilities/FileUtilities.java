@@ -160,22 +160,48 @@ public class FileUtilities {
         return items;
     }
 
+    private static int convertDirection(String directionString) {
+
+        int direction = switch (directionString) {
+            case "L" -> 3;
+            case "R" -> 1;
+            case "U" -> 0;
+            case "D" -> 2;
+            default -> 0;
+        };
+        return direction;
+    }
+
     private static Enemy[] readEnemies(Scanner in, int numOfEnemies) {
         Enemy[] enemies = new Enemy[numOfEnemies];
+        Enemy nextEnemy = null;
 
         for(int i = 0; i < numOfEnemies; i++) {
-            String itemType = in.next();
+            String enemyType = in.next();
+            int enemyXPos;
+            int enemyYPos;
+            String directionString;
+            int direction;
+            int chosenColour = 0;
 
-            int enemyXPos = in.nextInt();
-            int enemyYPos = in.nextInt();
-            int direction = in.nextInt();
+            if (enemyType.equals("H")) {
+                enemyXPos = in.nextInt();
+                enemyYPos = in.nextInt();
+                direction = convertDirection(in.next());
+                nextEnemy = new FlyingAssassin(enemyXPos, enemyYPos, direction);
+            } else if (enemyType.equals("F")) {
+                enemyXPos = in.nextInt();
+                enemyYPos = in.nextInt();
+                direction = convertDirection(in.next());
+                chosenColour = in.nextInt();
+                nextEnemy = new FloorThief(enemyXPos, enemyYPos, direction,chosenColour);
+            } else if(enemyType.equals("S")) {
+                enemyXPos = in.nextInt();
+                enemyYPos = in.nextInt();
+                direction = convertDirection(in.next());
+                nextEnemy = new SmartThief(enemyXPos, enemyYPos, direction);
+            }
 
-            Enemy nextEnemy = switch (itemType) {
-                case "H" -> new FlyingAssassin(enemyXPos, enemyYPos, direction);
-                case "F" -> new FloorThief(enemyXPos, enemyYPos, direction);
-                case "S" -> new SmartThief(enemyXPos, enemyYPos, direction);
-                default -> null;
-            };
             enemies[i] = nextEnemy;
         }
         return enemies;
