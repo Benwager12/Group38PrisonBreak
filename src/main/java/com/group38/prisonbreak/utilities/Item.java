@@ -11,7 +11,11 @@ import javafx.scene.image.Image;
 public abstract class Item implements Drawable {
 
     /** Defines what happens when a player interacts with an Item. */
-    public abstract void interact();
+    public void interact() {
+        interact(false);
+    }
+
+    public abstract void interact(boolean isPlayer);
 
     /** Get the path of the image for the item. */
     public abstract String getImagePath();
