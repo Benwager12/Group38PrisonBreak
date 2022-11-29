@@ -3,8 +3,6 @@ package com.group38.prisonbreak.enemies;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.Enemy;
 
-import java.text.NumberFormat;
-
 /**
  * Implements an Enemy in the game
  * @author Daniel Banks (2107922)
