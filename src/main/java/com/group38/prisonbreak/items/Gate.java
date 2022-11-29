@@ -4,7 +4,7 @@ import com.group38.prisonbreak.utilities.Item;
 
 public class Gate extends Item {
 
-    public Gate(int xPos, int yPos, String metadata) {
+    public Gate(String metadata) {
         //Implement Constructor
     }
 

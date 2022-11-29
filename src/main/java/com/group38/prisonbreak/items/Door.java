@@ -4,7 +4,7 @@ import com.group38.prisonbreak.utilities.Item;
 
 public class Door extends Item {
 
-    public Door(int xPos, int yPos, String metadata) {
+    public Door(String metadata) {
         //Implement Constructor
     }
 
