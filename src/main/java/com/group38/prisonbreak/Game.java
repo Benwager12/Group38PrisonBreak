@@ -2,6 +2,8 @@ package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.Scene;

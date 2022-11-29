@@ -6,6 +6,7 @@ import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.Tile;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 /**
  * A Class that stores the data about a level
@@ -38,6 +39,7 @@ public class Level implements Drawable {
         this.entities = entities;
     }
 
+
     public Entity[] getEntities() {
         return entities;
     }
@@ -54,10 +56,16 @@ public class Level implements Drawable {
 
         int sideLength = getTileSideLength(this, canvasWidth, canvasHeight);
 
-        for (int y = 0; y < tileYAmt * tileYAmt * sideLength + (sideLength * tileYAmt); y+= sideLength + 1) {
-            for (int x = 0; x < tileXAmt * sideLength + (sideLength * tileXAmt); x+= sideLength + 1) {
-                g.drawImage(Level.tileImage, x, y, sideLength, sideLength);
+        int tileXDraw = 0;
+        int tileYDraw = 0;
+
+        for (int y = 0; y < tileXAmt; y++) {
+            for (int x = 0; x < tileXAmt; x++) {
+                g.drawImage(Level.tileImage, tileXDraw, tileYDraw, sideLength, sideLength);
+                tileXDraw += sideLength;
             }
+            tileXDraw = 0;
+            tileYDraw += sideLength;
         }
     }
 
@@ -111,6 +119,9 @@ public class Level implements Drawable {
      */
     @Override
     public void draw(GraphicsContext g) {
+        g.setFill(Color.BLACK);
+        g.fillRect(0, 0, g.getCanvas().getWidth(), g.getCanvas().getHeight());
+
         drawTiles(g);
         drawEntities(g);
     }
