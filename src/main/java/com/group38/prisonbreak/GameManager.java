@@ -23,9 +23,6 @@ public class GameManager {
     // Time left in the game
     public static int time;
 
-    // Checks if the lever has been pulled
-    public static boolean hasLeverBeenPulled = false;
-
     // Tick timeline for the entities to move every 500 milliseconds
     private static final Timeline entityTimeLine =
             new Timeline(new KeyFrame(Duration.millis(500), event -> moveEntities()));
@@ -95,5 +92,13 @@ public class GameManager {
      */
     public static void collectMoney(int moneyAmount) {
         money += moneyAmount;
+    }
+
+    /**
+     * Opens the gates that are on the given colour
+     * @param colour the colour that the lever is on
+     */
+    public static void openLever(int colour) {
+        // TODO: Get the hash map of gates in level and set the has lever been pulled to true
     }
 }
