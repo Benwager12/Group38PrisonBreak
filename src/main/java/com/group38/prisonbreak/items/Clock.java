@@ -1,16 +1,23 @@
 package com.group38.prisonbreak.items;
 
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.Item;
 
 public class Clock extends Item {
 
-    public Clock(int xPos, int yPos, String metadata) {
-        //Implement Constructor
+    // Amount of time to be added/deducted to the timer when the clock is picked up
+    private static final int CLOCK_AMOUNT = 10;
+
+    public Clock() {
     }
 
     @Override
     public void interact(boolean isPlayer) {
-        // TODO: Implement the clock
+        if (isPlayer) {
+            GameManager.addTime(CLOCK_AMOUNT);
+        } else {
+            GameManager.removeTime(CLOCK_AMOUNT);
+        }
     }
 
     @Override
