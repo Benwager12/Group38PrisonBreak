@@ -11,4 +11,9 @@ public class Player extends Entity {
     public void move() {
 
     }
+
+    @Override
+    public void itemInteract() {
+
+    }
 }
