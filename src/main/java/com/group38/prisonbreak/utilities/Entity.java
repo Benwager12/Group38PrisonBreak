@@ -41,6 +41,9 @@ public abstract class Entity {
 
     public abstract void move();
 
-    public abstract void itemInteract();
+    /**
+     * Interacts with an item that's on the current tile
+     */
+    protected abstract void itemInteract();
 
 }

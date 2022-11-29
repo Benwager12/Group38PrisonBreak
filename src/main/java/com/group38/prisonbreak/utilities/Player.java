@@ -9,11 +9,16 @@ public class Player extends Entity {
 
     @Override
     public void move() {
-
+        itemInteract();
     }
 
     @Override
-    public void itemInteract() {
-
+    protected void itemInteract() {
+        Item item = getCurrentTile().getItem();
+        if (item != null) {
+            if (item.interact(true)) {
+                getCurrentTile().removeItem();
+            }
+        }
     }
 }
