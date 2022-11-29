@@ -38,20 +38,40 @@ public class GameManager {
     /**
      * Sets all the cycles for the tick timelines
      */
-    public static void startTimelines() {
+    public static void initTimelines() {
         entityTimeLine.setCycleCount(Animation.INDEFINITE);
         smartThiefTimeLine.setCycleCount(Animation.INDEFINITE);
         timeTimeLine.setCycleCount(Animation.INDEFINITE);
+        playTimeLines();
+    }
 
+    /**
+     * starts and plays the timelines
+     */
+    public static void playTimeLines(){
+        entityTimeLine.play();
+        smartThiefTimeLine.play();
+        timeTimeLine.play();
+    }
+
+    /**
+     * stops the timelines
+     */
+    public static void stopTimeLines(){
+        entityTimeLine.stop();
+        smartThiefTimeLine.stop();
+        timeTimeLine.stop();
     }
 
     /**
      * moves all the entities apart from smart thief
      */
     private static void moveEntities() {
-        for (Entity entity : level.getEntities()) {
-            if (!(entity instanceof SmartThief)) {
-                entity.move();
+        if (level != null) {
+            for (Entity entity : level.getEntities()) {
+                if (!(entity instanceof SmartThief)) {
+                    entity.move();
+                }
             }
         }
     }
@@ -75,7 +95,7 @@ public class GameManager {
         time--;
 
         if (time <= 0) {
-            // GAME OVER
+            stopTimeLines();
         }
     }
 
