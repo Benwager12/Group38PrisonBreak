@@ -42,6 +42,9 @@ public class Game extends Application {
         if (iconLocation != null) {
             primaryStage.getIcons().add(new Image(iconLocation));
         }
+
+        // initializes and starts timelines
+        GameManager.initTimelines();
     }
 
     public static void main(String[] args) {
