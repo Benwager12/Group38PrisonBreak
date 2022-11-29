@@ -79,9 +79,18 @@ public class GameManager {
         }
     }
 
+    /**
+     * Adds a specific amount of time to the game clock
+     * @param amount The amount of time to be added
+     */
     public static void addTime(int amount) {
         time += amount;
     }
+
+    /**
+     * removes a specific amount of time to the game clock
+     * @param amount The amount of time to be removed
+     */
     public static void removeTime(int amount) {
         time += amount;
     }
@@ -100,5 +109,12 @@ public class GameManager {
      */
     public static void openLever(int colour) {
         // TODO: Get the hash map of gates in level and set the has lever been pulled to true
+    }
+
+    /**
+     * Ends the game/level
+     */
+    public static void endGame() {
+        // TODO: End the game when the player goes through the door
     }
 }
