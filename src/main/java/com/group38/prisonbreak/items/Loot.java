@@ -5,7 +5,7 @@ import com.group38.prisonbreak.utilities.Item;
 
 /**
  * A class that represents loot in the game
- * @author Daniel Banks
+ * @author Daniel Banks (2107922)
  */
 
 public class Loot extends Item {

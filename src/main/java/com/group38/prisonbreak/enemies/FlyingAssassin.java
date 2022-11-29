@@ -5,7 +5,7 @@ import com.group38.prisonbreak.utilities.Enemy;
 
 /**
  * Implements an Enemy in the game
- * @author Daniel Banks
+ * @author Daniel Banks (2107922)
  */
 public class FlyingAssassin extends Enemy {
 

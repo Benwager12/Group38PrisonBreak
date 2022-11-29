@@ -1,6 +1,6 @@
 /**
  * A Class that implements an Entity
- * @author Matthew Salter (986488)
+ * @author Matthew Salter (986488), Daniel Banks (2107922)
  */
 
 package com.group38.prisonbreak.utilities;
@@ -9,8 +9,13 @@ import com.group38.prisonbreak.GameManager;
 
 public abstract class Entity {
 
+    // X position of the entity
     private int x;
+
+    // Y position of the entity
     private int y;
+
+    // Direction the entity is facing/moving
     private int direction;
 
     public Entity(int xPos, int yPos, int direction) {
@@ -19,30 +24,58 @@ public abstract class Entity {
         this.direction = direction;
     }
 
+    /**
+     * gets the x position
+     * @return X
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * gets the y position
+     * @return Y
+     */
     public int getY() {
         return y;
     }
 
+    /**
+     * gets the direction
+     * @return direction
+     */
     public int getDirection() {
         return direction;
     }
 
+    /**
+     * sets the direction of the entity
+     * @param direction the new direction
+     */
     public void setDirection(int direction) {
         this.direction = direction;
     }
 
+    /**
+     * sets the X position
+     * @param newX
+     */
     protected void setX(int newX) {
         x = newX;
     }
 
+    /**
+     * sets the Y position
+     * @param newY
+     */
     protected void setY(int newY) {
         y = newY;
     }
 
+    /**
+     * gets the current tile that the entity is on
+     * @return tile
+     */
     public Tile getCurrentTile() {
         return GameManager.level.getTile(x, y);
     }
