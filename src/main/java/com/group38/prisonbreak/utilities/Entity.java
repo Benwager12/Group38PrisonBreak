@@ -5,6 +5,8 @@
 
 package com.group38.prisonbreak.utilities;
 
+import com.group38.prisonbreak.GameManager;
+
 public abstract class Entity {
 
     private int x;
@@ -31,6 +33,10 @@ public abstract class Entity {
 
     public void setDirection(int direction) {
         this.direction = direction;
+    }
+
+    public Tile getCurrentTile() {
+        return GameManager.level.getTile(x, y);
     }
 
     public abstract void move();
