@@ -49,7 +49,7 @@ public class FileUtilities {
 
     public static Level readLevel(String levelName) {
         String levelPath = getResourcePath(String.format("levels/%s.level", levelName));
-        
+
         if (System.getProperty("os.name").equals("Mac OS X")) {
             levelPath = "/" + levelPath;
         }
