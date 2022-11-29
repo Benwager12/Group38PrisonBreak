@@ -35,6 +35,14 @@ public abstract class Entity {
         this.direction = direction;
     }
 
+    protected void setX(int newX) {
+        x = newX;
+    }
+
+    protected void setY(int newY) {
+        y = newY;
+    }
+
     public Tile getCurrentTile() {
         return GameManager.level.getTile(x, y);
     }
