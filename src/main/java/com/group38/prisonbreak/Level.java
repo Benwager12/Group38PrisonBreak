@@ -59,7 +59,7 @@ public class Level implements Drawable {
         int tileXDraw = 0;
         int tileYDraw = 0;
 
-        for (int y = 0; y < tileXAmt; y++) {
+        for (int y = 0; y < tileYAmt; y++) {
             for (int x = 0; x < tileXAmt; x++) {
                 g.drawImage(Level.tileImage, tileXDraw, tileYDraw, sideLength, sideLength);
                 tileXDraw += sideLength;
