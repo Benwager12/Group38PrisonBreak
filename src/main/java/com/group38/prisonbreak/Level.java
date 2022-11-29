@@ -55,11 +55,11 @@ public class Level implements Drawable {
             for (Tile tile : tileX) {
                 Item item = tile.getItem();
                 if (item != null && !(item instanceof Bomb)) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     /**
