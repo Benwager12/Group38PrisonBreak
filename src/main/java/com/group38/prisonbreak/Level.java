@@ -44,6 +44,10 @@ public class Level implements Drawable {
         return entities;
     }
 
+    public Tile getTile(int x, int y) {
+        return tiles[y][x];
+    }
+
     /**
      * Draws all the Tiles onto the level
      */
