@@ -4,7 +4,7 @@ import com.group38.prisonbreak.utilities.Item;
 
 public class Door extends Item {
 
-    public Door(String metadata) {
+    public Door() {
         //Implement Constructor
     }
 

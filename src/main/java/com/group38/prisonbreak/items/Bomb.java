@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class Bomb extends Item {
 
-    public Bomb(String metadata) {
+    public Bomb() {
         //Implement Constructor
     }
 
