@@ -10,4 +10,9 @@ public class Enemy extends Entity {
     public void move() {
 
     }
+
+    @Override
+    public void itemInteract() {
+
+    }
 }
