@@ -37,14 +37,8 @@ public class FlyingAssassin extends Enemy {
                 canMove = true;
             } else {
                 // Switches direction
-                int newDir;
-                if (isX) {
-                    newDir = direction == 1 ? 3 : 1;
-                    super.setDirection(newDir);
-                } else {
-                    newDir = direction == 0 ? 2 : 0;
-                    super.setDirection(newDir);
-                }
+                int newDir = isX ? (direction == 1 ? 3 : 1) : (direction == 0 ? 2 : 0);
+                super.setDirection(newDir);
             }
         }
     }
