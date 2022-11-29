@@ -1,6 +1,7 @@
 module com.group38.prisonbreak {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.net.http;
 
 
     opens com.group38.prisonbreak to javafx.fxml;
