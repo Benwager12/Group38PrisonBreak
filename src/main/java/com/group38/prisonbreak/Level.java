@@ -1,9 +1,7 @@
 package com.group38.prisonbreak;
 
-import com.group38.prisonbreak.utilities.Drawable;
-import com.group38.prisonbreak.utilities.Entity;
-import com.group38.prisonbreak.utilities.FileUtilities;
-import com.group38.prisonbreak.utilities.Tile;
+import com.group38.prisonbreak.items.Bomb;
+import com.group38.prisonbreak.utilities.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -46,6 +44,22 @@ public class Level implements Drawable {
 
     public Tile getTile(int x, int y) {
         return tiles[y][x];
+    }
+
+    /**
+     * Checks to see if there are any items left to be collected on the level
+     * @return boolean
+     */
+    public boolean hasItemsLeft() {
+        for (Tile[] tileX : tiles) {
+            for (Tile tile : tileX) {
+                Item item = tile.getItem();
+                if (item != null && !(item instanceof Bomb)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
