@@ -99,9 +99,15 @@ public class Level implements Drawable {
      * @param direction The direction the entity wishes to move
      * @param posX X position of the entity
      * @param posY Y position of the entity
+     * @param requiresColour If the Entity needs to stay on the same colour
      * @return boolean - If the move is valid
      */
-    public boolean canMove(int posX, int posY, int direction) {
+    public boolean canMove(int posX, int posY, int direction, boolean requiresColour) {
+        if (!requiresColour) {
+            // Checks if direction is Up/Down (X)
+            boolean isX = direction == 1 || direction == 3;
+            return isX ? posX < tiles[0].length && posX >= 0 : posY < tiles.length && posY >= 0;
+        }
         return nextTile(posX, posY, direction) != null;
     }
 
