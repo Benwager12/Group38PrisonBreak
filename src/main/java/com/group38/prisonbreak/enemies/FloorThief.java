@@ -4,8 +4,11 @@ import com.group38.prisonbreak.utilities.Enemy;
 
 public class FloorThief extends Enemy {
 
-    public FloorThief(int xPos, int yPos, int direction) {
+    private int chosenColour;
+
+    public FloorThief(int xPos, int yPos, int direction, int chosenColour) {
         super(xPos, yPos, direction);
+        this.chosenColour = chosenColour;
     }
 
     public void doNothing() {

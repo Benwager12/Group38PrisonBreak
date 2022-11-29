@@ -2,6 +2,8 @@ package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -36,7 +38,7 @@ public class Game extends Application {
         primaryStage.show();
         primaryStage.setTitle("Cell Block 38");
 
-        String iconLocation = FileUtilities.getResourceURI("images/mainMenu/CellBlock38Icon.png");
+        String iconLocation = FileUtilities.getResourceURI("images/mainMenu/38Icon.png");
         if (iconLocation != null) {
             primaryStage.getIcons().add(new Image(iconLocation));
         }

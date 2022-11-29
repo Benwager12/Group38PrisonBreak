@@ -78,4 +78,43 @@ public class GameManager {
             // GAME OVER
         }
     }
+
+    /**
+     * Adds a specific amount of time to the game clock
+     * @param amount The amount of time to be added
+     */
+    public static void addTime(int amount) {
+        time += amount;
+    }
+
+    /**
+     * removes a specific amount of time to the game clock
+     * @param amount The amount of time to be removed
+     */
+    public static void removeTime(int amount) {
+        time += amount;
+    }
+
+    /**
+     * Adds money to the total money collected
+     * @param moneyAmount The amount of money collected by the player
+     */
+    public static void collectMoney(int moneyAmount) {
+        money += moneyAmount;
+    }
+
+    /**
+     * Opens the gates that are on the given colour
+     * @param colour the colour that the lever is on
+     */
+    public static void openLever(int colour) {
+        // TODO: Get the hash map of gates in level and set the has lever been pulled to true
+    }
+
+    /**
+     * Ends the game/level
+     */
+    public static void endGame() {
+        // TODO: End the game when the player goes through the door
+    }
 }

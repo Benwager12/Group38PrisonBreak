@@ -1,11 +1,10 @@
 package com.group38.prisonbreak;
 
-import com.group38.prisonbreak.utilities.Drawable;
-import com.group38.prisonbreak.utilities.Entity;
-import com.group38.prisonbreak.utilities.FileUtilities;
-import com.group38.prisonbreak.utilities.Tile;
+import com.group38.prisonbreak.items.Bomb;
+import com.group38.prisonbreak.utilities.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 /**
  * A Class that stores the data about a level
@@ -38,8 +37,29 @@ public class Level implements Drawable {
         this.entities = entities;
     }
 
+
     public Entity[] getEntities() {
         return entities;
+    }
+
+    public Tile getTile(int x, int y) {
+        return tiles[y][x];
+    }
+
+    /**
+     * Checks to see if there are any items left to be collected on the level
+     * @return boolean
+     */
+    public boolean hasItemsLeft() {
+        for (Tile[] tileX : tiles) {
+            for (Tile tile : tileX) {
+                Item item = tile.getItem();
+                if (item != null && !(item instanceof Bomb)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -54,10 +74,16 @@ public class Level implements Drawable {
 
         int sideLength = getTileSideLength(this, canvasWidth, canvasHeight);
 
-        for (int y = 0; y < tileYAmt * tileYAmt * sideLength + (sideLength * tileYAmt); y+= sideLength + 1) {
-            for (int x = 0; x < tileXAmt * sideLength + (sideLength * tileXAmt); x+= sideLength + 1) {
-                g.drawImage(Level.tileImage, x, y, sideLength, sideLength);
+        int tileXDraw = 0;
+        int tileYDraw = 0;
+
+        for (int y = 0; y < tileYAmt; y++) {
+            for (int x = 0; x < tileXAmt; x++) {
+                g.drawImage(Level.tileImage, tileXDraw, tileYDraw, sideLength, sideLength);
+                tileXDraw += sideLength;
             }
+            tileXDraw = 0;
+            tileYDraw += sideLength;
         }
     }
 
@@ -73,9 +99,15 @@ public class Level implements Drawable {
      * @param direction The direction the entity wishes to move
      * @param posX X position of the entity
      * @param posY Y position of the entity
+     * @param requiresColour If the Entity needs to stay on the same colour
      * @return boolean - If the move is valid
      */
-    public boolean canMove(int posX, int posY, int direction) {
+    public boolean canMove(int posX, int posY, int direction, boolean requiresColour) {
+        if (!requiresColour) {
+            // Checks if direction is Up/Down (X)
+            boolean isX = direction == 1 || direction == 3;
+            return isX ? posX < tiles[0].length && posX >= 0 : posY < tiles.length && posY >= 0;
+        }
         return nextTile(posX, posY, direction) != null;
     }
 
@@ -111,6 +143,9 @@ public class Level implements Drawable {
      */
     @Override
     public void draw(GraphicsContext g) {
+        g.setFill(Color.BLACK);
+        g.fillRect(0, 0, g.getCanvas().getWidth(), g.getCanvas().getHeight());
+
         drawTiles(g);
         drawEntities(g);
     }
