@@ -38,7 +38,7 @@ public class Game extends Application {
         primaryStage.show();
         primaryStage.setTitle("Cell Block 38");
 
-        String iconLocation = FileUtilities.getResourceURI("images/mainMenu/CellBlock38Icon.png");
+        String iconLocation = FileUtilities.getResourceURI("images/mainMenu/38Icon.png");
         if (iconLocation != null) {
             primaryStage.getIcons().add(new Image(iconLocation));
         }
