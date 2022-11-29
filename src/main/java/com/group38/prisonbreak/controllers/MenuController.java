@@ -19,10 +19,10 @@ public class MenuController {
     private Button exitButton;
 
     /**
-     * [add]
-     * @param mouseHovers
+     * Adds movement to a button when it is hovered over e.g. during menu selection
+     * @param e The interaction of the mouse with the button.
      */
-    public void animateButton(MouseEvent mouseHovers) {
+    public void animateButton(MouseEvent e) {
 
     }
 }
