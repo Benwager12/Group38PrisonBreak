@@ -1,17 +1,21 @@
 package com.group38.prisonbreak.items;
 
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.Item;
 
 public class Door extends Item {
 
     public Door() {
-        //Implement Constructor
+        // TODO: Implement Constructor
     }
 
     @Override
     public boolean interact(boolean isPlayer) {
-        // TODO
-        return true;
+        if (GameManager.level.hasItemsLeft()) {
+            GameManager.endGame();
+            return true;
+        }
+        return false;
     }
 
     @Override
