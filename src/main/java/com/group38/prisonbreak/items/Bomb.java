@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class Bomb extends Item {
 
-    public Bomb(int xPos, int yPos, String metadata) {
+    public Bomb(String metadata) {
         //Implement Constructor
     }
 
@@ -14,7 +14,7 @@ public class Bomb extends Item {
     private final int BOMB_ACTIVATE_TIME = 3;
 
     @Override
-    public void interact() {
+    public void interact(boolean isPlayer) {
         if (GameManager.time > 3) {
             GameManager.time = BOMB_ACTIVATE_TIME;
         }
