@@ -172,9 +172,12 @@ public class Level implements Drawable {
      * @param posX Current X Position
      * @param posY Current Y Position
      * @param direction Direction of the Entity
+     * @param coloursOptional (Optional) Colours of tile to move to
      * @return int array with X and Y position [X Position, Y Position]
      */
-    public int[] moveTo(int posX, int posY, int direction) {
+    public int[] moveTo(int posX, int posY, int direction, Color[]... coloursOptional) {
+        Color[] colours = coloursOptional.length > 0 ? coloursOptional[0] : tiles[posY][posX].getColours();
+
         // Checks if direction is Up/Down (X)
         boolean isX = direction == 1 || direction == 3;
 
@@ -192,23 +195,30 @@ public class Level implements Drawable {
 
         while (newY >= 0 && newY - 1 <= tiles.length && newX >= 0 && newX - 1 <= tiles[0].length) {
             if (newY >= tiles.length || newX >= tiles[0].length) {
+                newX = isX ? (isNegative ? tiles[0].length -1 : 0) : posX;
+                newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
+                boolean hasColours = tiles[newY][newX].hasColours(colours);
                 return new int [] {
-                        isX ? (isNegative ? tiles[0].length -1 : 0) : posX,
-                        !isX ? (isNegative ? tiles.length -1 : 0) : posY};
+                        hasColours ? newX : moveTo(newX, newY, direction, colours)[0],
+                        hasColours ? newY : moveTo(newX, newY, direction, colours)[1]
+                };
             }
 
-            if (tiles[newY][newX].hasColours(tiles[posY][posX].getColours())) {
+            if (tiles[newY][newX].hasColours(colours)) {
                 return new int[] {newX, newY};
             }
 
             newX = isX ? newX + (isNegative ? -1 : 1) : newX;
             newY = !isX ? newY + (isNegative ? -1 : 1) : newY;
         }
+        newX = isX ? (isNegative ? tiles[0].length -1 : 0) : posX;
+        newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
+        boolean hasColours = tiles[newY][newX].hasColours(tiles[posY][posX].getColours());
         return new int [] {
-                isX ? (isNegative ? tiles[0].length -1 : 0) : posX,
-                !isX ? (isNegative ? tiles.length -1 : 0) : posY};
+                hasColours ? newX : moveTo(newX, newY, direction, colours)[0],
+                hasColours ? newY : moveTo(newX, newY, direction, colours)[1]
+        };
     }
-
 
     /**
      * Finds the next tile an entity can move to if they follow colours
