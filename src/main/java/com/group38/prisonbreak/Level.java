@@ -4,6 +4,7 @@ import com.group38.prisonbreak.items.Bomb;
 import com.group38.prisonbreak.utilities.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
 
@@ -38,13 +39,30 @@ public class Level implements Drawable {
         this.entities = entities;
     }
 
-
+    /**
+     * Gets the ArrayList of all the Entities on the level
+     * @return ArrayList of Entities
+     */
     public ArrayList<Entity> getEntities() {
         return entities;
     }
 
+    /**
+     * Gets a tile from the X and Y position
+     * @param x X position
+     * @param y Y position
+     * @return Tile
+     */
     public Tile getTile(int x, int y) {
         return tiles[y][x];
+    }
+
+    /**
+     * gets the player entity
+     * @return Entity
+     */
+    public Entity getPlayer() {
+        return entities.get(entities.size() - 1);
     }
 
     /**
