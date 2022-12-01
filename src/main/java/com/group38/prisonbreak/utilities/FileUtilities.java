@@ -5,6 +5,7 @@ package com.group38.prisonbreak.utilities;
 import com.group38.prisonbreak.Game;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.Level;
+import com.group38.prisonbreak.MenuTester;
 import com.group38.prisonbreak.enemies.FloorThief;
 import com.group38.prisonbreak.enemies.FlyingAssassin;
 import com.group38.prisonbreak.enemies.SmartThief;
@@ -27,7 +28,11 @@ import java.util.Scanner;
  */
 public class FileUtilities {
     private static Game gameInstance;
+
     private static final int MAX_LEVEL_TIME = 300;
+
+    //ADDED FOR MENU TESTER
+    private static MenuTester menuInstance;
 
    /* public static void main(String[] args) {
         testReadFile("C:\\Users\\danie\\OneDrive - Swansea University\\CS-230\\Code\\src\\main\\resources\\com\\group38\\prisonbreak\\testFiles\\0.level");
@@ -47,6 +52,11 @@ public class FileUtilities {
 
     public static void setGameInstance(Game gameInstance) {
         FileUtilities.gameInstance = gameInstance;
+    }
+
+    //ADDED FOR MENU TESTER
+    public static void setMenuInstance(MenuTester menuInstance) {
+        FileUtilities.menuInstance = menuInstance;
     }
 
     public static Level readLevel(String levelName) {
@@ -73,6 +83,11 @@ public class FileUtilities {
 
     public static URL getResource(String path) {
         return gameInstance.getClass().getResource(path);
+    }
+
+    //ADDED FOR MENU TESTER
+    public static URL getMenuResource(String path) {
+        return menuInstance.getClass().getResource(path);
     }
 
     public static String getResourceURI(String path) {

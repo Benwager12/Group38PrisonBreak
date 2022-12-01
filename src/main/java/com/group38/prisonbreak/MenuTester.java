@@ -8,14 +8,16 @@ import javafx.fxml.FXMLLoader;
 
 import com.group38.prisonbreak.utilities.FileUtilities;
 
+import java.io.IOException;
+
 public class MenuTester extends Application {
     // scene dimensions
     private static final int WIDTH = 800;
     private static final int HEIGHT = 446;
 
     public void start(Stage primaryStage) {
-        FileUtilities.setGameInstance(this);
-        FXMLLoader loader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
+        FileUtilities.setMenuInstance(this);
+        FXMLLoader loader = new FXMLLoader(FileUtilities.getMenuResource("fxml/start-menu.fxml"));
 
         Pane root = null;
         try {
