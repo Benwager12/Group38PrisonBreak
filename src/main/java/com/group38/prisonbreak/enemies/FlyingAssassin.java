@@ -9,9 +9,11 @@ import com.group38.prisonbreak.utilities.Enemy;
  */
 public class FlyingAssassin extends Enemy {
 
+    private static final String IMAGE_NAME = "Helicopter";
+
     public FlyingAssassin(int xPos, int yPos, int direction) {
         super(xPos, yPos, direction);
-        setEntityImage("Helicopter");
+        setEntityImage(IMAGE_NAME);
     }
 
     @Override

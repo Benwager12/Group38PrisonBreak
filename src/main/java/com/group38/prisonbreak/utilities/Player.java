@@ -8,6 +8,8 @@ import com.group38.prisonbreak.GameManager;
  */
 public class Player extends Entity {
 
+    private static final String IMAGE_NAME = "Ben";
+
     /**
      * Creates and instance of player
      * @param xPos X position of the player
@@ -16,7 +18,7 @@ public class Player extends Entity {
      */
     public Player(int xPos, int yPos, int direction) {
         super(xPos, yPos, direction);
-        setEntityImage("playerDog");
+        setEntityImage(IMAGE_NAME);
     }
 
     @Override
