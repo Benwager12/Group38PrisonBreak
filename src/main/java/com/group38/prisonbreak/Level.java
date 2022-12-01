@@ -66,11 +66,7 @@ public class Level implements Drawable {
      * Draws all the Tiles onto the level
      */
     private void drawTiles(GraphicsContext g) {
-
-        int canvasWidth = (int) g.getCanvas().getWidth();
-        int canvasHeight = (int) g.getCanvas().getHeight();
-
-        int sideLength = getTileSideLength(this, canvasWidth, canvasHeight);
+        int sideLength = getSideLength(g);
 
         int tileXDraw = 0;
         int tileYDraw = 0;
@@ -103,7 +99,22 @@ public class Level implements Drawable {
      * Draws all Entities onto the level
      */
     private void drawEntities(GraphicsContext g){
+        int sideLength = getSideLength(g);
+        for (Entity entity : entities) {
+            g.drawImage(entity.getEntityImage(), entity.getX(), entity.getY(), sideLength, sideLength);
+        }
+    }
 
+    /**
+     * gets the size of the tiles
+     * @param g GraphicsContext
+     * @return sideLength
+     */
+    private int getSideLength(GraphicsContext g) {
+        int canvasWidth = (int) g.getCanvas().getWidth();
+        int canvasHeight = (int) g.getCanvas().getHeight();
+
+        return getTileSideLength(this, canvasWidth, canvasHeight);
     }
 
     /**
