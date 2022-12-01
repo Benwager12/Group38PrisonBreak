@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -43,6 +44,7 @@ public class Game extends Application {
             primaryStage.getIcons().add(new Image(iconLocation));
         }
 
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, GameManager::processKeyEvent);
         // initializes and starts timelines
         GameManager.initTimelines();
     }
