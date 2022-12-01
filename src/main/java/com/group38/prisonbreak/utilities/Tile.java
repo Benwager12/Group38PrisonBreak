@@ -54,9 +54,11 @@ public class Tile {
      * @return boolean
      */
     public boolean hasColours(Color[] checkColours) {
-        for (Color checkColour : checkColours) {
-            if (Arrays.asList(colours).contains(checkColour)) {
-                return true;
+        for (Color c1 : colours) {
+            for (Color c2 : checkColours) {
+                if (c1.equals(c2)) {
+                    return true;
+                }
             }
         }
         return false;
