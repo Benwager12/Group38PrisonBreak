@@ -26,11 +26,14 @@ public class GameManager {
     // Time left in the game
     public static int time;
 
-    // Tick timeline for the entities to move every 500 milliseconds
+    // Tick timeline for the entities
     public static Timeline entityTimeLine;
 
-    // Tick timeline for the smartThief to move every 12500 milliseconds
+    // Tick timeline for the smartThief
     public static Timeline smartThiefTimeLine;
+
+    // Tick timeline for the player
+    public static Timeline playerTimeLine;
 
     // Tick timeline for the main game clock, updates every 1000 milliseconds (1 second)
     public static Timeline timeTimeLine = new Timeline(new KeyFrame(Duration.millis(1000), event -> changeTime()));
@@ -42,6 +45,7 @@ public class GameManager {
         entityTimeLine.setCycleCount(Animation.INDEFINITE);
         smartThiefTimeLine.setCycleCount(Animation.INDEFINITE);
         timeTimeLine.setCycleCount(Animation.INDEFINITE);
+        playerTimeLine.setCycleCount(Animation.INDEFINITE);
         playTimeLines();
     }
 
@@ -52,6 +56,7 @@ public class GameManager {
         entityTimeLine.play();
         smartThiefTimeLine.play();
         timeTimeLine.play();
+        playerTimeLine.play();
     }
 
     /**
@@ -60,6 +65,7 @@ public class GameManager {
     public static void stopTimeLines(){
         entityTimeLine.stop();
         smartThiefTimeLine.stop();
+        playerTimeLine.stop();
         timeTimeLine.stop();
     }
 
@@ -117,7 +123,6 @@ public class GameManager {
     public static void processKeyEvent(KeyEvent event) {
         if (level!= null) {
             Entity player = level.getPlayer();
-            System.out.println("Pressed");
             // We change the behaviour depending on the actual key that was pressed.
             switch (event.getCode()) {
                 case LEFT -> player.setDirection(3);
