@@ -5,6 +5,7 @@ import com.group38.prisonbreak.utilities.Entity;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 
 /**
@@ -111,5 +112,21 @@ public class GameManager {
      */
     public static void endGame() {
         // TODO: End the game when the player goes through the door
+    }
+
+    public static void processKeyEvent(KeyEvent event) {
+        if (level!= null) {
+            Entity player = level.getPlayer();
+            System.out.println("Pressed");
+            // We change the behaviour depending on the actual key that was pressed.
+            switch (event.getCode()) {
+                case LEFT -> player.setDirection(3);
+                case RIGHT -> player.setDirection(1);
+                case UP -> player.setDirection(0);
+                case DOWN -> player.setDirection(2);
+                default -> {
+                }
+            }
+        }
     }
 }
