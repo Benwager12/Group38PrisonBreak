@@ -3,6 +3,7 @@
 package com.group38.prisonbreak.utilities;
 
 import com.group38.prisonbreak.Game;
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.Level;
 import com.group38.prisonbreak.enemies.FloorThief;
 import com.group38.prisonbreak.enemies.FlyingAssassin;
@@ -26,6 +27,7 @@ import java.util.Scanner;
  */
 public class FileUtilities {
     private static Game gameInstance;
+    private static final int MAX_LEVEL_TIME = 300;
 
    /* public static void main(String[] args) {
         testReadFile("C:\\Users\\danie\\OneDrive - Swansea University\\CS-230\\Code\\src\\main\\resources\\com\\group38\\prisonbreak\\testFiles\\0.level");
@@ -118,6 +120,7 @@ public class FileUtilities {
 
         int numOfEnemies = in.nextInt();
         Enemy[] enemies = readEnemies(in, numOfEnemies);
+        GameManager.addTime(readLevelTime(in));
 
         in.close();
 
@@ -175,7 +178,7 @@ public class FileUtilities {
             case "R" -> 1;
             case "U" -> 0;
             case "D" -> 2;
-            default -> 88;
+            default -> 0;
         };
         return direction;
     }
@@ -219,5 +222,15 @@ public class FileUtilities {
             enemies[i] = nextEnemy;
         }
         return enemies;
+    }
+
+    private static int readLevelTime(Scanner in) {
+        int levelTime = in.nextInt();
+
+        //Ensures level is not long than max level time.
+        if (levelTime > MAX_LEVEL_TIME) {
+            levelTime = MAX_LEVEL_TIME;
+        }
+        return levelTime;
     }
 }

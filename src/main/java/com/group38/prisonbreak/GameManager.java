@@ -14,6 +14,8 @@ import javafx.util.Duration;
  */
 public class GameManager {
 
+    //POTENTIALLY MAKE THESE PRIVATE?
+
     // Instance of the level that's currently open
     public static Level level;
 
