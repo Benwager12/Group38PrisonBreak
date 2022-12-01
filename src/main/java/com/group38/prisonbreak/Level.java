@@ -6,10 +6,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A Class that stores the data about a level
+ *
  * @author Daniel Banks (2107922)
  */
 
@@ -29,11 +32,12 @@ public class Level implements Drawable {
 
     /**
      * Creates a Level instance
+     *
      * @param levelNumber Level number
-     * @param tiles 2D array of Tiles that make up the level
-     * @param entities All the entities that are on the level
+     * @param tiles       2D array of Tiles that make up the level
+     * @param entities    All the entities that are on the level
      */
-    public Level(int levelNumber,Tile[][] tiles, ArrayList<Entity> entities) {
+    public Level(int levelNumber, Tile[][] tiles, ArrayList<Entity> entities) {
         this.levelNumber = levelNumber;
         this.tiles = tiles;
         this.entities = entities;
@@ -41,6 +45,7 @@ public class Level implements Drawable {
 
     /**
      * Gets the ArrayList of all the Entities on the level
+     *
      * @return ArrayList of Entities
      */
     public ArrayList<Entity> getEntities() {
@@ -49,6 +54,7 @@ public class Level implements Drawable {
 
     /**
      * Gets a tile from the X and Y position
+     *
      * @param x X position
      * @param y Y position
      * @return Tile
@@ -59,6 +65,7 @@ public class Level implements Drawable {
 
     /**
      * gets the player entity
+     *
      * @return Entity
      */
     public Entity getPlayer() {
@@ -67,6 +74,7 @@ public class Level implements Drawable {
 
     /**
      * Checks to see if there are any items left to be collected on the level
+     *
      * @return boolean
      */
     public boolean hasItemsLeft() {
@@ -117,12 +125,12 @@ public class Level implements Drawable {
     /**
      * Draws all Entities onto the level
      */
-    public void drawEntities(GraphicsContext g){
+    public void drawEntities(GraphicsContext g) {
         int sideLength = getSideLength(g);
         for (Entity entity : entities) {
             boolean isNegative = entity.getDirection() == 0 || entity.getDirection() == 3;
             g.drawImage(entity.getEntityImage(),
-                    isNegative ? (entity.getX() + 1)* sideLength : entity.getX() * sideLength,
+                    isNegative ? (entity.getX() + 1) * sideLength : entity.getX() * sideLength,
                     entity.getY() * sideLength,
                     isNegative ? -sideLength : sideLength, sideLength);
         }
@@ -130,6 +138,7 @@ public class Level implements Drawable {
 
     /**
      * gets the size of the tiles
+     *
      * @param g GraphicsContext
      * @return sideLength
      */
@@ -142,9 +151,10 @@ public class Level implements Drawable {
 
     /**
      * Checks if a move is valid
-     * @param direction The direction the entity wishes to move
-     * @param posX X position of the entity
-     * @param posY Y position of the entity
+     *
+     * @param direction      The direction the entity wishes to move
+     * @param posX           X position of the entity
+     * @param posY           Y position of the entity
      * @param requiresColour If the Entity needs to stay on the same colour
      * @return boolean - If the move is valid
      */
@@ -161,25 +171,36 @@ public class Level implements Drawable {
         // Checks if direction is Up/Down (X)
         boolean isX = direction == 1 || direction == 3;
 
-        // Checks if direction is negative (Up/Left)
+        // Checks if direcltion is negative (Up/Left)
         boolean isNegative = direction == 0 || direction == 3;
 
-        // X Position of the next Tile (Based on Direction)
-        int newX = isX ?  posX + (isNegative ? -1 : 1) : posX;
+        // Iterates through all the Tiles; from the Current Tile to the edge
 
+        //(newY + 1 < tiles.length || newY > 0) || (newX + 1 < tiles[0].length || newX > 0) &&
+
+        // X Position of the next Tile (Based on Direction)
+        int newX = isX ? posX + (isNegative ? -1 : 1) : posX;
         // Y Position of the next Tile (Based on Direction)
         int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
 
-        Tile nextTile = tiles[newY][newX];
 
-        // Iterates through all the Tiles; from the Current Tile to the edge
-        while (tiles[newY] != null && tiles[newY][newX] != null) {
-            System.out.printf("%d %d%n", newY, newX);
-            if (nextTile.hasColours(tiles[posY][posX].getColours())) {
-                return nextTile;
+
+        System.out.printf("test %d <= %d%n", newY, tiles.length + 1);
+        while (newY >= 0 && newY - 1 <= tiles.length && newX >= 0 && newX - 1 <= tiles[0].length) {
+            System.out.println(newY);
+            if (newY >= tiles.length || newX >= tiles[0].length) {
+                return null;
             }
-            // Gets the next Tile
-            nextTile = tiles[isX ? (isNegative ? --newX : ++newX) : newX][!isX ? (isNegative ? --newY : ++newY) : newY];
+
+            if (tiles[newY][newX].hasColours(tiles[posY][posX].getColours())) {
+                System.out.println("adfszgfe");
+                return tiles[newY][newX];
+            }
+
+            newX = isX ? newX + (isNegative ? -1 : 1) : newX;
+            newY = !isX ? newY + (isNegative ? -1 : 1) : newY;
+
+
         }
         return null;
     }
@@ -198,7 +219,7 @@ public class Level implements Drawable {
 
     public static int getTileSideLength(Level level, int width, int height) {
         int tileYAmt = level.tiles.length;
-        int tileXAmt  = level.tiles[0].length;
+        int tileXAmt = level.tiles[0].length;
 
         int tileXWidth = width / tileXAmt;
         int tileYWidth = height / tileYAmt;

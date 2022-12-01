@@ -23,7 +23,6 @@ public class Player extends Entity {
     @Override
     public void move() {
         boolean canMove = false;
-        while (!canMove) {
             int direction = super.getDirection();
 
             boolean isX = direction == 1 || direction == 3;
@@ -35,16 +34,10 @@ public class Player extends Entity {
             // Y Position of the next Tile (Based on Direction)
             int newY = !isX ? super.getY() + (isNegative ? -1 : 1) : super.getY();
 
-            if (GameManager.level.canMove(newX, newY, direction, false)) {
+            if (GameManager.level.canMove(newX, newY, direction, true)) {
                 // sets the new X and Y positions
                 super.setX(newX);
                 super.setY(newY);
-                canMove = true;
-            } else {
-                // Switches direction
-                int newDir = isX ? (direction == 1 ? 3 : 1) : (direction == 0 ? 2 : 0);
-                super.setDirection(newDir);
-            }
         }
         itemInteract();
     }
