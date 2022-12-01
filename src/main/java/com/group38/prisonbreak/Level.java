@@ -2,6 +2,7 @@ package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.items.Bomb;
 import com.group38.prisonbreak.utilities.*;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -98,10 +99,10 @@ public class Level implements Drawable {
     /**
      * Draws all Entities onto the level
      */
-    private void drawEntities(GraphicsContext g){
+    public void drawEntities(GraphicsContext g){
         int sideLength = getSideLength(g);
         for (Entity entity : entities) {
-            g.drawImage(entity.getEntityImage(), entity.getX(), entity.getY(), sideLength, sideLength);
+            g.drawImage(entity.getEntityImage(), entity.getX() * sideLength, entity.getY() * sideLength, sideLength, sideLength);
         }
     }
 
