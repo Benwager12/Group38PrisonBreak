@@ -1,5 +1,10 @@
 package com.group38.prisonbreak;
-// delete after - just for testing
+import com.group38.prisonbreak.utilities.FileUtilities;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.fxml.FXMLLoader;
 
 import com.group38.prisonbreak.utilities.FileUtilities;
 
