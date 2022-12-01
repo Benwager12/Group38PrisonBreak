@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane id="gamePane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LevelController">
+<BorderPane id="gamePane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LevelController">
    <center>
       <Canvas fx:id="gameCanvas" height="400.0" onMouseClicked="#onMouseClickCanvas" width="800.0" BorderPane.alignment="CENTER" />
    </center>
@@ -14,14 +18,14 @@
          <left>
             <HBox id="levelHbox" fx:id="levelHbox" prefHeight="46.0" prefWidth="215.0" spacing="10.0" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <Text fx:id="levelLabel" strokeType="OUTSIDE" strokeWidth="10.0" text="LEVEL:">
+                  <ImageView fitHeight="32.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/mainMenu/LevelTextLabel-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="levelNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="RIGHT">
                      <font>
-                        <Font name="Copperplate Gothic Light" size="30.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="levelNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-                     <font>
-                        <Font name="Copperplate Gothic Bold" size="30.0" />
+                        <Font name="Consolas" size="37.0" />
                      </font>
                   </Text>
                </children>
@@ -33,14 +37,14 @@
          <right>
             <HBox id="scoreHBox" fx:id="scoreHBox" alignment="TOP_RIGHT" prefHeight="46.0" prefWidth="215.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text id="scoreLabel" fx:id="scoreLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE:">
-                     <font>
-                        <Font name="Copperplate Gothic Light" size="30.0" />
-                     </font>
-                  </Text>
+                  <ImageView fitHeight="32.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/mainMenu/ScoreTextLabel-removebg-preview.png" />
+                     </image>
+                  </ImageView>
                   <Text id="scoreNumberLabel" fx:id="scoreNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="000">
                      <font>
-                        <Font name="Copperplate Gothic Bold" size="30.0" />
+                        <Font name="Consolas" size="37.0" />
                      </font>
                   </Text>
                </children>
@@ -52,7 +56,7 @@
          <center>
             <Text fx:id="timeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00" textAlignment="CENTER" wrappingWidth="347.4452739953995" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="Copperplate Gothic Bold" size="30.0" />
+                  <Font name="Consolas" size="37.0" />
                </font>
             </Text>
          </center>
