@@ -2,10 +2,10 @@ package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.items.Bomb;
 import com.group38.prisonbreak.utilities.*;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import java.util.ArrayList;
 
 /**
  * A Class that stores the data about a level
@@ -24,7 +24,7 @@ public class Level implements Drawable {
     private final Tile[][] tiles;
 
     // All the entities in the Level
-    private final Entity[] entities;
+    private final ArrayList<Entity> entities;
 
     /**
      * Creates a Level instance
@@ -32,14 +32,14 @@ public class Level implements Drawable {
      * @param tiles 2D array of Tiles that make up the level
      * @param entities All the entities that are on the level
      */
-    public Level(int levelNumber,Tile[][] tiles, Entity[] entities) {
+    public Level(int levelNumber,Tile[][] tiles, ArrayList<Entity> entities) {
         this.levelNumber = levelNumber;
         this.tiles = tiles;
         this.entities = entities;
     }
 
 
-    public Entity[] getEntities() {
+    public ArrayList<Entity> getEntities() {
         return entities;
     }
 
