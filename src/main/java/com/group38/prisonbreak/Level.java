@@ -167,6 +167,56 @@ public class Level implements Drawable {
         return nextTile(posX, posY, direction) != null;
     }
 
+    /**
+     * Finds the position of the next tile an entity should go if they follow colours
+     * @param posX Current X Position
+     * @param posY Current Y Position
+     * @param direction Direction of the Entity
+     * @return int array with X and Y position [X Position, Y Position]
+     */
+    public int[] moveTo(int posX, int posY, int direction) {
+        // Checks if direction is Up/Down (X)
+        boolean isX = direction == 1 || direction == 3;
+
+        // Checks if direcltion is negative (Up/Left)
+        boolean isNegative = direction == 0 || direction == 3;
+
+        // Iterates through all the Tiles; from the Current Tile to the edge
+
+        //(newY + 1 < tiles.length || newY > 0) || (newX + 1 < tiles[0].length || newX > 0) &&
+
+        // X Position of the next Tile (Based on Direction)
+        int newX = isX ? posX + (isNegative ? -1 : 1) : posX;
+        // Y Position of the next Tile (Based on Direction)
+        int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
+
+        while (newY >= 0 && newY - 1 <= tiles.length && newX >= 0 && newX - 1 <= tiles[0].length) {
+            if (newY >= tiles.length || newX >= tiles[0].length) {
+                return new int [] {
+                        isX ? (isNegative ? tiles[0].length -1 : 0) : posX,
+                        !isX ? (isNegative ? tiles.length -1 : 0) : posY};
+            }
+
+            if (tiles[newY][newX].hasColours(tiles[posY][posX].getColours())) {
+                return new int[] {newX, newY};
+            }
+
+            newX = isX ? newX + (isNegative ? -1 : 1) : newX;
+            newY = !isX ? newY + (isNegative ? -1 : 1) : newY;
+        }
+        return new int [] {
+                isX ? (isNegative ? tiles[0].length -1 : 0) : posX,
+                !isX ? (isNegative ? tiles.length -1 : 0) : posY};
+    }
+
+
+    /**
+     * Finds the next tile an entity can move to if they follow colours
+     * @param posX Current X Position
+     * @param posY Current Y Position
+     * @param direction Direction of the Entity
+     * @return Tile or Null if no Tile found
+     */
     private Tile nextTile(int posX, int posY, int direction) {
         // Checks if direction is Up/Down (X)
         boolean isX = direction == 1 || direction == 3;
@@ -183,24 +233,17 @@ public class Level implements Drawable {
         // Y Position of the next Tile (Based on Direction)
         int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
 
-
-
-        System.out.printf("test %d <= %d%n", newY, tiles.length + 1);
         while (newY >= 0 && newY - 1 <= tiles.length && newX >= 0 && newX - 1 <= tiles[0].length) {
-            System.out.println(newY);
             if (newY >= tiles.length || newX >= tiles[0].length) {
                 return null;
             }
 
             if (tiles[newY][newX].hasColours(tiles[posY][posX].getColours())) {
-                System.out.println("adfszgfe");
                 return tiles[newY][newX];
             }
 
             newX = isX ? newX + (isNegative ? -1 : 1) : newX;
             newY = !isX ? newY + (isNegative ? -1 : 1) : newY;
-
-
         }
         return null;
     }
