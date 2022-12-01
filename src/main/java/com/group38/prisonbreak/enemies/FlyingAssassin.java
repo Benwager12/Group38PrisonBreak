@@ -24,7 +24,7 @@ public class FlyingAssassin extends Enemy {
             boolean isNegative = direction == 0 || direction == 3;
 
             // X Position of the next Tile (Based on Direction)
-            int newX = isX ?  super.getX() + (isNegative ? -1 : 1) : super.getY();
+            int newX = isX ?  super.getX() + (isNegative ? -1 : 1) : super.getX();
 
             // Y Position of the next Tile (Based on Direction)
             int newY = !isX ? super.getY() + (isNegative ? -1 : 1) : super.getY();
@@ -40,5 +40,6 @@ public class FlyingAssassin extends Enemy {
                 super.setDirection(newDir);
             }
         }
+        System.out.printf("%d, %d%n", super.getX(), super.getY());
     }
 }
