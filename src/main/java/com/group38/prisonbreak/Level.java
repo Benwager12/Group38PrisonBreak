@@ -102,7 +102,11 @@ public class Level implements Drawable {
     public void drawEntities(GraphicsContext g){
         int sideLength = getSideLength(g);
         for (Entity entity : entities) {
-            g.drawImage(entity.getEntityImage(), entity.getX() * sideLength, entity.getY() * sideLength, sideLength, sideLength);
+            boolean isNegative = entity.getDirection() == 0 || entity.getDirection() == 3;
+            g.drawImage(entity.getEntityImage(),
+                    isNegative ? (entity.getX() + 1)* sideLength : entity.getX() * sideLength,
+                    entity.getY() * sideLength,
+                    isNegative ? -sideLength : sideLength, sideLength);
         }
     }
 
