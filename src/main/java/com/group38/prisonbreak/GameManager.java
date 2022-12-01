@@ -26,16 +26,13 @@ public class GameManager {
     public static int time;
 
     // Tick timeline for the entities to move every 500 milliseconds
-    private static final Timeline entityTimeLine =
-            new Timeline(new KeyFrame(Duration.millis(500), event -> moveEntities()));
+    public static Timeline entityTimeLine;
 
     // Tick timeline for the smartThief to move every 12500 milliseconds
-    private static final Timeline smartThiefTimeLine =
-            new Timeline(new KeyFrame(Duration.millis(1250), event -> moveSmartThief()));
+    public static Timeline smartThiefTimeLine;
 
     // Tick timeline for the main game clock, updates every 1000 milliseconds (1 second)
-    private static final Timeline timeTimeLine =
-            new Timeline(new KeyFrame(Duration.millis(1000), event -> changeTime()));
+    public static Timeline timeTimeLine = new Timeline(new KeyFrame(Duration.millis(1000), event -> changeTime()));
 
     /**
      * Sets all the cycles for the tick timelines
@@ -63,32 +60,6 @@ public class GameManager {
         entityTimeLine.stop();
         smartThiefTimeLine.stop();
         timeTimeLine.stop();
-    }
-
-    /**
-     * moves all the entities apart from smart thief
-     */
-    private static void moveEntities() {
-        if (level != null) {
-            for (Entity entity : level.getEntities()) {
-                if (!(entity instanceof SmartThief)) {
-                    entity.move();
-                }
-            }
-        }
-    }
-
-    /**
-     *  moves the smart thief
-     */
-    private static void moveSmartThief() {
-        if (level != null) {
-            for (Entity entity : level.getEntities()) {
-                if (entity instanceof SmartThief) {
-                    entity.move();
-                }
-            }
-        }
     }
 
     /**
