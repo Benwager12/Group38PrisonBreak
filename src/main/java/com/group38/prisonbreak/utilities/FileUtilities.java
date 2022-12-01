@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -105,7 +106,7 @@ public class FileUtilities {
     public static String getResourcePath(String path) {
         String uri = getResourceURI(path);
         assert uri != null;
-        return uri.substring(6, uri.length()).replaceAll("%20", " ");
+        return uri.substring(6).replaceAll("%20", " ");
     }
 
     public static Image loadImageFromResource(String resourcePath) {
@@ -134,7 +135,8 @@ public class FileUtilities {
         }
 
         int numOfEnemies = in.nextInt();
-        Enemy[] enemies = readEnemies(in, numOfEnemies);
+        ArrayList<Entity> enemies = readEnemies(in, numOfEnemies);
+        enemies.add(p);
         GameManager.addTime(readLevelTime(in));
 
         in.close();
@@ -188,18 +190,17 @@ public class FileUtilities {
     }
 
     private static int convertDirection(String directionString) {
-        int direction = switch (directionString) {
+        return switch (directionString) {
             case "L" -> 3;
             case "R" -> 1;
             case "U" -> 0;
             case "D" -> 2;
             default -> 0;
         };
-        return direction;
     }
 
-    private static Enemy[] readEnemies(Scanner in, int numOfEnemies) {
-        Enemy[] enemies = new Enemy[numOfEnemies];
+    private static ArrayList<Entity> readEnemies(Scanner in, int numOfEnemies) {
+        ArrayList<Entity> enemies = new ArrayList<>();
         Enemy nextEnemy = null;
 
         // <x, <y, enemy>>
@@ -210,7 +211,7 @@ public class FileUtilities {
             int enemyXPos;
             int enemyYPos;
             int direction;
-            int chosenColour = 0;
+            int chosenColour;
 
             switch (enemyType) {
                 case "H" -> {
@@ -234,7 +235,7 @@ public class FileUtilities {
                 }
             }
 
-            enemies[i] = nextEnemy;
+            enemies.add(nextEnemy);
         }
         return enemies;
     }

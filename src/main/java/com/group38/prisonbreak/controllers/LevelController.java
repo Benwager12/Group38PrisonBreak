@@ -83,15 +83,14 @@ public class LevelController {
      */
     private static void moveEntities() {
         if (GameManager.level != null) {
-            for (Entity entity : GameManager.level.getEntities()) {
+            GameManager.level.getEntities().forEach(entity -> {
                 if (!(entity instanceof SmartThief)) {
                     entity.move();
                 }
+            });
+            if (GameManager.level != null) {
+                GameManager.level.draw(g);
             }
-        }
-
-        if (GameManager.level != null) {
-            GameManager.level.draw(g);
         }
     }
 
