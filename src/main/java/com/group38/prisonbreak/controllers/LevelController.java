@@ -5,12 +5,15 @@ import com.group38.prisonbreak.Level;
 import com.group38.prisonbreak.enemies.SmartThief;
 import com.group38.prisonbreak.utilities.Entity;
 import com.group38.prisonbreak.utilities.FileUtilities;
+import com.group38.prisonbreak.utilities.Player;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -29,7 +32,7 @@ public class LevelController {
 
     @FXML private Canvas gameCanvas;
 
-    private static GraphicsContext g;
+    private GraphicsContext g;
 
     @FXML
     private BorderPane mainPane;
@@ -40,7 +43,6 @@ public class LevelController {
             if (GameManager.level != null) {
                 GameManager.level.draw(g);
             }
-
 
             GameManager.entityTimeLine = new Timeline(new KeyFrame(Duration.millis(500), event -> moveEntities()));
             GameManager.smartThiefTimeLine = new Timeline(new KeyFrame(Duration.millis(1250), event -> moveSmartThief()));
@@ -81,7 +83,7 @@ public class LevelController {
     /**
      * moves all the entities apart from smart thief
      */
-    private static void moveEntities() {
+    private void moveEntities() {
         if (GameManager.level != null) {
             GameManager.level.getEntities().forEach(entity -> {
                 if (!(entity instanceof SmartThief)) {
@@ -97,7 +99,7 @@ public class LevelController {
     /**
      *  moves the smart thief
      */
-    private static void moveSmartThief() {
+    private void moveSmartThief() {
         if (GameManager.level != null) {
             for (Entity entity : GameManager.level.getEntities()) {
                 if (entity instanceof SmartThief) {
