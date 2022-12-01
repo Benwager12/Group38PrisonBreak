@@ -2,7 +2,11 @@ package com.group38.prisonbreak.controllers;
 
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.Level;
+import com.group38.prisonbreak.enemies.SmartThief;
+import com.group38.prisonbreak.utilities.Entity;
 import com.group38.prisonbreak.utilities.FileUtilities;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -10,6 +14,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class LevelController {
 
@@ -24,7 +29,7 @@ public class LevelController {
 
     @FXML private Canvas gameCanvas;
 
-    private GraphicsContext g;
+    private static GraphicsContext g;
 
     @FXML
     private BorderPane mainPane;
@@ -36,6 +41,9 @@ public class LevelController {
                 GameManager.level.draw(g);
             }
 
+
+            GameManager.entityTimeLine = new Timeline(new KeyFrame(Duration.millis(500), event -> moveEntities()));
+            GameManager.smartThiefTimeLine = new Timeline(new KeyFrame(Duration.millis(1250), event -> moveSmartThief()));
         };
         mainPane.heightProperty().addListener(paneSizeChange);
         mainPane.widthProperty().addListener(paneSizeChange);
@@ -69,4 +77,35 @@ public class LevelController {
         drawCanvas();
         recalculateCanvasSize();
     }
+
+    /**
+     * moves all the entities apart from smart thief
+     */
+    private static void moveEntities() {
+        if (GameManager.level != null) {
+            for (Entity entity : GameManager.level.getEntities()) {
+                if (!(entity instanceof SmartThief)) {
+                    entity.move();
+                }
+            }
+        }
+
+        if (GameManager.level != null) {
+            GameManager.level.draw(g);
+        }
+    }
+
+    /**
+     *  moves the smart thief
+     */
+    private static void moveSmartThief() {
+        if (GameManager.level != null) {
+            for (Entity entity : GameManager.level.getEntities()) {
+                if (entity instanceof SmartThief) {
+                    entity.move();
+                }
+            }
+        }
+    }
+
 }
