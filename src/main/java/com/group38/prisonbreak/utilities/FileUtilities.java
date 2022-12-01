@@ -36,7 +36,7 @@ public class FileUtilities {
     private static MenuTester menuInstance;
 
    /* public static void main(String[] args) {
-        testReadFile("C:\\Users\\danie\\OneDrive - Swansea University\\CS-230\\Code\\src\\main\\resources\\com\\group38\\prisonbreak\\testFiles\\0.level");
+        testReadFile("C:\\Users\\danie\\OneDrive - Swansea University\\CS-230\\Code\\src\\main\\resources\\com\\group38\\prisonbreak\\testFiles\\1.level");
     }
 
     public static void testReadFile(String fileName) {
