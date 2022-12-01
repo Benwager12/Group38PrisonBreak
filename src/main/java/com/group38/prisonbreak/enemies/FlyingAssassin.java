@@ -40,6 +40,5 @@ public class FlyingAssassin extends Enemy {
                 super.setDirection(newDir);
             }
         }
-        System.out.printf("%d, %d%n", super.getX(), super.getY());
     }
 }
