@@ -31,7 +31,7 @@
                               <Insets top="10.0" />
                            </StackPane.margin>
                         </Button>
-                        <ImageView fitHeight="150.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="newGameImage" fitHeight="150.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/mainMenu/NewGameButton.png" />
                            </image>
@@ -54,7 +54,7 @@
                               <Insets top="5.0" />
                            </StackPane.margin>
                         </Button>
-                        <ImageView fitHeight="41.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="loadGameImage" fitHeight="41.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/mainMenu/LoadGameButton.png" />
                            </image>
@@ -73,7 +73,7 @@
                            <StackPane.margin>
                               <Insets top="5.0" />
                            </StackPane.margin></Button>
-                        <ImageView fitHeight="41.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="exitImage" fitHeight="41.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/mainMenu/ExitButton.png" />
                            </image>
