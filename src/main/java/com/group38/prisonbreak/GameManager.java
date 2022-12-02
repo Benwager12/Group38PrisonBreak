@@ -2,10 +2,8 @@ package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.utilities.Entity;
 import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Duration;
 
 /**
  * A singleton class that holds everything in the level.
@@ -35,7 +33,7 @@ public class GameManager {
     public static Timeline playerTimeLine;
 
     // Tick timeline for the main game clock, updates every 1000 milliseconds (1 second)
-    public static Timeline timeTimeLine = new Timeline(new KeyFrame(Duration.millis(1000), event -> changeTime()));
+    public static Timeline timeTimeLine;
 
     /**
      * Sets all the cycles for the tick timelines
@@ -66,18 +64,6 @@ public class GameManager {
         smartThiefTimeLine.stop();
         playerTimeLine.stop();
         timeTimeLine.stop();
-    }
-
-    /**
-     * changes the main game timer
-     */
-    private static void changeTime() {
-        // TODO: add timer
-        time--;
-
-        if (time <= 0) {
-            //stopTimeLines();
-        }
     }
 
     /**

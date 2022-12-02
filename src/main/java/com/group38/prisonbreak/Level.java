@@ -64,6 +64,14 @@ public class Level implements Drawable {
     }
 
     /**
+     * Gets the current Level number
+     * @return level Number
+     */
+    public int getLevelNumber() {
+        return levelNumber;
+    }
+
+    /**
      * gets the player entity
      *
      * @return Entity
@@ -81,7 +89,7 @@ public class Level implements Drawable {
         for (Tile[] tileX : tiles) {
             for (Tile tile : tileX) {
                 Item item = tile.getItem();
-                if (item != null && !(item instanceof Bomb) && !(item instanceof Door) && !(item instanceof Gate)) {
+                if (item != null && !(item instanceof Bomb) && !(item instanceof Door)) {
                     return true;
                 }
             }
