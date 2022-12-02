@@ -85,6 +85,7 @@ public class LevelController {
         drawCanvas();
         recalculateCanvasSize();
         levelNumberLabel.setText(String.valueOf(GameManager.level.getLevelNumber()));
+        GameManager.playTimeLines();
     }
 
     /**
@@ -125,7 +126,6 @@ public class LevelController {
             player.move();
             GameManager.level.draw(g);
         }
-
         scoreNumberLabel.setText(String.valueOf(GameManager.money));
     }
 
@@ -133,11 +133,11 @@ public class LevelController {
      * changes the main game timer
      */
     private void changeTime() {
-        // TODO: add timer
         GameManager.time--;
         timeLabel.setText(String.valueOf(GameManager.time));
         if (GameManager.time <= 0) {
-            //stopTimeLines();
+            GameManager.stopTimeLines();
+            timeLabel.setText("GAME OVER");
         }
     }
 }
