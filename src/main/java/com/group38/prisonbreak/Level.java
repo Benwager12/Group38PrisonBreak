@@ -1,6 +1,8 @@
 package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.items.Bomb;
+import com.group38.prisonbreak.items.Door;
+import com.group38.prisonbreak.items.Gate;
 import com.group38.prisonbreak.utilities.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -79,7 +81,7 @@ public class Level implements Drawable {
         for (Tile[] tileX : tiles) {
             for (Tile tile : tileX) {
                 Item item = tile.getItem();
-                if (item != null && !(item instanceof Bomb)) {
+                if (item != null && !(item instanceof Bomb) && !(item instanceof Door) && !(item instanceof Gate)) {
                     return true;
                 }
             }

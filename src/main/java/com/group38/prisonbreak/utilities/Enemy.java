@@ -1,6 +1,7 @@
 package com.group38.prisonbreak.utilities;
 
 import com.group38.prisonbreak.enemies.FlyingAssassin;
+import com.group38.prisonbreak.items.Door;
 
 /**
  * Implements an Enemy in the game
@@ -29,7 +30,7 @@ public class Enemy extends Entity {
     protected void itemInteract() {
         Item item = getCurrentTile().getItem();
         if (item != null) {
-            if (item.interact(false)) {
+            if (item.interact(false) && !(item instanceof Door) ) {
                 getCurrentTile().removeItem();
             }
         }
