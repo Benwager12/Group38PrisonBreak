@@ -19,7 +19,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -133,7 +132,6 @@ public class FileUtilities {
             currentTile.setItem(items.get(itemPosition));
             tiles[itemPosition[1]][itemPosition[0]] = currentTile;
         }
-
         int numOfEnemies = in.nextInt();
         ArrayList<Entity> enemies = readEnemies(in, numOfEnemies);
         enemies.add(p);
@@ -202,9 +200,6 @@ public class FileUtilities {
     private static ArrayList<Entity> readEnemies(Scanner in, int numOfEnemies) {
         ArrayList<Entity> enemies = new ArrayList<>();
         Enemy nextEnemy = null;
-
-        // <x, <y, enemy>>
-        HashMap<Integer[], Enemy> enemyMap = new HashMap<>();
 
         for(int i = 0; i < numOfEnemies; i++) {
             String enemyType = in.next();

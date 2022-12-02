@@ -10,6 +10,9 @@ import javafx.scene.image.Image;
 
 public abstract class Item implements Drawable {
 
+    protected static final String gameImagesStart = "images/GameImages/";
+    protected int imageIndex;
+
     /** Defines what happens when a player interacts with an Item. */
     public boolean interact() {
         return interact(false);
@@ -19,6 +22,8 @@ public abstract class Item implements Drawable {
 
     /** Get the path of the image for the item. */
     public abstract String getImagePath();
+
+    public abstract Image getImage();
 
     @Override
     public void draw(GraphicsContext g) {

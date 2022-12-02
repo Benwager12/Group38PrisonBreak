@@ -2,6 +2,7 @@ package com.group38.prisonbreak.enemies;
 
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.Enemy;
+import javafx.scene.image.Image;
 
 /**
  * Implements an Enemy in the game
@@ -42,5 +43,10 @@ public class FlyingAssassin extends Enemy {
                 super.setDirection(newDir);
             }
         }
+    }
+
+    @Override
+    public Image getEntityImage() {
+        return super.getEntityImage();
     }
 }

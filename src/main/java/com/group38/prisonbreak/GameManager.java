@@ -1,6 +1,5 @@
 package com.group38.prisonbreak;
 
-import com.group38.prisonbreak.enemies.SmartThief;
 import com.group38.prisonbreak.utilities.Entity;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -109,7 +108,7 @@ public class GameManager {
      * Opens the gates that are on the given colour
      * @param colour the colour that the lever is on
      */
-    public static void openLever(int colour) {
+    public static void openGate(int colour) {
         // TODO: Get the hash map of gates in level and set the has lever been pulled to true
     }
 

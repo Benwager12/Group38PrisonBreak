@@ -1,7 +1,11 @@
 package com.group38.prisonbreak.items;
 
 import com.group38.prisonbreak.GameManager;
+import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.Item;
+import javafx.scene.image.Image;
+
+import java.util.HashMap;
 
 /**
  * A class that represents loot in the game
@@ -10,15 +14,27 @@ import com.group38.prisonbreak.utilities.Item;
 
 public class Loot extends Item {
 
-    // Amount of money that's on the tile
-    private final int moneyAmount;
+    private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
+        put(50, gameImagesStart + "loot_1.png");
+        put(100, gameImagesStart + "loot_2.png");
+        put(150, gameImagesStart + "loot_3.png");
+        put(250, gameImagesStart + "loot_4.png");
+    }};
+
+    private static final HashMap<Integer, Image> imageCache = new HashMap<>();
 
     /**
      * Constructor for Loot class
      * @param metadata
      */
     public Loot(String metadata) {
-        this.moneyAmount = Integer.parseInt(metadata);
+        this.imageIndex = Integer.parseInt(metadata);
+
+        if (imageCache.isEmpty()) {
+            imagePathCache.keySet().forEach(index -> {
+                imageCache.put(index, FileUtilities.loadImageFromResource(imagePathCache.get(index)));
+            });
+        }
     }
 
     /**
@@ -28,7 +44,7 @@ public class Loot extends Item {
     @Override
     public boolean interact(boolean isPlayer) {
         if (isPlayer) {
-            GameManager.collectMoney(moneyAmount);
+            GameManager.collectMoney(imageIndex);
         }
         return true;
     }
@@ -36,6 +52,14 @@ public class Loot extends Item {
     @Override
     public String getImagePath() {
         return "images/items/loot.png";
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public Image getImage() {
+        return imageCache.get(imageIndex);
     }
 
 }

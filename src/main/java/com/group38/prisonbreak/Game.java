@@ -2,8 +2,6 @@ package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -24,7 +22,7 @@ public class Game extends Application {
 
         FXMLLoader loader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
 
-        Pane root = null;
+        Pane root;
         try {
             root = loader.load();
         } catch (IOException e) {
