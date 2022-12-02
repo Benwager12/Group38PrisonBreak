@@ -97,6 +97,14 @@ public class Level implements Drawable {
         return false;
     }
 
+    public void removeAllItems() {
+        for (Tile[] tileX : tiles) {
+            for (Tile tile : tileX) {
+                tile.removeItem();
+            }
+        }
+    }
+
     /**
      * Draws all the Tiles onto the level
      */

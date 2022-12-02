@@ -3,7 +3,11 @@ package com.group38.prisonbreak.items;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.Item;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
+import javafx.util.Duration;
 
 import java.util.HashMap;
 
@@ -32,14 +36,27 @@ public class Bomb extends Item {
 
     /* The time left when the player activates the bomb */
     private final int BOMB_ACTIVATE_TIME = 3;
+    private Timeline bombTimeLine = new Timeline(new KeyFrame(Duration.millis(1000), event -> countdownBomb()));
 
     @Override
     public boolean interact(boolean isPlayer) {
         if (GameManager.time > 3) {
-            GameManager.time = BOMB_ACTIVATE_TIME;
             imageIndex = BOMB_ACTIVATE_TIME;
+            bombTimeLine.setCycleCount(Animation.INDEFINITE);
+            bombTimeLine.play();
         }
+
         return false;
+    }
+
+    private void countdownBomb() {
+        if (imageIndex > 1) {
+            imageIndex--;
+        } else {
+            GameManager.level.removeAllItems();
+            GameManager.time = 0;
+            bombTimeLine.stop();
+        }
     }
 
     @Override
