@@ -15,7 +15,7 @@ public class Lever extends Item {
 
 
     private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
-        put(0, gameImagesStart + "keu_rusted.png");
+        put(0, gameImagesStart + "key_rusted.png");
         put(1, gameImagesStart + "key_bronze.png");
         put(2, gameImagesStart + "key_silver.png");
         put(3, gameImagesStart + "key_gold.png");
