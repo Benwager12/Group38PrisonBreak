@@ -97,10 +97,13 @@ public class Level implements Drawable {
         return false;
     }
 
-    public void removeAllItems() {
+    public void removeAllItemsExplosion() {
         for (Tile[] tileX : tiles) {
             for (Tile tile : tileX) {
-                tile.removeItem();
+                Item item = tile.getItem();
+                if(!(item instanceof Gate || item instanceof Door)) {
+                    tile.removeItem();
+                }
             }
         }
     }

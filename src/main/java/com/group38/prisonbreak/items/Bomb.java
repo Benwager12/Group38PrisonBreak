@@ -53,8 +53,7 @@ public class Bomb extends Item {
         if (imageIndex > 1) {
             imageIndex--;
         } else {
-            GameManager.level.removeAllItems();
-            GameManager.time = 0;
+            GameManager.level.removeAllItemsExplosion();
             bombTimeLine.stop();
         }
     }
