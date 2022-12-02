@@ -27,10 +27,8 @@ public abstract class Item implements Drawable {
 
     @Override
     public void draw(GraphicsContext g) {
-        Image img = FileUtilities.loadImageFromResource(getImagePath());
-
         // Needs to be changed when we implement the drawing of tiles
-        g.drawImage(img, 0, 0);
+        g.drawImage(getImage(), 0, 0);
     }
 }
 

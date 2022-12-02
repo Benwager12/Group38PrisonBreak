@@ -4,11 +4,9 @@ import com.group38.prisonbreak.items.Bomb;
 import com.group38.prisonbreak.utilities.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * A Class that stores the data about a level
@@ -133,6 +131,22 @@ public class Level implements Drawable {
                     isNegative ? (entity.getX() + 1) * sideLength : entity.getX() * sideLength,
                     entity.getY() * sideLength,
                     isNegative ? -sideLength : sideLength, sideLength);
+        }
+    }
+
+    public void drawItems(GraphicsContext g) {
+        int sideLength = getSideLength(g);
+
+        for (int tiley = 0; tiley < tiles.length; tiley++) {
+            for (int tilex = 0; tilex < tiles[tiley].length; tilex++) {
+                Tile t = tiles[tiley][tilex];
+                if (t.getItem() == null) {
+                    continue;
+                }
+
+                Item it = t.getItem();
+                g.drawImage(it.getImage(), tilex * sideLength, tiley * sideLength, sideLength, sideLength);
+            }
         }
     }
 
@@ -268,6 +282,7 @@ public class Level implements Drawable {
 
         drawTiles(g);
         drawEntities(g);
+        drawItems(g);
     }
 
     public static int getTileSideLength(Level level, int width, int height) {
