@@ -1,6 +1,7 @@
 package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.utilities.FileUtilities;
+import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
@@ -43,6 +44,10 @@ public class Game extends Application {
         }
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, GameManager::processKeyEvent);
+
+        // initializes Profiles
+        ProfileUtilities.initialise();
+
         // initializes and starts timelines
         GameManager.initTimelines();
     }
