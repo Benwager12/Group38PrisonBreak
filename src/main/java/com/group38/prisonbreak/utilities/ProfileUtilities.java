@@ -17,7 +17,7 @@ public class ProfileUtilities {
     private static final String FILE_LOCATION = "data/Profiles.txt";
 
     // Hashmap of Profiles
-    private static final HashMap<Integer, Profile> profiles = new HashMap<>();
+    private static final ArrayList<Profile> profiles = new ArrayList<>();
 
     // Format of the Profiles.txt file "<id>, <name>, <highest level>"
     private static final String TXT_STRING_FORMAT = "%d, %s, %d%n";
@@ -59,7 +59,7 @@ public class ProfileUtilities {
     private static void readInfo(Scanner in) {
         while (in.hasNextLine()) {
             String[] profile = in.nextLine().split(", ");
-            profiles.put(Integer.parseInt(profile[0]), initProfile(profile));
+            profiles.add(initProfile(profile));
         }
     }
 
@@ -80,19 +80,19 @@ public class ProfileUtilities {
      * @return Profile array
      */
     public static Profile[] getProfiles() {
-        return profiles.values().toArray(new Profile[0]);
+        return profiles.toArray(new Profile[profiles.size()]);
     }
 
     /**
      * Gets all the player names from all the stored profiles
      * @return String array of profile names
      */
-    public String[] getProfileNames() {
-        ArrayList<String> names = new ArrayList<>();
-        for (Profile profile : profiles.values()) {
-            names.add(profile.getName());
+    public static String[] getProfileNames() {
+        String[] names = new String[profiles.size()];
+        for (int i = 0; i < profiles.size(); i++) {
+            names[i] = profiles.get(i).getName();
         }
-        return names.toArray(new String[names.size()]);
+        return names;
     }
 
     /**
@@ -100,8 +100,8 @@ public class ProfileUtilities {
      * @param name player name of the profile
      * @return int The Highest Level completed
      */
-    public int getLevelFromProfile(String name) {
-        for (Profile profile : profiles.values()) {
+    public static int getLevelFromProfile(String name) {
+        for (Profile profile : profiles) {
             if (profile.getName().equals(name)) {
                 return profile.getHighestLevel();
             }
@@ -143,6 +143,14 @@ public class ProfileUtilities {
         profile.setHighestLevel(levelNumber);
     }
 
+    public static void addProfile(String name, int levelNumber) {
+        profiles.add(new Profile(profiles.size(), name, levelNumber));
+    }
+
+    public static void addProfile(String name) {
+        profiles.add(new Profile(profiles.size(), name));
+    }
+
     /**
      * Saves the current stored Profile classes in Profile.txt
      * NOTE: THIS WILL OVERRIDE EVERYTHING THAT'S CURRENTLY IN PROFILE.TXT
@@ -152,7 +160,7 @@ public class ProfileUtilities {
             PrintWriter myWriter = new PrintWriter(FileUtilities.getResourcePath(FILE_LOCATION));
             System.out.println(FileUtilities.getResourcePath(FILE_LOCATION));
 
-            for (Profile profile : profiles.values()) {
+            for (Profile profile : profiles) {
                 String profileData = String.format(TXT_STRING_FORMAT, profile.getId(),
                         profile.getName(),
                         profile.getHighestLevel()
