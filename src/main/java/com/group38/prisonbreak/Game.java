@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Game extends Application {
 
@@ -45,7 +46,7 @@ public class Game extends Application {
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, GameManager::processKeyEvent);
 
-        // initializes Profiles
+        // Initialize Profiles
         ProfileUtilities.initialise();
 
         // initializes and starts timelines
