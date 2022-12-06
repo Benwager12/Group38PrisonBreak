@@ -62,7 +62,6 @@ public class ProfileUtilities {
             String[] profile = in.nextLine().split(", ");
             String name = profile[0];
 
-            System.out.println(Arrays.toString(profile));
             if (profile.length != 1) {
                 int highestLevel = Integer.parseInt(profile[1]);
                 PROFILES.add(new Profile(id, name, highestLevel));

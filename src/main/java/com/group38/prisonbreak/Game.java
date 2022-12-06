@@ -23,7 +23,7 @@ public class Game extends Application {
     public void start(Stage primaryStage) {
         FileUtilities.setGameInstance(this);
 
-        FXMLLoader loader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
+        FXMLLoader loader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
 
         Pane root;
         try {
@@ -46,6 +46,7 @@ public class Game extends Application {
         }
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, GameManager::processKeyEvent);
+        scene.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
 
         // Initialize Profiles
         ProfileUtilities.initialise();

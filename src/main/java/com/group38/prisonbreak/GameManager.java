@@ -3,7 +3,10 @@ package com.group38.prisonbreak;
 import com.group38.prisonbreak.utilities.Entity;
 import javafx.animation.Animation;
 import javafx.animation.Timeline;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
+import java.util.ArrayList;
 
 /**
  * A singleton class that holds everything in the level.
@@ -34,6 +37,8 @@ public class GameManager {
 
     // Tick timeline for the main game clock, updates every 1000 milliseconds (1 second)
     public static Timeline timeTimeLine;
+
+    public static ArrayList<KeyCode> currentlyPressed = new ArrayList<>();
 
     /**
      * Sets all the cycles for the tick timelines
@@ -106,17 +111,15 @@ public class GameManager {
     }
 
     public static void processKeyEvent(KeyEvent event) {
-        if (level!= null) {
-            Entity player = level.getPlayer();
-            // We change the behaviour depending on the actual key that was pressed.
-            switch (event.getCode()) {
-                case LEFT -> player.setDirection(3);
-                case RIGHT -> player.setDirection(1);
-                case UP -> player.setDirection(0);
-                case DOWN -> player.setDirection(2);
-                default -> {
-                }
+        if (event.getEventType() == KeyEvent.KEY_PRESSED) {
+            if (currentlyPressed.contains(event.getCode())) {
+                return;
             }
+
+            currentlyPressed.add(event.getCode());
+        }
+        if (event.getEventType() == KeyEvent.KEY_RELEASED) {
+            currentlyPressed.remove(event.getCode());
         }
     }
 }

@@ -86,7 +86,7 @@ public class Main extends Application {
 		
 		// Create a scene from the GUI
 		Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
-				
+
 		// Register an event handler for key presses.
 		// This causes the processKeyEvent method to be called each time a key is pressed.
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> processKeyEvent(event));
