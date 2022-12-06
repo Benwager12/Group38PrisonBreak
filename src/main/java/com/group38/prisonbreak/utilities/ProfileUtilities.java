@@ -79,7 +79,7 @@ public class ProfileUtilities {
      * @return Profile array
      */
     public static Profile[] getProfiles() {
-        return PROFILES.toArray(new Profile[PROFILES.size()]);
+        return PROFILES.toArray(new Profile[0]);
     }
 
     /**
@@ -148,6 +148,10 @@ public class ProfileUtilities {
 
     public static void addProfile(String name) {
         PROFILES.add(new Profile(PROFILES.size(), name));
+    }
+
+    public static String getName(int id) {
+        return PROFILES.get(id).getName();
     }
 
     /**
