@@ -237,15 +237,15 @@ public class Level implements Drawable {
                 newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
                 Tile newTile = tiles[newY][newX];
                 Item tileItem = newTile.getItem();
-                boolean hasColours = newTile.hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem) ;
+                boolean moveable = newTile.hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !(tileItem instanceof Bomb) ;
                 return new int [] {
-                        hasColours ? newX : moveTo(newX, newY, direction, colours)[0],
-                        hasColours ? newY : moveTo(newX, newY, direction, colours)[1]
+                        moveable ? newX : moveTo(newX, newY, direction, colours)[0],
+                        moveable ? newY : moveTo(newX, newY, direction, colours)[1]
                 };
             }
             Tile newTile = tiles[newY][newX];
             Item tileItem = newTile.getItem();
-            if (tiles[newY][newX].hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem)) {
+            if (tiles[newY][newX].hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !(tileItem instanceof Bomb)) {
                 return new int[] {newX, newY};
             }
 
@@ -256,10 +256,10 @@ public class Level implements Drawable {
         newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
         Tile newTile = tiles[newY][newX];
         Item tileItem = newTile.getItem();
-        boolean hasColours = newTile.hasColours(tiles[posY][posX].getColours()) && isGateOpen(tileItem) && isDoorOpen(tileItem);
+        boolean moveable = newTile.hasColours(tiles[posY][posX].getColours()) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !(tileItem instanceof Bomb);
         return new int [] {
-                hasColours ? newX : moveTo(newX, newY, direction, colours)[0],
-                hasColours ? newY : moveTo(newX, newY, direction, colours)[1]
+                moveable ? newX : moveTo(newX, newY, direction, colours)[0],
+                moveable ? newY : moveTo(newX, newY, direction, colours)[1]
         };
     }
 
