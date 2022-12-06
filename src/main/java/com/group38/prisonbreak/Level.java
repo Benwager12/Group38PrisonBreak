@@ -47,11 +47,10 @@ public class Level implements Drawable {
 
         for (Tile[] row : tiles) {
             for (Tile tile : row) {
-                if (tile.getItem() == null || !(tile.getItem() instanceof Gate)) {
+                if (tile.getItem() == null || !(tile.getItem() instanceof Gate g)) {
                     continue;
                 }
 
-                Gate g = (Gate) tile.getItem();
                 gatesOpen.put(g.getGateColour(), false);
             }
         }
@@ -109,6 +108,25 @@ public class Level implements Drawable {
             }
         }
         return false;
+    }
+
+    public int getNoItems() {
+        int items = 0;
+        for (Tile[] tileX : tiles) {
+            for (Tile tile : tileX) {
+                Item item = tile.getItem();
+                if (item != null && isMainBombOrNotBomb(item)) {
+                    items++;
+                }
+            }
+        }
+        return items;
+    }
+
+    public boolean isMainBombOrNotBomb(Item item) {
+        if (item instanceof Bomb && ((Bomb) item).isExplodable()) {
+            return true;
+        } else return !(item instanceof Bomb);
     }
 
     /**
@@ -252,10 +270,7 @@ public class Level implements Drawable {
                 Tile newTile = tiles[newY][newX];
                 Item tileItem = newTile.getItem();
 
-                boolean bombSkip = false;
-                if (tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable()) {
-                    bombSkip = true;
-                }
+                boolean bombSkip = tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable();
 
                 boolean moveable = newTile.hasColours(colours) && isGateOpen(tileItem) &&
                         isDoorOpen(tileItem) && bombSkip;
@@ -266,10 +281,7 @@ public class Level implements Drawable {
             }
             Tile newTile = tiles[newY][newX];
             Item tileItem = newTile.getItem();
-            boolean bombSkip = false;
-            if (tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable()) {
-                bombSkip = true;
-            }
+            boolean bombSkip = tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable();
             if (tiles[newY][newX].hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !bombSkip) {
                 return new int[] {newX, newY};
             }
@@ -282,10 +294,7 @@ public class Level implements Drawable {
         Tile newTile = tiles[newY][newX];
         Item tileItem = newTile.getItem();
 
-        boolean bombSkip = false;
-        if (tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable()) {
-            bombSkip = true;
-        }
+        boolean bombSkip = tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable();
 
         boolean moveable = newTile.hasColours(tiles[posY][posX].getColours()) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !bombSkip;
         return new int [] {
@@ -297,7 +306,6 @@ public class Level implements Drawable {
 
     public boolean isGateOpen(Item item) {
         if (item instanceof  Gate) {
-            Gate g = (Gate) item;
             return gatesOpen.get(((Gate) item).getGateColour());
         }
         return true;
