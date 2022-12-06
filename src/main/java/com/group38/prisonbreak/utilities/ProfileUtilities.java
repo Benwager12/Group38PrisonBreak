@@ -56,22 +56,19 @@ public class ProfileUtilities {
      * @param in Scanner containing profile information
      */
     private static void readInfo(Scanner in) {
+        int id = 1;
         while (in.hasNextLine()) {
             String[] profile = in.nextLine().split(", ");
-            PROFILES.add(initProfile(profile));
-        }
-    }
+            String name = profile[0];
 
-    /**
-     * Creates an instance of a profile class
-     * @param profileValues String array of values in the form [id, name, highest Level]
-     * @return Profile
-     */
-    private static Profile initProfile(String[] profileValues) {
-        if (profileValues.length < 3) {
-            return new Profile(Integer.parseInt(profileValues[0]), profileValues[1]);
+            if (profile.length == 1) {
+                int highestLevel = Integer.parseInt(profile[1]);
+                PROFILES.add(new Profile(id, name, highestLevel));
+            } else {
+                PROFILES.add(new Profile(id, name));
+            }
+            id++;
         }
-        return new Profile(Integer.parseInt(profileValues[0]), profileValues[1], Integer.parseInt(profileValues[2]));
     }
 
     /**
@@ -95,17 +92,26 @@ public class ProfileUtilities {
     }
 
     /**
-     * Gets the highest level a player has played from their name
-     * @param name player name of the profile
-     * @return int The Highest Level completed
+     * Gets the highest level of the player from their ID
+     * @param id The ID of the player
+     * @return The highest level of the player
      */
-    public static int getLevelFromProfile(String name) {
+    public static int getLevelFromProfile(int id) {
         for (Profile profile : PROFILES) {
-            if (profile.getName().equals(name)) {
+            if (profile.getId() == id) {
                 return profile.getHighestLevel();
             }
         }
         return 0;
+    }
+
+    private static Profile getProfileFromId(int id) {
+        for (Profile profile : PROFILES) {
+            if (profile.getId() == id) {
+                return profile;
+            }
+        }
+        return null;
     }
 
     /**
@@ -177,5 +183,18 @@ public class ProfileUtilities {
             e.printStackTrace();
             System.exit(-1);
         }
+    }
+
+    /**
+     * Increment level number
+     */
+    public static void incrementLevelNumber(int profileId) {
+        Profile usrProfile = getProfileFromId(profileId);
+        if (usrProfile == null) {
+            return;
+        }
+
+        int level = usrProfile.getHighestLevel();
+        updateProfile(profileId, level + 1);
     }
 }
