@@ -4,20 +4,19 @@ import com.group38.prisonbreak.Profile;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 /**
  * Utility that stores and deals with Player Profiles
- * @author Daniel Banks
+ * @author Daniel Banks (2107922)
  */
 public class ProfileUtilities {
 
     // Location of the .txt file that stores the profiles
     private static final String FILE_LOCATION = "data/Profiles.txt";
 
-    // Hashmap of Profiles
-    private static final ArrayList<Profile> profiles = new ArrayList<>();
+    // Arraylist of Profiles
+    private static final ArrayList<Profile> PROFILES = new ArrayList<>();
 
     // Format of the Profiles.txt file "<id>, <name>, <highest level>"
     private static final String TXT_STRING_FORMAT = "%d, %s, %d%n";
@@ -59,7 +58,7 @@ public class ProfileUtilities {
     private static void readInfo(Scanner in) {
         while (in.hasNextLine()) {
             String[] profile = in.nextLine().split(", ");
-            profiles.add(initProfile(profile));
+            PROFILES.add(initProfile(profile));
         }
     }
 
@@ -80,7 +79,7 @@ public class ProfileUtilities {
      * @return Profile array
      */
     public static Profile[] getProfiles() {
-        return profiles.toArray(new Profile[profiles.size()]);
+        return PROFILES.toArray(new Profile[PROFILES.size()]);
     }
 
     /**
@@ -88,9 +87,9 @@ public class ProfileUtilities {
      * @return String array of profile names
      */
     public static String[] getProfileNames() {
-        String[] names = new String[profiles.size()];
-        for (int i = 0; i < profiles.size(); i++) {
-            names[i] = profiles.get(i).getName();
+        String[] names = new String[PROFILES.size()];
+        for (int i = 0; i < PROFILES.size(); i++) {
+            names[i] = PROFILES.get(i).getName();
         }
         return names;
     }
@@ -101,7 +100,7 @@ public class ProfileUtilities {
      * @return int The Highest Level completed
      */
     public static int getLevelFromProfile(String name) {
-        for (Profile profile : profiles) {
+        for (Profile profile : PROFILES) {
             if (profile.getName().equals(name)) {
                 return profile.getHighestLevel();
             }
@@ -115,7 +114,7 @@ public class ProfileUtilities {
      * @param levelNumber New highest level completed
      */
     public static void updateProfile(int id, int levelNumber) {
-        Profile profile = profiles.get(id);
+        Profile profile = PROFILES.get(id);
         if (profile != null) {
             profile.setHighestLevel(levelNumber);
         }
@@ -127,7 +126,7 @@ public class ProfileUtilities {
      * @param name New name of the player
      */
     public static void updateProfile(int id, String name) {
-        Profile profile = profiles.get(id);
+        Profile profile = PROFILES.get(id);
         profile.setName(name);
     }
 
@@ -138,17 +137,17 @@ public class ProfileUtilities {
      * @param levelNumber New highest level completed
      */
     public static void updateProfile(int id, String name, int levelNumber) {
-        Profile profile = profiles.get(id);
+        Profile profile = PROFILES.get(id);
         profile.setName(name);
         profile.setHighestLevel(levelNumber);
     }
 
     public static void addProfile(String name, int levelNumber) {
-        profiles.add(new Profile(profiles.size(), name, levelNumber));
+        PROFILES.add(new Profile(PROFILES.size(), name, levelNumber));
     }
 
     public static void addProfile(String name) {
-        profiles.add(new Profile(profiles.size(), name));
+        PROFILES.add(new Profile(PROFILES.size(), name));
     }
 
     /**
@@ -160,7 +159,7 @@ public class ProfileUtilities {
             PrintWriter myWriter = new PrintWriter(FileUtilities.getResourcePath(FILE_LOCATION));
             System.out.println(FileUtilities.getResourcePath(FILE_LOCATION));
 
-            for (Profile profile : profiles) {
+            for (Profile profile : PROFILES) {
                 String profileData = String.format(TXT_STRING_FORMAT, profile.getId(),
                         profile.getName(),
                         profile.getHighestLevel()
