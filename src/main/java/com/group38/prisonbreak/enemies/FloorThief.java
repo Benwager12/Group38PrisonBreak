@@ -35,7 +35,7 @@ public class FloorThief extends Enemy {
     public FloorThief(int xPos, int yPos, int direction, int chosenColour ) {
         super(xPos, yPos, direction);
         setEntityImage(IMAGE_NAME);
-        this.chosenColourRgb[0] = colourMap.get(chosenColour);
+        //this.chosenColourRgb[0] = colourMap.get(chosenColour);
     }
 
 
