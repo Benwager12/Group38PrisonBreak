@@ -1,6 +1,7 @@
 package com.group38.prisonbreak.utilities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 
@@ -10,8 +11,21 @@ import java.util.HashMap;
  */
 public class UnlockableUtilities {
 
+    private static final String IMAGE_LOCATIONS = "images/PlayerOutfits/outfit_%s.png";
+
     // Hashmap of Arraylist of unlockables where the key is the level the item is unlocked at
-    private static final HashMap<Integer, ArrayList<Unlockable>> UNLOCKABLES = new HashMap<>();
+    private static final HashMap<Integer, ArrayList<Unlockable>> UNLOCKABLES = new HashMap<>() {{
+        put(1, new ArrayList<Unlockable>(Arrays.asList(
+                new Unlockable("Stripped Prisoner", String.format(IMAGE_LOCATIONS, "stripey_fit")))));
+        put(2, new ArrayList<Unlockable>(Arrays.asList(
+                new Unlockable("Tank Top", String.format(IMAGE_LOCATIONS, "tank_top")))));
+        put(3, new ArrayList<Unlockable>(Arrays.asList(
+                new Unlockable("Suit", String.format(IMAGE_LOCATIONS, "suit")))));
+        put(7, new ArrayList<Unlockable>(Arrays.asList(
+                new Unlockable("Guard", String.format(IMAGE_LOCATIONS, "guard")))));
+        put(8, new ArrayList<Unlockable>(Arrays.asList(
+                new Unlockable("Xmas", String.format(IMAGE_LOCATIONS, "xmas")))));
+    }};
 
     /**
      * Gets all the items unlocked at a certain level
@@ -22,7 +36,9 @@ public class UnlockableUtilities {
         ArrayList<Unlockable> unlocked = new ArrayList<>();
         //Unlockable[] unlocked = new Unlockable[levelNumber];
         for (int i = 1; i < levelNumber + 1; i++) {
-            unlocked.addAll(UNLOCKABLES.get(i - 1));
+            if (UNLOCKABLES.containsKey(i)) {
+                unlocked.addAll(UNLOCKABLES.get(i));
+            }
         }
         return unlocked.toArray(new Unlockable[0]);
     }
