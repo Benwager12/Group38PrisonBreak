@@ -10,11 +10,9 @@ import javafx.scene.image.Image;
  */
 public class FlyingAssassin extends Enemy {
 
-    private static final String IMAGE_NAME = "Helicopter";
-
     public FlyingAssassin(int xPos, int yPos, int direction) {
         super(xPos, yPos, direction);
-        setEntityImage(IMAGE_NAME);
+        setEntityImage("assassin_flying");
     }
 
     @Override

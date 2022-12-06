@@ -1,6 +1,6 @@
 
 package com.group38.prisonbreak.enemies;
-;
+
 import com.group38.prisonbreak.utilities.Enemy;
 
 import javafx.scene.paint.Color;
@@ -22,9 +22,6 @@ public class FloorThief extends Enemy {
         put(5, Color.rgb(253, 5, 253, .25));  // Magenta
     }};
 
-
-    private static final String IMAGE_NAME = "Police Car (Floor following thief)";
-
     /** Represents the color in rgb format, FloorThief follows.
      */
     private Color[] chosenColourRgb;
@@ -34,7 +31,7 @@ public class FloorThief extends Enemy {
     int[] cord;
     public FloorThief(int xPos, int yPos, int direction, int chosenColour ) {
         super(xPos, yPos, direction);
-        setEntityImage(IMAGE_NAME);
+        setEntityImage("thief_floor");
         //this.chosenColourRgb[0] = colourMap.get(chosenColour);
     }
 
