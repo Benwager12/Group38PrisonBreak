@@ -4,6 +4,7 @@ import com.group38.prisonbreak.Profile;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -61,7 +62,8 @@ public class ProfileUtilities {
             String[] profile = in.nextLine().split(", ");
             String name = profile[0];
 
-            if (profile.length == 1) {
+            System.out.println(Arrays.toString(profile));
+            if (profile.length != 1) {
                 int highestLevel = Integer.parseInt(profile[1]);
                 PROFILES.add(new Profile(id, name, highestLevel));
             } else {
