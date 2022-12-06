@@ -23,17 +23,19 @@ public class Loot extends Item {
 
     private static final HashMap<Integer, Image> imageCache = new HashMap<>();
 
+    private final int lootType;
+
     /**
      * Constructor for Loot class
-     * @param metadata
+     * @param metadata Type of loot (each type is an icon)
      */
     public Loot(String metadata) {
-        this.imageIndex = Integer.parseInt(metadata);
+        this.lootType = Integer.parseInt(metadata);
+        this.imageIndex = lootType;
 
         if (imageCache.isEmpty()) {
-            imagePathCache.keySet().forEach(index -> {
-                imageCache.put(index, FileUtilities.loadImageFromResource(imagePathCache.get(index)));
-            });
+            imagePathCache.keySet().forEach(index -> 
+                    imageCache.put(index, FileUtilities.loadImageFromResource(imagePathCache.get(index))));
         }
     }
 
@@ -54,12 +56,12 @@ public class Loot extends Item {
         return "images/items/loot.png";
     }
 
-    /**
-     * @return
-     */
     @Override
     public Image getImage() {
         return imageCache.get(imageIndex);
     }
 
+    public int getLootType() {
+        return lootType;
+    }
 }
