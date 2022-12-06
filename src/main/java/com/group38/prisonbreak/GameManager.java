@@ -96,14 +96,6 @@ public class GameManager {
     }
 
     /**
-     * Opens the gates that are on the given colour
-     * @param colour the colour that the lever is on
-     */
-    public static void openGate(int colour) {
-        // TODO: Get the hash map of gates in level and set the has lever been pulled to true
-    }
-
-    /**
      * Ends the game/level
      */
     public static void endGame() {

@@ -141,6 +141,8 @@ public class LevelController {
                 } else if (c == KeyCode.LEFT || c == KeyCode.A) {
                     player.move(3);
                     break;
+                } else if (c == KeyCode.K) {
+                    System.out.println(GameManager.level.isGateOpen(4));
                 }
             }
 

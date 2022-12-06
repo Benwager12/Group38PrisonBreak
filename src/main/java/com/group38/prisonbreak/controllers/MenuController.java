@@ -14,19 +14,10 @@ public class MenuController {
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
     @FXML
-    private Button newGameButton;
-
-    @FXML
     private ImageView newGameImage;
 
     @FXML
-    private Button loadGameButton;
-
-    @FXML
     private ImageView loadGameImage;
-
-    @FXML
-    private Button exitButton;
 
     @FXML
     private ImageView exitImage;

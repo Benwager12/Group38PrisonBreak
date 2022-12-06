@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A Class that stores the data about a level
@@ -30,6 +31,8 @@ public class Level implements Drawable {
     // All the entities in the Level
     private final ArrayList<Entity> entities;
 
+    private final HashMap<Integer, Boolean> gatesOpen = new HashMap<>();
+
     /**
      * Creates a Level instance
      *
@@ -41,6 +44,17 @@ public class Level implements Drawable {
         this.levelNumber = levelNumber;
         this.tiles = tiles;
         this.entities = entities;
+
+        for (Tile[] row : tiles) {
+            for (Tile tile : row) {
+                if (tile.getItem() == null || !(tile.getItem() instanceof Gate)) {
+                    continue;
+                }
+
+                Gate g = (Gate) tile.getItem();
+                gatesOpen.put(g.getGateColour(), false);
+            }
+        }
     }
 
     /**
@@ -264,12 +278,19 @@ public class Level implements Drawable {
     }
 
 
-    private boolean isGateOpen(Item item) {
+    public boolean isGateOpen(Item item) {
         if (item instanceof  Gate) {
-            return ((Gate) item).isUnlocked();
+            Gate g = (Gate) item;
+            return gatesOpen.get(((Gate) item).getGateColour());
         }
         return true;
     }
+
+    public boolean isGateOpen(int colour) {
+        return gatesOpen.get(colour);
+    }
+
+
 
     private boolean isDoorOpen(Item item) {
         if (item instanceof Door) {
@@ -345,5 +366,9 @@ public class Level implements Drawable {
 
     public int getHeight() {
         return tiles.length;
+    }
+
+    public void openGate(int gateColour) {
+        gatesOpen.put(gateColour, true);
     }
 }
