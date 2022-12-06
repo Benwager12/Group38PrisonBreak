@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class LevelLeaderboard {
 
-    // 2D array of scores for this specific level [ProfileId][Score]
+    // 2D array of scores for this specific level [[profileId, score]]
     private final int[][] scores = new int[10][2];
 
     /**
@@ -76,7 +76,12 @@ public class LevelLeaderboard {
                 scores.add(score);
             }
         }
-        // TODO: fix this
-        return (int[][]) scores.toArray();
+
+        // Converts Arraylist to int array
+        int[][] leaderboard = new int[scores.size()][2];
+        for (int i = 0; i < scores.size(); i ++){
+            leaderboard[i] = scores.get(i);
+        }
+        return leaderboard;
     }
 }
