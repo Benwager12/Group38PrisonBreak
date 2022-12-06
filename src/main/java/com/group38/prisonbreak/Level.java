@@ -235,14 +235,17 @@ public class Level implements Drawable {
             if (newY >= tiles.length || newX >= tiles[0].length) {
                 newX = isX ? (isNegative ? tiles[0].length -1 : 0) : posX;
                 newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
-                boolean hasColours = tiles[newY][newX].hasColours(colours);
+                Tile newTile = tiles[newY][newX];
+                Item tileItem = newTile.getItem();
+                boolean hasColours = newTile.hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem) ;
                 return new int [] {
                         hasColours ? newX : moveTo(newX, newY, direction, colours)[0],
                         hasColours ? newY : moveTo(newX, newY, direction, colours)[1]
                 };
             }
-
-            if (tiles[newY][newX].hasColours(colours)) {
+            Tile newTile = tiles[newY][newX];
+            Item tileItem = newTile.getItem();
+            if (tiles[newY][newX].hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem)) {
                 return new int[] {newX, newY};
             }
 
@@ -251,11 +254,28 @@ public class Level implements Drawable {
         }
         newX = isX ? (isNegative ? tiles[0].length -1 : 0) : posX;
         newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
-        boolean hasColours = tiles[newY][newX].hasColours(tiles[posY][posX].getColours());
+        Tile newTile = tiles[newY][newX];
+        Item tileItem = newTile.getItem();
+        boolean hasColours = newTile.hasColours(tiles[posY][posX].getColours()) && isGateOpen(tileItem) && isDoorOpen(tileItem);
         return new int [] {
                 hasColours ? newX : moveTo(newX, newY, direction, colours)[0],
                 hasColours ? newY : moveTo(newX, newY, direction, colours)[1]
         };
+    }
+
+
+    private boolean isGateOpen(Item item) {
+        if (item instanceof  Gate) {
+            return ((Gate) item).isUnlocked();
+        }
+        return true;
+    }
+
+    private boolean isDoorOpen(Item item) {
+        if (item instanceof Door) {
+            return ((Door) item).isOpen();
+        }
+        return true;
     }
 
     /**
