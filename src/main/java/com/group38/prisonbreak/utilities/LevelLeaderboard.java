@@ -8,6 +8,21 @@ import java.util.ArrayList;
  */
 public class LevelLeaderboard {
 
+    // Format of the string to show the current leaderboard if score is not empyu
+    private static final String SHOW_SCORES_STRING_FORMAT = "%d:%s%s%s%d%n";
+
+    // Format of the string to show the current leaderboard if score is empty
+    private static final String SHOW_EMPTY_SCORE_STRING_FORMAT = "%d:%n";
+
+    // Maximum number of spaces before the name in showScores
+    private static final int MAX_NO_SPACES_BEFORE_NAME = 3;
+
+    // Maximum number of spaces after the name in showScores
+    private static final int MAX_NO_SPACES_AFTER_NAME = 5;
+
+    // Maximum number of characters in a profile name
+    private static final int MAX_NAME_LENGTH = 16;
+
     // 2D array of scores for this specific level [[profileId, score]]
     private final int[][] scores = new int[10][2];
 
@@ -83,5 +98,39 @@ public class LevelLeaderboard {
             leaderboard[i] = scores.get(i);
         }
         return leaderboard;
+    }
+
+    /**
+     * Shows the leaderboard details of this current level in a formatted way
+     * @return String of leaderboard values
+     */
+    public String showScores() {
+        StringBuilder output = new StringBuilder();
+        String name;
+        int noSpaces;
+        String repeatedSpacesBeforeName;
+        String repeatedSpacesAfterName;
+        for (int i = 0; i < LeaderboardUtilities.MAX_NUMBER_OF_HIGH_SCORES; i++) {
+            if (scores[i][1] != 0) {
+                name = ProfileUtilities.getName(scores[i][0]);
+                noSpaces = MAX_NO_SPACES_BEFORE_NAME - (String.valueOf(i).length() - 1);
+                repeatedSpacesBeforeName = new String(new char[noSpaces]).replace("\0", " ");
+
+                noSpaces = MAX_NAME_LENGTH - name.length() + MAX_NO_SPACES_AFTER_NAME;
+                repeatedSpacesAfterName = new String(new char[noSpaces]).replace("\0", " ");
+
+                // add to output String
+                output.append(String.format(SHOW_SCORES_STRING_FORMAT,
+                        i + 1,
+                        repeatedSpacesBeforeName,
+                        name,
+                        repeatedSpacesAfterName,
+                        scores[i][1]));
+            } else {
+                // add to output String
+                output.append(String.format(SHOW_EMPTY_SCORE_STRING_FORMAT, i+1));
+            }
+        }
+        return output.toString();
     }
 }

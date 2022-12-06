@@ -26,6 +26,9 @@ public class LeaderboardUtilities {
     // Format of the Leaderboard.txt file "<levelNumber>, "
     private static final String TXT_STRING_FORMAT = "%d %d %d%n";
 
+    // Format of the string used when showLevel is called
+    private static final String SHOW_LEADERBOARD_STRING_FORMAT = "Level %d%n%s";
+
     /**
      * Initialises all the leaderboards
      */
@@ -95,6 +98,18 @@ public class LeaderboardUtilities {
      */
     public static int[][] getHighestScoreDetails(int levelNumber) {
         return LEADERBOARD.get(levelNumber).getLeaderboard();
+    }
+
+    /**
+     * Shows the details of a given level in a formatted way
+     * @param levelNumber Level Number
+     * @return String of leaderboard values
+     */
+    public static String showScores(int levelNumber) {
+        LevelLeaderboard levelLeaderboard = LEADERBOARD.get(levelNumber);
+        return String.format(SHOW_LEADERBOARD_STRING_FORMAT,
+                levelNumber,
+                levelLeaderboard.showScores());
     }
 
     /**
