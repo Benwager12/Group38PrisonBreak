@@ -127,11 +127,42 @@ public class FileUtilities {
         int numOfItems = in.nextInt();
         HashMap<int[], Item> items = readItems(in, numOfItems);
 
+        // Adding all items to tiles
         for (int[] itemPosition : items.keySet()) {
             Tile currentTile = tiles[itemPosition[1]][itemPosition[0]];
             currentTile.setItem(items.get(itemPosition));
             tiles[itemPosition[1]][itemPosition[0]] = currentTile;
         }
+
+        for (int tileY = 0; tileY < tiles.length; tileY++) {
+            for (int tileX = 0; tileX < tiles[tileY].length; tileX++) {
+                Tile t = tiles[tileY][tileX];
+                if (t.getItem() == null || !(t.getItem() instanceof Bomb)) {
+                    continue;
+                }
+                Bomb b = (Bomb) t.getItem();
+                if (!b.isExplodable()) {
+                    continue;
+                }
+
+                if (tiles[tileY - 1][tileX] != null) {
+                    tiles[tileY - 1][tileX].setItem(new Bomb(b));
+                }
+
+                if (tiles[tileY + 1][tileX] != null) {
+                    tiles[tileY + 1][tileX].setItem(new Bomb(b));
+                }
+
+                if (tiles[tileY][tileX - 1] != null) {
+                    tiles[tileY][tileX - 1].setItem(new Bomb(b));
+                }
+
+                if (tiles[tileY][tileX + 1] != null) {
+                    tiles[tileY][tileX + 1].setItem(new Bomb(b));
+                }
+            }
+        }
+
         int numOfEnemies = in.nextInt();
         ArrayList<Entity> enemies = readEnemies(in, numOfEnemies);
         enemies.add(p);

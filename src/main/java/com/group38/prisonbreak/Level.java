@@ -251,7 +251,14 @@ public class Level implements Drawable {
                 newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
                 Tile newTile = tiles[newY][newX];
                 Item tileItem = newTile.getItem();
-                boolean moveable = newTile.hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !(tileItem instanceof Bomb) ;
+
+                boolean bombSkip = false;
+                if (tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable()) {
+                    bombSkip = true;
+                }
+
+                boolean moveable = newTile.hasColours(colours) && isGateOpen(tileItem) &&
+                        isDoorOpen(tileItem) && bombSkip;
                 return new int [] {
                         moveable ? newX : moveTo(newX, newY, direction, colours)[0],
                         moveable ? newY : moveTo(newX, newY, direction, colours)[1]
@@ -259,7 +266,11 @@ public class Level implements Drawable {
             }
             Tile newTile = tiles[newY][newX];
             Item tileItem = newTile.getItem();
-            if (tiles[newY][newX].hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !(tileItem instanceof Bomb)) {
+            boolean bombSkip = false;
+            if (tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable()) {
+                bombSkip = true;
+            }
+            if (tiles[newY][newX].hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !bombSkip) {
                 return new int[] {newX, newY};
             }
 
@@ -270,7 +281,13 @@ public class Level implements Drawable {
         newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
         Tile newTile = tiles[newY][newX];
         Item tileItem = newTile.getItem();
-        boolean moveable = newTile.hasColours(tiles[posY][posX].getColours()) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !(tileItem instanceof Bomb);
+
+        boolean bombSkip = false;
+        if (tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable()) {
+            bombSkip = true;
+        }
+
+        boolean moveable = newTile.hasColours(tiles[posY][posX].getColours()) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !bombSkip;
         return new int [] {
                 moveable ? newX : moveTo(newX, newY, direction, colours)[0],
                 moveable ? newY : moveTo(newX, newY, direction, colours)[1]
