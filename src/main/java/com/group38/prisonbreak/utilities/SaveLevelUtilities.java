@@ -9,7 +9,6 @@ import com.group38.prisonbreak.items.*;
 import javafx.scene.paint.Color;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -157,6 +156,7 @@ public class SaveLevelUtilities {
      * @param level instance of the level that's being saved
      */
     private static void saveItems(PrintWriter myWriter, Level level) {
+        // Writes number of items
         myWriter.write(level.getNoItems() + NEW_LINE);
 
         Item item;
