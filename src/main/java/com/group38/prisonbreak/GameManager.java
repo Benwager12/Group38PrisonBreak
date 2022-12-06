@@ -1,6 +1,7 @@
 package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.utilities.Entity;
+import com.group38.prisonbreak.utilities.SaveLevelUtilities;
 import javafx.animation.Animation;
 import javafx.animation.Timeline;
 import javafx.scene.input.KeyCode;
@@ -113,5 +114,9 @@ public class GameManager {
         if (event.getEventType() == KeyEvent.KEY_RELEASED) {
             currentlyPressed.remove(event.getCode());
         }
+    }
+
+    public static void saveGame() {
+        SaveLevelUtilities.saveLevel(0, level);
     }
 }
