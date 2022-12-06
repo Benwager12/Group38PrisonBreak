@@ -164,6 +164,10 @@ public class FileUtilities {
         enemies.add(p);
         GameManager.addTime(readLevelTime(in));
 
+        if(in.hasNextInt()) {
+            GameManager.money = readScore(in);
+        }
+
         in.close();
 
         return new Level(0, tiles, enemies);
@@ -270,5 +274,9 @@ public class FileUtilities {
             levelTime = MAX_LEVEL_TIME;
         }
         return levelTime;
+    }
+
+    private static int readScore(Scanner in) {
+        return in.nextInt();
     }
 }
