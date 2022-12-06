@@ -1,6 +1,7 @@
 package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.utilities.FileUtilities;
+import com.group38.prisonbreak.utilities.LeaderboardUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -49,7 +50,10 @@ public class Game extends Application {
         // Initialize Profiles
         ProfileUtilities.initialise();
 
-        // initializes and starts timelines
+        // Initialize Leaderboard
+        LeaderboardUtilities.initialise();
+
+        // Initializes and starts timelines
         GameManager.initTimelines();
     }
 
