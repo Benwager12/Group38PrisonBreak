@@ -24,7 +24,7 @@ public class FloorThief extends Enemy {
 
     /** Represents the color in rgb format, FloorThief follows.
      */
-    private Color[] chosenColourRgb;
+    private int colour;
 
     /** Represents the coordinates returned by moveTo function.
      */
@@ -35,5 +35,7 @@ public class FloorThief extends Enemy {
         //this.chosenColourRgb[0] = colourMap.get(chosenColour);
     }
 
-
+    public int getColour() {
+        return colour;
+    }
 }

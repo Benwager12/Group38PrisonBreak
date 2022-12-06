@@ -2,10 +2,7 @@
 
 package com.group38.prisonbreak.utilities;
 
-import com.group38.prisonbreak.Game;
-import com.group38.prisonbreak.GameManager;
-import com.group38.prisonbreak.Level;
-import com.group38.prisonbreak.MenuTester;
+import com.group38.prisonbreak.*;
 import com.group38.prisonbreak.enemies.FloorThief;
 import com.group38.prisonbreak.enemies.FlyingAssassin;
 import com.group38.prisonbreak.enemies.SmartThief;
@@ -137,10 +134,9 @@ public class FileUtilities {
         for (int tileY = 0; tileY < tiles.length; tileY++) {
             for (int tileX = 0; tileX < tiles[tileY].length; tileX++) {
                 Tile t = tiles[tileY][tileX];
-                if (t.getItem() == null || !(t.getItem() instanceof Bomb)) {
+                if (t.getItem() == null || !(t.getItem() instanceof Bomb b)) {
                     continue;
                 }
-                Bomb b = (Bomb) t.getItem();
                 if (!b.isExplodable()) {
                     continue;
                 }
@@ -202,17 +198,17 @@ public class FileUtilities {
         HashMap<int[], Item> itemMap = new HashMap<>();
 
         for(int i = 0; i < numOfItems; i++) {
-            String itemType = in.next();
+            char itemType = (in.next()).charAt(0);
 
             int[] itemPosition = new int[]{in.nextInt(), in.nextInt()};
 
             switch (itemType) {
-                case "M" -> itemMap.put(itemPosition, new Loot(in.next()));
-                case "C" -> itemMap.put(itemPosition, new Clock());
-                case "G" -> itemMap.put(itemPosition, new Gate(in.next()));
-                case "L" -> itemMap.put(itemPosition, new Lever(in.next()));
-                case "B" -> itemMap.put(itemPosition, new Bomb());
-                case "D" -> itemMap.put(itemPosition, new Door());
+                case Constants.LOOT_CHAR -> itemMap.put(itemPosition, new Loot(in.next()));
+                case Constants.CLOCK_CHAR -> itemMap.put(itemPosition, new Clock());
+                case Constants.GATE_CHAR -> itemMap.put(itemPosition, new Gate(in.next()));
+                case Constants.LEVER_CHAR -> itemMap.put(itemPosition, new Lever(in.next()));
+                case Constants.BOMB_CHAR -> itemMap.put(itemPosition, new Bomb());
+                case Constants.DOOR_CHAR -> itemMap.put(itemPosition, new Door());
             }
         }
         return itemMap;
@@ -233,27 +229,27 @@ public class FileUtilities {
         Enemy nextEnemy = null;
 
         for(int i = 0; i < numOfEnemies; i++) {
-            String enemyType = in.next();
+            char enemyType = (in.next()).charAt(0);
             int enemyXPos;
             int enemyYPos;
             int direction;
             int chosenColour;
 
             switch (enemyType) {
-                case "H" -> {
+                case Constants.FLYING_ASSASSIN_CHAR -> {
                     enemyXPos = in.nextInt();
                     enemyYPos = in.nextInt();
                     direction = convertDirection(in.next());
                     nextEnemy = new FlyingAssassin(enemyXPos, enemyYPos, direction);
                 }
-                case "F" -> {
+                case Constants.FLOOR_THIEF_CHAR -> {
                     enemyXPos = in.nextInt();
                     enemyYPos = in.nextInt();
                     direction = convertDirection(in.next());
                     chosenColour = in.nextInt();
                     nextEnemy = new FloorThief(enemyXPos, enemyYPos, direction, chosenColour);
                 }
-                case "S" -> {
+                case Constants.SMART_THIEF_CHAR -> {
                     enemyXPos = in.nextInt();
                     enemyYPos = in.nextInt();
                     direction = convertDirection(in.next());

@@ -85,7 +85,7 @@ public class LevelController {
     }
 
     public void onMouseClickCanvas(MouseEvent mouseEvent) {
-        GameManager.level = FileUtilities.readLevel("1");
+        GameManager.level = FileUtilities.readLevel("5");
         drawCanvas();
         recalculateCanvasSize();
         levelNumberLabel.setText(String.valueOf(GameManager.level.getLevelNumber()));
