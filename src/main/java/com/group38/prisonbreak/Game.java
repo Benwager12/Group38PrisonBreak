@@ -23,7 +23,7 @@ public class Game extends Application {
     public void start(Stage primaryStage) {
         FileUtilities.setGameInstance(this);
 
-        FXMLLoader loader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
 
         Pane root;
         try {
@@ -52,9 +52,6 @@ public class Game extends Application {
 
         // Initialize Leaderboard
         LeaderboardUtilities.initialise();
-
-        // Initializes and starts timelines
-        GameManager.initTimelines();
     }
 
     public static void main(String[] args) {

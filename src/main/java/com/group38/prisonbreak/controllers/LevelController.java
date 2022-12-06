@@ -53,6 +53,9 @@ public class LevelController {
         GameManager.timeTimeLine = new Timeline(new KeyFrame(Duration.millis(1000), event -> changeTime()));
         mainPane.heightProperty().addListener(paneSizeChange);
         mainPane.widthProperty().addListener(paneSizeChange);
+
+        // Initializes and starts timelines
+        GameManager.initTimelines();
     }
 
     public void recalculateCanvasSize() {
