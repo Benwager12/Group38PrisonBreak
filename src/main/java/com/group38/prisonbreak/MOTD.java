@@ -9,8 +9,6 @@ import java.net.http.HttpResponse;
 
 /** This class fetches the Message of the day from CSWEBCAT.SAWANSEA.AC.UK using HTTP GET Requests.
  * @author Issa (853846)
- * @version 1.0
- * @since 27-11-2022
  */
 
 
@@ -66,9 +64,9 @@ public class MOTD {
             //System.out.println(asciiTemp);
 
             if ((i % 2) != 0) {
-
-                if ((asciiTemp + (i+1))> 90) {
-                    asciiTemp = 64 + ((asciiTemp + (i+1)) - 90);
+            // This circles back Z back to A
+                if ((asciiTemp + (i+1))> 90) { // 90 is Z
+                    asciiTemp = 64 + ((asciiTemp + (i+1)) - 90); // 64 is A
                 }
                 else {
                     asciiTemp += (i+1);
