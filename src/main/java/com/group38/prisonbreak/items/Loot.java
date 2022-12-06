@@ -34,7 +34,7 @@ public class Loot extends Item {
         this.imageIndex = lootType;
 
         if (imageCache.isEmpty()) {
-            imagePathCache.keySet().forEach(index -> 
+            imagePathCache.keySet().forEach(index ->
                     imageCache.put(index, FileUtilities.loadImageFromResource(imagePathCache.get(index))));
         }
     }
