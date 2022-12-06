@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * A Class that stores the data about a level
  *
- * @author Daniel Banks (2107922)
+ * @author Daniel Banks (2107922), Matthew Salter (986488)
  */
 
 public class Level implements Drawable {
@@ -97,6 +97,9 @@ public class Level implements Drawable {
         return false;
     }
 
+    /**
+     * Removes all items from tiles apart from Doors and Gates
+     */
     public void removeAllItemsExplosion() {
         for (Tile[] tileX : tiles) {
             for (Tile tile : tileX) {

@@ -40,7 +40,7 @@ public class Bomb extends Item {
 
     @Override
     public boolean interact(boolean isPlayer) {
-        if (GameManager.time > 3) {
+        if (imageIndex == 0) {
             imageIndex = BOMB_ACTIVATE_TIME;
             bombTimeLine.setCycleCount(Animation.INDEFINITE);
             bombTimeLine.play();
