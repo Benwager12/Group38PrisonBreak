@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: black; -fx-border-width: 25;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label prefHeight="28.0" prefWidth="163.0" text="Profile Name" translateX="260.0" translateY="50.0" underline="true" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Consolas" size="24.0" />
+         </font>
+         <graphic>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="71.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/mainMenu/GameLogo.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="548.0" prefWidth="750.0">
+                     <children>
+                        <ImageView fitHeight="77.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="350.0" translateY="15.0">
+                           <image>
+                              <Image url="@../images/mainMenu/ProfileNameLabel3-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="144.0" prefWidth="750.0" StackPane.alignment="CENTER">
+                                 <children>
+                                    <ImageView fitWidth="165.0" pickOnBounds="true" preserveRatio="true" translateY="20.0">
+                                       <image>
+                                          <Image url="@../images/mainMenu/Level1Button-removebg-preview.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <ImageView fitWidth="165.0" pickOnBounds="true" preserveRatio="true" translateY="20.0">
+                                       <image>
+                                          <Image url="@../images/mainMenu/Level2Button-removebg-preview.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitWidth="165.0" pickOnBounds="true" preserveRatio="true" translateY="20.0">
+                                       <image>
+                                          <Image url="@../images/mainMenu/Level3Button-removebg-preview.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitWidth="165.0" pickOnBounds="true" preserveRatio="true" translateY="20.0">
+                                       <image>
+                                          <Image url="@../images/mainMenu/Level4Button-removebg-preview.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="101.0" prefWidth="750.0" StackPane.alignment="CENTER">
+                                 <children>
+                                    <ImageView fitWidth="165.0" pickOnBounds="true" preserveRatio="true" translateX="1.0" translateY="-80.0">
+                                       <image>
+                                          <Image url="@../images/mainMenu/Level5Button-removebg-preview.png" />
+                                       </image>
+                                       <viewport>
+                                          <Rectangle2D width="20.0" />
+                                       </viewport>
+                                    </ImageView>
+                                    <ImageView fitWidth="165.0" pickOnBounds="true" preserveRatio="true" translateY="-80.0">
+                                       <image>
+                                          <Image url="@../images/mainMenu/Level6Button-removebg-preview.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitWidth="165.0" pickOnBounds="true" preserveRatio="true" translateY="-80.0">
+                                       <image>
+                                          <Image url="@../images/mainMenu/Level7Button-removebg-preview.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitWidth="165.0" pickOnBounds="true" preserveRatio="true" translateY="-80.0">
+                                       <image>
+                                          <Image url="@../images/mainMenu/Level8Button-removebg-preview.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                              </HBox>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </graphic>
+      </Label>
+   </top>
+</BorderPane>
