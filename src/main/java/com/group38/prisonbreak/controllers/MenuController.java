@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * MenuController handles the...[add]
@@ -40,6 +41,12 @@ public class MenuController {
         exitImage.hoverProperty().addListener(createHoverListener(exitImage));
     }
 
+    @FXML
+    private void exitLevel(MouseEvent actionEvent) {
+        actionEvent.consume();
+        System.exit(0);
+    }
+
     /**
      * [add]
      * @param img
@@ -54,5 +61,4 @@ public class MenuController {
             }
         };
     }
-
 }
