@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,7 +45,7 @@ public class SaveLevelUtilities {
     /* String Format for saving the Height and Width of a level
      * <Height> <Width>
     */
-    private static final String LEVEL_SIZE_STRING_FORMAT = "%d %d";
+    private static final String LEVEL_SIZE_STRING_FORMAT = "%d %d%n";
 
     /* String Format for saving Tiles (Tile colours)
      * <ColourID><ColourID><ColourID><ColourID>
@@ -85,12 +86,19 @@ public class SaveLevelUtilities {
      * @param profileId id of the profile that's currently player
      * @param level instance of the level
      */
-    public final void saveLevel(int profileId, Level level) {
+    public static void saveLevel(int profileId, Level level) {
         String saveLocation = String.format(LEVEL_SAVE_LOCATION, level.getLevelNumber(), profileId);
-
         try {
             // Creates a file
             File saveFile = new File(FileUtilities.getResourcePath(saveLocation));
+            boolean isFileCreated = saveFile.createNewFile();
+
+            if (!isFileCreated) {
+                saveFile.delete();
+                saveFile.createNewFile();
+            }
+
+            System.out.println("Saved at "+ saveLocation);
 
             PrintWriter myWriter = new PrintWriter(saveFile);
 
@@ -101,7 +109,7 @@ public class SaveLevelUtilities {
             saveScoreTime(myWriter);
 
             myWriter.close();
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -120,7 +128,7 @@ public class SaveLevelUtilities {
      * @param level instance of level that's being saved
      */
     private static void saveTiles(PrintWriter myWriter, Level level) {
-        myWriter.write(String.format(LEVEL_SIZE_STRING_FORMAT, level.getHeight(), level.getWidth()));
+        myWriter.write(String.format(LEVEL_SIZE_STRING_FORMAT, level.getWidth(), level.getHeight()));
         for (int y = 0; y < level.getHeight(); y++) {
             for (int x = 0; x <  level.getWidth(); x++) {
                 Color[] colours = level.getTile(x, y).getColours();
@@ -149,16 +157,17 @@ public class SaveLevelUtilities {
      * @param level instance of the level that's being saved
      */
     private static void saveItems(PrintWriter myWriter, Level level) {
+        myWriter.write(level.getNoItems() + NEW_LINE);
+
         Item item;
         for (int y = 0; y < level.getHeight(); y++) {
             for (int x = 0; x < level.getWidth(); x++) {
                 item = level.getTile(x, y).getItem();
                 if (item != null) {
-                    if (!(item instanceof Gate)) {
+                    if (!(item instanceof Gate) && !(item instanceof Bomb)) {
                         char itemChar = item instanceof Loot ? Constants.LOOT_CHAR : item instanceof Clock ?
                                 Constants.CLOCK_CHAR : item instanceof Lever ?
-                                Constants.LEVER_CHAR : item instanceof Bomb ?
-                                Constants.BOMB_CHAR : Constants.DOOR_CHAR;
+                                Constants.LEVER_CHAR : Constants.DOOR_CHAR;
                         switch (itemChar) {
                             case Constants.LOOT_CHAR -> myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA,
                                     Constants.LOOT_CHAR, x, y, ((Loot) item).getLootType()));
@@ -167,11 +176,11 @@ public class SaveLevelUtilities {
                                     ((Lever) item).getItemColour()));
                             default -> myWriter.write(String.format(ITEM_STRING_FORMAT, itemChar, x, y));
                         }
-                    } else {
-                        if (GameManager.level.isGateOpen(item)) {
-                            myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA, Constants.GATE_CHAR, x, y,
-                                    ((Gate) item).getGateColour()));
-                        }
+                    } else if (item instanceof Gate) {
+                        myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA, Constants.GATE_CHAR, x, y,
+                                ((Gate) item).getGateColour()));
+                    } else if (((Bomb) item).isExplodable()) {
+                        myWriter.write(String.format(ITEM_STRING_FORMAT, Constants.BOMB_CHAR, x, y));
                     }
                 }
             }
@@ -187,7 +196,7 @@ public class SaveLevelUtilities {
         ArrayList<Entity> entities = level.getEntities();
 
         // Writing number of Enemies
-        myWriter.write(entities.size() - NO_PLAYERS);
+        myWriter.write(String.valueOf(entities.size() - NO_PLAYERS));
         myWriter.write(NEW_LINE);
 
         for (Entity entity : entities) {
