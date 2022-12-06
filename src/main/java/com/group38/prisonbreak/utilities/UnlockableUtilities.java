@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 /**
  * Utility that stores and deals with unlockable items
- * @author Daniel Banks (2017922)
+ * @author Daniel Banks (2107922)
  */
 public class UnlockableUtilities {
 
@@ -34,7 +34,6 @@ public class UnlockableUtilities {
      */
     public static Unlockable[] getUnlocked(int levelNumber) {
         ArrayList<Unlockable> unlocked = new ArrayList<>();
-        //Unlockable[] unlocked = new Unlockable[levelNumber];
         for (int i = 1; i < levelNumber + 1; i++) {
             if (UNLOCKABLES.containsKey(i)) {
                 unlocked.addAll(UNLOCKABLES.get(i));
