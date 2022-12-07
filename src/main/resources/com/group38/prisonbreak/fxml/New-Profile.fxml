@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="NewProfileMenu" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: BLack; -fx-border-width: 25;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="NewProfileMenu" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: BLack; -fx-border-width: 25;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.NewProfileController">
    <bottom>
       <BorderPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
@@ -25,7 +21,7 @@
                         <Rectangle2D />
                      </viewport>
                   </ImageView>
-                  <TextField alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="54.0" prefWidth="455.0" promptText="Enter Name Here" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 10;" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="enterName" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#onEnter" prefHeight="54.0" prefWidth="455.0" promptText="Enter Name Here" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 10;" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Consolas" size="31.0" />
                      </font>
@@ -63,7 +59,7 @@
          <right>
             <HBox prefHeight="74.0" prefWidth="126.0">
                <children>
-                  <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                  <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>
                         <Image url="@../images/mainMenu/HomeButton.png" />
                      </image>
@@ -71,7 +67,7 @@
                         <Insets top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView accessibleRole="BUTTON" fitHeight="106.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                  <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="106.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>
                         <Image url="@../images/mainMenu/CrossButton.png" />
                      </image>

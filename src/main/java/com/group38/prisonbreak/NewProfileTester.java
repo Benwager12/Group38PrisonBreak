@@ -1,12 +1,17 @@
 package com.group38.prisonbreak;
+import com.group38.prisonbreak.controllers.NewProfileController;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.application.Application;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
+
+import static javafx.scene.input.KeyCode.ENTER;
+import static javafx.scene.input.KeyEvent.KEY_PRESSED;
 
 public class NewProfileTester extends Application {
     // scene dimensions
@@ -33,5 +38,7 @@ public class NewProfileTester extends Application {
         primaryStage.setTitle("New Profile Test");
     }
 
-    public static void main(String[] args) { launch (args); }
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
