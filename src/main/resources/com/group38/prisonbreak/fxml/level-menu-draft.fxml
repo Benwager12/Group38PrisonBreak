@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" style="-fx-background-color: #5A5A5A; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="137.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="916.0">
+               <children>
+                  <VBox prefHeight="0.0" prefWidth="106.0">
+                     <children>
+                        <ImageView fitHeight="157.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@level%20preview-1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="166.0">
+                     <children>
+                        <ImageView fitHeight="170.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@level%20preview-2.png" />
+                           </image></ImageView>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="181.0" layoutY="10.0" prefHeight="0.0" prefWidth="166.0">
+                     <children>
+                        <ImageView fitHeight="173.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@level%20preview-3.png" />
+                           </image></ImageView>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="353.0" layoutY="10.0" prefHeight="0.0" prefWidth="161.0">
+                     <children>
+                        <ImageView fitHeight="159.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@level%20preview-4.png" />
+                           </image></ImageView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="185.0" prefWidth="600.0">
+               <children>
+                  <VBox prefHeight="173.0" prefWidth="166.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="220.0" text=" Level 5 [insert image]" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="173.0" prefWidth="166.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="220.0" text=" Level 6 [insert image]" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="181.0" layoutY="10.0" prefHeight="173.0" prefWidth="166.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="220.0" text=" Level 7 [insert image]" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="353.0" layoutY="10.0" prefHeight="175.0" prefWidth="161.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="220.0" text=" Level 8 [insert image]" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="50.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <bottom>
+      <Pane prefHeight="133.0" prefWidth="590.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <top>
+      <ImageView fitHeight="76.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@levelLabel.png" />
+         </image>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
+      </ImageView>
+   </top>
+</BorderPane>
