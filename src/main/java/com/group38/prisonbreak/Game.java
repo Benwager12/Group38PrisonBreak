@@ -51,9 +51,6 @@ public class Game extends Application {
             primaryStage.getIcons().add(new Image(iconLocation));
         }
 
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, GameManager::processKeyEvent);
-        scene.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
-
         // Initialize Profiles
         ProfileUtilities.initialise();
 
@@ -74,10 +71,16 @@ public class Game extends Application {
             } catch (IOException e){
                 throw new RuntimeException(e);
             }
-            scene = new Scene(root, WIDTH, HEIGHT);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            scene.addEventFilter(KeyEvent.KEY_PRESSED, GameManager::processKeyEvent);
+            scene.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
         }
+        setStage();
+    }
+
+    private static void setStage() {
+        scene = new Scene(root, WIDTH, HEIGHT);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
