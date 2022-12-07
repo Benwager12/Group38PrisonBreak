@@ -16,6 +16,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -30,6 +31,7 @@ public class FileUtilities {
 
     //ADDED FOR MENU TESTER
     private static MenuTester menuInstance;
+    private static NewProfileTester profileInstance;
 
    /* public static void main(String[] args) {
         testReadFile("C:\\Users\\danie\\OneDrive - Swansea University\\CS-230\\Code\\src\\main\\resources\\com\\group38\\prisonbreak\\testFiles\\1.level");
@@ -54,6 +56,10 @@ public class FileUtilities {
     //ADDED FOR MENU TESTER
     public static void setMenuInstance(MenuTester menuInstance) {
         FileUtilities.menuInstance = menuInstance;
+    }
+    //ADDED FOR NEW PROFILE TESTER
+    public static void setProfileInstance(NewProfileTester profileInstance) {
+        FileUtilities.profileInstance = profileInstance;
     }
 
     public static Level readLevel(String levelName) {
@@ -85,6 +91,11 @@ public class FileUtilities {
     //ADDED FOR MENU TESTER
     public static URL getMenuResource(String path) {
         return menuInstance.getClass().getResource(path);
+    }
+
+    //ADDED FOR NEW PROFILE TESTER
+    public static URL getNewProfileResource(String path) {
+        return profileInstance.getClass().getResource(path);
     }
 
     public static String getResourceURI(String path) {
@@ -227,6 +238,9 @@ public class FileUtilities {
     private static ArrayList<Entity> readEnemies(Scanner in, int numOfEnemies) {
         ArrayList<Entity> enemies = new ArrayList<>();
         Enemy nextEnemy = null;
+
+        // <x, <y, enemy>>
+        HashMap<Integer[], Enemy> enemyMap = new HashMap<>();
 
         for(int i = 0; i < numOfEnemies; i++) {
             char enemyType = (in.next()).charAt(0);
