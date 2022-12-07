@@ -54,7 +54,7 @@ public class FileUtilities {
         FileUtilities.gameInstance = gameInstance;
     }
 
-    public static Game getGameInstance(Game gameInstance) {
+    public static Game getGameInstance() {
         return FileUtilities.gameInstance;
     }
 
