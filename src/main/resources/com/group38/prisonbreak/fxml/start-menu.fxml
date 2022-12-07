@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
+<BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
    <center>
       <HBox alignment="TOP_RIGHT" prefHeight="412.0" prefWidth="575.0">
          <children>
@@ -19,15 +21,7 @@
                   </ImageView>
                   <StackPane prefHeight="34.0" prefWidth="428.0">
                      <children>
-                        <Button id="newGameButton" fx:id="newGameButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="162.0" text="New Game" textAlignment="CENTER">
-                           <font>
-                              <Font name="Copperplate Gothic Light" size="15.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets top="10.0" />
-                           </StackPane.margin>
-                        </Button>
-                        <ImageView fx:id="newGameImage" fitHeight="150.0" fitWidth="170.0" onMouseClicked="#newGameClicked" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="newGameImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="170.0" onMouseClicked="#newGameClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/mainMenu/NewGameButton.png" />
                            </image>
@@ -42,15 +36,7 @@
                   </StackPane>
                   <StackPane prefHeight="33.0" prefWidth="428.0">
                      <children>
-                        <Button id="loadGameButton" fx:id="loadGameButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="160.0" text="Load Game" textAlignment="CENTER">
-                           <font>
-                              <Font name="Copperplate Gothic Light" size="14.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets top="5.0" />
-                           </StackPane.margin>
-                        </Button>
-                        <ImageView fx:id="loadGameImage" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#loadGameClicked" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="loadGameImage" accessibleRole="BUTTON" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#loadGameClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/mainMenu/LoadGameButton.png" />
                            </image>
@@ -65,11 +51,7 @@
                   </StackPane>
                   <StackPane prefHeight="39.0" prefWidth="428.0">
                      <children>
-                        <Button id="exitButton" fx:id="exitButton" mnemonicParsing="false" onAction="#exitLevel" prefHeight="25.0" prefWidth="159.0" text="Exit">
-                           <StackPane.margin>
-                              <Insets top="5.0" />
-                           </StackPane.margin></Button>
-                        <ImageView fx:id="exitImage" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#exitLevel" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="exitImage" accessibleRole="BUTTON" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#exitLevel" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/mainMenu/ExitButton.png" />
                            </image>
