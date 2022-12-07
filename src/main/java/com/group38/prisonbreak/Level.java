@@ -110,25 +110,6 @@ public class Level implements Drawable {
         return false;
     }
 
-    public int getNoItems() {
-        int items = 0;
-        for (Tile[] tileX : tiles) {
-            for (Tile tile : tileX) {
-                Item item = tile.getItem();
-                if (item != null && isMainBombOrNotBomb(item)) {
-                    items++;
-                }
-            }
-        }
-        return items;
-    }
-
-    public boolean isMainBombOrNotBomb(Item item) {
-        if (item instanceof Bomb && ((Bomb) item).isExplodable()) {
-            return true;
-        } else return !(item instanceof Bomb);
-    }
-
     /**
      * Removes all items from tiles apart from Doors and Gates
      */
@@ -303,10 +284,30 @@ public class Level implements Drawable {
         };
     }
 
+    public int getNoItems() {
+        int items = 0;
+        for (Tile[] tileX : tiles) {
+            for (Tile tile : tileX) {
+                Item item = tile.getItem();
+                if (item != null && isMainBombOrNotBomb(item)) {
+                    items++;
+                }
+            }
+        }
+        return items;
+    }
+
+    public boolean isMainBombOrNotBomb(Item item) {
+        if (item instanceof Bomb b) {
+            return b.isExplodable();
+        }
+        return true;
+    }
+
 
     public boolean isGateOpen(Item item) {
-        if (item instanceof  Gate) {
-            return gatesOpen.get(((Gate) item).getGateColour());
+        if (item instanceof  Gate g) {
+            return gatesOpen.get(g.getGateColour());
         }
         return true;
     }
