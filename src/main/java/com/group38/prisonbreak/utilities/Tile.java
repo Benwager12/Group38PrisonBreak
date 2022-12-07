@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.utilities;
 
+import com.group38.prisonbreak.Constants;
 import javafx.scene.paint.Color;
 
 import java.util.HashMap;
@@ -11,15 +12,7 @@ import java.util.HashMap;
 
 public class Tile {
 
-    // map of ints to Javafx Colors
-    private static final HashMap<Integer, Color> colourMap = new HashMap<>() {{
-        put(0, Color.rgb(253, 101, 105, .25)); // Red
-        put(1, Color.rgb(107, 255, 109, .25)); // Green
-        put(2, Color.rgb(104, 104, 252, .25)); // Blue
-        put(3, Color.rgb(255, 245, 138, .25)); // Yellow
-        put(4, Color.rgb(41, 255, 254, .25));  // Cyan
-        put(5, Color.rgb(253, 5, 253, .25));  // Magenta
-    }};
+
 
     // colours that make up the tile
     private final Color[] colours = new Color[4];
@@ -32,7 +25,7 @@ public class Tile {
      */
     public Tile(int[] colours) {
         for (int i = 0; i < 4; i++) {
-            this.colours[i] = colourMap.get(colours[i]);
+            this.colours[i] = Constants.COLOUR_MAP.get(colours[i]);
         }
     }
     /**
@@ -54,6 +47,15 @@ public class Tile {
                 if (c1.equals(c2)) {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    public boolean hasColour(Color checkColour) {
+        for (Color color : colours) {
+            if (color.equals(checkColour)) {
+                return  true;
             }
         }
         return false;

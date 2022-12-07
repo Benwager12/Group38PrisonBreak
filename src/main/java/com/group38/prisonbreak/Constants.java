@@ -1,5 +1,9 @@
 package com.group38.prisonbreak;
 
+import javafx.scene.paint.Color;
+
+import java.util.HashMap;
+
 /**
  * Static Class that stores char/string constants
  * @author Daniel Banks (2107922)
@@ -49,4 +53,16 @@ public class Constants {
      * Character that represents a FlyingAssassin in .Level Files
      */
     public static final char FLYING_ASSASSIN_CHAR = 'H';
+
+    /**
+     * Map of ints to colors used in tiles
+     */
+    public static final HashMap<Integer, Color> COLOUR_MAP = new HashMap<>() {{
+        put(0, Color.rgb(253, 101, 105, .25)); // Red
+        put(1, Color.rgb(107, 255, 109, .25)); // Green
+        put(2, Color.rgb(104, 104, 252, .25)); // Blue
+        put(3, Color.rgb(255, 245, 138, .25)); // Yellow
+        put(4, Color.rgb(41, 255, 254, .25));  // Cyan
+        put(5, Color.rgb(253, 5, 253, .25));  // Magenta
+    }};
 }
