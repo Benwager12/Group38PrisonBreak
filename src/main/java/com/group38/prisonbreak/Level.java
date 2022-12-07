@@ -117,8 +117,11 @@ public class Level implements Drawable {
         for (Tile[] tileX : tiles) {
             for (Tile tile : tileX) {
                 Item item = tile.getItem();
-                if(!(item instanceof Gate || item instanceof Door)) {
+                if (!(item instanceof Gate || item instanceof Door || item instanceof Bomb)) {
                     tile.removeItem();
+                }
+                if (item instanceof Bomb b) {
+                    b.immediateExplosion();
                 }
             }
         }

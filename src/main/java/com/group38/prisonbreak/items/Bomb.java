@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class Bomb extends Item {
 
     private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
+        put(-1, gameImagesStart + "cracked_tile.png");
         put(0, gameImagesStart + "alarm.png");
         put(1, gameImagesStart + "alarm_1.png");
         put(2, gameImagesStart + "alarm_2.png");
@@ -23,6 +24,7 @@ public class Bomb extends Item {
     private static final HashMap<Integer, Image> imageCache = new HashMap<>();
     private boolean bombActivated;
     private boolean explodable = true;
+    private boolean hasExploded = false;
 
     public Bomb() {
         //Implement Constructor
@@ -46,6 +48,7 @@ public class Bomb extends Item {
     public boolean isExplodable() {
         return explodable;
     }
+
 
     /* The time left when the player activates the bomb */
     private final int BOMB_ACTIVATE_TIME = 3;
@@ -72,12 +75,22 @@ public class Bomb extends Item {
         } else {
             GameManager.level.removeAllItemsExplosion();
             bombTimeLine.stop();
+            imageIndex = -1;
+            hasExploded = true;
         }
+    }
+
+    public void immediateExplosion() {
+        imageIndex = -1;
     }
 
     @Override
     public String getImagePath() {
         return imagePathCache.get(imageIndex);
+    }
+
+    public int getImageIndex() {
+        return imageIndex;
     }
 
     /**
