@@ -149,14 +149,28 @@ public class ProfileUtilities {
         profile.setHighestLevel(levelNumber);
     }
 
+    /**
+     * Adds a profile to the profile list with the level they last completed
+     * @param name Name of the profile
+     * @param levelNumber Highest Level that profile has created
+     */
     public static void addProfile(String name, int levelNumber) {
-        PROFILES.add(new Profile(PROFILES.size(), name, levelNumber));
+        PROFILES.add(new Profile(PROFILES.size() + 1, name, levelNumber));
     }
 
+    /**
+     * Adds a blank profile to the profile list
+     * @param name Name of the profile
+     */
     public static void addProfile(String name) {
-        PROFILES.add(new Profile(PROFILES.size(), name));
+        PROFILES.add(new Profile(PROFILES.size() + 1, name));
     } //Would this be  NewProfileController.getProfileName() in here instead of name now?
 
+    /**
+     * Gets the name of a profile from the id
+     * @param id id of the Profile
+     * @return String name
+     */
     public static String getName(int id) {
         return PROFILES.get(id).getName();
     }
