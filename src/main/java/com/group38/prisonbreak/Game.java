@@ -19,15 +19,18 @@ public class Game extends Application {
     // Size of the scene
     private static final int WIDTH = 800;
     private static final int HEIGHT = 446;
+    private static Pane root = null;
+    private static FXMLLoader newProfileLoader = null;
 
     public void start(Stage primaryStage) {
         FileUtilities.setGameInstance(this);
+        FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
+        newProfileLoader = new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
+        FXMLLoader levelLoader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
 
-        FXMLLoader loader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
-
-        Pane root;
         try {
-            root = loader.load();
+            root = mainMenuLoader.load();
+                    //levelLoader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -55,6 +58,15 @@ public class Game extends Application {
         LeaderboardUtilities.initialise();
     }
 
+    public static void setRoot(String paneType) {
+        if (paneType.equals("profile")) {
+            try {
+                root = newProfileLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public static void main(String[] args) {
         launch(args);
     }

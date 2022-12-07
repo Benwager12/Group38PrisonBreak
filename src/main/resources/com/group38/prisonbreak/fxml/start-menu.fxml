@@ -27,7 +27,7 @@
                               <Insets top="10.0" />
                            </StackPane.margin>
                         </Button>
-                        <ImageView fx:id="newGameImage" fitHeight="150.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="newGameImage" fitHeight="150.0" fitWidth="170.0" onMouseClicked="#newGameClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/mainMenu/NewGameButton.png" />
                            </image>
