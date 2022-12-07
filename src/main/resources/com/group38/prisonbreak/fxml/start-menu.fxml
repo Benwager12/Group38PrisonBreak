@@ -16,14 +16,14 @@
                <children>
                   <ImageView id="gameLogo" fx:id="gameLogo" fitHeight="128.0" fitWidth="309.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/mainMenu/GameLogo.png" />
+                        <Image url="@../images/Menus/GameLogo.png" />
                      </image>
                   </ImageView>
                   <StackPane prefHeight="34.0" prefWidth="428.0">
                      <children>
                         <ImageView fx:id="newGameImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="170.0" onMouseClicked="#newGameClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/mainMenu/NewGameButton.png" />
+                              <Image url="@../images/Menus/NewGameButton.png" />
                            </image>
                            <StackPane.margin>
                               <Insets top="10.0" />
@@ -38,7 +38,7 @@
                      <children>
                         <ImageView fx:id="loadGameImage" accessibleRole="BUTTON" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#loadGameClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/mainMenu/LoadGameButton.png" />
+                              <Image url="@../images/Menus/LoadGameButton.png" />
                            </image>
                            <StackPane.margin>
                               <Insets top="5.0" />
@@ -53,7 +53,7 @@
                      <children>
                         <ImageView fx:id="exitImage" accessibleRole="BUTTON" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#exitLevel" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/mainMenu/ExitButton.png" />
+                              <Image url="@../images/Menus/ExitButton.png" />
                            </image>
                            <StackPane.margin>
                               <Insets top="5.0" />

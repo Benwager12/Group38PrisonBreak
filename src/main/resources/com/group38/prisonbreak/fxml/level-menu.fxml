@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="37.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
          <image>
-            <Image url="@../images/mainMenu/ProfileNameLabel3-removebg-preview.png" />
+            <Image url="@../images/Menus/ProfileNameLabel3-removebg-preview.png" />
          </image>
       </ImageView>
       <Label layoutX="254.0" layoutY="55.0" text="Profile Name" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="30.0">

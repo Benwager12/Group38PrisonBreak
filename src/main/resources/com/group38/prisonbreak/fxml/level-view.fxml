@@ -20,7 +20,7 @@
                <children>
                   <ImageView fitHeight="32.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/mainMenu/LevelTextLabel-removebg-preview.png" />
+                        <Image url="@../images/Menus/LevelTextLabel-removebg-preview.png" />
                      </image>
                   </ImageView>
                   <Text fx:id="levelNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="RIGHT">
@@ -39,7 +39,7 @@
                <children>
                   <ImageView fitHeight="32.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/mainMenu/ScoreTextLabel-removebg-preview.png" />
+                        <Image url="@../images/Menus/ScoreTextLabel-removebg-preview.png" />
                      </image>
                   </ImageView>
                   <Text id="scoreNumberLabel" fx:id="scoreNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="000">
