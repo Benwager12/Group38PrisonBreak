@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="NewProfileMenu" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: BLack; -fx-border-width: 25;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.NewProfileController">
+<BorderPane fx:id="NewProfileMenu" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: BLack; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.NewProfileController">
    <bottom>
       <BorderPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>

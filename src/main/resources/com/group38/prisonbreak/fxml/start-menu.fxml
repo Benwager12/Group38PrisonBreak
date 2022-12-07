@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: grey; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
+<BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
    <center>
       <HBox alignment="TOP_RIGHT" prefHeight="412.0" prefWidth="575.0">
          <children>
@@ -50,7 +50,7 @@
                               <Insets top="5.0" />
                            </StackPane.margin>
                         </Button>
-                        <ImageView fx:id="loadGameImage" fitHeight="41.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="loadGameImage" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#loadGameClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/mainMenu/LoadGameButton.png" />
                            </image>

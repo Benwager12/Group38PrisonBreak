@@ -21,6 +21,7 @@ public class Game extends Application {
     private static final int HEIGHT = 446;
     private static Pane root = null;
     private static FXMLLoader newProfileLoader = null;
+    private static FXMLLoader levelLoader = null;
     private static Scene scene = null;
     private static Stage primaryStage = null;
 
@@ -29,11 +30,10 @@ public class Game extends Application {
         FileUtilities.setGameInstance(this);
         FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
         newProfileLoader = new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
-        FXMLLoader levelLoader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
+        levelLoader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
 
         try {
             root = mainMenuLoader.load();
-                    //levelLoader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -66,13 +66,20 @@ public class Game extends Application {
             try {
                 root = newProfileLoader.load();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        } else if (paneType.equals("load")){
+            try {
+                root = levelLoader.load();
+            } catch (IOException e){
+                throw new RuntimeException(e);
             }
             scene = new Scene(root, WIDTH, HEIGHT);
             primaryStage.setScene(scene);
             primaryStage.show();
         }
     }
+
     public static void main(String[] args) {
         launch(args);
     }

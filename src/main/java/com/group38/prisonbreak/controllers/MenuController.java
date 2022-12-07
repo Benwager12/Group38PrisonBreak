@@ -39,6 +39,10 @@ public class MenuController {
     }
 
     @FXML
+    private void loadGameClicked(MouseEvent actionEvent){
+        FileUtilities.getGameInstance().setRoot("load");
+    }
+    @FXML
     private void exitLevel(MouseEvent actionEvent) {
         actionEvent.consume();
         System.exit(0);
