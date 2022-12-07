@@ -134,7 +134,7 @@ public class ProfileUtilities {
      */
     public static void updateProfile(int id, String name) {
         Profile profile = PROFILES.get(id);
-        profile.setName(name);
+        profile.setName(name); //Would this be  NewProfileController.getProfileName() in here instead of name now?
     }
 
     /**
@@ -145,7 +145,7 @@ public class ProfileUtilities {
      */
     public static void updateProfile(int id, String name, int levelNumber) {
         Profile profile = PROFILES.get(id);
-        profile.setName(name);
+        profile.setName(name); //Would this be  NewProfileController.getProfileName() in here instead of name now?
         profile.setHighestLevel(levelNumber);
     }
 
@@ -155,7 +155,7 @@ public class ProfileUtilities {
 
     public static void addProfile(String name) {
         PROFILES.add(new Profile(PROFILES.size(), name));
-    }
+    } //Would this be  NewProfileController.getProfileName() in here instead of name now?
 
     public static String getName(int id) {
         return PROFILES.get(id).getName();

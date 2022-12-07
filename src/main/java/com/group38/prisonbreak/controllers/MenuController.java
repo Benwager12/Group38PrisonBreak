@@ -3,7 +3,6 @@ package com.group38.prisonbreak.controllers;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
