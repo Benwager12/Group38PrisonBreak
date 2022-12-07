@@ -245,21 +245,12 @@ public class Level implements Drawable {
         int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
 
         while (newY >= 0 && newY - 1 <= tiles.length && newX >= 0 && newX - 1 <= tiles[0].length) {
+
+            // If the new position if of the board remain where it is
             if (newY >= tiles.length || newX >= tiles[0].length) {
-                newX = isX ? (isNegative ? tiles[0].length -1 : 0) : posX;
-                newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
-                Tile newTile = tiles[newY][newX];
-                Item tileItem = newTile.getItem();
-
-                boolean bombSkip = tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable();
-
-                boolean moveable = newTile.hasColours(colours) && isGateOpen(tileItem) &&
-                        isDoorOpen(tileItem) && bombSkip;
-                return new int [] {
-                        moveable ? newX : moveTo(newX, newY, direction, colours)[0],
-                        moveable ? newY : moveTo(newX, newY, direction, colours)[1]
-                };
+                return new int[] {posX, posY};
             }
+
             Tile newTile = tiles[newY][newX];
             Item tileItem = newTile.getItem();
             boolean bombSkip = tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable();
@@ -270,18 +261,9 @@ public class Level implements Drawable {
             newX = isX ? newX + (isNegative ? -1 : 1) : newX;
             newY = !isX ? newY + (isNegative ? -1 : 1) : newY;
         }
-        newX = isX ? (isNegative ? tiles[0].length -1 : 0) : posX;
-        newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
-        Tile newTile = tiles[newY][newX];
-        Item tileItem = newTile.getItem();
 
-        boolean bombSkip = tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable();
-
-        boolean moveable = newTile.hasColours(tiles[posY][posX].getColours()) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !bombSkip;
-        return new int [] {
-                moveable ? newX : moveTo(newX, newY, direction, colours)[0],
-                moveable ? newY : moveTo(newX, newY, direction, colours)[1]
-        };
+        // If it can't find a tile stay where it is
+        return new int[] {posX, posY};
     }
 
     public int getNoItems() {
