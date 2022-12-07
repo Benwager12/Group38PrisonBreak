@@ -21,8 +21,11 @@ public class Game extends Application {
     private static final int HEIGHT = 446;
     private static Pane root = null;
     private static FXMLLoader newProfileLoader = null;
+    private static Scene scene = null;
+    private static Stage primaryStage = null;
 
     public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
         FileUtilities.setGameInstance(this);
         FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
         newProfileLoader = new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
@@ -35,7 +38,7 @@ public class Game extends Application {
             throw new RuntimeException(e);
         }
 
-        Scene scene = new Scene(root, WIDTH, HEIGHT);
+        scene = new Scene(root, WIDTH, HEIGHT);
 
         primaryStage.setMinWidth(WIDTH);
         primaryStage.setMinHeight(HEIGHT);
@@ -65,6 +68,9 @@ public class Game extends Application {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            scene = new Scene(root, WIDTH, HEIGHT);
+            primaryStage.setScene(scene);
+            primaryStage.show();
         }
     }
     public static void main(String[] args) {
