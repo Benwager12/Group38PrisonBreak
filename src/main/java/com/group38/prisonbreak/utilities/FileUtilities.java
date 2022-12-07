@@ -7,6 +7,7 @@ import com.group38.prisonbreak.enemies.FloorThief;
 import com.group38.prisonbreak.enemies.FlyingAssassin;
 import com.group38.prisonbreak.enemies.SmartThief;
 import com.group38.prisonbreak.items.*;
+import javafx.scene.control.Menu;
 import javafx.scene.image.Image;
 
 
@@ -52,6 +53,10 @@ public class FileUtilities {
         FileUtilities.gameInstance = gameInstance;
     }
 
+    public static Game getGameInstance() {
+        return FileUtilities.gameInstance;
+    }
+
     //ADDED FOR MENU TESTER
     public static void setMenuInstance(MenuTester menuInstance) {
         FileUtilities.menuInstance = menuInstance;
@@ -81,7 +86,6 @@ public class FileUtilities {
         // This is the level data
         return readInfo(scanner, Integer.parseInt(levelName));
     }
-
 
     public static URL getResource(String path) {
         return gameInstance.getClass().getResource(path);

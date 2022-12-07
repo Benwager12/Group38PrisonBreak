@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,6 +33,15 @@ public class MenuController {
         exitImage.hoverProperty().addListener(createHoverListener(exitImage));
     }
 
+    @FXML
+    private void newGameClicked(MouseEvent actionEvent){
+        FileUtilities.getGameInstance().setRoot("profile");
+    }
+
+    @FXML
+    private void loadGameClicked(MouseEvent actionEvent){
+        FileUtilities.getGameInstance().setRoot("load");
+    }
     @FXML
     private void exitLevel(MouseEvent actionEvent) {
         actionEvent.consume();

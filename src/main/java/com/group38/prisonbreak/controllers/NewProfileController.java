@@ -1,14 +1,18 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.utilities.FileUtilities;
+import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -19,13 +23,8 @@ public class NewProfileController {
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
     @FXML
-    private Button home;
-
-    @FXML
     private ImageView homeImage;
 
-    @FXML
-    private Button exitButton;
 
     @FXML
     private ImageView crossImage;
@@ -48,10 +47,23 @@ public class NewProfileController {
     }
 
     @FXML
+    private void homeClicked(MouseEvent actionEvent) {
+        FileUtilities.getGameInstance().setRoot("mainMenu");
+    }
+
+    @FXML
+    private void crossClicked(MouseEvent click) {
+        click.consume();
+        System.exit(0);
+    }
+
+    @FXML
     public void onEnter(KeyEvent submit) {
         if (submit.getCode().equals(KeyCode.ENTER)) {
             profileName = enterName.getText();
             System.out.println(profileName); //Testing
+            ProfileUtilities.addProfile(profileName);
+            ProfileUtilities.getProfiles(); //Doesn't return anything?
         }
     }
 

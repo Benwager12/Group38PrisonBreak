@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="NewProfileMenu" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: BLack; -fx-border-width: 25;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.NewProfileController">
+<BorderPane fx:id="NewProfileMenu" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: BLack; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.NewProfileController">
    <bottom>
       <BorderPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
@@ -59,7 +59,7 @@
          <right>
             <HBox prefHeight="74.0" prefWidth="126.0">
                <children>
-                  <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                  <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>
                         <Image url="@../images/mainMenu/HomeButton.png" />
                      </image>
@@ -67,7 +67,7 @@
                         <Insets top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="106.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                  <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="106.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>
                         <Image url="@../images/mainMenu/CrossButton.png" />
                      </image>
