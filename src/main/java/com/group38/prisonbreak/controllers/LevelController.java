@@ -10,11 +10,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -65,7 +63,7 @@ public class LevelController {
         }
 
         int w = (int) mainPane.getWidth();
-        int h = (int) (mainPane.getHeight() - 46);
+        int h = (int) mainPane.getHeight() - 46;
 
         int newWidth = Level.getTileSideLength(GameManager.level, w, h) * GameManager.level.getWidth();
         int newHeight = Level.getTileSideLength(GameManager.level, w, h) * GameManager.level.getHeight();
@@ -84,7 +82,7 @@ public class LevelController {
         GameManager.level.draw(g);
     }
 
-    public void onMouseClickCanvas(MouseEvent mouseEvent) {
+    public void onMouseClickCanvas(MouseEvent ignoredMouseEvent) {
         GameManager.level = FileUtilities.readLevel("6");
         drawCanvas();
         recalculateCanvasSize();
@@ -127,7 +125,6 @@ public class LevelController {
     private void movePlayer() {
         if (GameManager.level != null) {
             Entity player = GameManager.level.getPlayer();
-
             for (KeyCode c : GameManager.currentlyPressed) {
                 if (c == KeyCode.UP || c == KeyCode.W) {
                     player.move(0);

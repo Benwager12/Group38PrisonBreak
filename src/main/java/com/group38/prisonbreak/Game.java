@@ -12,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class Game extends Application {
 
@@ -24,7 +23,7 @@ public class Game extends Application {
     private static Stage primaryStage = null;
 
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+        Game.primaryStage = primaryStage;
         FileUtilities.setGameInstance(this);
 
         try {
@@ -47,6 +46,9 @@ public class Game extends Application {
             primaryStage.getIcons().add(new Image(iconLocation));
         }
 
+        Game.primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, GameManager::processKeyEvent);
+        Game.primaryStage.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
+
         // Initialize Profiles
         ProfileUtilities.initialise();
 
@@ -55,29 +57,17 @@ public class Game extends Application {
     }
 
     public static void setRoot(String paneType) {
-        if (paneType.equals("profile")) {
-            try {
-                FXMLLoader newProfileLoader = new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
-                root = newProfileLoader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else if (paneType.equals("load")) {
-            try {
-                FXMLLoader levelLoader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
-                root = levelLoader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            scene.addEventFilter(KeyEvent.KEY_PRESSED, GameManager::processKeyEvent);
-            scene.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
-        } else if (paneType.equals("mainMenu")) {
-            try {
-                FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
-                root = mainMenuLoader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        FXMLLoader loader = switch (paneType) {
+            case "profile" -> new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
+            case "load" -> new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
+            case "mainMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
+            default -> null;
+        };
+        assert loader != null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         setStage();
     }
