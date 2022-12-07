@@ -15,7 +15,7 @@
                   <AnchorPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <ImageView fitHeight="73.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>
-                        <Image url="@../images/GameImages/left%20hand.png" />
+                        <Image url="@../images/GameImages/left hand.png" />
                      </image>
                      <viewport>
                         <Rectangle2D />
@@ -31,7 +31,7 @@
                   </TextField>
                   <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>
-                        <Image url="@../images/GameImages/right%20hand.png" />
+                        <Image url="@../images/GameImages/right hand.png" />
                      </image>
                   </ImageView>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
@@ -43,7 +43,7 @@
    <center>
       <ImageView fitHeight="250.0" fitWidth="312.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@../images/mainMenu/Big%20head.png" />
+            <Image url="@../images/Menus/Big head.png" />
          </image>
       </ImageView>
    </center>
@@ -52,7 +52,7 @@
          <left>
             <ImageView fitHeight="55.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../images/mainMenu/GameLogo.png" />
+                  <Image url="@../images/Menus/GameLogo.png" />
                </image>
             </ImageView>
          </left>
@@ -61,7 +61,7 @@
                <children>
                   <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>
-                        <Image url="@../images/mainMenu/HomeButton.png" />
+                        <Image url="@../images/Menus/HomeButton.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="5.0" />
@@ -69,7 +69,7 @@
                   </ImageView>
                   <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="106.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>
-                        <Image url="@../images/mainMenu/CrossButton.png" />
+                        <Image url="@../images/Menus/CrossButton.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" top="10.0" />
