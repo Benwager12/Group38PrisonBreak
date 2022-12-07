@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -84,7 +85,7 @@ public class LevelController {
     }
 
     public void onMouseClickCanvas(MouseEvent mouseEvent) {
-        GameManager.level = FileUtilities.readLevel("1");
+        GameManager.level = FileUtilities.readLevel("6");
         drawCanvas();
         recalculateCanvasSize();
         levelNumberLabel.setText(String.valueOf(GameManager.level.getLevelNumber()));
@@ -126,10 +127,30 @@ public class LevelController {
     private void movePlayer() {
         if (GameManager.level != null) {
             Entity player = GameManager.level.getPlayer();
-            player.move();
+
+            for (KeyCode c : GameManager.currentlyPressed) {
+                if (c == KeyCode.UP || c == KeyCode.W) {
+                    player.move(0);
+                    break;
+                } else if (c == KeyCode.RIGHT || c == KeyCode.D) {
+                    player.move(1);
+                    break;
+                } else if (c == KeyCode.DOWN || c == KeyCode.S) {
+                    player.move(2);
+                    break;
+                } else if (c == KeyCode.LEFT || c == KeyCode.A) {
+                    player.move(3);
+                    break;
+                } else if (c == KeyCode.K) {
+                    System.out.println(GameManager.level.isGateOpen(4));
+                }
+            }
+
             GameManager.level.draw(g);
         }
         scoreNumberLabel.setText(String.valueOf(GameManager.money));
+
+
     }
 
     /**

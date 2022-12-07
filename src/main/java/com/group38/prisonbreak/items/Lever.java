@@ -13,7 +13,6 @@ import java.util.HashMap;
  */
 public class Lever extends Item {
 
-
     private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
         put(0, gameImagesStart + "key_rusted.png");
         put(1, gameImagesStart + "key_bronze.png");
@@ -23,25 +22,26 @@ public class Lever extends Item {
 
     private static final HashMap<Integer, Image> imageCache = new HashMap<>();
 
+    private final int itemColour;
 
     /**
      * Creates an instance of a Lever
      * @param metadata Colour of tile (int)
      */
     public Lever(String metadata) {
-        imageIndex = Integer.parseInt(metadata);
+        itemColour = Integer.parseInt(metadata);
+        imageIndex = itemColour;
 
         if (imageCache.isEmpty()) {
-            imagePathCache.keySet().forEach(index -> {
-                imageCache.put(index, FileUtilities.loadImageFromResource(imagePathCache.get(index)));
-            });
+            imagePathCache.keySet().forEach(index ->
+                    imageCache.put(index, FileUtilities.loadImageFromResource(imagePathCache.get(index))));
         }
     }
 
     @Override
     public boolean interact(boolean isPlayer) {
         if (isPlayer) {
-            GameManager.openGate(imageIndex);
+            GameManager.level.openGate(imageIndex);
         }
         return true;
     }
@@ -54,5 +54,9 @@ public class Lever extends Item {
     @Override
     public Image getImage() {
         return imageCache.get(imageIndex);
+    }
+
+    public int getItemColour() {
+        return itemColour;
     }
 }

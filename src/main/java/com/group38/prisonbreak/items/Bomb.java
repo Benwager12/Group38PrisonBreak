@@ -22,6 +22,7 @@ public class Bomb extends Item {
 
     private static final HashMap<Integer, Image> imageCache = new HashMap<>();
     private boolean bombActivated;
+    private boolean explodable = true;
 
     public Bomb() {
         //Implement Constructor
@@ -34,19 +35,35 @@ public class Bomb extends Item {
         }
     }
 
+    private Bomb mainBomb;
+
+    // If the bomb isn't explodable, then it must have a main bomb
+    public Bomb(Bomb mainBomb) {
+        explodable = false;
+        this.mainBomb = mainBomb;
+    }
+
+    public boolean isExplodable() {
+        return explodable;
+    }
+
     /* The time left when the player activates the bomb */
     private final int BOMB_ACTIVATE_TIME = 3;
     private Timeline bombTimeLine = new Timeline(new KeyFrame(Duration.millis(1000), event -> countdownBomb()));
 
     @Override
     public boolean interact(boolean isPlayer) {
+        if (!explodable) {
+            return mainBomb.interact(isPlayer);
+        }
+
         if (imageIndex == 0) {
             imageIndex = BOMB_ACTIVATE_TIME;
             bombTimeLine.setCycleCount(Animation.INDEFINITE);
             bombTimeLine.play();
         }
 
-        return false;
+        return true;
     }
 
     private void countdownBomb() {
@@ -68,6 +85,6 @@ public class Bomb extends Item {
      */
     @Override
     public Image getImage() {
-        return imageCache.get(imageIndex);
+        return imageCache.get(explodable ? imageIndex : null);
     }
 }

@@ -7,7 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 
-/** This class fetches the Message of the day from CSWEBCAT.SAWANSEA.AC.UK using HTTP GET Requests.
+/** This class fetches the Message of the day from CSWEBCAT.SWANSEA.AC.UK using HTTP GET Requests.
  * @author Issa (853846)
  */
 
@@ -63,29 +63,29 @@ public class MOTD {
             int asciiTemp = (int) charTemp;
             //System.out.println(asciiTemp);
 
-            if ((i % 2) != 0) {
+            if ((i % 2) != 0) { // if the index is odd, starting index counting at 1
             // This circles back Z back to A
-                if ((asciiTemp + (i+1))> 90) { // 90 is Z
-                    asciiTemp = 64 + ((asciiTemp + (i+1)) - 90); // 64 is A
+                if ((asciiTemp + (i+1))> 90) { //check if shifting the character forward needs to start from A again
+                    asciiTemp = 64 + ((asciiTemp + (i+1)) - 90); //shifts the character forward till Z, and remaining number of shifts start from A
                 }
                 else {
-                    asciiTemp += (i+1);
+                    asciiTemp += (i+1); //shift the character forward by the number of index
                 }
 
             }
-            else {
+            else { //if the index is even, starting index counting at 1
 
-                if ((asciiTemp - (i+1))< 65) {
-                    asciiTemp = 91 - (65 - (asciiTemp - (i+1)));
+                if ((asciiTemp - (i+1))< 65) { //check if shifting the character backwards needs to start from Z again
+                    asciiTemp = 91 - (65 - (asciiTemp - (i+1))); //shifts the character backwards till A, and remaining number of shifts start from Z
                 }
                 else {
-                    asciiTemp -= (i+1);
+                    asciiTemp -= (i+1); //shift the character backwards by the number of index
                 }
             }
-            solution = solution + (char) asciiTemp;
+            solution = solution + (char) asciiTemp; //add shifted character to solution string
         }
 
-        solution = solution + "CS-230";
+        solution = solution + "CS-230"; //append CS-230 at end of solution string
         return solution;
     }
 

@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * MenuController handles the...[add]
@@ -13,19 +14,10 @@ public class MenuController {
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
     @FXML
-    private Button newGameButton;
-
-    @FXML
     private ImageView newGameImage;
 
     @FXML
-    private Button loadGameButton;
-
-    @FXML
     private ImageView loadGameImage;
-
-    @FXML
-    private Button exitButton;
 
     @FXML
     private ImageView exitImage;
@@ -38,6 +30,12 @@ public class MenuController {
         newGameImage.hoverProperty().addListener(createHoverListener(newGameImage));
         loadGameImage.hoverProperty().addListener(createHoverListener(loadGameImage));
         exitImage.hoverProperty().addListener(createHoverListener(exitImage));
+    }
+
+    @FXML
+    private void exitLevel(MouseEvent actionEvent) {
+        actionEvent.consume();
+        System.exit(0);
     }
 
     /**
@@ -54,5 +52,4 @@ public class MenuController {
             }
         };
     }
-
 }

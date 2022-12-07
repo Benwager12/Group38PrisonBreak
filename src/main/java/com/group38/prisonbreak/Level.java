@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A Class that stores the data about a level
@@ -30,6 +31,8 @@ public class Level implements Drawable {
     // All the entities in the Level
     private final ArrayList<Entity> entities;
 
+    private final HashMap<Integer, Boolean> gatesOpen = new HashMap<>();
+
     /**
      * Creates a Level instance
      *
@@ -41,6 +44,16 @@ public class Level implements Drawable {
         this.levelNumber = levelNumber;
         this.tiles = tiles;
         this.entities = entities;
+
+        for (Tile[] row : tiles) {
+            for (Tile tile : row) {
+                if (tile.getItem() == null || !(tile.getItem() instanceof Gate g)) {
+                    continue;
+                }
+
+                gatesOpen.put(g.getGateColour(), false);
+            }
+        }
     }
 
     /**
@@ -95,6 +108,25 @@ public class Level implements Drawable {
             }
         }
         return false;
+    }
+
+    public int getNoItems() {
+        int items = 0;
+        for (Tile[] tileX : tiles) {
+            for (Tile tile : tileX) {
+                Item item = tile.getItem();
+                if (item != null && isMainBombOrNotBomb(item)) {
+                    items++;
+                }
+            }
+        }
+        return items;
+    }
+
+    public boolean isMainBombOrNotBomb(Item item) {
+        if (item instanceof Bomb && ((Bomb) item).isExplodable()) {
+            return true;
+        } else return !(item instanceof Bomb);
     }
 
     /**
@@ -237,15 +269,20 @@ public class Level implements Drawable {
                 newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
                 Tile newTile = tiles[newY][newX];
                 Item tileItem = newTile.getItem();
-                boolean hasColours = newTile.hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem) ;
+
+                boolean bombSkip = tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable();
+
+                boolean moveable = newTile.hasColours(colours) && isGateOpen(tileItem) &&
+                        isDoorOpen(tileItem) && bombSkip;
                 return new int [] {
-                        hasColours ? newX : moveTo(newX, newY, direction, colours)[0],
-                        hasColours ? newY : moveTo(newX, newY, direction, colours)[1]
+                        moveable ? newX : moveTo(newX, newY, direction, colours)[0],
+                        moveable ? newY : moveTo(newX, newY, direction, colours)[1]
                 };
             }
             Tile newTile = tiles[newY][newX];
             Item tileItem = newTile.getItem();
-            if (tiles[newY][newX].hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem)) {
+            boolean bombSkip = tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable();
+            if (tiles[newY][newX].hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !bombSkip) {
                 return new int[] {newX, newY};
             }
 
@@ -256,20 +293,29 @@ public class Level implements Drawable {
         newY = !isX ? (isNegative ? tiles.length -1 : 0) : posY;
         Tile newTile = tiles[newY][newX];
         Item tileItem = newTile.getItem();
-        boolean hasColours = newTile.hasColours(tiles[posY][posX].getColours()) && isGateOpen(tileItem) && isDoorOpen(tileItem);
+
+        boolean bombSkip = tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable();
+
+        boolean moveable = newTile.hasColours(tiles[posY][posX].getColours()) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !bombSkip;
         return new int [] {
-                hasColours ? newX : moveTo(newX, newY, direction, colours)[0],
-                hasColours ? newY : moveTo(newX, newY, direction, colours)[1]
+                moveable ? newX : moveTo(newX, newY, direction, colours)[0],
+                moveable ? newY : moveTo(newX, newY, direction, colours)[1]
         };
     }
 
 
-    private boolean isGateOpen(Item item) {
+    public boolean isGateOpen(Item item) {
         if (item instanceof  Gate) {
-            return ((Gate) item).isUnlocked();
+            return gatesOpen.get(((Gate) item).getGateColour());
         }
         return true;
     }
+
+    public boolean isGateOpen(int colour) {
+        return gatesOpen.get(colour);
+    }
+
+
 
     private boolean isDoorOpen(Item item) {
         if (item instanceof Door) {
@@ -345,5 +391,9 @@ public class Level implements Drawable {
 
     public int getHeight() {
         return tiles.length;
+    }
+
+    public void openGate(int gateColour) {
+        gatesOpen.put(gateColour, true);
     }
 }

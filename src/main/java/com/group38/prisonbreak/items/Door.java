@@ -55,7 +55,7 @@ public class Door extends Item {
      */
     @Override
     public Image getImage() {
-        return imageCache.get(isOpen ? 1 : 0);
+        return imageCache.get(isOpen() ? 0 : 1);
     }
 
 }

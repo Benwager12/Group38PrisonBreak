@@ -105,4 +105,12 @@ public abstract class Entity {
         entityImage = FileUtilities.loadImageFromResource(String.format(IMAGE_URL, entityName));
     }
 
+    /**
+     * Changes the entity's direction and moves in that direction.
+     * @param direction The direction to move to.
+     */
+    public void move(int direction) {
+        setDirection(direction);
+        move();
+    }
 }

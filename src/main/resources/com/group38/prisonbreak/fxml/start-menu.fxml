@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: grey; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
+<BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: grey; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
    <center>
       <HBox alignment="TOP_RIGHT" prefHeight="412.0" prefWidth="575.0">
          <children>
@@ -69,11 +65,11 @@
                   </StackPane>
                   <StackPane prefHeight="39.0" prefWidth="428.0">
                      <children>
-                        <Button id="exitButton" fx:id="exitButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="159.0" text="Exit">
+                        <Button id="exitButton" fx:id="exitButton" mnemonicParsing="false" onAction="#exitLevel" prefHeight="25.0" prefWidth="159.0" text="Exit">
                            <StackPane.margin>
                               <Insets top="5.0" />
                            </StackPane.margin></Button>
-                        <ImageView fx:id="exitImage" fitHeight="41.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="exitImage" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#exitLevel" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/mainMenu/ExitButton.png" />
                            </image>
