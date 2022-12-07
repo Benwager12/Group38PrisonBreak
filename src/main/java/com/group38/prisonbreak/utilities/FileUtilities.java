@@ -134,20 +134,20 @@ public class FileUtilities {
         for (int tileY = 0; tileY < tiles.length; tileY++) {
             for (int tileX = 0; tileX < tiles[tileY].length; tileX++) {
                 Tile t = tiles[tileY][tileX];
-                if (t.getItem() != null && (t.getItem() instanceof Bomb b) && b.isExplodable()) {
-                    if (tiles[tileY - 1][tileX] != null) {
+                if (!(t.getItem() == null) && (t.getItem() instanceof Bomb b) && b.isExplodable()) {
+                    if (tileY > 0) {
                         tiles[tileY - 1][tileX].setItem(new Bomb((Bomb) t.getItem()));
                     }
 
-                    if (tiles[tileY + 1][tileX] != null) {
+                    if (!(tileY == tiles.length - 1)) {
                         tiles[tileY + 1][tileX].setItem(new Bomb((Bomb) t.getItem()));
                     }
 
-                    if (tiles[tileY][tileX - 1] != null) {
+                    if (tileX > 0) {
                         tiles[tileY][tileX - 1].setItem(new Bomb((Bomb) t.getItem()));
                     }
 
-                    if (tiles[tileY][tileX + 1] != null) {
+                    if (!(tileX == tiles[tileY].length - 1)) {
                         tiles[tileY][tileX + 1].setItem(new Bomb((Bomb) t.getItem()));
                     }
                 }
