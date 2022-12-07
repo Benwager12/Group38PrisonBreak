@@ -20,20 +20,15 @@ public class Game extends Application {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 446;
     private static Pane root = null;
-    private static FXMLLoader mainMenuLoader = null;
-    private static FXMLLoader newProfileLoader = null;
-    private static FXMLLoader levelLoader = null;
     private static Scene scene = null;
     private static Stage primaryStage = null;
 
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         FileUtilities.setGameInstance(this);
-        mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
-        newProfileLoader = new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
-        levelLoader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
 
         try {
+            FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
             root = mainMenuLoader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -62,12 +57,14 @@ public class Game extends Application {
     public static void setRoot(String paneType) {
         if (paneType.equals("profile")) {
             try {
+                FXMLLoader newProfileLoader = new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
                 root = newProfileLoader.load();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         } else if (paneType.equals("load")) {
             try {
+                FXMLLoader levelLoader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
                 root = levelLoader.load();
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -76,6 +73,7 @@ public class Game extends Application {
             scene.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
         } else if (paneType.equals("mainMenu")) {
             try {
+                FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
                 root = mainMenuLoader.load();
             } catch (IOException e) {
                 throw new RuntimeException(e);
