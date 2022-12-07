@@ -110,25 +110,6 @@ public class Level implements Drawable {
         return false;
     }
 
-    public int getNoItems() {
-        int items = 0;
-        for (Tile[] tileX : tiles) {
-            for (Tile tile : tileX) {
-                Item item = tile.getItem();
-                if (item != null && isMainBombOrNotBomb(item)) {
-                    items++;
-                }
-            }
-        }
-        return items;
-    }
-
-    public boolean isMainBombOrNotBomb(Item item) {
-        if (item instanceof Bomb && ((Bomb) item).isExplodable()) {
-            return true;
-        } else return !(item instanceof Bomb);
-    }
-
     /**
      * Removes all items from tiles apart from Doors and Gates
      */
