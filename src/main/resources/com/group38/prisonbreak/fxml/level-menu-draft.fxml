@@ -92,7 +92,7 @@
                               <Image url="@../images/Menus/level%20preview-6.png" />
                            </image>
                            <StackPane.margin>
-                              <Insets left="15.0" right="10.0" />
+                              <Insets left="10.0" right="10.0" />
                            </StackPane.margin></ImageView>
                      </children>
                   </StackPane>
@@ -103,22 +103,25 @@
                               <Image url="@../images/Menus/level%20preview-7.png" />
                            </image>
                            <StackPane.margin>
-                              <Insets left="15.0" right="10.0" />
+                              <Insets left="10.0" right="10.0" />
                            </StackPane.margin></ImageView>
                      </children>
                   </StackPane>
                   <StackPane>
                      <children>
-                        <ImageView fitHeight="107.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="111.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/level%20preview-8.png" />
                            </image>
                            <StackPane.margin>
-                              <Insets left="15.0" right="10.0" />
+                              <Insets left="10.0" right="10.0" />
                            </StackPane.margin></ImageView>
                      </children>
                   </StackPane>
                </children>
+               <VBox.margin>
+                  <Insets left="-50.0" top="10.0" />
+               </VBox.margin>
             </HBox>
          </children>
          <BorderPane.margin>
