@@ -1,81 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" style="-fx-background-color: #5A5A5A; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox prefHeight="137.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="52.0" prefWidth="916.0">
                <children>
-                  <VBox prefHeight="0.0" prefWidth="106.0">
+                  <StackPane>
                      <children>
-                        <ImageView fitHeight="157.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="104.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/level preview-1.png" />
                            </image>
+                           <StackPane.margin>
+                              <Insets right="10.0" />
+                           </StackPane.margin>
                         </ImageView>
                      </children>
-                  </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="166.0">
+                  </StackPane>
+                  <StackPane prefHeight="123.0" prefWidth="137.0">
                      <children>
-                        <ImageView fitHeight="170.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="116.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/level preview-2.png" />
-                           </image></ImageView>
+                           </image>
+                           <StackPane.margin>
+                              <Insets right="10.0" />
+                           </StackPane.margin>
+                        </ImageView>
                      </children>
-                  </VBox>
-                  <VBox layoutX="181.0" layoutY="10.0" prefHeight="0.0" prefWidth="166.0">
+                  </StackPane>
+                  <StackPane>
                      <children>
-                        <ImageView fitHeight="173.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="111.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/level preview-3.png" />
-                           </image></ImageView>
+                           </image>
+                           <StackPane.margin>
+                              <Insets right="10.0" />
+                           </StackPane.margin>
+                        </ImageView>
                      </children>
-                  </VBox>
-                  <VBox layoutX="353.0" layoutY="10.0" prefHeight="0.0" prefWidth="161.0">
+                  </StackPane>
+                  <StackPane>
                      <children>
-                        <ImageView fitHeight="159.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="100.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/level preview-4.png" />
-                           </image></ImageView>
+                           </image>
+                           <StackPane.margin>
+                              <Insets left="5.0" />
+                           </StackPane.margin>
+                        </ImageView>
                      </children>
-                  </VBox>
+                  </StackPane>
                </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="185.0" prefWidth="600.0">
                <children>
-                  <VBox prefHeight="173.0" prefWidth="166.0">
+                  <StackPane>
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="220.0" text=" Level 5 [insert image]" textAlignment="CENTER" />
+                        <ImageView fitHeight="96.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/level%20preview-5.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets right="10.0" />
+                           </StackPane.margin>
+                        </ImageView>
                      </children>
-                  </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="173.0" prefWidth="166.0">
+                     <HBox.margin>
+                        <Insets left="65.0" />
+                     </HBox.margin>
+                  </StackPane>
+                  <StackPane>
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="220.0" text=" Level 6 [insert image]" textAlignment="CENTER" />
+                        <ImageView fitHeight="105.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/level%20preview-6.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets left="15.0" right="10.0" />
+                           </StackPane.margin></ImageView>
                      </children>
-                  </VBox>
-                  <VBox layoutX="181.0" layoutY="10.0" prefHeight="173.0" prefWidth="166.0">
+                  </StackPane>
+                  <StackPane>
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="220.0" text=" Level 7 [insert image]" textAlignment="CENTER" />
+                        <ImageView fitHeight="106.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/level%20preview-7.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets left="15.0" right="10.0" />
+                           </StackPane.margin></ImageView>
                      </children>
-                  </VBox>
-                  <VBox layoutX="353.0" layoutY="10.0" prefHeight="175.0" prefWidth="161.0">
+                  </StackPane>
+                  <StackPane>
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="220.0" text=" Level 8 [insert image]" textAlignment="CENTER" />
+                        <ImageView fitHeight="107.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/level%20preview-8.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets left="15.0" right="10.0" />
+                           </StackPane.margin></ImageView>
                      </children>
-                  </VBox>
+                  </StackPane>
                </children>
             </HBox>
          </children>
@@ -93,7 +135,7 @@
             <Image url="@../images/Menus/levelLabel.png" />
          </image>
          <BorderPane.margin>
-            <Insets top="20.0" />
+            <Insets bottom="60.0" top="20.0" />
          </BorderPane.margin>
       </ImageView>
    </top>
