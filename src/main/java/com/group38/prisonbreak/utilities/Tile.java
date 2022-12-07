@@ -96,4 +96,13 @@ public class Tile {
     public int[] getColourIDs() {
         return colourIDs;
     }
+
+	public boolean hasColour(int checkColour) {
+        for (int id : colourIDs) {
+            if (id == checkColour) {
+                return true;
+            }
+        }
+        return false;
+	}
 }
