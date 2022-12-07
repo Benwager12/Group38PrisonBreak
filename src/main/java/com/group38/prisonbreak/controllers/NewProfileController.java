@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
@@ -45,15 +46,16 @@ public class NewProfileController {
         crossImage.hoverProperty().addListener(createHoverListener(crossImage));
     }
 
-    /* private void homeClicked(EventType<MouseEvent> click) {
-        homeImage.setOnMouseClicked(); //Menu
-        System.out.println("home");
+    @FXML
+    private void homeClicked(MouseEvent actionEvent) {
+        FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 
-    private void crossClicked(EventType<MouseEvent> click) {
-        System.out.println("cross");
+    @FXML
+    private void crossClicked(MouseEvent click) {
+        click.consume();
+        System.exit(0);
     }
-*/ //Commented out until Main Menu can initialise
 
     @FXML
     public void onEnter(KeyEvent submit) {

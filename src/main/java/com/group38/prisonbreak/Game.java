@@ -20,6 +20,7 @@ public class Game extends Application {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 446;
     private static Pane root = null;
+    private static FXMLLoader mainMenuLoader = null;
     private static FXMLLoader newProfileLoader = null;
     private static FXMLLoader levelLoader = null;
     private static Scene scene = null;
@@ -28,7 +29,7 @@ public class Game extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         FileUtilities.setGameInstance(this);
-        FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
+        mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
         newProfileLoader = new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
         levelLoader = new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
 
@@ -73,6 +74,12 @@ public class Game extends Application {
             }
             scene.addEventFilter(KeyEvent.KEY_PRESSED, GameManager::processKeyEvent);
             scene.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
+        } else if (paneType.equals("mainMenu")){
+            try {
+                root = mainMenuLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         setStage();
     }
