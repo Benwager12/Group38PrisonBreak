@@ -45,6 +45,9 @@ public class TileTree {
     // TODO: Maybe remove this and change when this is called to a value to level?
     private boolean itemsFound = false;
 
+    // ArrayList of previously visited positions
+    private ArrayList<int[]> visitedPositions;
+
     /**
      * Creates an instance of tree
      */
@@ -73,10 +76,11 @@ public class TileTree {
      */
     public void searchPaths(int xPos, int yPos) {
         startingTileNode = createTileNode(new int[] {xPos, yPos});
-        String path = searchPathsRecursive(startingTileNode, "", new ArrayList<>());
+        visitedPositions = new ArrayList<>();
+        String path = searchPathsRecursive(startingTileNode, "");
 
         // TODO: Do something with path
-        System.out.println(path);
+        System.out.println("Shortest Path: " + path);
     }
 
     /**
@@ -85,12 +89,10 @@ public class TileTree {
      * Stores previously visited positions in an ArrayList called visitedPositions to prevent looking at  tile already visited
      * @param root current root
      * @param path current path from root to item (Set to "" on first call)
-     * @param visitedPositions ArrayList of previously visted positions
+     * old param visitedPositions ArrayList of previously visited positions
      * @return Shortest Path from root to item
      */
-    private String searchPathsRecursive(TileNode root, String path, ArrayList<int[]> visitedPositions) {
-        // TODO: Fix Stackoverflow error / infinite recursion
-
+    private String searchPathsRecursive(TileNode root, String path) {
         // Paths for all the possible directions
         String upPath = "";
         String rightPath = "";
@@ -109,7 +111,7 @@ public class TileTree {
         /* Checks if new position is not the root's position (Meaning move not possible)...
          * and position hasn't been visited
          */
-        if (newPositionUp[1] != rootYPos && !visitedPositions.contains(newPositionUp)) {
+        if (newPositionUp[1] != rootYPos && !previouslyVisited(newPositionUp)) {
             TileNode upTileNode = createTileNode(newPositionUp); // Not needed any more maybe TODO: Remove TileNodes
             root.setUpTile(upTileNode);
 
@@ -117,12 +119,13 @@ public class TileTree {
             visitedPositions.add(newPositionUp);
 
             if (upTileNode.hasItem()) {
+                System.out.println("Path to an item: " + path);
                 return path;
             } else {
                 /* Recursively calls searchPathsRecursive but as upTileNode as the Root
                  * Adds Up direction id to the path
                  */
-                upPath = searchPathsRecursive(upTileNode, path + Constants.UP_ID, visitedPositions);
+                upPath = searchPathsRecursive(upTileNode, path + Constants.UP_ID);
 
                 // If the path isn't valid set path to null
                 if (upPath.charAt(upPath.length() - 1) == NULL_NODE_CHAR) {
@@ -132,42 +135,42 @@ public class TileTree {
         }
 
         // Repeat process for each direction
-        if (newPositionRight[0] != rootXPos && !visitedPositions.contains(newPositionRight)) {
+        if (newPositionRight[0] != rootXPos && !previouslyVisited(newPositionRight)) {
             TileNode rightTileNode = createTileNode(newPositionRight);
             root.setRightTile(rightTileNode);
             visitedPositions.add(newPositionRight);
             if (rightTileNode.hasItem()) {
                 return path;
             } else {
-                rightPath = searchPathsRecursive(rightTileNode, path + Constants.RIGHT_ID, visitedPositions);
+                rightPath = searchPathsRecursive(rightTileNode, path + Constants.RIGHT_ID);
                 if (rightPath.charAt(rightPath.length() - 1) == NULL_NODE_CHAR) {
                     rightPath = "";
                 }
             }
         }
 
-        if (newPositionDown[1] != rootYPos && !visitedPositions.contains(newPositionDown)) {
+        if (newPositionDown[1] != rootYPos && !previouslyVisited(newPositionDown)) {
             TileNode downTileNode = createTileNode(newPositionDown);
             root.setDownTile(downTileNode);
             visitedPositions.add(newPositionDown);
             if (downTileNode.hasItem()) {
                 return path;
             } else {
-                downPath = searchPathsRecursive(downTileNode, path + Constants.DOWN_ID, visitedPositions);
+                downPath = searchPathsRecursive(downTileNode, path + Constants.DOWN_ID);
                 if (downPath.charAt(downPath.length() - 1) == NULL_NODE_CHAR) {
                     downPath = "";
                 }
             }
         }
 
-        if (newPositionLeft[0] != rootXPos && !visitedPositions.contains(newPositionLeft)) {
+        if (newPositionLeft[0] != rootXPos && !previouslyVisited(newPositionLeft)) {
             TileNode leftTileNode = createTileNode(newPositionLeft);
             root.setLeftTile(leftTileNode);
             visitedPositions.add(newPositionLeft);
             if (leftTileNode.hasItem()) {
                 return path;
             } else {
-                leftPath = searchPathsRecursive(leftTileNode, path + Constants.LEFT_ID, visitedPositions);
+                leftPath = searchPathsRecursive(leftTileNode, path + Constants.LEFT_ID);
                 if (leftPath.charAt(leftPath.length() - 1) == NULL_NODE_CHAR) {
                     return leftPath;
                 }
@@ -220,6 +223,19 @@ public class TileTree {
         return NULL_NODE;
     }
 
+    /**
+     * Checks if a position has been previously visited
+     * @param position position to check
+     * @return boolean if visited already
+     */
+    private boolean previouslyVisited(int[] position) {
+        for (int[] previousPosition : visitedPositions) {
+            if (previousPosition[0] == position[0] && previousPosition[1] == position[1]) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /*
     ******************** NOT USED ANY MORE DUE TO EFFICIENCY (NO CLUE IF IT DID WORK) ********************
