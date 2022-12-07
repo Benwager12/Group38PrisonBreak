@@ -219,6 +219,33 @@ public class Level implements Drawable {
     }
 
     /**
+     * Checks if a move is valid with a given colour
+     * @param direction      The direction the entity wishes to move
+     * @param posX           X position of the entity
+     * @param posY           Y position of the entity
+     * @param colourId       id of the colour (int) that the entity has to follow
+     * @return boolean - if the move is valid
+     */
+    public boolean canMove(int posX, int posY, int direction, int colourId) {
+        Color colour = Constants.COLOUR_MAP.get(colourId);
+
+        // Checks if direction is Up/Down (X)
+        boolean isX = direction == 1 || direction == 3;
+
+        // Checks if direcltion is negative (Up/Left)
+        boolean isNegative = direction == 0 || direction == 3;
+
+        // Sets newX and newY
+        int newX = isX ? posX + (isNegative ? -1 : 1) : posX;
+        int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
+
+        if (isX ? posX < tiles[0].length && posX >= 0 : posY < tiles.length && posY >= 0) {
+            return tiles[newY][newX].hasColour(colour);
+        }
+        return false;
+    }
+
+    /**
      * Finds the position of the next tile an entity should go if they follow colours
      * @param posX Current X Position
      * @param posY Current Y Position
