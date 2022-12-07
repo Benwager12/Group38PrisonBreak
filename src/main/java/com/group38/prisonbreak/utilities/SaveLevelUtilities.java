@@ -93,8 +93,10 @@ public class SaveLevelUtilities {
             boolean isFileCreated = saveFile.createNewFile();
 
             if (!isFileCreated) {
-                saveFile.delete();
-                saveFile.createNewFile();
+                boolean success = saveFile.delete();
+                assert(success);
+                success = saveFile.createNewFile();
+                assert (success);
             }
 
             System.out.println("Saved at "+ saveLocation);
