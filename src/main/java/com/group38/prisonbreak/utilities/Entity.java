@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 public abstract class Entity {
 
     // Path of the entity images
-    private static final String IMAGE_URL = "images/GameImages/%s.png";
+    private static final String IMAGE_URL = "images/EntityImages/%s.png";
 
     // X position of the entity
     private int x;

@@ -133,7 +133,7 @@ public class FileUtilities {
 
         Tile[][] tiles = readTiles(in, levelWidth, levelHeight);
         int[] playerLocation = readPlayerLocation(in);
-        Player p = new Player(playerLocation[0], playerLocation[1], playerLocation[2]);
+        Player p = new Player(playerLocation[0], playerLocation[1], playerLocation[2],levelNumber);
 
         int numOfItems = in.nextInt();
         HashMap<int[], Item> items = readItems(in, numOfItems);
