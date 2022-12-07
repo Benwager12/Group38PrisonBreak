@@ -16,7 +16,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -169,6 +168,16 @@ public class FileUtilities {
         int numOfEnemies = in.nextInt();
         ArrayList<Entity> enemies = readEnemies(in, numOfEnemies);
         enemies.add(p);
+
+        enemies.forEach(e -> {
+            if (e instanceof FloorThief ft) {
+                if (!tiles[e.getY()][e.getX()].hasColours(new int[]{ft.getChosenColour()})) {
+                    System.out.printf("A floor thief at (X:%d,Y:%d) has a chosen colour of %d, but"
+                            + " that is not its current tile.%n", e.getX(), e.getY(), ft.getChosenColour());
+                }
+            }
+        });
+
         GameManager.addTime(readLevelTime(in));
 
         if(in.hasNextInt()) {
@@ -229,7 +238,6 @@ public class FileUtilities {
         return switch (directionString) {
             case "L" -> 3;
             case "R" -> 1;
-            case "U" -> 0;
             case "D" -> 2;
             default -> 0;
         };
@@ -238,9 +246,6 @@ public class FileUtilities {
     private static ArrayList<Entity> readEnemies(Scanner in, int numOfEnemies) {
         ArrayList<Entity> enemies = new ArrayList<>();
         Enemy nextEnemy = null;
-
-        // <x, <y, enemy>>
-        HashMap<Integer[], Enemy> enemyMap = new HashMap<>();
 
         for(int i = 0; i < numOfEnemies; i++) {
             char enemyType = (in.next()).charAt(0);

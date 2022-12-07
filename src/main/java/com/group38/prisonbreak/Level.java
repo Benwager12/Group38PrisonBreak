@@ -256,8 +256,8 @@ public class Level implements Drawable {
      * @param coloursOptional (Optional) Colours of tile to move to
      * @return int array with X and Y position [X Position, Y Position]
      */
-    public int[] moveTo(int posX, int posY, int direction, Color[]... coloursOptional) {
-        Color[] colours = coloursOptional.length > 0 ? coloursOptional[0] : tiles[posY][posX].getColours();
+    public int[] moveTo(int posX, int posY, int direction, int... coloursOptional) {
+        int[] colours = coloursOptional.length == 0 ? tiles[posY][posX].getColourIDs() : coloursOptional;
 
         // Checks if direction is Up/Down (X)
         boolean isX = direction == 1 || direction == 3;
@@ -284,7 +284,9 @@ public class Level implements Drawable {
             Tile newTile = tiles[newY][newX];
             Item tileItem = newTile.getItem();
             boolean bombSkip = tileItem instanceof Bomb && ((Bomb) tileItem).isExplodable();
-            if (tiles[newY][newX].hasColours(colours) && isGateOpen(tileItem) && isDoorOpen(tileItem) && !bombSkip) {
+
+            boolean sharedColours = tiles[newY][newX].hasColours(colours);
+            if (sharedColours && isGateOpen(tileItem) && isDoorOpen(tileItem) && !bombSkip) {
                 return new int[] {newX, newY};
             }
 

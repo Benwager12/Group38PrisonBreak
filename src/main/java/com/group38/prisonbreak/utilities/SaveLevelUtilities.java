@@ -224,7 +224,7 @@ public class SaveLevelUtilities {
 						floorThief.getX(),
 						floorThief.getY(),
 						direction,
-						floorThief.getColour()));
+						floorThief.getChosenColour()));
 			}
 		}
 	}
