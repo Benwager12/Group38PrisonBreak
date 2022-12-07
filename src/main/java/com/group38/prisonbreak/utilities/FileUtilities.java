@@ -134,27 +134,22 @@ public class FileUtilities {
         for (int tileY = 0; tileY < tiles.length; tileY++) {
             for (int tileX = 0; tileX < tiles[tileY].length; tileX++) {
                 Tile t = tiles[tileY][tileX];
-                if (t.getItem() == null || !(t.getItem() instanceof Bomb b)) {
-                    continue;
-                }
-                if (!b.isExplodable()) {
-                    continue;
-                }
+                if (t.getItem() != null && (t.getItem() instanceof Bomb b) && b.isExplodable()) {
+                    if (tiles[tileY - 1][tileX] != null) {
+                        tiles[tileY - 1][tileX].setItem(new Bomb((Bomb) t.getItem()));
+                    }
 
-                if (tiles[tileY - 1][tileX] != null) {
-                    tiles[tileY - 1][tileX].setItem(new Bomb(b));
-                }
+                    if (tiles[tileY + 1][tileX] != null) {
+                        tiles[tileY + 1][tileX].setItem(new Bomb((Bomb) t.getItem()));
+                    }
 
-                if (tiles[tileY + 1][tileX] != null) {
-                    tiles[tileY + 1][tileX].setItem(new Bomb(b));
-                }
+                    if (tiles[tileY][tileX - 1] != null) {
+                        tiles[tileY][tileX - 1].setItem(new Bomb((Bomb) t.getItem()));
+                    }
 
-                if (tiles[tileY][tileX - 1] != null) {
-                    tiles[tileY][tileX - 1].setItem(new Bomb(b));
-                }
-
-                if (tiles[tileY][tileX + 1] != null) {
-                    tiles[tileY][tileX + 1].setItem(new Bomb(b));
+                    if (tiles[tileY][tileX + 1] != null) {
+                        tiles[tileY][tileX + 1].setItem(new Bomb((Bomb) t.getItem()));
+                    }
                 }
             }
         }
