@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
+<BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
    <center>
-      <HBox alignment="TOP_RIGHT" prefHeight="412.0" prefWidth="575.0">
+      <HBox alignment="TOP_RIGHT" cache="true" cacheHint="SCALE" prefHeight="412.0" prefWidth="575.0" BorderPane.alignment="TOP_LEFT">
          <children>
-            <VBox alignment="CENTER" prefHeight="446.0" prefWidth="428.0">
+            <VBox alignment="CENTER" prefHeight="377.0" prefWidth="428.0">
                <children>
                   <ImageView id="gameLogo" fx:id="gameLogo" fitHeight="128.0" fitWidth="309.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,9 +58,57 @@
                         </ImageView>
                      </children>
                   </StackPane>
+                  <StackPane>
+                     <children>
+                        <ImageView fx:id="motdSpeechBubble" fitHeight="252.0" fitWidth="383.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/SpeechBubble.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets top="10.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                        <VBox fx:id="speechBubble" alignment="TOP_CENTER" prefHeight="50.0" prefWidth="408.0">
+                           <children>
+                              <Text fx:id="motdTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Message of the Day:" wrappingWidth="230.0332055091858">
+                                 <font>
+                                    <Font name="Consolas" size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text fx:id="motdTextBox" boundsType="VISUAL" fill="WHITE" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" textOrigin="CENTER" wrappingWidth="281.99999928474426">
+                                 <font>
+                                    <Font name="Consolas Italic" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="40.0" />
+                                 </VBox.margin>
+                                 <rotationAxis>
+                                    <Point3D />
+                                 </rotationAxis>
+                              </Text>
+                           </children>
+                           <StackPane.margin>
+                              <Insets right="20.0" top="20.0" />
+                           </StackPane.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                     </children>
+                  </StackPane>
                </children>
             </VBox>
          </children>
       </HBox>
    </center>
+   <left>
+      <ImageView fx:id="gateImage" fitHeight="426.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../images/Menus/jailcell%20with%20head.png" />
+         </image>
+      </ImageView>
+   </left>
 </BorderPane>
