@@ -134,6 +134,7 @@ public class FileUtilities {
         for (int tileY = 0; tileY < tiles.length; tileY++) {
             for (int tileX = 0; tileX < tiles[tileY].length; tileX++) {
                 Tile t = tiles[tileY][tileX];
+                //Checks if there is a real (explodable) bomb on the tile.
                 if (!(t.getItem() == null) && (t.getItem() instanceof Bomb b) && b.isExplodable()) {
                     if (tileY > 0) {
                         tiles[tileY - 1][tileX].setItem(new Bomb((Bomb) t.getItem()));
