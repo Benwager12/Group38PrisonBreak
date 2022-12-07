@@ -66,15 +66,15 @@ public class Game extends Application {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        } else if (paneType.equals("load")){
+        } else if (paneType.equals("load")) {
             try {
                 root = levelLoader.load();
-            } catch (IOException e){
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             scene.addEventFilter(KeyEvent.KEY_PRESSED, GameManager::processKeyEvent);
             scene.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
-        } else if (paneType.equals("mainMenu")){
+        } else if (paneType.equals("mainMenu")) {
             try {
                 root = mainMenuLoader.load();
             } catch (IOException e) {
