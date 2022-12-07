@@ -74,7 +74,7 @@ public class FileUtilities {
         }
 
         // This is the level data
-        return readInfo(scanner);
+        return readInfo(scanner, Integer.parseInt(levelName));
     }
 
 
@@ -113,7 +113,7 @@ public class FileUtilities {
         return new Image(path);
     }
 
-    private static Level readInfo(Scanner in) {
+    private static Level readInfo(Scanner in, int levelNumber) {
         int levelWidth = in.nextInt();
         int levelHeight = in.nextInt();
 
@@ -166,7 +166,7 @@ public class FileUtilities {
 
         in.close();
 
-        return new Level(0, tiles, enemies);
+        return new Level(levelNumber, tiles, enemies);
     }
 
     private static Tile[][] readTiles(Scanner in, int width, int height) {
