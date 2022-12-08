@@ -230,12 +230,10 @@ public class Level implements Drawable {
      * @return boolean - if the move is valid
      */
     public boolean canMove(int posX, int posY, int direction, int colourId) {
-        Color colour = Constants.COLOUR_MAP.get(colourId);
-
         // Checks if direction is Up/Down (X)
         boolean isX = direction == 1 || direction == 3;
 
-        // Checks if direcltion is negative (Up/Left)
+        // Checks if direction is negative (Up/Left)
         boolean isNegative = direction == 0 || direction == 3;
 
         // Sets newX and newY
@@ -243,9 +241,43 @@ public class Level implements Drawable {
         int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
 
         if (isX ? posX < tiles[0].length && posX >= 0 : posY < tiles.length && posY >= 0) {
-            return tiles[newY][newX].hasColour(colour);
+            return tiles[newY][newX].hasColour(colourId);
         }
         return false;
+    }
+
+    public static int[] singleMove(int posX, int posY, int direction) {
+        boolean isX = direction == 1 || direction == 3;
+
+        // Checks if direction is negative (Up/Left)
+        boolean isNegative = direction == 0 || direction == 3;
+
+        // Sets newX and newY
+        int newX = isX ? posX + (isNegative ? -1 : 1) : posX;
+        int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
+
+        return new int[] {newX, newY};
+    }
+
+    public int[] potentialMove(int posX, int posY, int direction, int colourID) {
+        int[] move = singleMove(posX, posY, direction);
+
+        Tile nTile;
+        try {
+            nTile = tiles[move[1]][move[0]];
+        } catch (IndexOutOfBoundsException e) {
+            return new int[]{posX, posY};
+        }
+        if (!GameManager.level.isGateOpen(nTile.getItem())) {
+            return new int[]{posX,posY};
+        }
+
+            if (tiles[move[1]][move[0]].hasColour(colourID)) {
+            return move;
+        }
+
+
+        return new int[]{posX, posY};
     }
 
     /**
