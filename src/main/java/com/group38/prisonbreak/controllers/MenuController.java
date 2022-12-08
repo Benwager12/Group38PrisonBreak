@@ -51,10 +51,11 @@ public class MenuController {
     private static String message;
 
     /**
-     * [add]
+     *
      */
     @FXML
     private void initialize() {
+<<<<<<< Updated upstream
         newGameImage.hoverProperty().addListener(createHoverListener(newGameImage));
         loadGameImage.hoverProperty().addListener(createHoverListener(loadGameImage));
         exitImage.hoverProperty().addListener(createHoverListener(exitImage));
@@ -63,6 +64,15 @@ public class MenuController {
         motdTextBox.setVisible(false);
         gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
 
+=======
+        // button animation
+        newGameImage.hoverProperty().addListener(animateButton(newGameImage));
+        loadGameImage.hoverProperty().addListener(animateButton(loadGameImage));
+        exitImage.hoverProperty().addListener(animateButton(exitImage));
+
+        // [add]
+        gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
+>>>>>>> Stashed changes
     }
 
     @FXML
@@ -95,12 +105,12 @@ public class MenuController {
             throw new RuntimeException(e);
         }
     }
-    /**
-     * [add]
-     * @param img
-     * @return
+    /** [draft]
+     * Animates button when applicable.
+     * @param img the button to be animated
+     * @return rotated/unrotated button depending on situation
      */
-    private static ChangeListener<Boolean> createHoverListener(ImageView img) {
+    private static ChangeListener<Boolean> animateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
