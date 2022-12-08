@@ -1,7 +1,9 @@
 package com.group38.prisonbreak;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -85,4 +87,31 @@ public class Constants {
      * Int that represents left direction
      */
     public static final int LEFT_ID = 3;
+
+    public static final ArrayList<KeyCode> UP_KEYS = new ArrayList<>() {{
+        add(KeyCode.UP);
+        add(KeyCode.W);
+    }};
+
+    public static final ArrayList<KeyCode> RIGHT_KEYS = new ArrayList<>() {{
+        add(KeyCode.RIGHT);
+        add(KeyCode.D);
+    }};
+
+    public static final ArrayList<KeyCode> DOWN_KEYS = new ArrayList<>() {{
+        add(KeyCode.DOWN);
+        add(KeyCode.S);
+    }};
+
+    public static final ArrayList<KeyCode> LEFT_KEYS = new ArrayList<>() {{
+        add(KeyCode.LEFT);
+        add(KeyCode.A);
+    }};
+
+    public static final ArrayList<KeyCode> MOVEMENT_KEYS = new ArrayList<>() {{
+        addAll(UP_KEYS);
+        addAll(RIGHT_KEYS);
+        addAll(DOWN_KEYS);
+        addAll(LEFT_KEYS);
+    }};
 }
