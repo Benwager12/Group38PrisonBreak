@@ -68,7 +68,7 @@ public class Game extends Application {
             case "profile" -> new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
             case "load" -> new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
             case "mainMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
-            case "levelMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/level-menu-draft.fxml"));
+            case "levelMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/level-menu.fxml"));
             case "leaderboard" -> new FXMLLoader(FileUtilities.getResource("fxml/leaderboard.fxml"));
             default -> null;
         };
