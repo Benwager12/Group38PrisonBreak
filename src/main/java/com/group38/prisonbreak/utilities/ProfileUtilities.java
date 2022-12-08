@@ -5,6 +5,7 @@ import com.group38.prisonbreak.Profile;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -104,6 +105,18 @@ public class ProfileUtilities {
             }
         }
         return 0;
+    }
+
+    /**
+     * Gets a hashmap of Profile id's to profile names
+     * @return Hashmap of id's to profiles
+     */
+    public static HashMap<Integer, String> getProfileMap() {
+        HashMap<Integer, String> playerHashMap = new HashMap<>();
+        for (Profile profile : PROFILES) {
+            playerHashMap.put(profile.getId(), profile.getName());
+        }
+        return playerHashMap;
     }
 
     private static Profile getProfileFromId(int id) {
