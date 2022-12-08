@@ -43,24 +43,29 @@ public class LevelMenuController {
     @FXML
     private void initialize() {
         // button animation
-        level1Button.hoverProperty().addListener(animateButton(level1Button));
-        level2Button.hoverProperty().addListener(animateButton(level2Button));
-        level3Button.hoverProperty().addListener(animateButton(level3Button));
-        level4Button.hoverProperty().addListener(animateButton(level4Button));
-        level5Button.hoverProperty().addListener(animateButton(level5Button));
-        level6Button.hoverProperty().addListener(animateButton(level6Button));
-        level7Button.hoverProperty().addListener(animateButton(level7Button));
-        level8Button.hoverProperty().addListener(animateButton(level8Button));
+        ImageView[] buttons = new ImageView[]{level1Button, level2Button, level3Button,
+                level4Button, level5Button, level6Button, level7Button, level8Button};
+
+        for (ImageView b : buttons) {
+            b.hoverProperty().addListener(animateButton(b));
+        }
     }
 
     /**
      * [add]
+     *
      * @param e
      */
     @FXML
     private void levelSelected(MouseEvent e) {
-            GameManager.level = FileUtilities.readLevel("6");
+        if (!(e.getSource() instanceof ImageView iv)) {
+            return;
+        }
+        String buttonId = iv.getId();
+        String levelNumber = buttonId.substring(5, buttonId.length() - 6);
+        FileUtilities.getGameInstance().setRoot("load" + levelNumber);
     }
+
 
     /**
      * Animates button when applicable.

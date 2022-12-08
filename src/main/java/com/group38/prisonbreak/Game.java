@@ -1,5 +1,6 @@
 package com.group38.prisonbreak;
 
+import com.group38.prisonbreak.controllers.LevelController;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.LeaderboardUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
@@ -56,11 +57,17 @@ public class Game extends Application {
         LeaderboardUtilities.initialise();
     }
 
-    public static void setRoot(String paneType) {
+    public void setRoot(String paneType) {
+
+        if(paneType.startsWith("load")) {
+            GameManager.level = FileUtilities.readLevel(Integer.parseInt(paneType.substring(4)));
+            paneType = paneType.substring(0, paneType.length() - 1);
+        }
         FXMLLoader loader = switch (paneType) {
             case "profile" -> new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
             case "load" -> new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
             case "mainMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
+            case "levelMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/level-menu-draft.fxml"));
             default -> null;
         };
         assert loader != null;
