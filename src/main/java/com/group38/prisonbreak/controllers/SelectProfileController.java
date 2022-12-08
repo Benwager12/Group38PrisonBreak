@@ -3,6 +3,7 @@ package com.group38.prisonbreak.controllers;
 import com.group38.prisonbreak.Profile;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -12,6 +13,14 @@ import javafx.scene.layout.StackPane;
 import java.util.Arrays;
 
 public class SelectProfileController {
+    private static final double ORIGINAL_BUTTON_ROTATION = 0;
+    private static final double MODIFIED_BUTTON_ROTATION = 1.7;
+
+    @FXML
+    private ImageView homeImage;
+
+    @FXML
+    private ImageView crossImage;
 
     @FXML
     public ImageView leftArrowButton;
@@ -52,6 +61,8 @@ public class SelectProfileController {
     @FXML
     public void initialize() {
         displayProfiles();
+        homeImage.hoverProperty().addListener(rotateButton(homeImage));
+        crossImage.hoverProperty().addListener(rotateButton(crossImage));
     }
 
 
@@ -121,5 +132,31 @@ public class SelectProfileController {
         Profile profile = ProfileUtilities.getProfiles()[selectNumber];
         System.out.printf("Name: %s%n", profile.getName());
         FileUtilities.getGameInstance().setRoot("levelMenu");
+    }
+
+    @FXML
+    private void homeClicked(MouseEvent actionEvent) {
+        FileUtilities.getGameInstance().setRoot("mainMenu");
+    }
+
+    @FXML
+    private void crossClicked(MouseEvent click) {
+        click.consume();
+        System.exit(0);
+    }
+
+    /**
+     * Rotates button when applicable.
+     * @param img the button to be rotated
+     * @return rotated/unrotated button depending on situation
+     */
+    private static ChangeListener<Boolean> rotateButton(ImageView img) {
+        return (observable, oldValue, newValue) -> {
+            if (observable.getValue()) {
+                img.setRotate(MODIFIED_BUTTON_ROTATION);
+            } else {
+                img.setRotate(ORIGINAL_BUTTON_ROTATION);
+            }
+        };
     }
 }

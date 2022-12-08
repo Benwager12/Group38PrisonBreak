@@ -10,16 +10,6 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: black; -fx-border-width: 25;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.SelectProfileController">
-   <top>
-      <ImageView fitHeight="122.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../images/Menus/SelectProfileLabel.png" />
-         </image>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </ImageView>
-   </top>
    <center>
       <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -121,4 +111,37 @@
          </image>
       </ImageView>
    </right>
+   <top>
+      <BorderPane prefHeight="79.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+         <left>
+            <ImageView fitHeight="122.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../images/Menus/SelectProfileLabel.png" />
+               </image>
+            </ImageView>
+         </left>
+         <right>
+            <HBox prefHeight="89.0" prefWidth="131.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@../images/Menus/HomeButton.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="106.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@../images/Menus/CrossButton.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </right>
+      </BorderPane>
+   </top>
 </BorderPane>
