@@ -82,7 +82,6 @@ public class TileTree {
         visitedPositions = new ArrayList<>();
         String path = searchPathsRecursive(startingTileNode, "");
 
-        // TODO: Do something with path
         System.out.println("Shortest Path: " + path);
 
         return path;
@@ -90,9 +89,11 @@ public class TileTree {
 
     private String searchPathsRecursive(TileNode root, String path) {
         if (root.hasItem()) {
-            System.out.println(path);
+            System.out.println(path + " " + root.getXPos() + " " + root.getYPos());
             return path;
         }
+
+        System.out.println(path);
 
         String upPath = "";
         String downPath = "";
@@ -107,27 +108,11 @@ public class TileTree {
         int[] newPositionRight = GameManager.level.moveTo(rootXPos, rootYPos, Constants.RIGHT_ID);
         int[] newPositionLeft = GameManager.level.moveTo(rootXPos, rootYPos, Constants.LEFT_ID);
 
-        if (newPositionUp[1] != rootYPos && notPreviouslyVisited(newPositionUp)) {
-            TileNode upNode = createTileNode(newPositionUp);
-            root.setUpTile(upNode);
-
-            visitedPositions.add(newPositionUp);
-
-            upPath = searchPathsRecursive(upNode, path + Constants.UP_ID);
-        }
-
-        if (newPositionDown[1] != rootYPos && notPreviouslyVisited(newPositionDown)) {
-            TileNode downNode = createTileNode(newPositionDown);
-            root.setDownTile(downNode);
-
-            visitedPositions.add(newPositionDown);
-
-            downPath = searchPathsRecursive(downNode, path + Constants.DOWN_ID);
-        }
 
         if (newPositionLeft[0] != rootXPos && notPreviouslyVisited(newPositionLeft)) {
             TileNode leftNode = createTileNode(newPositionLeft);
             root.setLeftTile(leftNode);
+            System.out.println("LEFT");
 
             visitedPositions.add(newPositionLeft);
 
@@ -137,12 +122,32 @@ public class TileTree {
         if (newPositionRight[0] != rootXPos && notPreviouslyVisited(newPositionRight)) {
             TileNode rightNode = createTileNode(newPositionRight);
             root.setRightTile(rightNode);
+            System.out.println("RIGHT");
 
             visitedPositions.add(newPositionDown);
 
             rightPath = searchPathsRecursive(rightNode, path + Constants.RIGHT_ID);
         }
 
+        if (newPositionUp[1] != rootYPos && notPreviouslyVisited(newPositionUp)) {
+            TileNode upNode = createTileNode(newPositionUp);
+            root.setUpTile(upNode);
+            System.out.println("UP");
+
+            visitedPositions.add(newPositionUp);
+
+            upPath = searchPathsRecursive(upNode, path + Constants.UP_ID);
+        }
+
+        if (newPositionDown[1] != rootYPos && notPreviouslyVisited(newPositionDown)) {
+            TileNode downNode = createTileNode(newPositionDown);
+            root.setDownTile(downNode);
+            System.out.println("DOWN");
+
+            visitedPositions.add(newPositionDown);
+
+            downPath = searchPathsRecursive(downNode, path + Constants.DOWN_ID);
+        }
         return findSmallestPath(new String[]{upPath, rightPath, downPath, leftPath});
     }
 
