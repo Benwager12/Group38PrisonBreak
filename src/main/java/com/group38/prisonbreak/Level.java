@@ -475,4 +475,8 @@ public class Level implements Drawable {
     public void openGate(int gateColour) {
         gatesOpen.put(gateColour, true);
     }
+
+    public boolean wontSetOffBomb(int posX, int posY) {
+        return !(getTile(posX, posY).getItem() instanceof Bomb);
+    }
 }
