@@ -72,7 +72,7 @@ public class MenuController {
 
     @FXML
     private void loadGameClicked(MouseEvent actionEvent){
-        FileUtilities.getGameInstance().setRoot("load");
+        FileUtilities.getGameInstance().setRoot("levelMenu");
     }
 
     @FXML
