@@ -189,6 +189,14 @@ public class ProfileUtilities {
     }
 
     /**
+     * Gets the number of profiles
+     * @return int amount of profiles
+     */
+    public static int getNoProfiles() {
+        return PROFILES.size();
+    }
+
+    /**
      * Saves the current stored Profile classes in Profile.txt
      * NOTE: THIS WILL OVERRIDE EVERYTHING THAT'S CURRENTLY IN PROFILE.TXT
      */
