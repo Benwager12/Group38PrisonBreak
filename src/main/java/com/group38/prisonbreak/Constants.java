@@ -65,4 +65,24 @@ public class Constants {
         put(4, Color.rgb(41, 255, 254, .25));  // Cyan
         put(5, Color.rgb(253, 5, 253, .25));  // Magenta
     }};
+
+    /**
+     * Int that represents up direction
+     */
+    public static final int UP_ID = 0;
+
+    /**
+     * Int that represents right direction
+     */
+    public static final int RIGHT_ID = 1;
+
+    /**
+     * Int that represents down direction
+     */
+    public static final int DOWN_ID = 2;
+
+    /**
+     * Int that represents left direction
+     */
+    public static final int LEFT_ID = 3;
 }

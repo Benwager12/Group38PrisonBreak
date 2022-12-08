@@ -17,7 +17,7 @@ public class MenuTester extends Application {
 
     public void start(Stage primaryStage) {
         FileUtilities.setMenuInstance(this);
-        FXMLLoader loader = new FXMLLoader(FileUtilities.getMenuResource("fxml/start-menu.fxml"));
+        FXMLLoader loader = new FXMLLoader(FileUtilities.getMenuResource("fxml/level-menu-draft.fxml"));
 
         Pane root = null;
         try {

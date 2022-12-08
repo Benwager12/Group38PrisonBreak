@@ -48,20 +48,31 @@ public class MenuController {
     @FXML
     private Text motdTextBox;
 
-    public static Timeline motdTimeline;
     private static String message;
 
     /**
-     * [add]
+     *
      */
     @FXML
     private void initialize() {
+<<<<<<< Updated upstream
         newGameImage.hoverProperty().addListener(createHoverListener(newGameImage));
         loadGameImage.hoverProperty().addListener(createHoverListener(loadGameImage));
         exitImage.hoverProperty().addListener(createHoverListener(exitImage));
+        motdSpeechBubble.setVisible(false);
+        motdTitle.setVisible(false);
+        motdTextBox.setVisible(false);
         gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
 
+=======
+        // button animation
+        newGameImage.hoverProperty().addListener(animateButton(newGameImage));
+        loadGameImage.hoverProperty().addListener(animateButton(loadGameImage));
+        exitImage.hoverProperty().addListener(animateButton(exitImage));
 
+        // [add]
+        gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
+>>>>>>> Stashed changes
     }
 
     @FXML
@@ -78,23 +89,9 @@ public class MenuController {
     private void exitLevel(MouseEvent actionEvent) {
         actionEvent.consume();
         System.exit(0);
+        //Needs to save info to file
     }
 
-    /**
-     * Sets all the cycles for the tick timelines
-     */
-    public void initTimelines() {
-        motdTimeline.setCycleCount(Animation.INDEFINITE);
-        playTimeLines();
-        motdTimeline = new Timeline(new KeyFrame(Duration.millis(10), event -> printMOTD()));
-    }
-
-    /**
-     * starts and plays the timelines
-     */
-    public static void playTimeLines(){
-        motdTimeline.play();
-    }
 
     @FXML
     private void printMOTD(){
@@ -102,23 +99,18 @@ public class MenuController {
         try {
             message = motd.getMessageOfTheDay();
             motdTextBox.setText(message);
-            //initTimelines();
-            Scanner scan = new Scanner(message);
-            for(int i = 0; i <message.length(); i++){
-
-            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) { //This was suggested by intellj ???
             throw new RuntimeException(e);
         }
     }
-    /**
-     * [add]
-     * @param img
-     * @return
+    /** [draft]
+     * Animates button when applicable.
+     * @param img the button to be animated
+     * @return rotated/unrotated button depending on situation
      */
-    private static ChangeListener<Boolean> createHoverListener(ImageView img) {
+    private static ChangeListener<Boolean> animateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
@@ -128,7 +120,11 @@ public class MenuController {
         };
     }
     private ChangeListener<Boolean> startMOTDListener(ImageView img) {
+        motdTitle.setVisible(true);
+        motdTextBox.setVisible(true);
+        motdSpeechBubble.setVisible(true);
         return (observable, oldValue, newValue) -> printMOTD();
+
         };
     }
 

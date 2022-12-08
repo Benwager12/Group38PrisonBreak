@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Scanner;
 
 
 /** This class fetches the Message of the day from CSWEBCAT.SWANSEA.AC.UK using HTTP GET Requests.
@@ -106,11 +107,20 @@ public class MOTD {
         HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
 
         String finalMessage = response.body();
-
-        //System.out.println(finalMessage);
-        return finalMessage;
+        return removeDateTime(finalMessage);
     }
 
+    /**
+     * Removes date and time from MoTD
+     * @param finalMessage message of the day
+     * @return message without date
+     */
+    public static String removeDateTime(String finalMessage) {
+        Scanner in = new Scanner(finalMessage);
+        //stop by braces as date documentation starts with brace
+        in.useDelimiter("\\(");
+        return in.next();
+    }
 
 }
 
