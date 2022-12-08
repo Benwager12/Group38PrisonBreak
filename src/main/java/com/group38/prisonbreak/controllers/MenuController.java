@@ -50,9 +50,6 @@ public class MenuController {
 
     private static String message;
 
-    /**
-     *
-     */
     @FXML
     private void initialize() {
         // button animation
@@ -66,7 +63,6 @@ public class MenuController {
         motdTitle.setVisible(false);
         motdTextBox.setVisible(false);
         gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
-
     }
 
     @FXML

@@ -42,6 +42,7 @@ public class LevelMenuController {
 
     @FXML
     private void initialize() {
+        // button animation
         level1Button.hoverProperty().addListener(animateButton(level1Button));
         level2Button.hoverProperty().addListener(animateButton(level2Button));
         level3Button.hoverProperty().addListener(animateButton(level3Button));
@@ -61,6 +62,11 @@ public class LevelMenuController {
             GameManager.level = FileUtilities.readLevel("6");
     }
 
+    /**
+     * Animates button when applicable.
+     * @param img the button to be animated
+     * @return enlarged/usual button depending on situation
+     */
     private static ChangeListener<Boolean> animateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
