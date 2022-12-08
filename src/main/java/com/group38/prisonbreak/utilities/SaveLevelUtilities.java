@@ -92,7 +92,6 @@ public class SaveLevelUtilities {
         String saveLocation = String.format(LEVEL_SAVE_LOCATION, level.getLevelNumber(), profileId);
         String newSaveLocation = FileUtilities.getResourcePathUnsafe(saveLocation);
         // Creates a file
-        System.out.println(newSaveLocation);
         File saveFile = new File(newSaveLocation);
         boolean isFileCreated = false;
         try {

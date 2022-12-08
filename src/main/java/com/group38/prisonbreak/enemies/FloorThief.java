@@ -26,7 +26,6 @@ public class FloorThief extends Enemy {
 
     @Override
     public void move() {
-        System.out.printf("%d, %d: %d%n", getX(), getY(), getDirection());
         int[] potentialMoveTo = findMove();
 
         setX(potentialMoveTo[0]);
