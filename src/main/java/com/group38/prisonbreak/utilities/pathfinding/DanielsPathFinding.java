@@ -211,26 +211,30 @@ public class DanielsPathFinding {
         // Creates an instance on TileNode for that position
         TileNode upNode = new TileNode(newPositionUp[0], newPositionUp[1], currentNode, distance,
                 calculateDistance(newPositionUp[0], newPositionUp[1], itemXPos,itemYPos));
-        // Checks if it hasn't been visited
-        if (newPositionUp[1] != rootYPos && hasNotBeenVisited(upNode)) {
+        // Checks if it hasn't been visited or that it won't set off the bomb
+        if (newPositionUp[1] != rootYPos && hasNotBeenVisited(upNode) &&
+                GameManager.level.wontSetOffBomb(newPositionUp[0], newPositionUp[1])) {
             addNode(upNode);
         }
 
         TileNode downNode = new TileNode(newPositionDown[0], newPositionDown[1], currentNode, distance,
                 calculateDistance(newPositionDown[0], newPositionDown[1], itemXPos,itemYPos));
-        if (newPositionDown[1] != rootYPos && hasNotBeenVisited(downNode)) {
+        if (newPositionDown[1] != rootYPos && hasNotBeenVisited(downNode) &&
+                GameManager.level.wontSetOffBomb(newPositionDown[0], newPositionDown[1])) {
             addNode(downNode);
         }
 
         TileNode rightNode = new TileNode(newPositionRight[0], newPositionRight[1], currentNode, distance,
                 calculateDistance(newPositionRight[0], newPositionRight[1], itemXPos,itemYPos));
-        if (newPositionRight[0] != rootXPos && hasNotBeenVisited(rightNode)) {
+        if (newPositionRight[0] != rootXPos && hasNotBeenVisited(rightNode) &&
+                GameManager.level.wontSetOffBomb(newPositionRight[0], newPositionRight[1])) {
            addNode(rightNode);
         }
 
         TileNode leftNode = new TileNode(newPositionLeft[0], newPositionLeft[1], currentNode, distance,
                 calculateDistance(newPositionLeft[0], newPositionLeft[1], itemXPos,itemYPos));
-        if (newPositionLeft[0] != rootXPos && hasNotBeenVisited(leftNode)) {
+        if (newPositionLeft[0] != rootXPos && hasNotBeenVisited(leftNode) &&
+                GameManager.level.wontSetOffBomb(newPositionLeft[0], newPositionLeft[1])) {
             addNode(leftNode);
         }
         // Recursively calls function again, incrementing one
