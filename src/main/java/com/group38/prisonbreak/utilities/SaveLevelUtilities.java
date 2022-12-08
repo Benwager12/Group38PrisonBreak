@@ -33,7 +33,7 @@ public class SaveLevelUtilities {
     }};
 
     // File name formula for the levels
-    private static final String LEVEL_SAVE_LOCATION = "data/saves/Level%d%d.level";
+    public static final String LEVEL_SAVE_LOCATION = "data/saves/%d_%d.level";
 
     // New line string
     private static final String NEW_LINE = "\n";

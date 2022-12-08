@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -28,6 +29,8 @@ public class FileUtilities {
     private static Game gameInstance;
 
     private static final int MAX_LEVEL_TIME = 300;
+
+    private static final String LEVELS_PATH = "levels/%d.level";
 
     //ADDED FOR MENU TESTER
     private static MenuTester menuInstance;
@@ -66,9 +69,17 @@ public class FileUtilities {
         FileUtilities.profileInstance = profileInstance;
     }
 
-    public static Level readLevel(String levelName) {
-        String levelPath = getResourcePath(String.format("levels/%s.level", levelName));
+    public static Level readLevel(int levelName, int profileId) {
+        return readLevel(getResourcePathUnsafe(
+                String.format(SaveLevelUtilities.LEVEL_SAVE_LOCATION, levelName, profileId))
+        );
+    }
 
+    public static Level readLevel(int levelName) {
+        return readLevel(getResourcePath(String.format(LEVELS_PATH, levelName)));
+    }
+
+    public static Level readLevel(String levelPath) {
         if (System.getProperty("os.name").equals("Mac OS X")) {
             levelPath = "/" + levelPath;
         }
@@ -83,8 +94,17 @@ public class FileUtilities {
             System.exit(-1);
         }
 
+        System.out.println(levelPath);
         // This is the level data
-        return readInfo(scanner, Integer.parseInt(levelName));
+        int levelNumber;
+        if (levelPath.contains("saves")) {
+            levelNumber = Integer.parseInt(levelPath.split("_")[0]);
+        } else {
+            String[] splitBySlash = levelPath.split("/");
+            String levelFileName = splitBySlash[splitBySlash.length - 1];
+            levelNumber = Integer.parseInt(levelFileName.substring(0, levelFileName.length() - 6));
+        }
+        return readInfo(scanner, levelNumber);
     }
 
     public static URL getResource(String path) {
