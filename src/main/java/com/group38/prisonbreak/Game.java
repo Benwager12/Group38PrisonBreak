@@ -1,6 +1,5 @@
 package com.group38.prisonbreak;
 
-import com.group38.prisonbreak.controllers.LevelController;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.LeaderboardUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
@@ -26,10 +25,11 @@ public class Game extends Application {
     public void start(Stage primaryStage) {
 
         Game.primaryStage = primaryStage;
-        FileUtilities.setGameInstance(this);
 
+        FileUtilities.setGameInstance(this);
+        ProfileUtilities.initialise();
         try {
-            FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
+            FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/Select-Profile.fxml"));
             root = mainMenuLoader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -52,7 +52,7 @@ public class Game extends Application {
         Game.primaryStage.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
 
         // Initialize Profiles
-        ProfileUtilities.initialise();
+
 
         // Initialize Leaderboard
         LeaderboardUtilities.initialise();
