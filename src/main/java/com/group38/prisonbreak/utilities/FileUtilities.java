@@ -113,6 +113,11 @@ public class FileUtilities {
         }
     }
 
+    public static String getResourcePathUnsafe(String path) {
+        String lvl = getResourcePath("levels/1.level");
+        return lvl.substring(0, lvl.length() - 14) + path;
+    }
+
     public static String getResourcePath(String path) {
         String uri = getResourceURI(path);
         assert uri != null;
