@@ -62,6 +62,7 @@ public class SmartThief extends Enemy {
 
     @Override
     public void move() {
+        /*
         if (positionsToItem.size() > 0) {
             super.setX(positionsToItem.get(0)[0]);
             super.setY(positionsToItem.get(0)[1]);
@@ -70,6 +71,8 @@ public class SmartThief extends Enemy {
             String path = tileTree.searchPaths(super.getX(), super.getY());
             calculatePath(path);
         }
+
+         */
     }
 
     @Override
