@@ -12,7 +12,7 @@
    <center>
       <VBox prefHeight="137.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="766.0">
+            <HBox alignment="CENTER" minHeight="130.0" prefHeight="52.0" prefWidth="766.0">
                <children>
                   <StackPane>
                      <children>

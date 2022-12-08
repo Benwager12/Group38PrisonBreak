@@ -62,7 +62,6 @@ public class GameManager {
         entityTimeLine.play();
         smartThiefTimeLine.play();
         timeTimeLine.play();
-        playerTimeLine.play();
     }
 
     /**
@@ -107,9 +106,16 @@ public class GameManager {
         // TODO: End the game when the player goes through the door
     }
 
+    /**
+     * Exists the game and saves profile and level data
+     */
     public static void exitGame() {
         ProfileUtilities.saveProfiles();
-        SaveLevelUtilities.saveLevel(currentProfileId, level);
+
+        if (level != null) {
+            SaveLevelUtilities.saveLevel(currentProfileId, level);
+        }
+        System.exit(0);
     }
 
     public static void processKeyEvent(KeyEvent event) {
@@ -119,9 +125,23 @@ public class GameManager {
             }
 
             currentlyPressed.add(event.getCode());
+            if (playerTimeLine.getStatus() != Animation.Status.RUNNING &&
+                    Constants.MOVEMENT_KEYS.contains(event.getCode())) {
+
+                playerTimeLine.play();
+            }
         }
-        if (event.getEventType() == KeyEvent.KEY_RELEASED) {
+        if (event.getEventType() == KeyEvent.KEY_RELEASED &&
+                Constants.MOVEMENT_KEYS.contains(event.getCode())) {
             currentlyPressed.remove(event.getCode());
+            playerTimeLine.pause();
+
+            for (KeyCode kc : currentlyPressed) {
+                if (Constants.MOVEMENT_KEYS.contains(kc)) {
+                    playerTimeLine.play();
+                    break;
+                }
+            }
         }
     }
 

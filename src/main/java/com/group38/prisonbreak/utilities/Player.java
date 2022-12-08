@@ -1,6 +1,7 @@
 package com.group38.prisonbreak.utilities;
 
 import com.group38.prisonbreak.GameManager;
+import javafx.scene.input.KeyCode;
 
 import java.io.File;
 import java.util.HashMap;
@@ -35,6 +36,27 @@ public class Player extends Entity {
 
     @Override
     public void move() {
+        for (KeyCode c : GameManager.currentlyPressed) {
+            if (c == KeyCode.UP || c == KeyCode.W) {
+                setDirection(0);
+                break;
+            } else if (c == KeyCode.RIGHT || c == KeyCode.D) {
+                setDirection(1);
+                break;
+            } else if (c == KeyCode.DOWN || c == KeyCode.S) {
+                setDirection(2);
+                break;
+            } else if (c == KeyCode.LEFT || c == KeyCode.A) {
+                setDirection(3);
+                break;
+            } else if (c == KeyCode.K) {
+                System.out.println(GameManager.level.isGateOpen(4));
+                break;
+            } else if (c == KeyCode.F) {
+                GameManager.saveGame();
+            }
+        }
+
         int[] newPos = GameManager.level.moveTo(super.getX(), super.getY(), super.getDirection());
         super.setX(newPos[0]);
         super.setY(newPos[1]);

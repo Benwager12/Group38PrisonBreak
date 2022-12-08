@@ -12,7 +12,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -48,7 +47,7 @@ public class LevelController {
         };
         GameManager.entityTimeLine = new Timeline(new KeyFrame(Duration.millis(500), event -> moveEntities()));
         GameManager.smartThiefTimeLine = new Timeline(new KeyFrame(Duration.millis(1250), event -> moveSmartThief()));
-        GameManager.playerTimeLine = new Timeline(new KeyFrame(Duration.millis(350), event -> movePlayer()));
+        GameManager.playerTimeLine = new Timeline(new KeyFrame(Duration.millis(350), event -> movePlayerTick()));
         GameManager.timeTimeLine = new Timeline(new KeyFrame(Duration.millis(1000), event -> changeTime()));
         mainPane.heightProperty().addListener(paneSizeChange);
         mainPane.widthProperty().addListener(paneSizeChange);
@@ -126,32 +125,12 @@ public class LevelController {
         }
     }
 
-    private void movePlayer() {
+    private void movePlayerTick() {
         if (GameManager.level != null) {
-            Entity player = GameManager.level.getPlayer();
-            for (KeyCode c : GameManager.currentlyPressed) {
-                if (c == KeyCode.UP || c == KeyCode.W) {
-                    player.move(0);
-                    break;
-                } else if (c == KeyCode.RIGHT || c == KeyCode.D) {
-                    player.move(1);
-                    break;
-                } else if (c == KeyCode.DOWN || c == KeyCode.S) {
-                    player.move(2);
-                    break;
-                } else if (c == KeyCode.LEFT || c == KeyCode.A) {
-                    player.move(3);
-                    break;
-                } else if (c == KeyCode.K) {
-                    System.out.println(GameManager.level.isGateOpen(4));
-                }
-            }
-
+            GameManager.level.getPlayer().move();
             GameManager.level.draw(g);
         }
         scoreNumberLabel.setText(String.valueOf(GameManager.money));
-
-
     }
 
     /**
