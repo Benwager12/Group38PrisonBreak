@@ -55,16 +55,6 @@ public class MenuController {
      */
     @FXML
     private void initialize() {
-<<<<<<< Updated upstream
-        newGameImage.hoverProperty().addListener(createHoverListener(newGameImage));
-        loadGameImage.hoverProperty().addListener(createHoverListener(loadGameImage));
-        exitImage.hoverProperty().addListener(createHoverListener(exitImage));
-        motdSpeechBubble.setVisible(false);
-        motdTitle.setVisible(false);
-        motdTextBox.setVisible(false);
-        gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
-
-=======
         // button animation
         newGameImage.hoverProperty().addListener(animateButton(newGameImage));
         loadGameImage.hoverProperty().addListener(animateButton(loadGameImage));
@@ -72,7 +62,11 @@ public class MenuController {
 
         // [add]
         gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
->>>>>>> Stashed changes
+        motdSpeechBubble.setVisible(false);
+        motdTitle.setVisible(false);
+        motdTextBox.setVisible(false);
+        gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
+
     }
 
     @FXML
