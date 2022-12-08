@@ -113,9 +113,9 @@
             </HBox>
          </center>
          <left>
-            <ImageView fx:id="gateImage" fitHeight="426.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="gateImage" fitHeight="426.0" fitWidth="308.0" onMouseClicked="#tempLeaderboardClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../images/Menus/jailcell%20with%20head.png" />
+                  <Image url="@../images/Menus/jailcell with head.png" />
                </image>
             </ImageView>
          </left>

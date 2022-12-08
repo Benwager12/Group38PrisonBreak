@@ -24,6 +24,7 @@ public class Game extends Application {
     private static Stage primaryStage = null;
 
     public void start(Stage primaryStage) {
+
         Game.primaryStage = primaryStage;
         FileUtilities.setGameInstance(this);
 
@@ -68,6 +69,7 @@ public class Game extends Application {
             case "load" -> new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
             case "mainMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
             case "levelMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/level-menu-draft.fxml"));
+            case "leaderboard" -> new FXMLLoader(FileUtilities.getResource("fxml/leaderboard.fxml"));
             default -> null;
         };
         assert loader != null;
