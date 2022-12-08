@@ -2,100 +2,75 @@ package com.group38.prisonbreak.utilities.pathfinding;
 
 /**
  * Implements a Node for the Tile Tree
- * @author Daniel Banks
+ * @author Daniel Banks (2107922)
  */
 public class TileNode {
 
-    // X position of the tile
+    // Parent Node
+    private final TileNode previousNode;
+
+    // X Position of the tile
     private final int xPos;
 
-    // Y position of the tile
+    // Y Position of the tile
     private final int yPos;
 
-    // If the Tile has an item
-    private final boolean hasItem;
+    // Distance from the root
+    private final int distanceFromRoot;
 
-    // TileNode for the left direction
-    private TileNode leftTile;
-
-    // TileNode for the right direction
-    private TileNode rightTile;
-
-    // TileNode for the up direction
-    private TileNode upTile;
-
-    // Tile for the down direction
-    private TileNode downTile;
+    // Distance to the item
+    private final double distanceToItem;
 
     /**
-     * Creates an instance of a TileNode
-     * @param xPos X position of the Tile it represents
-     * @param yPos Y position of the Tile it represents
-     * @param hasItem If the Tile it represents has and item
+     * Creates an instance of TileNode to represent the Tile as a "node"
+     * @param x X Position of the tile
+     * @param y Y Position of the tile
+     * @param previousNode Parent Node
+     * @param distanceFromRoot Distance from the start point to this node
+     * @param distanceToItem Straight line distance from the node to the item
      */
-    public TileNode(int xPos, int yPos, boolean hasItem) {
-        this.xPos = xPos;
-        this.yPos = yPos;
-        this.hasItem = hasItem;
+    public TileNode(int x, int y, TileNode previousNode, int distanceFromRoot, double distanceToItem) {
+        this.previousNode = previousNode;
+        this.distanceFromRoot = distanceFromRoot;
+        this.xPos = x;
+        this.yPos = y;
+        this.distanceToItem = distanceToItem;
     }
 
     /**
-     * Sets left Tile
-     * @param leftTile TileNode that's on the left direction of the tile
+     * Gets the 'weight' of a node
+     * Weight represents how close the node is to the item or the cost to start at that tile
+     * The lower, the better
+     * Higher weight means it's not worth as much to look at, and it's more of a last resort
+     *
+     * Calcluated by adding distance from root to distance to item
+     * @return double 'Weight' of the tile
      */
-    public void setLeftTile(TileNode leftTile) {
-        this.leftTile = leftTile;
+    public double getTotalWeight() {
+        return  distanceFromRoot + distanceToItem;
     }
 
     /**
-     * Sets the right Tile
-     * @param rightTile TileNode that's on the right direction of the tile
+     * Gets the X position of the tile
+     * @return int X position
      */
-    public void setRightTile(TileNode rightTile) {
-        this.rightTile = rightTile;
-    }
-
-    /**
-     * Sets the up Tile
-     * @param upTile TileNode that's on the up direction of the tile
-     */
-    public void setUpTile(TileNode upTile) {
-        this.upTile = upTile;
-    }
-
-    /**
-     * Sets the down Tile
-     * @param downTile TileNode that's on the up direction of the tile
-     */
-    public void setDownTile(TileNode downTile) {
-        this.downTile = downTile;
-    }
-
-    public TileNode getUpTile() {
-        return upTile;
-    }
-
-    public TileNode getDownTile() {
-        return downTile;
-    }
-
-    public TileNode getLeftTile() {
-        return leftTile;
-    }
-
-    public TileNode getRightTile() {
-        return rightTile;
-    }
-
     public int getXPos() {
         return xPos;
     }
 
+    /**
+     * Gets the Y position of the tile
+     * @return int Y position
+     */
     public int getYPos() {
         return yPos;
     }
 
-    public boolean hasItem() {
-        return hasItem;
+    /**
+     * Gets the previous node
+     * @return TileNode previous Node
+     */
+    public TileNode getPreviousNode() {
+        return previousNode;
     }
 }

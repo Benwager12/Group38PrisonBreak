@@ -1,12 +1,10 @@
 package com.group38.prisonbreak.enemies;
 
-import com.group38.prisonbreak.Constants;
 import com.group38.prisonbreak.utilities.Enemy;
-import com.group38.prisonbreak.utilities.pathfinding.TileTree;
+import com.group38.prisonbreak.utilities.pathfinding.DanielsPathFinding;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 
 /**
  * Implements a Smart Thief in the game
@@ -15,7 +13,7 @@ import java.util.ConcurrentModificationException;
 public class SmartThief extends Enemy {
 
     // Class to find and search for items on the level
-    private final TileTree tileTree = new TileTree();
+    private final DanielsPathFinding searchFinding = new DanielsPathFinding();
 
     // ArrayList of moves to get to the closest item
     private final ArrayList<int[]> positionsToItem = new ArrayList<>();
@@ -31,48 +29,22 @@ public class SmartThief extends Enemy {
         setEntityImage("Guard 1");
     }
 
-    /**
-     * Calculates a path from a given string of directionIds
-     * @param path String of directionIds
-     */
-    private void calculatePath(String path) {
-        int posX = super.getX();
-        int posY = super.getY();
-
-        for (char direction : path.toCharArray()) {
-            int directionId = Character.getNumericValue(direction);
-
-            // Checks if direction is Up/Down (X)
-            boolean isX = directionId == Constants.LEFT_ID || directionId == Constants.RIGHT_ID;
-            // Checks if direcltion is negative (Up/Left)
-            boolean isNegative = directionId == Constants.UP_ID || directionId == Constants.LEFT_ID;
-
-            // X Position of the next Tile (Based on Direction)
-            int newX = isX ? posX + (isNegative ? -1 : 1) : posX;
-            // Y Position of the next Tile (Based on Direction)
-            int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
-
-            positionsToItem.add(new int[] {newX, newY});
-
-
-            posX = newX;
-            posY = newY;
-        }
-    }
-
     @Override
     public void move() {
-        /*
+
+        // If there's positions left to move to then change to the first position in the list of moves
         if (positionsToItem.size() > 0) {
             super.setX(positionsToItem.get(0)[0]);
             super.setY(positionsToItem.get(0)[1]);
             positionsToItem.remove(0);
         } else {
-            String path = tileTree.searchPaths(super.getX(), super.getY());
-            calculatePath(path);
+            // Gets the shortest path to an item and adds the list of moves/positions to the Arraylist
+            ArrayList<int[]> path = searchFinding.searchForItems(super.getX(), super.getY());
+            if (path.size() == 0) System.out.println("/");
+            positionsToItem.addAll(path);
         }
+        itemInteract();
 
-         */
     }
 
     @Override
