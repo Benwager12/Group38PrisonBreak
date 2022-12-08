@@ -30,10 +30,11 @@ public class TileTree {
     private static final int NOT_PATH_ERROR_INT = -1;
 
     // String to show node is equal to null
-    private static final String NULL_NODE = "/";
+    // private static final String NULL_NODE = "/";
+    private static final String NULL_NODE = "";
 
     // char to show node is equal to null
-    private static final char NULL_NODE_CHAR = NULL_NODE.charAt(0);
+   private static final char NULL_NODE_CHAR = '/'; //NULL_NODE.charAt(0);
 
     // Starting TileNode / root of the Tree
     private TileNode startingTileNode;
@@ -74,112 +75,73 @@ public class TileTree {
      * @param xPos X position of the start point
      * @param yPos Y position of the start point
      */
-    public void searchPaths(int xPos, int yPos) {
+    public String searchPaths(int xPos, int yPos) {
         startingTileNode = createTileNode(new int[] {xPos, yPos});
         visitedPositions = new ArrayList<>();
         String path = searchPathsRecursive(startingTileNode, "");
 
         // TODO: Do something with path
         System.out.println("Shortest Path: " + path);
+
+        return path;
     }
 
-    /**
-     * Recursively goes through all the tiles looking for an item
-     * Adds direction to path if path leads no where it add {@value #NULL_NODE}
-     * Stores previously visited positions in an ArrayList called visitedPositions to prevent looking at  tile already visited
-     * @param root current root
-     * @param path current path from root to item (Set to "" on first call)
-     * old param visitedPositions ArrayList of previously visited positions
-     * @return Shortest Path from root to item
-     */
     private String searchPathsRecursive(TileNode root, String path) {
-        // Paths for all the possible directions
+        if (root.hasItem()) {
+            System.out.println(path);
+            return path;
+        }
+
         String upPath = "";
-        String rightPath = "";
         String downPath = "";
         String leftPath = "";
+        String rightPath = "";
 
         int rootXPos = root.getXPos();
         int rootYPos = root.getYPos();
 
-        // Gets the next positions of all the possible directions from level.moveTo() function
         int[] newPositionUp = GameManager.level.moveTo(rootXPos, rootYPos, Constants.UP_ID);
-        int[] newPositionRight = GameManager.level.moveTo(rootXPos, rootYPos, Constants.RIGHT_ID);
         int[] newPositionDown = GameManager.level.moveTo(rootXPos, rootYPos, Constants.DOWN_ID);
+        int[] newPositionRight = GameManager.level.moveTo(rootXPos, rootYPos, Constants.RIGHT_ID);
         int[] newPositionLeft = GameManager.level.moveTo(rootXPos, rootYPos, Constants.LEFT_ID);
 
-        /* Checks if new position is not the root's position (Meaning move not possible)...
-         * and position hasn't been visited
-         */
-        if (newPositionUp[1] != rootYPos && !previouslyVisited(newPositionUp)) {
-            TileNode upTileNode = createTileNode(newPositionUp); // Not needed any more maybe TODO: Remove TileNodes
-            root.setUpTile(upTileNode);
+        if (newPositionUp[1] != rootYPos && notPreviouslyVisited(newPositionUp)) {
+            TileNode upNode = createTileNode(newPositionUp);
+            root.setUpTile(upNode);
 
-            // add position to visited Positions
             visitedPositions.add(newPositionUp);
 
-            if (upTileNode.hasItem()) {
-                System.out.println("Path to an item: " + path);
-                return path;
-            } else {
-                /* Recursively calls searchPathsRecursive but as upTileNode as the Root
-                 * Adds Up direction id to the path
-                 */
-                upPath = searchPathsRecursive(upTileNode, path + Constants.UP_ID);
-
-                // If the path isn't valid set path to null
-                if (upPath.charAt(upPath.length() - 1) == NULL_NODE_CHAR) {
-                    upPath = "";
-                }
-            }
+            upPath = searchPathsRecursive(upNode, path + Constants.UP_ID);
         }
 
-        // Repeat process for each direction
-        if (newPositionRight[0] != rootXPos && !previouslyVisited(newPositionRight)) {
-            TileNode rightTileNode = createTileNode(newPositionRight);
-            root.setRightTile(rightTileNode);
-            visitedPositions.add(newPositionRight);
-            if (rightTileNode.hasItem()) {
-                return path;
-            } else {
-                rightPath = searchPathsRecursive(rightTileNode, path + Constants.RIGHT_ID);
-                if (rightPath.charAt(rightPath.length() - 1) == NULL_NODE_CHAR) {
-                    rightPath = "";
-                }
-            }
-        }
+        if (newPositionDown[1] != rootYPos && notPreviouslyVisited(newPositionDown)) {
+            TileNode downNode = createTileNode(newPositionDown);
+            root.setDownTile(downNode);
 
-        if (newPositionDown[1] != rootYPos && !previouslyVisited(newPositionDown)) {
-            TileNode downTileNode = createTileNode(newPositionDown);
-            root.setDownTile(downTileNode);
             visitedPositions.add(newPositionDown);
-            if (downTileNode.hasItem()) {
-                return path;
-            } else {
-                downPath = searchPathsRecursive(downTileNode, path + Constants.DOWN_ID);
-                if (downPath.charAt(downPath.length() - 1) == NULL_NODE_CHAR) {
-                    downPath = "";
-                }
-            }
+
+            downPath = searchPathsRecursive(downNode, path + Constants.DOWN_ID);
         }
 
-        if (newPositionLeft[0] != rootXPos && !previouslyVisited(newPositionLeft)) {
-            TileNode leftTileNode = createTileNode(newPositionLeft);
-            root.setLeftTile(leftTileNode);
+        if (newPositionLeft[0] != rootXPos && notPreviouslyVisited(newPositionLeft)) {
+            TileNode leftNode = createTileNode(newPositionLeft);
+            root.setLeftTile(leftNode);
+
             visitedPositions.add(newPositionLeft);
-            if (leftTileNode.hasItem()) {
-                return path;
-            } else {
-                leftPath = searchPathsRecursive(leftTileNode, path + Constants.LEFT_ID);
-                if (leftPath.charAt(leftPath.length() - 1) == NULL_NODE_CHAR) {
-                    return leftPath;
-                }
-            }
+
+            leftPath = searchPathsRecursive(leftNode, path + Constants.LEFT_ID);
         }
 
-        // Find and return the smallest paths from all the possible paths
-        path = findSmallestPath(upPath, rightPath, downPath, leftPath);
-        return path;
+        if (newPositionRight[0] != rootXPos && notPreviouslyVisited(newPositionRight)) {
+            TileNode rightNode = createTileNode(newPositionRight);
+            root.setRightTile(rightNode);
+
+            visitedPositions.add(newPositionDown);
+
+            rightPath = searchPathsRecursive(rightNode, path + Constants.RIGHT_ID);
+        }
+
+        return findSmallestPath(upPath, rightPath, downPath, leftPath);
     }
 
     /**
@@ -228,13 +190,13 @@ public class TileTree {
      * @param position position to check
      * @return boolean if visited already
      */
-    private boolean previouslyVisited(int[] position) {
+    private boolean notPreviouslyVisited(int[] position) {
         for (int[] previousPosition : visitedPositions) {
             if (previousPosition[0] == position[0] && previousPosition[1] == position[1]) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     /*
