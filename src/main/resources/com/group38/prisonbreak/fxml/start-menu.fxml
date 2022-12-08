@@ -5,110 +5,121 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
-   <center>
-      <HBox alignment="TOP_RIGHT" cache="true" cacheHint="SCALE" prefHeight="412.0" prefWidth="575.0" BorderPane.alignment="TOP_LEFT">
-         <children>
-            <VBox alignment="CENTER" prefHeight="377.0" prefWidth="428.0">
+
+<GridPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;">
+         <center>
+            <HBox alignment="TOP_RIGHT" cache="true" cacheHint="SCALE" prefHeight="412.0" prefWidth="575.0" BorderPane.alignment="TOP_LEFT">
                <children>
-                  <ImageView id="gameLogo" fx:id="gameLogo" fitHeight="128.0" fitWidth="309.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Menus/GameLogo.png" />
-                     </image>
-                  </ImageView>
-                  <StackPane prefHeight="34.0" prefWidth="428.0">
+                  <VBox alignment="CENTER" prefHeight="377.0" prefWidth="428.0">
                      <children>
-                        <ImageView fx:id="newGameImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="170.0" onMouseClicked="#newGameClicked" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="gameLogo" fx:id="gameLogo" fitHeight="128.0" fitWidth="309.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/Menus/NewGameButton.png" />
+                              <Image url="@../images/Menus/GameLogo.png" />
                            </image>
-                           <StackPane.margin>
-                              <Insets top="10.0" />
-                           </StackPane.margin>
                         </ImageView>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </StackPane>
-                  <StackPane prefHeight="33.0" prefWidth="428.0">
-                     <children>
-                        <ImageView fx:id="loadGameImage" accessibleRole="BUTTON" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#loadGameClicked" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/Menus/LoadGameButton.png" />
-                           </image>
-                           <StackPane.margin>
-                              <Insets top="5.0" />
-                           </StackPane.margin>
-                        </ImageView>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </StackPane>
-                  <StackPane prefHeight="39.0" prefWidth="428.0">
-                     <children>
-                        <ImageView fx:id="exitImage" accessibleRole="BUTTON" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#exitLevel" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/Menus/ExitButton.png" />
-                           </image>
-                           <StackPane.margin>
-                              <Insets top="5.0" />
-                           </StackPane.margin>
-                        </ImageView>
-                     </children>
-                  </StackPane>
-                  <StackPane>
-                     <children>
-                        <ImageView fx:id="motdSpeechBubble" fitHeight="252.0" fitWidth="383.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/Menus/SpeechBubble.png" />
-                           </image>
-                           <StackPane.margin>
-                              <Insets top="10.0" />
-                           </StackPane.margin>
-                        </ImageView>
-                        <VBox fx:id="speechBubble" alignment="TOP_CENTER" prefHeight="50.0" prefWidth="408.0">
+                        <StackPane prefHeight="34.0" prefWidth="428.0">
                            <children>
-                              <Text fx:id="motdTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Message of the Day:" wrappingWidth="230.0332055091858">
-                                 <font>
-                                    <Font name="Consolas" size="18.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" top="5.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <Text fx:id="motdTextBox" boundsType="VISUAL" fill="WHITE" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" textOrigin="CENTER" wrappingWidth="281.99999928474426">
-                                 <font>
-                                    <Font name="Consolas Italic" size="15.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="40.0" />
-                                 </VBox.margin>
-                                 <rotationAxis>
-                                    <Point3D />
-                                 </rotationAxis>
-                              </Text>
+                              <ImageView fx:id="newGameImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="170.0" onMouseClicked="#newGameClicked" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/NewGameButton.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets top="10.0" />
+                                 </StackPane.margin>
+                              </ImageView>
                            </children>
-                           <StackPane.margin>
-                              <Insets right="20.0" top="20.0" />
-                           </StackPane.margin>
-                           <opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </StackPane>
+                        <StackPane prefHeight="33.0" prefWidth="428.0">
+                           <children>
+                              <ImageView fx:id="loadGameImage" accessibleRole="BUTTON" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#loadGameClicked" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/LoadGameButton.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets top="5.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
                               <Insets />
-                           </opaqueInsets>
-                        </VBox>
+                           </VBox.margin>
+                        </StackPane>
+                        <StackPane prefHeight="39.0" prefWidth="428.0">
+                           <children>
+                              <ImageView fx:id="exitImage" accessibleRole="BUTTON" fitHeight="41.0" fitWidth="170.0" onMouseClicked="#exitLevel" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/ExitButton.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets top="5.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane>
+                           <children>
+                              <ImageView fx:id="motdSpeechBubble" fitHeight="135.0" fitWidth="414.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/SpeechBubble.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets top="10.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                              <VBox fx:id="speechBubble" alignment="TOP_CENTER" prefHeight="138.0" prefWidth="408.0">
+                                 <children>
+                                    <Text fx:id="motdTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Message of the Day:" wrappingWidth="230.0332055091858">
+                                       <font>
+                                          <Font name="Consolas" size="18.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="10.0" top="15.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Text fx:id="motdTextBox" boundsType="VISUAL" fill="#ebebeb" lineSpacing="1.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" textOrigin="CENTER" visible="false" wrappingWidth="284.0" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="Consolas Italic" size="15.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="50.0" />
+                                       </VBox.margin>
+                                       <rotationAxis>
+                                          <Point3D />
+                                       </rotationAxis>
+                                    </Text>
+                                 </children>
+                                 <StackPane.margin>
+                                    <Insets right="20.0" top="20.0" />
+                                 </StackPane.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </VBox>
+                           </children>
+                        </StackPane>
                      </children>
-                  </StackPane>
+                  </VBox>
                </children>
-            </VBox>
-         </children>
-      </HBox>
-   </center>
-   <left>
-      <ImageView fx:id="gateImage" fitHeight="426.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../images/Menus/jailcell%20with%20head.png" />
-         </image>
-      </ImageView>
-   </left>
-</BorderPane>
+            </HBox>
+         </center>
+         <left>
+            <ImageView fx:id="gateImage" fitHeight="426.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../images/Menus/jailcell%20with%20head.png" />
+               </image>
+            </ImageView>
+         </left>
+      </BorderPane>
+   </children>
+</GridPane>
