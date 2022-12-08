@@ -21,7 +21,7 @@ public class SmartThief extends Enemy {
     private final ArrayList<int[]> positionsToItem = new ArrayList<>();
 
     /**
-     * Creats an instance of Smart Thief
+     * Creates an instance of Smart Thief
      * @param xPos Starting X position
      * @param yPos Starting Y position
      * @param direction Starting direction
@@ -54,7 +54,6 @@ public class SmartThief extends Enemy {
 
             positionsToItem.add(new int[] {newX, newY});
 
-            System.out.printf("%d %d %d%n", directionId, newX, newY);
 
             posX = newX;
             posY = newY;
@@ -69,7 +68,7 @@ public class SmartThief extends Enemy {
             positionsToItem.remove(0);
         } else {
             String path = tileTree.searchPaths(super.getX(), super.getY());
-            calculatePath("0012012012012001");
+            calculatePath(path);
         }
     }
 

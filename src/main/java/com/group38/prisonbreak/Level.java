@@ -14,7 +14,7 @@ import java.util.HashMap;
 /**
  * A Class that stores the data about a level
  *
- * @author Daniel Banks (2107922), Matthew Salter (986488)
+ * @author Daniel Banks (2107922), Matthew Salter (986488), Ben Wager (2108500)
  */
 
 public class Level implements Drawable {
@@ -31,6 +31,7 @@ public class Level implements Drawable {
     // All the entities in the Level
     private final ArrayList<Entity> entities;
 
+    // Stores the colours of the gates that are open
     private final HashMap<Integer, Boolean> gatesOpen = new HashMap<>();
 
     /**
@@ -102,9 +103,31 @@ public class Level implements Drawable {
         for (Tile[] tileX : tiles) {
             for (Tile tile : tileX) {
                 Item item = tile.getItem();
-                if (item != null && !(item instanceof Bomb) && !(item instanceof Door)) {
+
+                // Return if item isn't a bomb, door or an open gate
+                if (item != null && !(item instanceof Bomb || item instanceof Door || item instanceof Gate)) {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if an item is a gate and if it is whether it's open
+     * @param item Item to check
+     * @return boolean if gate's open
+     */
+    public boolean areAllGatesOpen(Item item) {
+        // Return if gate is open
+        if (!(item instanceof Gate gate)) {
+            return true;
+        }
+
+        // Returns if gate is open
+        for (int colourId : gatesOpen.keySet()) {
+            if (gate.getGateColour() == colourId) {
+                return true;
             }
         }
         return false;
@@ -117,9 +140,11 @@ public class Level implements Drawable {
         for (Tile[] tileX : tiles) {
             for (Tile tile : tileX) {
                 Item item = tile.getItem();
+                // Removes item if it's not a gate, door or bomb
                 if (!(item instanceof Gate || item instanceof Door || item instanceof Bomb)) {
                     tile.removeItem();
                 }
+                // If it's a bomb then set it off
                 if (item instanceof Bomb b) {
                     b.immediateExplosion();
                 }
@@ -141,7 +166,8 @@ public class Level implements Drawable {
                 g.drawImage(Level.tileImage, tileXDraw, tileYDraw, sideLength, sideLength);
                 Tile t = getTile(x, y);
 
-                int tileColourSL = sideLength / 2; // Tile colour side length
+                // Tile colour side length
+                int tileColourSL = sideLength / 2;
 
                 // Loop through every colour in tile
                 for (int col = 0; col < t.getColours().length; col++) {
@@ -174,18 +200,20 @@ public class Level implements Drawable {
         }
     }
 
+    /**
+     * Draws items onto the Level
+     * @param g GraphicsContext
+     */
     public void drawItems(GraphicsContext g) {
         int sideLength = getSideLength(g);
 
         for (int tiley = 0; tiley < tiles.length; tiley++) {
             for (int tilex = 0; tilex < tiles[tiley].length; tilex++) {
                 Tile t = tiles[tiley][tilex];
-                if (t.getItem() == null) {
-                    continue;
+                if (t.getItem() != null) {
+                    Item it = t.getItem();
+                    g.drawImage(it.getImage(), tilex * sideLength, tiley * sideLength, sideLength, sideLength);
                 }
-
-                Item it = t.getItem();
-                g.drawImage(it.getImage(), tilex * sideLength, tiley * sideLength, sideLength, sideLength);
             }
         }
     }
@@ -292,10 +320,10 @@ public class Level implements Drawable {
         int[] colours = coloursOptional.length == 0 ? tiles[posY][posX].getColourIDs() : coloursOptional;
 
         // Checks if direction is Up/Down (X)
-        boolean isX = direction == 1 || direction == 3;
+        boolean isX = direction == Constants.RIGHT_ID || direction == Constants.LEFT_ID;
 
-        // Checks if direcltion is negative (Up/Left)
-        boolean isNegative = direction == 0 || direction == 3;
+        // Checks if direction is negative (Up/Left)
+        boolean isNegative = direction == Constants.UP_ID || direction == Constants.LEFT_ID;
 
         // Iterates through all the Tiles; from the Current Tile to the edge
 
@@ -330,6 +358,10 @@ public class Level implements Drawable {
         return new int[] {posX, posY};
     }
 
+    /**
+     * Gets number of items left on the level
+     * @return Int number of items left
+     */
     public int getNoItems() {
         int items = 0;
         for (Tile[] tileX : tiles) {

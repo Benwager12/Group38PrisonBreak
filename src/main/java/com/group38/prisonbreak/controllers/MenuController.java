@@ -50,9 +50,6 @@ public class MenuController {
 
     private static String message;
 
-    /**
-     *
-     */
     @FXML
     private void initialize() {
         // button animation
@@ -66,7 +63,6 @@ public class MenuController {
         motdTitle.setVisible(false);
         motdTextBox.setVisible(false);
         gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
-
     }
 
     @FXML
@@ -76,7 +72,7 @@ public class MenuController {
 
     @FXML
     private void loadGameClicked(MouseEvent actionEvent){
-        FileUtilities.getGameInstance().setRoot("load");
+        FileUtilities.getGameInstance().setRoot("levelMenu");
     }
 
     @FXML

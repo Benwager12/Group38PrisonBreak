@@ -55,6 +55,10 @@ public class LevelController {
 
         // Initializes and starts timelines
         GameManager.initTimelines();
+        drawCanvas();
+        recalculateCanvasSize();
+        levelNumberLabel.setText(String.valueOf(GameManager.level.getLevelNumber()));
+        GameManager.playTimeLines();
     }
 
     public void recalculateCanvasSize() {
@@ -83,7 +87,7 @@ public class LevelController {
     }
 
     public void onMouseClickCanvas(MouseEvent ignoredMouseEvent) {
-        GameManager.level = FileUtilities.readLevel("7");
+        GameManager.level = FileUtilities.readLevel(GameManager.level.getLevelNumber());
         drawCanvas();
         recalculateCanvasSize();
         levelNumberLabel.setText(String.valueOf(GameManager.level.getLevelNumber()));

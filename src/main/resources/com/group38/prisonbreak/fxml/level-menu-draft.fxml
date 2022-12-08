@@ -5,7 +5,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -13,7 +12,7 @@
    <center>
       <VBox prefHeight="137.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="916.0">
+            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="766.0">
                <children>
                   <StackPane>
                      <children>
@@ -25,7 +24,7 @@
                               <Insets right="10.0" />
                            </StackPane.margin>
                         </ImageView>
-                        <ImageView fx:id="level1Button" fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
+                        <ImageView fx:id="level1Button" fitHeight="41.0" fitWidth="36.0" onMouseClicked="#levelSelected" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
                            <image>
                               <Image url="@../images/Menus/levelbuttons-1.png" />
                            </image>
@@ -45,7 +44,7 @@
                               <Insets right="10.0" />
                            </StackPane.margin>
                         </ImageView>
-                        <ImageView fx:id="level2Button" fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="level2Button" fitHeight="41.0" fitWidth="36.0" onMouseClicked="#levelSelected" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/levelbuttons-2.png" />
                            </image>
@@ -65,7 +64,7 @@
                               <Insets right="10.0" />
                            </StackPane.margin>
                         </ImageView>
-                        <ImageView fx:id="level3Button" fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="level3Button" fitHeight="41.0" fitWidth="36.0" onMouseClicked="#levelSelected" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/levelbuttons-3.png" />
                            </image>
@@ -85,7 +84,7 @@
                               <Insets left="5.0" />
                            </StackPane.margin>
                         </ImageView>
-                        <ImageView fx:id="level4Button" fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="level4Button" fitHeight="41.0" fitWidth="36.0" onMouseClicked="#levelSelected" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/levelbuttons-4.png" />
                            </image>
@@ -97,7 +96,7 @@
                   </StackPane>
                </children>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets top="-30.0" />
                </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="185.0" prefWidth="600.0">
@@ -106,13 +105,13 @@
                      <children>
                         <ImageView fitHeight="96.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/Menus/level%20preview-5.png" />
+                              <Image url="@../images/Menus/level preview-5.png" />
                            </image>
                            <StackPane.margin>
                               <Insets right="10.0" />
                            </StackPane.margin>
                         </ImageView>
-                        <ImageView fx:id="level5Button" fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="level5Button" fitHeight="41.0" fitWidth="36.0" onMouseClicked="#levelSelected" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/levelbuttons-5.png" />
                            </image>
@@ -129,12 +128,12 @@
                      <children>
                         <ImageView fitHeight="105.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/Menus/level%20preview-6.png" />
+                              <Image url="@../images/Menus/level preview-6.png" />
                            </image>
                            <StackPane.margin>
                               <Insets left="10.0" right="10.0" />
                            </StackPane.margin></ImageView>
-                        <ImageView fx:id="level6Button" fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="level6Button" fitHeight="41.0" fitWidth="36.0" onMouseClicked="#levelSelected" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/levelbuttons-6.png" />
                            </image>
@@ -148,12 +147,12 @@
                      <children>
                         <ImageView fitHeight="106.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/Menus/level%20preview-7.png" />
+                              <Image url="@../images/Menus/level preview-7.png" />
                            </image>
                            <StackPane.margin>
                               <Insets left="10.0" right="10.0" />
                            </StackPane.margin></ImageView>
-                        <ImageView fx:id="level7Button" fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="level7Button" fitHeight="41.0" fitWidth="36.0" onMouseClicked="#levelSelected" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/levelbuttons-7.png" />
                            </image>
@@ -167,12 +166,12 @@
                      <children>
                         <ImageView fitHeight="111.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/Menus/level%20preview-8.png" />
+                              <Image url="@../images/Menus/level preview-8.png" />
                            </image>
                            <StackPane.margin>
                               <Insets left="10.0" right="10.0" />
                            </StackPane.margin></ImageView>
-                        <ImageView fx:id="level8Button" fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="level8Button" fitHeight="41.0" fitWidth="36.0" onMouseClicked="#levelSelected" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/levelbuttons-8.png" />
                            </image>
@@ -184,18 +183,15 @@
                   </StackPane>
                </children>
                <VBox.margin>
-                  <Insets left="-50.0" top="10.0" />
+                  <Insets left="-50.0" />
                </VBox.margin>
             </HBox>
          </children>
          <BorderPane.margin>
-            <Insets top="50.0" />
+            <Insets />
          </BorderPane.margin>
       </VBox>
    </center>
-   <bottom>
-      <Pane prefHeight="133.0" prefWidth="590.0" BorderPane.alignment="CENTER" />
-   </bottom>
    <top>
       <ImageView fitHeight="76.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
