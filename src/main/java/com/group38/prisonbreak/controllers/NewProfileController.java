@@ -24,7 +24,6 @@ public class NewProfileController {
     @FXML
     private ImageView homeImage;
 
-
     @FXML
     private ImageView crossImage;
 
