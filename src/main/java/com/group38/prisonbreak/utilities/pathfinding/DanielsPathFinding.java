@@ -43,8 +43,8 @@ public class DanielsPathFinding {
                 Item item = GameManager.level.getTile(x, y).getItem();
 
                 // Will look for items that aren't null, isn't a gate, isn't a bomb and a door if the game has no items left
-                if (item != null && !(item instanceof Gate) && !(item instanceof Bomb &&
-                        (!(item instanceof Door) || !GameManager.level.hasItemsLeft()))) {
+                if (item != null && !(item instanceof Gate) && !(item instanceof Bomb) &&
+                        (!(item instanceof Door) || !GameManager.level.hasItemsLeft())) {
                     itemPositions.add(new int[] { x, y });
                 }
             }
