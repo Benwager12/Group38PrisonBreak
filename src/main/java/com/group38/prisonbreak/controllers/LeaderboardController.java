@@ -30,8 +30,8 @@ public class LeaderboardController {
 
     @FXML
     public void initialize() {
-        homeImage.hoverProperty().addListener(createHoverListener(homeImage));
-        crossImage.hoverProperty().addListener(createHoverListener(crossImage));
+        homeImage.hoverProperty().addListener(rotateButton(homeImage));
+        crossImage.hoverProperty().addListener(rotateButton(crossImage));
         leaderboardText.setText(LeaderboardUtilities.showScores(1));
     }
 
@@ -46,7 +46,12 @@ public class LeaderboardController {
         System.exit(0);
     }
 
-    private static ChangeListener<Boolean> createHoverListener(ImageView img) {
+    /**
+     * Rotates button when applicable.
+     * @param img the button to be rotated
+     * @return rotated/unrotated button depending on situation
+     */
+    private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
                 img.setRotate(MODIFIED_BUTTON_ROTATION);

@@ -40,16 +40,16 @@ public class NewProfileController {
      */
     @FXML
     private void initialize() {
-        homeImage.hoverProperty().addListener(createHoverListener(homeImage));
-        crossImage.hoverProperty().addListener(createHoverListener(crossImage));
-        int max = 4;
-        /*8enterName.textProperty().addListener((observable, oldValue, newValue) -> {
+        /*int max = 4;
+        enterName.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() > max) {
                 String copy = "";
                 copy = copy.substring(0, max);
                 enterName.setText(copy);
             }
         }); */
+        homeImage.hoverProperty().addListener(rotateButton(homeImage));
+        crossImage.hoverProperty().addListener(rotateButton(crossImage));
     }
 
     @FXML
@@ -78,12 +78,11 @@ public class NewProfileController {
     }
 
     /**
-     * [add]
-     * @param img
-     * @return
-     * @noinspection checkstyle:FinalParameters
+     * Rotates button when applicable.
+     * @param img the button to be rotated
+     * @return rotated/unrotated button depending on situation
      */
-    private static ChangeListener<Boolean> createHoverListener(ImageView img) {
+    private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
                 img.setRotate(MODIFIED_BUTTON_ROTATION);

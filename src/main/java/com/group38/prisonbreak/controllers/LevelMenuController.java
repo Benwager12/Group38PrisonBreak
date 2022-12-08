@@ -94,7 +94,7 @@ public class LevelMenuController {
         };
     }
 
-    /** [draft]
+    /**
      * Rotates button when applicable.
      * @param img the button to be rotated
      * @return rotated/unrotated button depending on situation
