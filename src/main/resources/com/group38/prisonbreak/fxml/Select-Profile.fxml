@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: black; -fx-border-width: 25;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <ImageView fitHeight="122.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../images/Menus/SelectProfileLabel.png" />
+         </image>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </ImageView>
+   </top>
+   <center>
+      <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Menus/Big%20head.png" />
+                     </image>
+                  </ImageView>
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/TextboxButton-removebg-preview.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets top="200.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <Label fx:id="profileName1" text="ProfileName" textAlignment="CENTER" translateY="110.0">
+                     <font>
+                        <Font name="Consolas" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Menus/Big%20head.png" />
+                     </image>
+                  </ImageView>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/TextboxButton-removebg-preview.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets top="200.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <Label fx:id="profileName2" text="ProfileName" textAlignment="CENTER" translateY="110.0">
+                     <font>
+                        <Font name="Consolas" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane layoutX="260.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Menus/Big%20head.png" />
+                     </image>
+                  </ImageView>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/TextboxButton-removebg-preview.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets top="200.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <Label fx:id="profileName3" text="ProfileName" textAlignment="CENTER" translateY="110.0">
+                     <font>
+                        <Font name="Consolas" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+         <padding>
+            <Insets top="-100.0" />
+         </padding>
+      </HBox>
+   </center>
+   <left>
+      <ImageView fx:id="leftArrowButton" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" rotate="270.0" translateY="120.0" BorderPane.alignment="CENTER_LEFT">
+         <image>
+            <Image url="@../images/Menus/arrow.png" />
+         </image>
+      </ImageView>
+   </left>
+   <right>
+      <ImageView fx:id="rightArrowButton" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateY="120.0" BorderPane.alignment="CENTER_RIGHT">
+         <image>
+            <Image url="@../images/Menus/arrow.png" />
+         </image>
+      </ImageView>
+   </right>
+</BorderPane>
