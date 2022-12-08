@@ -1,6 +1,7 @@
 package com.group38.prisonbreak.controllers;
 
 import com.group38.prisonbreak.Profile;
+import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -119,5 +120,6 @@ public class SelectProfileController {
 
         Profile profile = ProfileUtilities.getProfiles()[selectNumber];
         System.out.printf("Name: %s%n", profile.getName());
+        FileUtilities.getGameInstance().setRoot("levelMenu");
     }
 }

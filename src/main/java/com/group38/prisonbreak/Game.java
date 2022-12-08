@@ -29,7 +29,7 @@ public class Game extends Application {
         FileUtilities.setGameInstance(this);
         ProfileUtilities.initialise();
         try {
-            FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/Select-Profile.fxml"));
+            FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
             root = mainMenuLoader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -70,6 +70,7 @@ public class Game extends Application {
             case "mainMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
             case "levelMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/level-menu.fxml"));
             case "leaderboard" -> new FXMLLoader(FileUtilities.getResource("fxml/leaderboard.fxml"));
+            case "selectProfile" -> new FXMLLoader(FileUtilities.getResource("fxml/Select-Profile.fxml"));
             default -> null;
         };
         assert loader != null;
