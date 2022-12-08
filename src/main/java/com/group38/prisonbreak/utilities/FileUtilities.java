@@ -80,9 +80,6 @@ public class FileUtilities {
     }
 
     public static Level readLevel(String levelPath) {
-        if (System.getProperty("os.name").equals("Mac OS X")) {
-            levelPath = "/" + levelPath;
-        }
         File file = new File(levelPath);
 
         Scanner scanner = null;
@@ -140,6 +137,9 @@ public class FileUtilities {
 
     public static String getResourcePath(String path) {
         String uri = getResourceURI(path);
+        if (System.getProperty("os.name").equals("Mac OS X")) {
+            uri = "/" + uri;
+        }
         assert uri != null;
         return uri.substring(6).replaceAll("%20", " ");
     }

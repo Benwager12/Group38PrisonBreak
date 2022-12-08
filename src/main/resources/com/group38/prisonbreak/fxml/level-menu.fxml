@@ -200,7 +200,7 @@
          <right>
             <HBox alignment="CENTER" prefHeight="74.0" prefWidth="95.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="homeButton" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Menus/HomeButton.png" />
                      </image>
@@ -208,7 +208,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="106.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="exitButton" fitHeight="106.0" fitWidth="56.0" onMousePressed="#exitClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Menus/CrossButton.png" />
                      </image>

@@ -1,6 +1,5 @@
 package com.group38.prisonbreak;
 
-import com.group38.prisonbreak.controllers.LevelController;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.LeaderboardUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
@@ -26,8 +25,9 @@ public class Game extends Application {
     public void start(Stage primaryStage) {
 
         Game.primaryStage = primaryStage;
-        FileUtilities.setGameInstance(this);
 
+        FileUtilities.setGameInstance(this);
+        ProfileUtilities.initialise();
         try {
             FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
             root = mainMenuLoader.load();
@@ -52,7 +52,7 @@ public class Game extends Application {
         Game.primaryStage.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
 
         // Initialize Profiles
-        ProfileUtilities.initialise();
+
 
         // Initialize Leaderboard
         LeaderboardUtilities.initialise();
@@ -68,8 +68,9 @@ public class Game extends Application {
             case "profile" -> new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
             case "load" -> new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
             case "mainMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
-            case "levelMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/level-menu-draft.fxml"));
+            case "levelMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/level-menu.fxml"));
             case "leaderboard" -> new FXMLLoader(FileUtilities.getResource("fxml/leaderboard.fxml"));
+            case "selectProfile" -> new FXMLLoader(FileUtilities.getResource("fxml/Select-Profile.fxml"));
             default -> null;
         };
         assert loader != null;

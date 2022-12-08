@@ -53,9 +53,9 @@ public class MenuController {
     @FXML
     private void initialize() {
         // button animation
-        newGameImage.hoverProperty().addListener(animateButton(newGameImage));
-        loadGameImage.hoverProperty().addListener(animateButton(loadGameImage));
-        exitImage.hoverProperty().addListener(animateButton(exitImage));
+        newGameImage.hoverProperty().addListener(rotateButton(newGameImage));
+        loadGameImage.hoverProperty().addListener(rotateButton(loadGameImage));
+        exitImage.hoverProperty().addListener(rotateButton(exitImage));
 
         // [add]
         gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
@@ -72,7 +72,7 @@ public class MenuController {
 
     @FXML
     private void loadGameClicked(MouseEvent actionEvent){
-        FileUtilities.getGameInstance().setRoot("levelMenu");
+        FileUtilities.getGameInstance().setRoot("selectProfile");
     }
 
     @FXML
@@ -100,12 +100,12 @@ public class MenuController {
             throw new RuntimeException(e);
         }
     }
-    /** [draft]
-     * Animates button when applicable.
-     * @param img the button to be animated
+    /**
+     * Rotates button when applicable.
+     * @param img the button to be rotated
      * @return rotated/unrotated button depending on situation
      */
-    private static ChangeListener<Boolean> animateButton(ImageView img) {
+    private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
