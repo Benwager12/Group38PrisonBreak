@@ -119,27 +119,29 @@ public class GameManager {
     }
 
     public static void processKeyEvent(KeyEvent event) {
-        if (event.getEventType() == KeyEvent.KEY_PRESSED) {
-            if (currentlyPressed.contains(event.getCode())) {
-                return;
-            }
+        if (level != null) {
+            if (event.getEventType() == KeyEvent.KEY_PRESSED) {
+                if (currentlyPressed.contains(event.getCode())) {
+                    return;
+                }
 
-            currentlyPressed.add(event.getCode());
-            if (playerTimeLine.getStatus() != Animation.Status.RUNNING &&
-                    Constants.MOVEMENT_KEYS.contains(event.getCode())) {
+                currentlyPressed.add(event.getCode());
+                if (playerTimeLine.getStatus() != Animation.Status.RUNNING &&
+                        Constants.MOVEMENT_KEYS.contains(event.getCode())) {
 
-                playerTimeLine.play();
-            }
-        }
-        if (event.getEventType() == KeyEvent.KEY_RELEASED &&
-                Constants.MOVEMENT_KEYS.contains(event.getCode())) {
-            currentlyPressed.remove(event.getCode());
-            playerTimeLine.pause();
-
-            for (KeyCode kc : currentlyPressed) {
-                if (Constants.MOVEMENT_KEYS.contains(kc)) {
                     playerTimeLine.play();
-                    break;
+                }
+            }
+            if (event.getEventType() == KeyEvent.KEY_RELEASED &&
+                    Constants.MOVEMENT_KEYS.contains(event.getCode())) {
+                currentlyPressed.remove(event.getCode());
+                playerTimeLine.pause();
+
+                for (KeyCode kc : currentlyPressed) {
+                    if (Constants.MOVEMENT_KEYS.contains(kc)) {
+                        playerTimeLine.play();
+                        break;
+                    }
                 }
             }
         }
