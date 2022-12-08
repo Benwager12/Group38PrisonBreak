@@ -218,7 +218,7 @@ public class DanielsPathFinding {
 
         TileNode downNode = new TileNode(newPositionDown[0], newPositionDown[1], currentNode, distance,
                 calculateDistance(newPositionDown[0], newPositionDown[1], itemXPos,itemYPos));
-        if (newPositionUp[1] != rootYPos && hasNotBeenVisited(downNode)) {
+        if (newPositionDown[1] != rootYPos && hasNotBeenVisited(downNode)) {
             addNode(downNode);
         }
 
@@ -230,7 +230,7 @@ public class DanielsPathFinding {
 
         TileNode leftNode = new TileNode(newPositionLeft[0], newPositionLeft[1], currentNode, distance,
                 calculateDistance(newPositionLeft[0], newPositionLeft[1], itemXPos,itemYPos));
-        if (newPositionDown[0] != rootXPos && hasNotBeenVisited(leftNode)) {
+        if (newPositionLeft[0] != rootXPos && hasNotBeenVisited(leftNode)) {
             addNode(leftNode);
         }
         // Recursively calls function again, incrementing one
