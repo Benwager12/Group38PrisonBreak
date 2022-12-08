@@ -24,7 +24,6 @@ public class NewProfileController {
     @FXML
     private ImageView homeImage;
 
-
     @FXML
     private ImageView crossImage;
 
@@ -43,6 +42,14 @@ public class NewProfileController {
     private void initialize() {
         homeImage.hoverProperty().addListener(createHoverListener(homeImage));
         crossImage.hoverProperty().addListener(createHoverListener(crossImage));
+        int max = 4;
+        /*8enterName.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > max) {
+                String copy = "";
+                copy = copy.substring(0, max);
+                enterName.setText(copy);
+            }
+        }); */
     }
 
     @FXML
@@ -85,5 +92,8 @@ public class NewProfileController {
             }
         };
     }
+    
+
+    
 
 }

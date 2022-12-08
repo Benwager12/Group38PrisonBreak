@@ -76,6 +76,11 @@ public class MenuController {
     }
 
     @FXML
+    private void tempLeaderboardClicked(MouseEvent actionEvent){
+        FileUtilities.getGameInstance().setRoot("leaderboard");
+    }
+
+    @FXML
     private void exitLevel(MouseEvent actionEvent) {
         actionEvent.consume();
         System.exit(0);
