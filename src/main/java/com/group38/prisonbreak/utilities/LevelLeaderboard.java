@@ -15,13 +15,13 @@ public class LevelLeaderboard {
     private static final String SHOW_EMPTY_SCORE_STRING_FORMAT = "%d:%n";
 
     // Maximum number of spaces before the name in showScores
-    private static final int MAX_NO_SPACES_BEFORE_NAME = 3;
+    private static final int MAX_NO_SPACES_BEFORE_NAME = 9;
 
     // Maximum number of spaces after the name in showScores
-    private static final int MAX_NO_SPACES_AFTER_NAME = 5;
+    private static final int MAX_NO_SPACES_AFTER_NAME = 0;
 
     // Maximum number of characters in a profile name
-    private static final int MAX_NAME_LENGTH = 16;
+    private static final int MAX_NAME_LENGTH = 14;
 
     // 2D array of scores for this specific level [[profileId, score]]
     private final int[][] scores = new int[10][2];

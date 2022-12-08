@@ -47,7 +47,7 @@
          <center>
             <Text fx:id="leaderboardText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="Consolas" size="25.0" />
+                  <Font name="Consolas" size="23.0" />
                </font></Text>
          </center>
       </BorderPane>

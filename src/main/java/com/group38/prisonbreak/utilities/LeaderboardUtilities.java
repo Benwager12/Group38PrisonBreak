@@ -24,7 +24,7 @@ public class LeaderboardUtilities {
     private static final HashMap<Integer, LevelLeaderboard> LEADERBOARD = new HashMap<>();
 
     // Format of the Leaderboard.txt file "<levelNumber>, "
-    private static final String TXT_STRING_FORMAT = "%d %d %d%n";
+    private static final String TXT_STRING_FORMAT = "%d  %d %d%n";
 
     // Format of the string used when showLevel is called
     private static final String SHOW_LEADERBOARD_STRING_FORMAT = "Level %d%n%s";
@@ -42,9 +42,6 @@ public class LeaderboardUtilities {
     private static void loadLeaderboard() {
         String filePath = FileUtilities.getResourcePath(FILE_LOCATION);
 
-        if (System.getProperty("os.name").equals("Mac OS X")) {
-            filePath = "/" + filePath;
-        }
         File file = new File(filePath);
 
         Scanner scanner = null;
