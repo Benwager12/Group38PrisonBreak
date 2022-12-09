@@ -1,6 +1,6 @@
 package com.group38.prisonbreak.utilities;
 
-import com.group38.prisonbreak.enemies.FlyingAssassin;
+import com.group38.prisonbreak.entities.enemies.FlyingAssassin;
 import com.group38.prisonbreak.items.Door;
 
 /**

@@ -3,8 +3,9 @@ package com.group38.prisonbreak.utilities;
 import com.group38.prisonbreak.Constants;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.Level;
-import com.group38.prisonbreak.enemies.FloorThief;
-import com.group38.prisonbreak.enemies.SmartThief;
+import com.group38.prisonbreak.entities.enemies.FloorThief;
+import com.group38.prisonbreak.entities.enemies.SmartThief;
+import com.group38.prisonbreak.entities.Player;
 import com.group38.prisonbreak.items.*;
 import javafx.scene.paint.Color;
 

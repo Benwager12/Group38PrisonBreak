@@ -1,9 +1,10 @@
-package com.group38.prisonbreak.utilities;
+package com.group38.prisonbreak.entities;
 
 import com.group38.prisonbreak.GameManager;
+import com.group38.prisonbreak.utilities.Entity;
+import com.group38.prisonbreak.utilities.Item;
 import javafx.scene.input.KeyCode;
 
-import java.io.File;
 import java.util.HashMap;
 
 /**

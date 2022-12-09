@@ -1,4 +1,4 @@
-package com.group38.prisonbreak.enemies;
+package com.group38.prisonbreak.entities.enemies;
 
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.Enemy;
