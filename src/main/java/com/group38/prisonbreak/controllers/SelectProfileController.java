@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.Profile;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
@@ -103,7 +104,7 @@ public class SelectProfileController {
         }
     }
 
-    public void rightArrowClicked(MouseEvent mouseEvent) {
+    public void rightArrowClicked(MouseEvent ignoredMouseEvent) {
         profileOffset++;
 
         if (ProfileUtilities.getNoProfiles() - 3 == profileOffset) {
@@ -113,7 +114,7 @@ public class SelectProfileController {
     }
 
 
-    public void leftArrowClicked(MouseEvent mouseEvent) {
+    public void leftArrowClicked(MouseEvent ignoredMouseEvent) {
         leftArrowButton.setVisible(!(profileOffset == 0));
         leftArrowButton.setDisable(profileOffset == 0);
 
@@ -141,11 +142,12 @@ public class SelectProfileController {
 
         Profile profile = ProfileUtilities.getProfiles()[selectNumber];
         System.out.printf("Name: %s%n", profile.getName());
+        GameManager.currentProfileId = profile.getId();
         FileUtilities.getGameInstance().setRoot("levelMenu");
     }
 
     @FXML
-    private void homeClicked(MouseEvent actionEvent) {
+    private void homeClicked(MouseEvent ignoredActionEvent) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 

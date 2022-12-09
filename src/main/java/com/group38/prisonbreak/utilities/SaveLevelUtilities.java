@@ -95,6 +95,7 @@ public class SaveLevelUtilities {
         File saveFile = new File(newSaveLocation);
         boolean isFileCreated = false;
         try {
+            System.out.println(newSaveLocation);
             isFileCreated = saveFile.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
