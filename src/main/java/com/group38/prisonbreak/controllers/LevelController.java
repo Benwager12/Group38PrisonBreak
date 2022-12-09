@@ -20,6 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 public class LevelController {
@@ -118,48 +119,37 @@ public class LevelController {
      * moves all the entities apart from smart thief
      */
     private void moveEntities() {
-        if (GameManager.level != null) {
-            Iterator<Entity> entityIterator = GameManager.level.getEntities().iterator();
-            while (entityIterator.hasNext()) {
-                Entity entity = entityIterator.next();
-
-                if (!(entity instanceof SmartThief) && !(entity instanceof Player)) {
-                    entity.move();
-                    if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
-                        GameManager.level.draw(g);
-                    }
-                }
-            }
-
-            /*
-            for (Entity entity : GameManager.level.getEntities()) {
-                if (!(entity instanceof SmartThief) && !(entity instanceof Player)) {
-                    entity.move();
-
-                    // Draws again if the flying assassin has collided with the player so it's visible before games ends
-                    if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
-                        GameManager.level.draw(g);
-                    }
-                }
-            }
-             */
-
-            // Not sure if this is needed I've kept it in incase the above code lags out
-            /*
-            GameManager.level.getEntities().forEach(entity -> {
-                if (!(entity instanceof SmartThief) && !(entity instanceof Player)) {
-                    entity.move();
-
-                    if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
-                        GameManager.level.draw(g);
-                    }
-                }
-            });
-             */
+        // Try catch error of moving an entity while the entity is being moved
+        try {
             if (GameManager.level != null) {
-                GameManager.level.draw(g);
+                for (Entity entity : GameManager.level.getEntities()) {
+                    if (!(entity instanceof SmartThief) && !(entity instanceof Player)) {
+                            entity.move();
+
+                        // Draws again if the flying assassin has collided with the player so it's visible before games ends
+                        if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
+                            GameManager.level.draw(g);
+                        }
+                    }
+                }
+
+                // Not sure if this is needed I've kept it in incase the above code lags out
+                /*
+                GameManager.level.getEntities().forEach(entity -> {
+                    if (!(entity instanceof SmartThief) && !(entity instanceof Player)) {
+                        entity.move();
+
+                        if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
+                            GameManager.level.draw(g);
+                        }
+                    }
+                });
+                 */
+                if (GameManager.level != null) {
+                    GameManager.level.draw(g);
+                }
             }
-        }
+        } catch (ConcurrentModificationException ignored) {}
     }
 
     /**
