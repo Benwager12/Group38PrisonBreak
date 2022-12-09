@@ -42,7 +42,7 @@ public class GameManager {
 
     public static ArrayList<KeyCode> currentlyPressed = new ArrayList<>();
 
-    private static int currentProfileId;
+    public static int currentProfileId;
 
     /**
      * Sets all the cycles for the tick timelines
@@ -112,6 +112,7 @@ public class GameManager {
         System.out.println(hasWon);
         ProfileUtilities.saveProfiles();
         LeaderboardUtilities.saveProfiles();
+        SaveLevelUtilities.saveLevel(currentProfileId, level);
         // TODO: End the game when the player goes through the door
     }
 
