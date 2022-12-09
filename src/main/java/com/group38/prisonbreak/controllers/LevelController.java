@@ -122,9 +122,12 @@ public class LevelController {
             Iterator<Entity> entityIterator = GameManager.level.getEntities().iterator();
             while (entityIterator.hasNext()) {
                 Entity entity = entityIterator.next();
-                entity.move();
-                if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
-                    GameManager.level.draw(g);
+
+                if (!(entity instanceof SmartThief) && !(entity instanceof Player)) {
+                    entity.move();
+                    if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
+                        GameManager.level.draw(g);
+                    }
                 }
             }
 
