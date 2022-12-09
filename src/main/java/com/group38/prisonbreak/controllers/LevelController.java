@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.Constants;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.Level;
 import com.group38.prisonbreak.enemies.SmartThief;
@@ -45,10 +46,14 @@ public class LevelController {
             }
 
         };
-        GameManager.entityTimeLine = new Timeline(new KeyFrame(Duration.millis(500), event -> moveEntities()));
-        GameManager.smartThiefTimeLine = new Timeline(new KeyFrame(Duration.millis(1250), event -> moveSmartThief()));
-        GameManager.playerTimeLine = new Timeline(new KeyFrame(Duration.millis(350), event -> movePlayerTick()));
-        GameManager.timeTimeLine = new Timeline(new KeyFrame(Duration.millis(1000), event -> changeTime()));
+        GameManager.entityTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.ENTITY_TIMELINE_DURATION),
+                event -> moveEntities()));
+        GameManager.smartThiefTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.SMART_THIEF_TIMELINE_DURATION),
+                event -> moveSmartThief()));
+        GameManager.playerTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.PLAYER_TIMELINE_DURATION),
+                event -> movePlayerTick()));
+        GameManager.timeTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.CLOCK_TIMELINE_DURATION),
+                event -> changeTime()));
         mainPane.heightProperty().addListener(paneSizeChange);
         mainPane.widthProperty().addListener(paneSizeChange);
 

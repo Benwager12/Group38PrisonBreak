@@ -114,4 +114,12 @@ public class Constants {
         addAll(DOWN_KEYS);
         addAll(LEFT_KEYS);
     }};
+
+    public static final int PLAYER_TIMELINE_DURATION  = 350;
+
+    public static final int ENTITY_TIMELINE_DURATION = 500;
+
+    public static final int SMART_THIEF_TIMELINE_DURATION = 1250;
+
+    public static final int CLOCK_TIMELINE_DURATION = 1000;
 }
