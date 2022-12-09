@@ -99,9 +99,14 @@ public class GameManager {
     }
 
     /**
-     * Ends the game/level
+     * Ends the level when a level is finished
+     * @param hasWon If the player has won/beaten the level
      */
-    public static void endGame () {
+    public static void endGame (boolean hasWon) {
+        if (hasWon) {
+            ProfileUtilities.updateProfile(currentProfileId, level.getLevelNumber());
+        }
+        System.out.println(hasWon);
         ProfileUtilities.saveProfiles();
         // TODO: End the game when the player goes through the door
     }

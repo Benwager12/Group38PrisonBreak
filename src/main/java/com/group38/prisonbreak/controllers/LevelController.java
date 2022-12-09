@@ -147,6 +147,7 @@ public class LevelController {
         if (GameManager.time <= 0) {
             GameManager.stopTimeLines();
             timeLabel.setText("GAME OVER");
+            GameManager.endGame(false);
         }
     }
 }
