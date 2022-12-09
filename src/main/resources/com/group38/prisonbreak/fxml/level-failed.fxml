@@ -72,14 +72,14 @@
                         <Image url="@../images/Menus/PlayerScorePanelImage.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="profileNameText" prefHeight="35.0" prefWidth="124.0" text="ProfileName" textAlignment="CENTER" translateX="48.0" translateY="-138.0">
+                  <Label fx:id="profileNameText" prefHeight="35.0" prefWidth="124.0" text="Name" textAlignment="CENTER" translateX="48.0" translateY="-138.0">
                      <font>
-                        <Font name="Consolas" size="20.0" />
+                        <Font name="Consolas" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="playerScoreText" layoutX="288.0" layoutY="141.0" prefHeight="35.0" prefWidth="123.0" text="PlayerScore" textAlignment="CENTER" translateX="48.0" translateY="-112.0">
+                  <Label fx:id="playerScoreText" layoutX="288.0" layoutY="141.0" prefHeight="35.0" prefWidth="123.0" text="Score" textAlignment="CENTER" translateX="48.0" translateY="-112.0">
                      <font>
-                        <Font name="Consolas" size="20.0" />
+                        <Font name="Consolas" size="25.0" />
                      </font>
                   </Label>
                </children>
