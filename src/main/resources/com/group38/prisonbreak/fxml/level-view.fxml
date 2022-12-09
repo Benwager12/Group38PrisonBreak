@@ -22,6 +22,9 @@
                      <image>
                         <Image url="@../images/Menus/LevelTextLabel-removebg-preview.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
                   </ImageView>
                   <Text fx:id="levelNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="RIGHT">
                      <font>
@@ -47,6 +50,22 @@
                         <Font name="Consolas" size="37.0" />
                      </font>
                   </Text>
+                  <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="28.0" fitWidth="24.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Menus/HomeButton.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="1.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="23.0" fitWidth="25.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Menus/CrossButton.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="20.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
                </children>
                <padding>
                   <Insets right="15.0" top="5.0" />

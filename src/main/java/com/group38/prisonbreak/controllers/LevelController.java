@@ -13,12 +13,16 @@ import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class LevelController {
+
+    private static final double ORIGINAL_BUTTON_ROTATION = 0;
+    private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
     @FXML
     private Text levelNumberLabel;
@@ -28,6 +32,12 @@ public class LevelController {
 
     @FXML
     private Text scoreNumberLabel;
+
+    @FXML
+    private ImageView homeImage;
+
+    @FXML
+    private ImageView crossImage;
 
     @FXML
     private Canvas gameCanvas;
@@ -56,6 +66,9 @@ public class LevelController {
                 event -> changeTime()));
         mainPane.heightProperty().addListener(paneSizeChange);
         mainPane.widthProperty().addListener(paneSizeChange);
+
+        homeImage.hoverProperty().addListener(rotateButton(homeImage));
+        crossImage.hoverProperty().addListener(rotateButton(crossImage));
 
         // Initializes and starts timelines
         GameManager.initTimelines();
@@ -149,5 +162,31 @@ public class LevelController {
             timeLabel.setText("GAME OVER");
             GameManager.endGame(false);
         }
+    }
+
+    @FXML
+    private void homeClicked(MouseEvent actionEvent) {
+        FileUtilities.getGameInstance().setRoot("mainMenu");
+    }
+
+    @FXML
+    private void crossClicked(MouseEvent click) {
+        click.consume();
+        System.exit(0);
+    }
+
+    /**
+     * Rotates button when applicable.
+     * @param img the button to be rotated
+     * @return rotated/unrotated button depending on situation
+     */
+    private static ChangeListener<Boolean> rotateButton(ImageView img) {
+        return (observable, oldValue, newValue) -> {
+            if (observable.getValue()) {
+                img.setRotate(MODIFIED_BUTTON_ROTATION);
+            } else {
+                img.setRotate(ORIGINAL_BUTTON_ROTATION);
+            }
+        };
     }
 }
