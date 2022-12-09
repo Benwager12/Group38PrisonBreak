@@ -403,6 +403,15 @@ public class Level implements Drawable {
         return true;
     }
 
+    public boolean wontCollide(Entity baseEntity, int posX, int posY) {
+        for (Entity entity : entities) {
+            if (entity != baseEntity && entity.getX() == posX && entity.getY() == posY) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Finds the next tile an entity can move to if they follow colours
      * @param posX Current X Position

@@ -53,13 +53,19 @@ public class SmartThief extends Enemy {
         return newPosition;
     }
 
+    public void updatePosition(int[] position) {
+        super.setX(position[0]);
+        super.setY(position[1]);
+    }
+
     @Override
     public void move() {
         // If there's positions left to move to then change to the first position in the list of moves
         if (positionsToItem.size() > 0) {
-            super.setX(positionsToItem.get(0)[0]);
-            super.setY(positionsToItem.get(0)[1]);
-            positionsToItem.remove(0);
+            if (GameManager.level.wontCollide(this, positionsToItem.get(0)[0], positionsToItem.get(0)[1])) {
+                updatePosition(positionsToItem.get(0));
+                positionsToItem.remove(0);
+            } else System.out.println("Collision");
         } else {
             // Gets the shortest path to an item and adds the list of moves/positions to the Arraylist
             ArrayList<int[]> path = searchFinding.searchForItems(super.getX(), super.getY());
@@ -70,13 +76,15 @@ public class SmartThief extends Enemy {
 
                 System.out.println(newPosition[0] + " " + newPosition[1]);
 
-                super.setX(newPosition[0]);
-                super.setY(newPosition[1]);
+                if (GameManager.level.wontCollide(this, newPosition[0], newPosition[1])) {
+                    updatePosition(newPosition);
+                }
+            } else {
+                positionsToItem.addAll(path);
+                move();
             }
-            positionsToItem.addAll(path);
         }
         itemInteract();
-
     }
 
     @Override
