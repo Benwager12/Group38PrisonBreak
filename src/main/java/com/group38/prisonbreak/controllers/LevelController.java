@@ -119,7 +119,7 @@ public class LevelController {
      * moves all the entities apart from smart thief
      */
     private void moveEntities() {
-        // Try catch error of moving an entity while the entity is being moved
+        // Try catch error of moving an entity while the entity is being deleted
         try {
             if (GameManager.level != null) {
                 for (Entity entity : GameManager.level.getEntities()) {
@@ -133,18 +133,6 @@ public class LevelController {
                     }
                 }
 
-                // Not sure if this is needed I've kept it in incase the above code lags out
-                /*
-                GameManager.level.getEntities().forEach(entity -> {
-                    if (!(entity instanceof SmartThief) && !(entity instanceof Player)) {
-                        entity.move();
-
-                        if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
-                            GameManager.level.draw(g);
-                        }
-                    }
-                });
-                 */
                 if (GameManager.level != null) {
                     GameManager.level.draw(g);
                 }
