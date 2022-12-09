@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-import java.util.Arrays;
 
 public class SelectProfileController {
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
@@ -37,13 +36,13 @@ public class SelectProfileController {
     public Label profileName3;
 
     @FXML
-    public StackPane stackPane1;
+    public StackPane selectPane1;
 
     @FXML
-    public StackPane stackPane2;
+    public StackPane selectPane2;
 
     @FXML
-    public StackPane stackPane3;
+    public StackPane selectPane3;
 
     @FXML
     private ImageView profileCross1;
@@ -85,22 +84,22 @@ public class SelectProfileController {
             profileName1.setText(profiles[profileOffset].getName());
 
         } else {
-            stackPane1.setOpacity(0);
-            stackPane1.setDisable(true);
+            selectPane1.setOpacity(0);
+            selectPane1.setDisable(true);
         }
 
         if (profiles.length > profileOffset + 1) {
             profileName2.setText(profiles[profileOffset + 1].getName());
         } else {
-            stackPane2.setOpacity(0);
-            stackPane2.setDisable(true);
+            selectPane2.setOpacity(0);
+            selectPane2.setDisable(true);
         }
 
         if (profiles.length > profileOffset + 2) {
             profileName3.setText(profiles[profileOffset + 2].getName());
         } else {
-            stackPane3.setOpacity(0);
-            stackPane3.setDisable(true);
+            selectPane3.setOpacity(0);
+            selectPane3.setDisable(true);
         }
     }
 
