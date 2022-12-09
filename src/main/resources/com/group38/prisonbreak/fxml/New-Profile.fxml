@@ -106,7 +106,7 @@
                               <Font name="Consolas" size="17.0" />
                            </font>
                            <StackPane.margin>
-                              <Insets bottom="32.0" left="20.0" />
+                              <Insets bottom="35.0" left="20.0" />
                            </StackPane.margin>
                         </Text>
                      </children>
