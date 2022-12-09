@@ -133,7 +133,7 @@ public class ProfileUtilities {
      * @param levelNumber New highest level completed
      */
     public static void updateProfile(int id, int levelNumber) {
-        Profile profile = PROFILES.get(id);
+        Profile profile = PROFILES.get(id - 1);
         if (profile != null) {
             if (levelNumber > profile.getHighestLevel()) {
                 profile.setHighestLevel(levelNumber);
