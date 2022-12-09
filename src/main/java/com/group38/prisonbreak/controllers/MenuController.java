@@ -104,7 +104,7 @@ public class MenuController {
         };
     }
 
-    private ChangeListener<Boolean> startMOTDListener(ImageView mainPane) {
+    private ChangeListener<Boolean> startMOTDListener(ImageView gateImage) {
         return (observable, oldValue, newValue) -> printMOTD();
         };
     }

@@ -1,6 +1,5 @@
 package com.group38.prisonbreak.utilities;
 
-import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.scene.image.Image;
 
 /**
@@ -20,7 +19,7 @@ public class Unlockable {
      * @param itemName Name of the unlockable
      * @param imageFile Path of the image of the unlockable
      */
-    Unlockable (String itemName, String imageFile) {
+    public Unlockable (String itemName, String imageFile) {
         this.itemName = itemName;
         this.image = FileUtilities.loadImageFromResource(imageFile);
     }
