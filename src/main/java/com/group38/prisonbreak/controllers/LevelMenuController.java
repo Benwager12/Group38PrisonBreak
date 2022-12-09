@@ -1,11 +1,17 @@
 package com.group38.prisonbreak.controllers;
 
 import com.group38.prisonbreak.GameManager;
+import com.group38.prisonbreak.Profile;
+
 import com.group38.prisonbreak.utilities.FileUtilities;
+import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+
+import static com.group38.prisonbreak.GameManager.currentProfileId;
 
 /**
  * LevelMenuController handles...[add]
@@ -22,22 +28,43 @@ public class LevelMenuController {
     private ImageView level1Button;
 
     @FXML
+    private StackPane levelStack2;
+
+    @FXML
     private ImageView level2Button;
+
+    @FXML
+    private StackPane levelStack3;
 
     @FXML
     private ImageView level3Button;
 
     @FXML
+    private StackPane levelStack4;
+
+    @FXML
     private ImageView level4Button;
+
+    @FXML
+    private StackPane levelStack5;
 
     @FXML
     private ImageView level5Button;
 
     @FXML
+    private StackPane levelStack6;
+
+    @FXML
     private ImageView level6Button;
 
     @FXML
+    private StackPane levelStack7;
+
+    @FXML
     private ImageView level7Button;
+
+    @FXML
+    private StackPane levelStack8;
 
     @FXML
     private ImageView level8Button;
@@ -58,9 +85,24 @@ public class LevelMenuController {
             b.hoverProperty().addListener(enlargeButton(b));
         }
 
-        //
         homeButton.hoverProperty().addListener(rotateButton(homeButton));
         exitButton.hoverProperty().addListener(rotateButton(exitButton));
+
+        // overlay levels that have not been unlocked [CHANGE]
+        StackPane[] levelPanes = {levelStack2, levelStack3, levelStack4, levelStack5,
+                levelStack6, levelStack7, levelStack8};
+        setOverlay(levelPanes);
+
+    }
+    @FXML
+    private void homeClicked(MouseEvent e) {
+        FileUtilities.getGameInstance().setRoot("mainMenu");
+    }
+
+    @FXML
+    private void exitClicked(MouseEvent e) {
+        e.consume();
+        System.exit(0);
     }
 
     /**
@@ -110,17 +152,30 @@ public class LevelMenuController {
         };
     }
 
-    @FXML
-    private void homeClicked(MouseEvent e) {
-        FileUtilities.getGameInstance().setRoot("mainMenu");
+    /** [FIX]
+     * Adds an overlay to locked levels to disable its selection.
+     * @param levelPanes the set of level overlays
+     */
+    private static void setOverlay(StackPane[] levelPanes) {
+        Profile p = ProfileUtilities.getProfiles()[currentProfileId];
+        System.out.println(p);
+        int highestLevel = p.getHighestLevel();
+
+        // when player has passed at least level 1
+        if (highestLevel >= 2) {
+            //
+            for (StackPane lp : levelPanes) {
+                String levelPaneID = lp.getId();
+                int levelStackNumber = Integer.parseInt(levelPaneID.substring(10));
+
+                // remove overlay child
+                System.out.printf("The level stack number is %d but the highest level is %d%n",
+                        levelStackNumber, highestLevel);
+                if (levelStackNumber < highestLevel) {
+                    System.out.println("got here");
+                    lp.getChildren().remove(4);
+                }
+            }
+        }
     }
-
-    @FXML
-    private void exitClicked(MouseEvent e) {
-        e.consume();
-        GameManager.exitGame();
-    }
-
-
-
 }

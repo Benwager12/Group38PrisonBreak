@@ -16,19 +16,14 @@
             </ImageView>
          </left>
          <right>
-            <HBox prefHeight="74.0" prefWidth="126.0">
-               <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-                  <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="106.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-                     <image>
-                        <Image url="@../images/Menus/CrossButton.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="10.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
+            <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="106.0" fitWidth="56.0" nodeOrientation="INHERIT" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../images/Menus/CrossButton.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets right="10.0" />
+               </BorderPane.margin>
+            </ImageView>
          </right>
       </BorderPane>
    </top>
@@ -37,12 +32,12 @@
          <center>
             <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="180.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="336.0" pickOnBounds="true" preserveRatio="true" scaleX="1.38" scaleY="1.23">
+                  <ImageView fitHeight="256.0" fitWidth="302.0" pickOnBounds="true" preserveRatio="true" scaleX="1.8" scaleY="1.44">
                      <image>
-                        <Image url="@../images/Menus/Leaderboard.png" />
+                        <Image url="@../images/Menus/leaderboard4.png" />
                      </image>
                      <StackPane.margin>
-                        <Insets bottom="92.0" left="20.0" right="60.0" top="20.0" />
+                        <Insets bottom="40.0" right="20.0" top="20.0" />
                      </StackPane.margin>
                   </ImageView>
                   <Text fx:id="leaderboardText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
@@ -50,7 +45,7 @@
                         <Font name="Consolas Bold Italic" size="23.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets />
+                        <Insets top="50.0" />
                      </StackPane.margin>
                   </Text>
                </children>

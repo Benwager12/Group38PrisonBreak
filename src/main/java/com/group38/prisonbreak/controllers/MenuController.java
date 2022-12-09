@@ -82,12 +82,12 @@ public class MenuController {
         MOTD motd = new MOTD();
         try {
             message = motd.getMessageOfTheDay();
+            System.out.println(message);
             motdTextBox.setText(message);
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
-        } catch (InterruptedException e) { //This was suggested by intellj ???
-            throw new RuntimeException(e);
-        }
+        } //This was suggested by intellj ???
+
     }
     /**
      * Rotates button when applicable.

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane id="gamePane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LevelController">
+<BorderPane id="gamePane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LevelController">
    <center>
       <Canvas fx:id="gameCanvas" height="400.0" onMouseClicked="#onMouseClickCanvas" width="800.0" BorderPane.alignment="CENTER" />
    </center>
@@ -38,18 +35,25 @@
             </HBox>
          </left>
          <right>
-            <HBox id="scoreHBox" fx:id="scoreHBox" alignment="TOP_RIGHT" prefHeight="46.0" prefWidth="215.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <HBox id="scoreHBox" fx:id="scoreHBox" alignment="TOP_CENTER" prefHeight="46.0" prefWidth="215.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="32.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Menus/ScoreTextLabel-removebg-preview.png" />
-                     </image>
-                  </ImageView>
-                  <Text id="scoreNumberLabel" fx:id="scoreNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="000">
-                     <font>
-                        <Font name="Consolas" size="37.0" />
-                     </font>
-                  </Text>
+                  <HBox minWidth="-Infinity" prefHeight="100.0" prefWidth="190.0">
+                     <children>
+                        <ImageView fitHeight="32.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/ScoreTextLabel-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <Text id="scoreNumberLabel" fx:id="scoreNumberLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="000" HBox.hgrow="NEVER">
+                           <font>
+                              <Font name="Consolas" size="37.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
                   <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="28.0" fitWidth="24.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Menus/HomeButton.png" />
@@ -73,11 +77,18 @@
             </HBox>
          </right>
          <center>
-            <Text fx:id="timeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00" textAlignment="CENTER" wrappingWidth="347.4452739953995" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="37.0" />
-               </font>
-            </Text>
+            <HBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fx:id="timeLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="00:00" textAlignment="CENTER" wrappingWidth="347.4452739953995">
+                     <font>
+                        <Font name="Consolas" size="37.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
          </center>
       </BorderPane>
    </top>
