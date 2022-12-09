@@ -1,5 +1,6 @@
 package com.group38.prisonbreak;
 
+import com.group38.prisonbreak.entities.Player;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.LeaderboardUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
@@ -149,7 +150,7 @@ public class GameManager {
         ProfileUtilities.saveProfiles();
         LeaderboardUtilities.saveProfiles();
 
-        if (level != null) {
+        if (level != null && level.getPlayer() instanceof Player) {
             SaveLevelUtilities.saveLevel(currentProfileId, level);
         }
         System.exit(0);
