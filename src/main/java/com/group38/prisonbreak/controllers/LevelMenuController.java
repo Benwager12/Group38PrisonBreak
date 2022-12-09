@@ -166,7 +166,7 @@ public class LevelMenuController {
 			int levelStackNumber = Integer.parseInt(levelPaneID.substring(10));
 
 			// remove overlay child
-			if (levelStackNumber <= highestLevel) {
+			if (levelStackNumber <= highestLevel + 1) {
 				lp.getChildren().remove(2);
 			}
 		}
