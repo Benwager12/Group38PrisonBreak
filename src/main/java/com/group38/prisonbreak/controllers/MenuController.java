@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.MOTD;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.beans.value.ChangeListener;
@@ -73,7 +74,7 @@ public class MenuController {
     @FXML
     private void exitLevel(MouseEvent actionEvent) {
         actionEvent.consume();
-        System.exit(0);
+        GameManager.exitGame();
         //Needs to save info to file
     }
 
@@ -83,11 +84,10 @@ public class MenuController {
         try {
             message = motd.getMessageOfTheDay();
             motdTextBox.setText(message);
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
-        } catch (InterruptedException e) { //This was suggested by intellj ???
-            throw new RuntimeException(e);
-        }
+        } //This was suggested by intellj ???
+
     }
     /**
      * Rotates button when applicable.
