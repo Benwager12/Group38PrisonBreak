@@ -488,4 +488,8 @@ public class Level implements Drawable {
     public boolean wontSetOffBomb(int posX, int posY) {
         return !(getTile(posX, posY).getItem() instanceof Bomb);
     }
+
+    public void killEntity(Entity entity) {
+        entities.remove(entity);
+    }
 }

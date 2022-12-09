@@ -1,8 +1,5 @@
 package com.group38.prisonbreak.controllers;
 
-import com.group38.prisonbreak.GameManager;
-import com.group38.prisonbreak.Profile;
-
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.beans.value.ChangeListener;
@@ -17,165 +14,161 @@ import static com.group38.prisonbreak.GameManager.currentProfileId;
  * LevelMenuController handles...[add]
  */
 public class LevelMenuController {
-    private static final double ORIGINAL_BUTTON_HEIGHT = 41;
-    private static final double ORIGINAL_BUTTON_WIDTH = 36;
-    private static final double MODIFIED_BUTTON_HEIGHT = 54;
-    private static final double MODIFIED_BUTTON_WIDTH = 54;
-    private static final double ORIGINAL_BUTTON_ROTATION = 0;
-    private static final double MODIFIED_BUTTON_ROTATION = 1.7;
+	private static final double ORIGINAL_BUTTON_HEIGHT = 41;
+	private static final double ORIGINAL_BUTTON_WIDTH = 36;
+	private static final double MODIFIED_BUTTON_HEIGHT = 54;
+	private static final double MODIFIED_BUTTON_WIDTH = 54;
+	private static final double ORIGINAL_BUTTON_ROTATION = 0;
+	private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    @FXML
-    private ImageView level1Button;
+	@FXML
+	private ImageView level1Button;
 
-    @FXML
-    private StackPane levelStack2;
+	@FXML
+	private StackPane levelStack2;
 
-    @FXML
-    private ImageView level2Button;
+	@FXML
+	private ImageView level2Button;
 
-    @FXML
-    private StackPane levelStack3;
+	@FXML
+	private StackPane levelStack3;
 
-    @FXML
-    private ImageView level3Button;
+	@FXML
+	private ImageView level3Button;
 
-    @FXML
-    private StackPane levelStack4;
+	@FXML
+	private StackPane levelStack4;
 
-    @FXML
-    private ImageView level4Button;
+	@FXML
+	private ImageView level4Button;
 
-    @FXML
-    private StackPane levelStack5;
+	@FXML
+	private StackPane levelStack5;
 
-    @FXML
-    private ImageView level5Button;
+	@FXML
+	private ImageView level5Button;
 
-    @FXML
-    private StackPane levelStack6;
+	@FXML
+	private StackPane levelStack6;
 
-    @FXML
-    private ImageView level6Button;
+	@FXML
+	private ImageView level6Button;
 
-    @FXML
-    private StackPane levelStack7;
+	@FXML
+	private StackPane levelStack7;
 
-    @FXML
-    private ImageView level7Button;
+	@FXML
+	private ImageView level7Button;
 
-    @FXML
-    private StackPane levelStack8;
+	@FXML
+	private StackPane levelStack8;
 
-    @FXML
-    private ImageView level8Button;
+	@FXML
+	private ImageView level8Button;
 
-    @FXML
-    private ImageView homeButton;
+	@FXML
+	private ImageView homeButton;
 
-    @FXML
-    private ImageView exitButton;
+	@FXML
+	private ImageView exitButton;
 
-    @FXML
-    private void initialize() {
-        // button animation
-        ImageView[] buttons = new ImageView[]{level1Button, level2Button, level3Button,
-                level4Button, level5Button, level6Button, level7Button, level8Button};
+	@FXML
+	private void initialize() {
+		// button animation
+		ImageView[] buttons = new ImageView[]{level1Button, level2Button, level3Button,
+				level4Button, level5Button, level6Button, level7Button, level8Button};
 
-        for (ImageView b : buttons) {
-            b.hoverProperty().addListener(enlargeButton(b));
-        }
+		for (ImageView b : buttons) {
+			b.hoverProperty().addListener(enlargeButton(b));
+		}
 
-        homeButton.hoverProperty().addListener(rotateButton(homeButton));
-        exitButton.hoverProperty().addListener(rotateButton(exitButton));
+		homeButton.hoverProperty().addListener(rotateButton(homeButton));
+		exitButton.hoverProperty().addListener(rotateButton(exitButton));
 
-        // overlay levels that have not been unlocked [CHANGE]
-        StackPane[] levelPanes = {levelStack2, levelStack3, levelStack4, levelStack5,
-                levelStack6, levelStack7, levelStack8};
-        setOverlay(levelPanes);
+		// overlay levels that have not been unlocked [CHANGE]
+		StackPane[] levelPanes = {levelStack2, levelStack3, levelStack4, levelStack5,
+				levelStack6, levelStack7, levelStack8};
+		setOverlay(levelPanes);
 
-    }
-    @FXML
-    private void homeClicked(MouseEvent e) {
-        FileUtilities.getGameInstance().setRoot("mainMenu");
-    }
+	}
 
-    @FXML
-    private void exitClicked(MouseEvent e) {
-        e.consume();
-        System.exit(0);
-    }
+	@FXML
+	private void homeClicked(MouseEvent ignoredMouseEvent) {
+		FileUtilities.getGameInstance().setRoot("mainMenu");
+	}
 
-    /**
-     * [add]
-     *
-     * @param e
-     */
-    @FXML
-    private void levelSelected(MouseEvent e) {
-        if (!(e.getSource() instanceof ImageView iv)) {
-            return;
-        }
-        String buttonId = iv.getId();
-        String levelNumber = buttonId.substring(5, buttonId.length() - 6);
-        FileUtilities.getGameInstance().setRoot("load" + levelNumber);
-    }
+	@FXML
+	private void exitClicked(MouseEvent e) {
+		e.consume();
+		System.exit(0);
+	}
 
-    /**
-     * Enlarges button when applicable.
-     * @param img the button to be enlarged
-     * @return enlarged/usual button depending on situation
-     */
-    private static ChangeListener<Boolean> enlargeButton(ImageView img) {
-        return (observable, oldValue, newValue) -> {
-            if (observable.getValue()) {
-                img.setFitHeight(MODIFIED_BUTTON_HEIGHT);
-                img.setFitWidth(MODIFIED_BUTTON_WIDTH);
-            } else {
-                img.setFitHeight(ORIGINAL_BUTTON_HEIGHT);
-                img.setFitWidth(ORIGINAL_BUTTON_WIDTH);
-            }
-        };
-    }
+	/**
+	 * [add]
+	 *
+	 * @param mouseEvent Mouse event when clicked, is used to get source.
+	 */
+	@FXML
+	private void levelSelected(MouseEvent mouseEvent) {
+		if (!(mouseEvent.getSource() instanceof ImageView iv)) {
+			return;
+		}
+		String buttonId = iv.getId();
+		String levelNumber = buttonId.substring(5, buttonId.length() - 6);
+		FileUtilities.getGameInstance().setRoot("load" + levelNumber);
+	}
 
-    /**
-     * Rotates button when applicable.
-     * @param img the button to be rotated
-     * @return rotated/unrotated button depending on situation
-     */
-    private static ChangeListener<Boolean> rotateButton(ImageView img) {
-        return (observable, oldValue, newValue) -> {
-            if (observable.getValue()) {
-                img.setRotate(MODIFIED_BUTTON_ROTATION);
-            } else {
-                img.setRotate(ORIGINAL_BUTTON_ROTATION);
-            }
-        };
-    }
+	/**
+	 * Enlarges button when applicable.
+	 *
+	 * @param img the button to be enlarged
+	 * @return enlarged/usual button depending on situation
+	 */
+	private static ChangeListener<Boolean> enlargeButton(ImageView img) {
+		return (observable, oldValue, newValue) -> {
+			if (observable.getValue()) {
+				img.setFitHeight(MODIFIED_BUTTON_HEIGHT);
+				img.setFitWidth(MODIFIED_BUTTON_WIDTH);
+			} else {
+				img.setFitHeight(ORIGINAL_BUTTON_HEIGHT);
+				img.setFitWidth(ORIGINAL_BUTTON_WIDTH);
+			}
+		};
+	}
 
-    /** [FIX]
-     * Adds an overlay to locked levels to disable its selection.
-     * @param levelPanes the set of level overlays
-     */
-    private static void setOverlay(StackPane[] levelPanes) {
-        Profile p = ProfileUtilities.getProfiles()[currentProfileId];
-        System.out.println(p);
-        int highestLevel = p.getHighestLevel();
+	/**
+	 * Rotates button when applicable.
+	 *
+	 * @param img the button to be rotated
+	 * @return rotated/unrotated button depending on situation
+	 */
+	private static ChangeListener<Boolean> rotateButton(ImageView img) {
+		return (observable, oldValue, newValue) -> {
+			if (observable.getValue()) {
+				img.setRotate(MODIFIED_BUTTON_ROTATION);
+			} else {
+				img.setRotate(ORIGINAL_BUTTON_ROTATION);
+			}
+		};
+	}
 
-        // when player has passed at least level 1
-        if (highestLevel >= 2) {
-            //
-            for (StackPane lp : levelPanes) {
-                String levelPaneID = lp.getId();
-                int levelStackNumber = Integer.parseInt(levelPaneID.substring(10));
+	/**
+	 * [FIX]
+	 * Adds an overlay to locked levels to disable its selection.
+	 *
+	 * @param levelPanes the set of level overlays
+	 */
+	private static void setOverlay(StackPane[] levelPanes) {
+		int highestLevel = ProfileUtilities.getLevelFromProfile(currentProfileId);
 
-                // remove overlay child
-                System.out.printf("The level stack number is %d but the highest level is %d%n",
-                        levelStackNumber, highestLevel);
-                if (levelStackNumber < highestLevel) {
-                    System.out.println("got here");
-                    lp.getChildren().remove(4);
-                }
-            }
-        }
-    }
+		for (StackPane lp : levelPanes) {
+			String levelPaneID = lp.getId();
+			int levelStackNumber = Integer.parseInt(levelPaneID.substring(10));
+
+			// remove overlay child
+			if (levelStackNumber <= highestLevel) {
+				lp.getChildren().remove(2);
+			}
+		}
+	}
 }
