@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -61,7 +62,7 @@
                         <Image url="@../images/Menus/breakingheart.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="128.0">
+                  <ImageView fx:id="leaderboardButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#leaderboardClicked" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="128.0">
                      <image>
                         <Image url="@../images/Menus/trophy.png" />
                      </image>
@@ -71,12 +72,12 @@
                         <Image url="@../images/Menus/PlayerScorePanelImage.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="35.0" prefWidth="124.0" text="ProfileName" textAlignment="CENTER" translateX="48.0" translateY="-138.0">
+                  <Label fx:id="profileNameText" prefHeight="35.0" prefWidth="124.0" text="ProfileName" textAlignment="CENTER" translateX="48.0" translateY="-138.0">
                      <font>
                         <Font name="Consolas" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="288.0" layoutY="141.0" prefHeight="35.0" prefWidth="123.0" text="PlayerScore" textAlignment="CENTER" translateX="48.0" translateY="-112.0">
+                  <Label fx:id="playerScoreText" layoutX="288.0" layoutY="141.0" prefHeight="35.0" prefWidth="123.0" text="PlayerScore" textAlignment="CENTER" translateX="48.0" translateY="-112.0">
                      <font>
                         <Font name="Consolas" size="20.0" />
                      </font>
@@ -87,6 +88,6 @@
       </HBox>
    </center>
    <bottom>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" visible="false" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

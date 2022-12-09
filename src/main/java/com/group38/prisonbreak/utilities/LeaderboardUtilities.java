@@ -115,10 +115,10 @@ public class LeaderboardUtilities {
      * @param profileId profile id of the player
      * @param highestScore high score
      */
-    public static void addNewHighscore(int levelNumber, int profileId, int highestScore, int timeRemaining) {
+    public static void addNewHighscore(int levelNumber, int profileId, int highestScore) {
         int[] score = new int[] {
                 profileId,
-                highestScore + timeRemaining
+                highestScore
         };
         LevelLeaderboard levelScores = LEADERBOARD.get(levelNumber);
         if (levelScores == null) {

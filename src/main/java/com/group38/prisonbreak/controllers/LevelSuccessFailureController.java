@@ -2,7 +2,10 @@ package com.group38.prisonbreak.controllers;
 
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
+import com.group38.prisonbreak.utilities.LeaderboardUtilities;
+import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -36,10 +39,19 @@ public class LevelSuccessFailureController {
     @FXML
     private ImageView retryLevelButton;
 
+    @FXML
+    private ImageView leaderboardButton;
 
     @FXML
-    private void retryLevelClicked(MouseEvent mouseEvent) {
-        FileUtilities.getGameInstance().setRoot("load" + GameManager.level.getLevelNumber());
+    private Label profileNameText;
+
+    @FXML
+    private Label playerScoreText;
+
+    @FXML
+    public void initialize() {
+        profileNameText.setText(ProfileUtilities.getName(GameManager.currentProfileId));
+        playerScoreText.setText(Integer.toString(GameManager.calculateScore(GameManager.money,GameManager.time)));
     }
 
     @FXML
@@ -53,10 +65,21 @@ public class LevelSuccessFailureController {
         GameManager.exitGame();
     }
 
+    @FXML
+    private void retryLevelClicked(MouseEvent mouseEvent) {
+        String currentLevel = Integer.toString((GameManager.level.getLevelNumber()));
+        FileUtilities.getGameInstance().setRoot("load" + currentLevel);
+    }
 
     @FXML
     private void goToNextLevel(MouseEvent mouseEvent) {
         String nextLevel = Integer.toString((GameManager.level.getLevelNumber() + 1));
         FileUtilities.getGameInstance().setRoot("load" + nextLevel);
     }
+
+    @FXML
+    private void leaderboardClicked(MouseEvent mouseEvent) {
+        FileUtilities.getGameInstance().setRoot("leaderboard");
+    }
+
 }

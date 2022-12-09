@@ -108,6 +108,16 @@ public class GameManager {
     }
 
     /**
+     * Calculates the players score in the level
+     * @param money The amount of money collected by the player
+     * @param timeRemaining The time remaining in the level
+     * @return the players score in the level
+     */
+    public static int calculateScore(int money, int timeRemaining) {
+        return money + timeRemaining;
+    }
+
+    /**
      * Ends the level when a level is finished
      * @param hasWon If the player has won/beaten the level
      */
@@ -116,7 +126,7 @@ public class GameManager {
         if (hasWon) {
             ProfileUtilities.updateProfile(currentProfileId, level.getLevelNumber());
             LeaderboardUtilities.addNewHighscore(level.getLevelNumber(), currentProfileId,
-                    GameManager.money, GameManager.time
+                    calculateScore(GameManager.money,GameManager.time)
             );
         }
         System.out.println(hasWon);

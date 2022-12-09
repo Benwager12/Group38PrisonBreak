@@ -62,7 +62,7 @@
                         <Image url="@../images/Menus/flyingmoney.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="leaderboardButton" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="128.0">
+                  <ImageView fx:id="leaderboardButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#leaderboardClicked" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="128.0">
                      <image>
                         <Image url="@../images/Menus/trophy.png" />
                      </image>
@@ -72,12 +72,12 @@
                         <Image url="@../images/Menus/PlayerScorePanelImage.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="35.0" prefWidth="124.0" text="ProfileName" textAlignment="CENTER" translateX="48.0" translateY="-138.0">
+                  <Label fx:id="profileNameText" prefHeight="35.0" prefWidth="124.0" text="ProfileName" textAlignment="CENTER" translateX="48.0" translateY="-138.0">
                      <font>
                         <Font name="Consolas" size="20.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="35.0" prefWidth="123.0" text="PlayerScore" textAlignment="CENTER" translateX="48.0" translateY="-112.0">
+                  <Label fx:id="playerScoreText" prefHeight="35.0" prefWidth="123.0" text="PlayerScore" textAlignment="CENTER" translateX="48.0" translateY="-112.0">
                      <font>
                         <Font name="Consolas" size="20.0" />
                      </font>
