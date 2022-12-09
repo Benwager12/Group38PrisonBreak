@@ -88,26 +88,41 @@ public class Constants {
      */
     public static final int LEFT_ID = 3;
 
+    /**
+     * ArrayList of Key Codes that represent 'Up' key bind
+     */
     public static final ArrayList<KeyCode> UP_KEYS = new ArrayList<>() {{
         add(KeyCode.UP);
         add(KeyCode.W);
     }};
 
+    /**
+     * ArrayList of Key Codes that represent 'Right' key bind
+     */
     public static final ArrayList<KeyCode> RIGHT_KEYS = new ArrayList<>() {{
         add(KeyCode.RIGHT);
         add(KeyCode.D);
     }};
 
+    /**
+     * ArrayList of Key Codes that represent 'Down' key bind
+     */
     public static final ArrayList<KeyCode> DOWN_KEYS = new ArrayList<>() {{
         add(KeyCode.DOWN);
         add(KeyCode.S);
     }};
 
+    /**
+     * ArrayList of Key Codes that represent 'Left' key bind
+     */
     public static final ArrayList<KeyCode> LEFT_KEYS = new ArrayList<>() {{
         add(KeyCode.LEFT);
         add(KeyCode.A);
     }};
 
+    /**
+     * ArrayList of Key Codes that represent movement key bind
+     */
     public static final ArrayList<KeyCode> MOVEMENT_KEYS = new ArrayList<>() {{
         addAll(UP_KEYS);
         addAll(RIGHT_KEYS);
