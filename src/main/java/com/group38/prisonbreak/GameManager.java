@@ -83,6 +83,14 @@ public class GameManager {
     }
 
     /**
+     * Sets the time on the level to a given amount
+     * @param amount The time the level time should be set to
+     */
+    public static void setTime(int amount) {
+        time = amount;
+    }
+
+    /**
      * removes a specific amount of time to the game clock
      * @param amount The amount of time to be removed
      */
