@@ -137,13 +137,16 @@ public class DanielsPathFinding {
         }
 
         // Finds which path is shorter
-        ArrayList<int[]> shortestPath = pathToItems.get(0);
-        for (ArrayList<int[]> paths : pathToItems) {
-            if ((paths.size() > 0 && paths.size() < shortestPath.size()) || shortestPath.size() == 0 ) {
-                shortestPath = paths;
+        if (pathToItems.size() != 0) {
+            ArrayList<int[]> shortestPath = pathToItems.get(0);
+            for (ArrayList<int[]> paths : pathToItems) {
+                if ((paths.size() > 0 && paths.size() < shortestPath.size()) || shortestPath.size() == 0) {
+                    shortestPath = paths;
+                }
             }
+            return shortestPath;
         }
-        return shortestPath;
+        return new ArrayList<>();
     }
 
     /**
