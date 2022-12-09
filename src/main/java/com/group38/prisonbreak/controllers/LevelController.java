@@ -119,6 +119,16 @@ public class LevelController {
      */
     private void moveEntities() {
         if (GameManager.level != null) {
+            Iterator<Entity> entityIterator = GameManager.level.getEntities().iterator();
+            while (entityIterator.hasNext()) {
+                Entity entity = entityIterator.next();
+                entity.move();
+                if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
+                    GameManager.level.draw(g);
+                }
+            }
+
+            /*
             for (Entity entity : GameManager.level.getEntities()) {
                 if (!(entity instanceof SmartThief) && !(entity instanceof Player)) {
                     entity.move();
@@ -129,6 +139,7 @@ public class LevelController {
                     }
                 }
             }
+             */
 
             // Not sure if this is needed I've kept it in incase the above code lags out
             /*
