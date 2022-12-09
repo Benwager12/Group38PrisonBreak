@@ -48,7 +48,7 @@ public class LeaderboardUtilities {
         try {
             scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.println("Can't find Profiles file");
+            System.out.println("Can't find leaderboards file");
             e.printStackTrace();
             System.exit(-1);
         }

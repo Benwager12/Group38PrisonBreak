@@ -107,7 +107,7 @@ public class DanielsPathFinding {
      * @param newNode Node to be marked
      */
     private void addNode(TileNode newNode) {
-        // Checks if a node has been found already, if so is it's total weight less than it
+        // Checks if a node has been found already, if so is its total weight less than it
         for (TileNode node : nodesFound) {
             if (node.getXPos() == newNode.getXPos() && node.getYPos() == newNode.getYPos()) {
                 if (node.getTotalWeight() > newNode.getTotalWeight()) {
