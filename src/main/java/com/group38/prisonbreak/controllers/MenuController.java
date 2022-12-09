@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.MOTD;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.beans.value.ChangeListener;
@@ -73,7 +74,7 @@ public class MenuController {
     @FXML
     private void exitLevel(MouseEvent actionEvent) {
         actionEvent.consume();
-        System.exit(0);
+        GameManager.exitGame();
         //Needs to save info to file
     }
 

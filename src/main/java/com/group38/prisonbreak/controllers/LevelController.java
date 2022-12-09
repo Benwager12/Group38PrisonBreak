@@ -3,6 +3,7 @@ package com.group38.prisonbreak.controllers;
 import com.group38.prisonbreak.Constants;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.Level;
+import com.group38.prisonbreak.entities.enemies.FlyingAssassin;
 import com.group38.prisonbreak.entities.enemies.SmartThief;
 import com.group38.prisonbreak.utilities.Entity;
 import com.group38.prisonbreak.utilities.FileUtilities;
@@ -18,6 +19,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+
+import java.util.Iterator;
 
 public class LevelController {
 
@@ -116,11 +119,29 @@ public class LevelController {
      */
     private void moveEntities() {
         if (GameManager.level != null) {
+            for (Entity entity : GameManager.level.getEntities()) {
+                if (!(entity instanceof SmartThief) && !(entity instanceof Player)) {
+                    entity.move();
+
+                    // Draws again if the flying assassin has collided with the player so it's visible before games ends
+                    if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
+                        GameManager.level.draw(g);
+                    }
+                }
+            }
+
+            // Not sure if this is needed I've kept it in incase the above code lags out
+            /*
             GameManager.level.getEntities().forEach(entity -> {
                 if (!(entity instanceof SmartThief) && !(entity instanceof Player)) {
                     entity.move();
+
+                    if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
+                        GameManager.level.draw(g);
+                    }
                 }
             });
+             */
             if (GameManager.level != null) {
                 GameManager.level.draw(g);
             }
@@ -186,7 +207,7 @@ public class LevelController {
     @FXML
     private void crossClicked(MouseEvent click) {
         click.consume();
-        System.exit(0);
+        GameManager.exitGame();
     }
 
     /**
