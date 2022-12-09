@@ -21,7 +21,7 @@ public class ProfileUtilities {
     private static final ArrayList<Profile> PROFILES = new ArrayList<>();
 
     // Format of the Profiles.txt file "<id>, <name>, <highest level>"
-    private static final String TXT_STRING_FORMAT = "%d, %s, %d%n";
+    private static final String TXT_STRING_FORMAT = "%s, %d%n";
 
     /**
      * Initialises all the profiles
@@ -197,6 +197,16 @@ public class ProfileUtilities {
     }
 
     /**
+     * Removes a profile with the given id
+     * @param id int id of the profile to be removed
+     */
+    public static void removeProfile(int id) {
+        if (PROFILES.size() >= id) {
+            PROFILES.remove(id - 1);
+        }
+    }
+
+    /**
      * Saves the current stored Profile classes in Profile.txt
      * NOTE: THIS WILL OVERRIDE EVERYTHING THAT'S CURRENTLY IN PROFILE.TXT
      */
@@ -206,11 +216,13 @@ public class ProfileUtilities {
             System.out.println(FileUtilities.getResourcePath(FILE_LOCATION));
 
             for (Profile profile : PROFILES) {
-                String profileData = String.format(TXT_STRING_FORMAT, profile.getId(),
-                        profile.getName(),
-                        profile.getHighestLevel()
-                );
-                myWriter.write(profileData);
+                if (!profile.getName().equals("")) {
+                    String profileData = String.format(TXT_STRING_FORMAT,
+                            profile.getName(),
+                            profile.getHighestLevel()
+                    );
+                    myWriter.write(profileData);
+                }
             }
             myWriter.close();
 
