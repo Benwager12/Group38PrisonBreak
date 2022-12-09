@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
+<BorderPane id="startMenu" fx:id="startMenu" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.MenuController">
    <center>
       <HBox alignment="TOP_RIGHT" cache="true" cacheHint="SCALE" prefHeight="412.0" prefWidth="575.0" BorderPane.alignment="TOP_LEFT">
          <children>
@@ -65,7 +60,7 @@
                   </StackPane>
                   <StackPane>
                      <children>
-                        <ImageView fx:id="motdSpeechBubble" fitHeight="135.0" fitWidth="414.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="motdSpeechBubble" fitHeight="150.0" fitWidth="414.0" pickOnBounds="true" preserveRatio="true" scaleY="1.2">
                            <image>
                               <Image url="@../images/Menus/SpeechBubble.png" />
                            </image>
@@ -80,15 +75,15 @@
                                     <Font name="Consolas" size="18.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" top="15.0" />
+                                    <Insets bottom="5.0" left="5.0" top="10.0" />
                                  </VBox.margin>
                               </Text>
-                              <Text fx:id="motdTextBox" fill="#fffefe" layoutX="104.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="330.0332055091858">
+                              <Text fx:id="motdTextBox" fill="#fffefe" layoutX="104.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="322.0332055091858">
                                  <font>
                                     <Font name="Consolas" size="15.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="74.0" />
+                                    <Insets left="80.0" />
                                  </VBox.margin>
                               </Text>
                            </children>
