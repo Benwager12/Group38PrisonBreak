@@ -95,7 +95,7 @@ public class GameManager {
      * @param amount The amount of time to be removed
      */
     public static void removeTime(int amount) {
-        time += amount;
+        time -= amount;
     }
 
     /**
