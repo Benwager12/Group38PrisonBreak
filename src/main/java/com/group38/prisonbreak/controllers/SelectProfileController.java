@@ -189,4 +189,18 @@ public class SelectProfileController {
         displayProfiles();
         ProfileUtilities.saveProfiles();
     }
+
+    public void mouseClickName(MouseEvent mouseEvent) {
+        if (!(mouseEvent.getSource() instanceof ImageView iv)) {
+            return;
+        }
+        String clickedItem = iv.getId();
+        int id = Integer.parseInt(clickedItem.substring(7));
+        int profileId = getProfileFromButtonNumber(id);
+
+        String name = ProfileUtilities.getName(profileId);
+        int highestLevel = ProfileUtilities.getLevelFromProfile(profileId + 1);
+        System.out.printf("You clicked on \"%s\", they have an ID of %d, their highest level is %d. %n",
+                name, profileId + 1, highestLevel);
+    }
 }

@@ -14,7 +14,7 @@
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="nameBox1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#mouseClickName" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/TextboxButton-removebg-preview.png" />
                            </image>
@@ -58,7 +58,7 @@
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="nameBox2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#mouseClickName" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/TextboxButton-removebg-preview.png" />
                            </image>
@@ -102,7 +102,7 @@
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="nameBox3" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#mouseClickName" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/TextboxButton-removebg-preview.png" />
                            </image>
