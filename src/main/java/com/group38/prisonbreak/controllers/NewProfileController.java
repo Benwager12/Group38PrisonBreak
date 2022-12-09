@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.beans.value.ChangeListener;
@@ -60,7 +61,7 @@ public class NewProfileController {
     @FXML
     private void crossClicked(MouseEvent click) {
         click.consume();
-        System.exit(0);
+        GameManager.exitGame();
     }
 
     @FXML

@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.LeaderboardUtilities;
 import javafx.beans.value.ChangeListener;
@@ -39,7 +40,7 @@ public class LeaderboardController {
     @FXML
     private void crossClicked(MouseEvent click) {
         click.consume();
-        System.exit(0);
+        GameManager.exitGame();
     }
 
 
