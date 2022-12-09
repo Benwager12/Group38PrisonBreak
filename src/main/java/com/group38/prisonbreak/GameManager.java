@@ -1,6 +1,6 @@
 package com.group38.prisonbreak;
 
-import com.group38.prisonbreak.utilities.Entity;
+import com.group38.prisonbreak.utilities.LeaderboardUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import com.group38.prisonbreak.utilities.SaveLevelUtilities;
 import javafx.animation.Animation;
@@ -105,9 +105,13 @@ public class GameManager {
     public static void endGame (boolean hasWon) {
         if (hasWon) {
             ProfileUtilities.updateProfile(currentProfileId, level.getLevelNumber());
+            LeaderboardUtilities.addNewHighscore(level.getLevelNumber(), currentProfileId,
+                    GameManager.money, GameManager.time
+            );
         }
         System.out.println(hasWon);
         ProfileUtilities.saveProfiles();
+        LeaderboardUtilities.saveProfiles();
         // TODO: End the game when the player goes through the door
     }
 
@@ -116,6 +120,7 @@ public class GameManager {
      */
     public static void exitGame() {
         ProfileUtilities.saveProfiles();
+        LeaderboardUtilities.saveProfiles();
 
         if (level != null) {
             SaveLevelUtilities.saveLevel(currentProfileId, level);
