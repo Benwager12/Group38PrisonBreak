@@ -71,6 +71,8 @@ public class Game extends Application {
             case "levelMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/level-menu.fxml"));
             case "leaderboard" -> new FXMLLoader(FileUtilities.getResource("fxml/leaderboard.fxml"));
             case "selectProfile" -> new FXMLLoader(FileUtilities.getResource("fxml/Select-Profile.fxml"));
+            case "levelWon" -> new FXMLLoader(FileUtilities.getResource("fxml/level-Passed.fxml"));
+            case "levelLost" -> new FXMLLoader(FileUtilities.getResource("fxml/level-Failed.fxml"));
             default -> null;
         };
         assert loader != null;

@@ -10,8 +10,8 @@ import javafx.scene.text.Text;
 
 public class LeaderboardController {
 
-	private static final double ORIGINAL_BUTTON_ROTATION = 0;
-	private static final double MODIFIED_BUTTON_ROTATION = 1.7;
+    private final double ORIGINAL_BUTTON_ROTATION = 0;
+    private final double MODIFIED_BUTTON_ROTATION = 1.7;
 
 
 	@FXML
@@ -27,10 +27,10 @@ public class LeaderboardController {
 		leaderboardText.setText(LeaderboardUtilities.showScores(1));
 	}
 
-	@FXML
-	private void homeClicked(MouseEvent ignoredActionEvent) {
-		FileUtilities.getGameInstance().setRoot("mainMenu");
-	}
+    @FXML
+    private void homeClicked(MouseEvent actionEvent) {
+        FileUtilities.getGameInstance().setRoot("mainMenu");
+    }
 
 	@FXML
 	private void crossClicked(MouseEvent ignoredClick) {
@@ -38,21 +38,20 @@ public class LeaderboardController {
 	}
 
 
-	/**
-	 * Rotates button when applicable.
-	 *
-	 * @param img the button to be rotated
-	 * @return rotated/unrotated button depending on situation
-	 */
-	private static ChangeListener<Boolean> rotateButton(ImageView img) {
-		return (observable, oldValue, newValue) -> {
-			if (observable.getValue()) {
-				img.setRotate(MODIFIED_BUTTON_ROTATION);
-			} else {
-				img.setRotate(ORIGINAL_BUTTON_ROTATION);
-			}
-		};
-	}
+    /**
+     * Rotates button when applicable.
+     * @param img the button to be rotated
+     * @return rotated/unrotated button depending on situation
+     */
+    private ChangeListener<Boolean> rotateButton(ImageView img) {
+        return (observable, oldValue, newValue) -> {
+            if (observable.getValue()) {
+                img.setRotate(MODIFIED_BUTTON_ROTATION);
+            } else {
+                img.setRotate(ORIGINAL_BUTTON_ROTATION);
+            }
+        };
+    }
 
 
 }

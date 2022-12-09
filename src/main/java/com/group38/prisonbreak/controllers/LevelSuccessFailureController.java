@@ -2,37 +2,61 @@ package com.group38.prisonbreak.controllers;
 
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
+import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
 public class LevelSuccessFailureController {
 
-    public BorderPane LevelFailWindow;
-    public BorderPane LevelSuccessWindow;
-    public ImageView homeImage;
-    public ImageView retryLevelImage;
-    public ImageView crossImage;
-    public ImageView LevelClearedImage;
-    public ImageView NextLevelButton;
-    public ImageView LevelFailedImage;
-    public ImageView retryLevelButton;
+    @FXML
+    private BorderPane LevelFailWindow;
 
-    public void retryLevelClicked(MouseEvent ignoredMouseEvent) {
+    @FXML
+    private BorderPane LevelSuccessWindow;
+
+    @FXML
+    private ImageView homeImage;
+
+    @FXML
+    private ImageView retryLevelImage;
+
+    @FXML
+    private ImageView crossImage;
+
+    @FXML
+    private ImageView LevelClearedImage;
+
+    @FXML
+    private ImageView nextLevelButton;
+
+    @FXML
+    private ImageView LevelFailedImage;
+
+    @FXML
+    private ImageView retryLevelButton;
+
+
+    @FXML
+    private void retryLevelClicked(MouseEvent mouseEvent) {
         FileUtilities.getGameInstance().setRoot("load" + GameManager.level.getLevelNumber());
     }
 
-    public void homeClicked(MouseEvent ignoredActionEvent) {
+    @FXML
+    private void homeClicked(MouseEvent actionEvent) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 
-    public void crossClicked(MouseEvent click) {
+    @FXML
+    private void crossClicked(MouseEvent click) {
         click.consume();
-        System.exit(0);
+        GameManager.exitGame();
     }
 
 
-    public void goToNextLevel(MouseEvent ignoredMouseEvent) {
-        FileUtilities.getGameInstance().setRoot("load" + GameManager.level.getLevelNumber() + 1);
+    @FXML
+    private void goToNextLevel(MouseEvent mouseEvent) {
+        String nextLevel = Integer.toString((GameManager.level.getLevelNumber() + 1));
+        FileUtilities.getGameInstance().setRoot("load" + nextLevel);
     }
 }

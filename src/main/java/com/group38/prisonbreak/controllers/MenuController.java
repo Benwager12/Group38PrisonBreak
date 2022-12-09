@@ -83,7 +83,6 @@ public class MenuController {
         MOTD motd = new MOTD();
         try {
             message = motd.getMessageOfTheDay();
-            System.out.println(message);
             motdTextBox.setText(message);
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);

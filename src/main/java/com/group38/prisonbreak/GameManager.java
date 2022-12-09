@@ -1,5 +1,6 @@
 package com.group38.prisonbreak;
 
+import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.LeaderboardUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import com.group38.prisonbreak.utilities.SaveLevelUtilities;
@@ -122,6 +123,12 @@ public class GameManager {
         ProfileUtilities.saveProfiles();
         LeaderboardUtilities.saveProfiles();
        // SaveLevelUtilities.saveLevel(currentProfileId, level);
+
+        if (hasWon) {
+            FileUtilities.getGameInstance().setRoot("levelWon");
+        } else {
+            FileUtilities.getGameInstance().setRoot("levelLost");
+        }
         // TODO: End the game when the player goes through the door
     }
 
