@@ -149,14 +149,28 @@ public class LevelController {
             GameManager.level.draw(g);
         }
         scoreNumberLabel.setText(String.valueOf(GameManager.money));
+
+
     }
 
     /**
-     * changes the main game timer
+     * Changes the main game timer
+     * @author Daniel Banks, Ben Wager
+     * @since 02/12/2022
      */
     private void changeTime() {
         GameManager.time--;
-        timeLabel.setText(String.valueOf(GameManager.time));
+
+        // Converting to minutes and seconds
+        int minutes = GameManager.time / 60;
+        int seconds = GameManager.time % 60;
+
+        // Converting to 0 left padded
+        String minutesStr = minutes < 9 ? String.format("0%d", minutes) : String.valueOf(minutes);
+        String secondsStr = seconds < 9 ? String.format("0%d", seconds) : String.valueOf(seconds);
+
+        // Displaying to the screen
+        timeLabel.setText(minutesStr + ":" + secondsStr);
         if (GameManager.time <= 0) {
             GameManager.stopTimeLines();
             timeLabel.setText("GAME OVER");
@@ -165,7 +179,7 @@ public class LevelController {
     }
 
     @FXML
-    private void homeClicked(MouseEvent actionEvent) {
+    private void homeClicked(MouseEvent ignoredActionEvent) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 

@@ -1,6 +1,5 @@
 package com.group38.prisonbreak;
 
-import com.group38.prisonbreak.utilities.Entity;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import com.group38.prisonbreak.utilities.SaveLevelUtilities;
 import javafx.animation.Animation;
@@ -42,7 +41,7 @@ public class GameManager {
 
     public static ArrayList<KeyCode> currentlyPressed = new ArrayList<>();
 
-    private static int currentProfileId;
+    public static int currentProfileId;
 
     /**
      * Sets all the cycles for the tick timelines
@@ -108,6 +107,7 @@ public class GameManager {
         }
         System.out.println(hasWon);
         ProfileUtilities.saveProfiles();
+        SaveLevelUtilities.saveLevel(currentProfileId, level);
         // TODO: End the game when the player goes through the door
     }
 
