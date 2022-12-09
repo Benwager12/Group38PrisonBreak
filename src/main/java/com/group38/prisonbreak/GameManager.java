@@ -111,6 +111,7 @@ public class GameManager {
      * @param hasWon If the player has won/beaten the level
      */
     public static void endGame (boolean hasWon) {
+        stopTimeLines();
         if (hasWon) {
             ProfileUtilities.updateProfile(currentProfileId, level.getLevelNumber());
             LeaderboardUtilities.addNewHighscore(level.getLevelNumber(), currentProfileId,
@@ -120,7 +121,7 @@ public class GameManager {
         System.out.println(hasWon);
         ProfileUtilities.saveProfiles();
         LeaderboardUtilities.saveProfiles();
-        SaveLevelUtilities.saveLevel(currentProfileId, level);
+       // SaveLevelUtilities.saveLevel(currentProfileId, level);
         // TODO: End the game when the player goes through the door
     }
 
