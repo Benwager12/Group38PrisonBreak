@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.LeaderboardUtilities;
 import javafx.beans.value.ChangeListener;
@@ -24,7 +25,7 @@ public class LeaderboardController {
 	@FXML
 	public void initialize() {
 		crossImage.hoverProperty().addListener(rotateButton(crossImage));
-		leaderboardText.setText(LeaderboardUtilities.showScores(1));
+		leaderboardText.setText(LeaderboardUtilities.showScores(GameManager.level.getLevelNumber()));
 	}
 
     @FXML
