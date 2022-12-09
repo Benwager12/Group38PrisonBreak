@@ -136,7 +136,9 @@ public class ProfileUtilities {
     public static void updateProfile(int id, int levelNumber) {
         Profile profile = PROFILES.get(id);
         if (profile != null) {
-            profile.setHighestLevel(levelNumber);
+            if (levelNumber > profile.getHighestLevel()) {
+                profile.setHighestLevel(levelNumber);
+            }
         }
     }
 
