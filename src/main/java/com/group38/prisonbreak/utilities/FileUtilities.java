@@ -207,7 +207,7 @@ public class FileUtilities {
             }
         });
 
-        GameManager.addTime(readLevelTime(in));
+        GameManager.setTime(readLevelTime(in));
 
         if(in.hasNextInt()) {
             GameManager.money = readScore(in);

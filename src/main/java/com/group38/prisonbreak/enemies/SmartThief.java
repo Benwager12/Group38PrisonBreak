@@ -53,28 +53,42 @@ public class SmartThief extends Enemy {
         return newPosition;
     }
 
+    /**
+     * updates and sets the new position of the Smart Thief
+     * @param position int array [X, Y] of the new position
+     */
     public void updatePosition(int[] position) {
         super.setX(position[0]);
         super.setY(position[1]);
     }
 
+    /**
+     * Checks if the item it's heading towards still exists
+     * @return boolean if item exists
+     */
+   private boolean itemExist() {
+        if (positionsToItem.size() == 0) return false;
+        int itemXPosition = positionsToItem.get(positionsToItem.size() - 1)[0];
+        int itemYPosition = positionsToItem.get(positionsToItem.size() - 1)[1];
+        return GameManager.level.getTile(itemXPosition, itemYPosition).getItem() != null;
+   }
+
     @Override
     public void move() {
         // If there's positions left to move to then change to the first position in the list of moves
-        if (positionsToItem.size() > 0) {
+        if (positionsToItem.size() > 0 && itemExist()) {
             if (GameManager.level.wontCollide(this, positionsToItem.get(0)[0], positionsToItem.get(0)[1])) {
                 updatePosition(positionsToItem.get(0));
                 positionsToItem.remove(0);
-            } else System.out.println("Collision");
+            }
         } else {
+            positionsToItem.clear();
             // Gets the shortest path to an item and adds the list of moves/positions to the Arraylist
             ArrayList<int[]> path = searchFinding.searchForItems(super.getX(), super.getY());
 
             if (path.size() == 0) {
 
                 int[] newPosition = getRandomMove();
-
-                System.out.println(newPosition[0] + " " + newPosition[1]);
 
                 if (GameManager.level.wontCollide(this, newPosition[0], newPosition[1])) {
                     updatePosition(newPosition);
