@@ -14,9 +14,6 @@ public class LeaderboardController {
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    @FXML
-    private ImageView homeImage;
-
 
     @FXML
     private ImageView crossImage;
@@ -30,7 +27,6 @@ public class LeaderboardController {
 
     @FXML
     public void initialize() {
-        homeImage.hoverProperty().addListener(rotateButton(homeImage));
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
         leaderboardText.setText(LeaderboardUtilities.showScores(1));
     }
@@ -45,6 +41,7 @@ public class LeaderboardController {
         click.consume();
         System.exit(0);
     }
+
 
     /**
      * Rotates button when applicable.

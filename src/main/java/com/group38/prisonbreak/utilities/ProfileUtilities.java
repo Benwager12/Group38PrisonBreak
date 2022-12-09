@@ -4,7 +4,6 @@ import com.group38.prisonbreak.Profile;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -149,7 +148,7 @@ public class ProfileUtilities {
      */
     public static void updateProfile(int id, String name) {
         Profile profile = PROFILES.get(id);
-        profile.setName(name); //Would this be  NewProfileController.getProfileName() in here instead of name now?
+        profile.setName(name);
     }
 
     /**
@@ -160,7 +159,7 @@ public class ProfileUtilities {
      */
     public static void updateProfile(int id, String name, int levelNumber) {
         Profile profile = PROFILES.get(id);
-        profile.setName(name); //Would this be  NewProfileController.getProfileName() in here instead of name now?
+        profile.setName(name);
         profile.setHighestLevel(levelNumber);
     }
 
@@ -179,7 +178,8 @@ public class ProfileUtilities {
      */
     public static void addProfile(String name) {
         PROFILES.add(new Profile(PROFILES.size() + 1, name));
-    } //Would this be  NewProfileController.getProfileName() in here instead of name now?
+        saveProfiles();
+    }
 
     /**
      * Gets the name of a profile from the id
@@ -203,9 +203,8 @@ public class ProfileUtilities {
      * @param id int id of the profile to be removed
      */
     public static void removeProfile(int id) {
-        if (PROFILES.size() >= id) {
-            PROFILES.remove(id - 1);
-        }
+        // Removes the profile if it has the id of the given id
+        PROFILES.removeIf(p -> p.getId() == id);
     }
 
     /**

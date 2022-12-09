@@ -3,11 +3,11 @@
 package com.group38.prisonbreak.utilities;
 
 import com.group38.prisonbreak.*;
-import com.group38.prisonbreak.enemies.FloorThief;
-import com.group38.prisonbreak.enemies.FlyingAssassin;
-import com.group38.prisonbreak.enemies.SmartThief;
+import com.group38.prisonbreak.entities.enemies.FloorThief;
+import com.group38.prisonbreak.entities.enemies.FlyingAssassin;
+import com.group38.prisonbreak.entities.enemies.SmartThief;
+import com.group38.prisonbreak.entities.Player;
 import com.group38.prisonbreak.items.*;
-import javafx.scene.control.Menu;
 import javafx.scene.image.Image;
 
 
@@ -16,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -207,7 +206,7 @@ public class FileUtilities {
             }
         });
 
-        GameManager.addTime(readLevelTime(in));
+        GameManager.setTime(readLevelTime(in));
 
         if(in.hasNextInt()) {
             GameManager.money = readScore(in);

@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.Profile;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
@@ -103,7 +104,7 @@ public class SelectProfileController {
         }
     }
 
-    public void rightArrowClicked(MouseEvent mouseEvent) {
+    public void rightArrowClicked(MouseEvent ignoredMouseEvent) {
         profileOffset++;
 
         if (ProfileUtilities.getNoProfiles() - 3 == profileOffset) {
@@ -113,7 +114,7 @@ public class SelectProfileController {
     }
 
 
-    public void leftArrowClicked(MouseEvent mouseEvent) {
+    public void leftArrowClicked(MouseEvent ignoredMouseEvent) {
         leftArrowButton.setVisible(!(profileOffset == 0));
         leftArrowButton.setDisable(profileOffset == 0);
 
@@ -131,21 +132,23 @@ public class SelectProfileController {
             return;
         }
 
-        if (!(mouseEvent.getSource() instanceof StackPane sp)) {
-            System.out.println("kamsdkdsi");
+        if (!(mouseEvent.getSource() instanceof ImageView iv)) {
             return;
         }
 
-        int selectNumber = Integer.parseInt(sp.getId().substring(10)) - 1;
-        selectNumber += profileOffset;
+        int selectedItem = Integer.parseInt(iv.getId().substring(9));
+        Profile profile = ProfileUtilities.getProfiles()[getProfileFromButtonNumber(selectedItem)];
 
-        Profile profile = ProfileUtilities.getProfiles()[selectNumber];
-        System.out.printf("Name: %s%n", profile.getName());
+        GameManager.currentProfileId = profile.getId();
         FileUtilities.getGameInstance().setRoot("levelMenu");
     }
 
+    private int getProfileFromButtonNumber(int selectedNumber) {
+        return profileOffset + (selectedNumber - 1);
+    }
+
     @FXML
-    private void homeClicked(MouseEvent actionEvent) {
+    private void homeClicked(MouseEvent ignoredActionEvent) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 
@@ -168,5 +171,20 @@ public class SelectProfileController {
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };
+    }
+
+    public void profileDeleteClick(MouseEvent mouseEvent) {
+        if (!(mouseEvent.getSource() instanceof ImageView iv)) {
+            return;
+        }
+
+        int crossNumber = Integer.parseInt(iv.getId().substring(12));
+        int profileNumber = getProfileFromButtonNumber(crossNumber);
+
+        Profile selectedProfile = ProfileUtilities.getProfiles()[profileNumber];
+
+        ProfileUtilities.removeProfile(selectedProfile.getId());
+        displayProfiles();
+        ProfileUtilities.saveProfiles();
     }
 }

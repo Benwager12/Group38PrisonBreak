@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: black; -fx-border-width: 25;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.SelectProfileController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: black; -fx-border-width: 25;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.SelectProfileController">
    <center>
       <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <StackPane fx:id="selectPane1" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#profileSelect" prefHeight="150.0" prefWidth="250.0">
+            <StackPane fx:id="selectPane1" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0">
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
@@ -43,7 +40,7 @@
                      <top>
                         <BorderPane prefHeight="26.0" prefWidth="250.0" BorderPane.alignment="CENTER">
                            <right>
-                              <ImageView fx:id="profileCross1" accessibleRole="BUTTON" fitHeight="24.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                              <ImageView fx:id="profileCross1" accessibleRole="BUTTON" fitHeight="24.0" fitWidth="56.0" onMouseClicked="#profileDeleteClick" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                  <image>
                                     <Image url="@../images/Menus/CrossButton.png" />
                                  </image>
@@ -57,7 +54,7 @@
                   </BorderPane>
                </children>
             </StackPane>
-            <StackPane fx:id="selectPane2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#profileSelect" prefHeight="150.0" prefWidth="250.0">
+            <StackPane fx:id="selectPane2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0">
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
@@ -87,7 +84,7 @@
                      <top>
                         <BorderPane prefHeight="26.0" prefWidth="250.0" BorderPane.alignment="CENTER">
                            <right>
-                              <ImageView fx:id="profileCross2" accessibleRole="BUTTON" fitHeight="24.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                              <ImageView fx:id="profileCross2" accessibleRole="BUTTON" fitHeight="24.0" fitWidth="56.0" onMouseClicked="#profileDeleteClick" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                  <image>
                                     <Image url="@../images/Menus/CrossButton.png" />
                                  </image>
@@ -101,7 +98,7 @@
                   </BorderPane>
                </children>
             </StackPane>
-            <StackPane fx:id="selectPane3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#profileSelect" prefHeight="150.0" prefWidth="250.0">
+            <StackPane fx:id="selectPane3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="250.0">
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
@@ -131,7 +128,7 @@
                      <top>
                         <BorderPane prefHeight="26.0" prefWidth="250.0" BorderPane.alignment="CENTER">
                            <right>
-                              <ImageView fx:id="profileCross3" accessibleRole="BUTTON" fitHeight="24.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                              <ImageView fx:id="profileCross3" accessibleRole="BUTTON" fitHeight="24.0" fitWidth="56.0" onMouseClicked="#profileDeleteClick" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                  <image>
                                     <Image url="@../images/Menus/CrossButton.png" />
                                  </image>

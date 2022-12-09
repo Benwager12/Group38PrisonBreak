@@ -1,6 +1,6 @@
 package com.group38.prisonbreak;
 
-import com.group38.prisonbreak.utilities.Entity;
+import com.group38.prisonbreak.utilities.LeaderboardUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import com.group38.prisonbreak.utilities.SaveLevelUtilities;
 import javafx.animation.Animation;
@@ -42,7 +42,7 @@ public class GameManager {
 
     public static ArrayList<KeyCode> currentlyPressed = new ArrayList<>();
 
-    private static int currentProfileId;
+    public static int currentProfileId;
 
     /**
      * Sets all the cycles for the tick timelines
@@ -83,11 +83,19 @@ public class GameManager {
     }
 
     /**
+     * Sets the time on the level to a given amount
+     * @param amount The time the level time should be set to
+     */
+    public static void setTime(int amount) {
+        time = amount;
+    }
+
+    /**
      * removes a specific amount of time to the game clock
      * @param amount The amount of time to be removed
      */
     public static void removeTime(int amount) {
-        time += amount;
+        time -= amount;
     }
 
     /**
@@ -105,9 +113,14 @@ public class GameManager {
     public static void endGame (boolean hasWon) {
         if (hasWon) {
             ProfileUtilities.updateProfile(currentProfileId, level.getLevelNumber());
+            LeaderboardUtilities.addNewHighscore(level.getLevelNumber(), currentProfileId,
+                    GameManager.money, GameManager.time
+            );
         }
         System.out.println(hasWon);
         ProfileUtilities.saveProfiles();
+        LeaderboardUtilities.saveProfiles();
+        SaveLevelUtilities.saveLevel(currentProfileId, level);
         // TODO: End the game when the player goes through the door
     }
 
@@ -116,6 +129,7 @@ public class GameManager {
      */
     public static void exitGame() {
         ProfileUtilities.saveProfiles();
+        LeaderboardUtilities.saveProfiles();
 
         if (level != null) {
             SaveLevelUtilities.saveLevel(currentProfileId, level);

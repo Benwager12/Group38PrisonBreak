@@ -76,4 +76,13 @@ public class Profile {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", highestLevel=" + highestLevel +
+                '}';
+    }
 }
