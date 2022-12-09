@@ -20,8 +20,6 @@ public class Door extends Item {
 
     private static final HashMap<Integer, Image> imageCache = new HashMap<>();
 
-    private boolean isOpen = false;
-
     public Door() {
         // TODO: Implement Constructor
 
