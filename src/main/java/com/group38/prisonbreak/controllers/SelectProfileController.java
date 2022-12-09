@@ -132,18 +132,19 @@ public class SelectProfileController {
             return;
         }
 
-        if (!(mouseEvent.getSource() instanceof StackPane sp)) {
-            System.out.println("kamsdkdsi");
+        if (!(mouseEvent.getSource() instanceof ImageView iv)) {
             return;
         }
 
-        int selectNumber = Integer.parseInt(sp.getId().substring(10)) - 1;
-        selectNumber += profileOffset;
+        int selectedItem = Integer.parseInt(iv.getId().substring(9));
+        Profile profile = ProfileUtilities.getProfiles()[getProfileFromButtonNumber(selectedItem)];
 
-        Profile profile = ProfileUtilities.getProfiles()[selectNumber];
-        System.out.printf("Name: %s%n", profile.getName());
         GameManager.currentProfileId = profile.getId();
         FileUtilities.getGameInstance().setRoot("levelMenu");
+    }
+
+    private int getProfileFromButtonNumber(int selectedNumber) {
+        return profileOffset + (selectedNumber - 1);
     }
 
     @FXML
@@ -170,5 +171,20 @@ public class SelectProfileController {
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };
+    }
+
+    public void profileDeleteClick(MouseEvent mouseEvent) {
+        if (!(mouseEvent.getSource() instanceof ImageView iv)) {
+            return;
+        }
+
+        int crossNumber = Integer.parseInt(iv.getId().substring(12));
+        int profileNumber = getProfileFromButtonNumber(crossNumber);
+
+        Profile selectedProfile = ProfileUtilities.getProfiles()[profileNumber];
+
+        ProfileUtilities.removeProfile(selectedProfile.getId());
+        displayProfiles();
+        ProfileUtilities.saveProfiles();
     }
 }
