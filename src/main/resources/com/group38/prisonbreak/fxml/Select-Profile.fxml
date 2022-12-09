@@ -15,11 +15,6 @@
          <children>
             <StackPane fx:id="selectPane1" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#profileSelect" prefHeight="150.0" prefWidth="250.0">
                <children>
-                  <ImageView fx:id="faceImage1" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#profileSelect" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Menus/Big%20head.png" />
-                     </image>
-                  </ImageView>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -37,16 +32,34 @@
                         <Font name="Consolas" size="20.0" />
                      </font>
                   </Label>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <ImageView fx:id="faceImage1" fitHeight="163.0" fitWidth="142.0" onMouseClicked="#profileSelect" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../images/Menus/Big%20head.png" />
+                           </image>
+                        </ImageView>
+                     </center>
+                     <top>
+                        <BorderPane prefHeight="26.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+                           <right>
+                              <ImageView fx:id="profileCross1" accessibleRole="BUTTON" fitHeight="24.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../images/Menus/CrossButton.png" />
+                                 </image>
+                                 <BorderPane.margin>
+                                    <Insets right="20.0" />
+                                 </BorderPane.margin>
+                              </ImageView>
+                           </right>
+                        </BorderPane>
+                     </top>
+                  </BorderPane>
                </children>
             </StackPane>
-            <StackPane fx:id="selectPane2" layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#profileSelect" prefHeight="150.0" prefWidth="250.0">
+            <StackPane fx:id="selectPane2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#profileSelect" prefHeight="150.0" prefWidth="250.0">
                <children>
-                  <ImageView fx:id="faceImage2" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#profileSelect" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Menus/Big%20head.png" />
-                     </image>
-                  </ImageView>
-                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -63,16 +76,34 @@
                         <Font name="Consolas" size="20.0" />
                      </font>
                   </Label>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <ImageView fx:id="faceImage2" fitHeight="163.0" fitWidth="142.0" onMouseClicked="#profileSelect" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../images/Menus/Big%20head.png" />
+                           </image>
+                        </ImageView>
+                     </center>
+                     <top>
+                        <BorderPane prefHeight="26.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+                           <right>
+                              <ImageView fx:id="profileCross2" accessibleRole="BUTTON" fitHeight="24.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../images/Menus/CrossButton.png" />
+                                 </image>
+                                 <BorderPane.margin>
+                                    <Insets right="20.0" />
+                                 </BorderPane.margin>
+                              </ImageView>
+                           </right>
+                        </BorderPane>
+                     </top>
+                  </BorderPane>
                </children>
             </StackPane>
-            <StackPane fx:id="selectPane3" layoutX="260.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#profileSelect" prefHeight="150.0" prefWidth="250.0">
+            <StackPane fx:id="selectPane3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#profileSelect" prefHeight="150.0" prefWidth="250.0">
                <children>
-                  <ImageView fx:id="faceImage3" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#profileSelect" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Menus/Big%20head.png" />
-                     </image>
-                  </ImageView>
-                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -89,6 +120,29 @@
                         <Font name="Consolas" size="20.0" />
                      </font>
                   </Label>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <ImageView fx:id="faceImage3" fitHeight="163.0" fitWidth="142.0" onMouseClicked="#profileSelect" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../images/Menus/Big%20head.png" />
+                           </image>
+                        </ImageView>
+                     </center>
+                     <top>
+                        <BorderPane prefHeight="26.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+                           <right>
+                              <ImageView fx:id="profileCross3" accessibleRole="BUTTON" fitHeight="24.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../images/Menus/CrossButton.png" />
+                                 </image>
+                                 <BorderPane.margin>
+                                    <Insets right="20.0" />
+                                 </BorderPane.margin>
+                              </ImageView>
+                           </right>
+                        </BorderPane>
+                     </top>
+                  </BorderPane>
                </children>
             </StackPane>
          </children>
@@ -112,16 +166,16 @@
       </ImageView>
    </right>
    <top>
-      <BorderPane prefHeight="79.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="52.0" prefWidth="750.0" BorderPane.alignment="CENTER">
          <left>
-            <ImageView fitHeight="122.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="70.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../images/Menus/SelectProfileLabel.png" />
                </image>
             </ImageView>
          </left>
          <right>
-            <HBox prefHeight="89.0" prefWidth="131.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="57.0" prefWidth="131.0" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>

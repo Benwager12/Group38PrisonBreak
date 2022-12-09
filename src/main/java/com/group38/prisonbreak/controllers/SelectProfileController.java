@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-
 import java.util.Arrays;
 
 public class SelectProfileController {
@@ -46,6 +45,15 @@ public class SelectProfileController {
     @FXML
     public StackPane stackPane3;
 
+    @FXML
+    private ImageView profileCross1;
+
+    @FXML
+    private ImageView profileCross2;
+
+    @FXML
+    private ImageView profileCross3;
+
 
     private int profileOffset = 0;
 
@@ -63,6 +71,9 @@ public class SelectProfileController {
         displayProfiles();
         homeImage.hoverProperty().addListener(rotateButton(homeImage));
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
+        profileCross1.hoverProperty().addListener(rotateButton(profileCross1));
+        profileCross2.hoverProperty().addListener(rotateButton(profileCross2));
+        profileCross3.hoverProperty().addListener(rotateButton(profileCross3));
     }
 
 
