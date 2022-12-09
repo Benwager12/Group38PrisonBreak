@@ -148,7 +148,7 @@ public class ProfileUtilities {
      */
     public static void updateProfile(int id, String name) {
         Profile profile = PROFILES.get(id);
-        profile.setName(name); //Would this be  NewProfileController.getProfileName() in here instead of name now?
+        profile.setName(name);
     }
 
     /**
@@ -159,7 +159,7 @@ public class ProfileUtilities {
      */
     public static void updateProfile(int id, String name, int levelNumber) {
         Profile profile = PROFILES.get(id);
-        profile.setName(name); //Would this be  NewProfileController.getProfileName() in here instead of name now?
+        profile.setName(name);
         profile.setHighestLevel(levelNumber);
     }
 
@@ -178,7 +178,8 @@ public class ProfileUtilities {
      */
     public static void addProfile(String name) {
         PROFILES.add(new Profile(PROFILES.size() + 1, name));
-    } //Would this be  NewProfileController.getProfileName() in here instead of name now?
+        saveProfiles();
+    }
 
     /**
      * Gets the name of a profile from the id
