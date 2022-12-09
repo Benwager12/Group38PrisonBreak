@@ -69,11 +69,14 @@ public class SelectProfileController {
     @FXML
     public void initialize() {
         displayProfiles();
-        homeImage.hoverProperty().addListener(rotateButton(homeImage));
-        crossImage.hoverProperty().addListener(rotateButton(crossImage));
-        profileCross1.hoverProperty().addListener(rotateButton(profileCross1));
-        profileCross2.hoverProperty().addListener(rotateButton(profileCross2));
-        profileCross3.hoverProperty().addListener(rotateButton(profileCross3));
+
+        ImageView[] rotateButtons = new ImageView[]{homeImage, crossImage, profileCross1, profileCross2, profileCross3};
+        for (ImageView rb : rotateButtons) {
+            rb.hoverProperty().addListener(rotateButton(rb));
+        }
+
+        rightArrowButton.setVisible(ProfileUtilities.getNoProfiles() > 3);
+        rightArrowButton.setDisable(ProfileUtilities.getNoProfiles() <= 3);
     }
 
 
@@ -105,24 +108,23 @@ public class SelectProfileController {
     }
 
     public void rightArrowClicked(MouseEvent ignoredMouseEvent) {
-        profileOffset++;
+        profileOffset = Math.min(ProfileUtilities.getNoProfiles() - 3, profileOffset + 1);
 
-        if (ProfileUtilities.getNoProfiles() - 3 == profileOffset) {
-            profileOffset--;
-        }
+        displayButtons();
         displayProfiles();
     }
 
-
-    public void leftArrowClicked(MouseEvent ignoredMouseEvent) {
-        leftArrowButton.setVisible(!(profileOffset == 0));
+    private void displayButtons() {
+        leftArrowButton.setVisible(profileOffset != 0);
         leftArrowButton.setDisable(profileOffset == 0);
 
-        profileOffset--;
+        rightArrowButton.setVisible(profileOffset + 3 != ProfileUtilities.getNoProfiles());
+        rightArrowButton.setDisable(profileOffset + 3 == ProfileUtilities.getNoProfiles());
+    }
 
-        if (profileOffset < 0) {
-            profileOffset = 0;
-        }
+    public void leftArrowClicked(MouseEvent ignoredMouseEvent) {
+        profileOffset = Math.max(profileOffset - 1, 0);
+        displayButtons();
         displayProfiles();
     }
 
