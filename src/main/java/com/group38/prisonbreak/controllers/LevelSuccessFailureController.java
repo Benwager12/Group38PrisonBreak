@@ -52,6 +52,9 @@ public class LevelSuccessFailureController {
     public void initialize() {
         profileNameText.setText(ProfileUtilities.getName(GameManager.currentProfileId));
         playerScoreText.setText(Integer.toString(GameManager.calculateScore(GameManager.money,GameManager.time)));
+        if (GameManager.level.getLevelNumber() == 8) {
+            //TO DO Remove next level button when all levels complete
+        }
     }
 
     @FXML
