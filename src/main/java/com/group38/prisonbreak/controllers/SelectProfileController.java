@@ -83,27 +83,17 @@ public class SelectProfileController {
 
     private void displayProfiles() {
         Profile[] profiles = ProfileUtilities.getProfiles();
+        StackPane[] selectPanes = new StackPane[] {selectPane1, selectPane2, selectPane3};
 
-        if (profiles.length > profileOffset) {
-            profileName1.setText(profiles[profileOffset].getName());
+        for (int item = 0; item < selectPanes.length; item++) {
+            selectPanes[item].setVisible(profiles.length > profileOffset + item);
+            selectPanes[item].setDisable(profiles.length <= profileOffset + item);
 
-        } else {
-            selectPane1.setOpacity(0);
-            selectPane1.setDisable(true);
-        }
-
-        if (profiles.length > profileOffset + 1) {
-            profileName2.setText(profiles[profileOffset + 1].getName());
-        } else {
-            selectPane2.setOpacity(0);
-            selectPane2.setDisable(true);
-        }
-
-        if (profiles.length > profileOffset + 2) {
-            profileName3.setText(profiles[profileOffset + 2].getName());
-        } else {
-            selectPane3.setOpacity(0);
-            selectPane3.setDisable(true);
+            if (profiles.length > profileOffset + item) {
+                Label profileLabel = (Label) selectPanes[item].getChildren().get(1);
+                String profileName = profiles[profileOffset + item].getName();
+                profileLabel.setText(profileName);
+            }
         }
     }
 
@@ -186,8 +176,10 @@ public class SelectProfileController {
         Profile selectedProfile = ProfileUtilities.getProfiles()[profileNumber];
 
         ProfileUtilities.removeProfile(selectedProfile.getId());
-        displayProfiles();
         ProfileUtilities.saveProfiles();
+
+        displayProfiles();
+        displayButtons();
     }
 
     public void mouseClickName(MouseEvent mouseEvent) {
