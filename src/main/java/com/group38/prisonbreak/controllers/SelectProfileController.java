@@ -155,7 +155,7 @@ public class SelectProfileController {
     @FXML
     private void crossClicked(MouseEvent click) {
         click.consume();
-        System.exit(0);
+        GameManager.exitGame();
     }
 
     /**
