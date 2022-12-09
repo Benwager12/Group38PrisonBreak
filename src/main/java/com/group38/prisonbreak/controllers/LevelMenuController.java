@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
@@ -117,7 +118,7 @@ public class LevelMenuController {
     @FXML
     private void exitClicked(MouseEvent e) {
         e.consume();
-        System.exit(0);
+        GameManager.exitGame();
     }
 
 
