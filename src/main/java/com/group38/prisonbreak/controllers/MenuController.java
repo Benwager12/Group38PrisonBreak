@@ -44,12 +44,6 @@ public class MenuController {
     @FXML
     private Text motdTextBox;
 
-    @FXML
-    private BorderPane startMenu;
-
-    @FXML
-    private GridPane mainPane;
-    private HBox hBox;
     private static String message;
 
     @FXML
@@ -109,6 +103,7 @@ public class MenuController {
             }
         };
     }
+
     private ChangeListener<Boolean> startMOTDListener(ImageView mainPane) {
         return (observable, oldValue, newValue) -> printMOTD();
         };

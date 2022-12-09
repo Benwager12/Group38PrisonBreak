@@ -1,40 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="NewProfileMenu" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: BLack; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LeaderboardController">
+<BorderPane fx:id="NewProfileMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: BLack; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LeaderboardController">
    <top>
       <BorderPane maxHeight="-Infinity" minHeight="70.0" prefHeight="74.0" prefWidth="753.0" BorderPane.alignment="CENTER">
          <left>
             <ImageView fitHeight="55.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../images/Menus/GameLogo.png" />
+                  <Image url="@../images/Menus/leaderboardtitleimageWHITE.png" />
                </image>
             </ImageView>
          </left>
          <right>
             <HBox prefHeight="74.0" prefWidth="126.0">
                <children>
-                  <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-                     <image>
-                        <Image url="@../images/Menus/HomeButton.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                   <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="106.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>
                         <Image url="@../images/Menus/CrossButton.png" />
                      </image>
                      <HBox.margin>
-                        <Insets left="10.0" top="10.0" />
+                        <Insets left="10.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
                </children>
@@ -45,10 +35,26 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <Text fx:id="leaderboardText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Consolas" size="23.0" />
-               </font></Text>
+            <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="180.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="336.0" pickOnBounds="true" preserveRatio="true" scaleX="1.38" scaleY="1.23">
+                     <image>
+                        <Image url="@../images/Menus/Leaderboard.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets bottom="92.0" left="20.0" right="60.0" top="20.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <Text fx:id="leaderboardText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                     <font>
+                        <Font name="Consolas Bold Italic" size="23.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </Text>
+               </children>
+            </StackPane>
          </center>
       </BorderPane>
    </center>
