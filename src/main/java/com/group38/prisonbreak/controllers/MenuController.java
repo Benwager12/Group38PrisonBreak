@@ -1,24 +1,20 @@
 package com.group38.prisonbreak.controllers;
 
-import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.MOTD;
 import com.group38.prisonbreak.utilities.FileUtilities;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
-import javafx.event.EventType;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * MenuController handles the...[add]
@@ -48,6 +44,12 @@ public class MenuController {
     @FXML
     private Text motdTextBox;
 
+    @FXML
+    private BorderPane startMenu;
+
+    @FXML
+    private GridPane mainPane;
+    private HBox hBox;
     private static String message;
 
     @FXML
@@ -56,12 +58,6 @@ public class MenuController {
         newGameImage.hoverProperty().addListener(rotateButton(newGameImage));
         loadGameImage.hoverProperty().addListener(rotateButton(loadGameImage));
         exitImage.hoverProperty().addListener(rotateButton(exitImage));
-
-        // [add]
-        gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
-        motdSpeechBubble.setVisible(false);
-        motdTitle.setVisible(false);
-        motdTextBox.setVisible(false);
         gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
     }
 
@@ -86,7 +82,6 @@ public class MenuController {
         System.exit(0);
         //Needs to save info to file
     }
-
 
     @FXML
     private void printMOTD(){
@@ -114,12 +109,8 @@ public class MenuController {
             }
         };
     }
-    private ChangeListener<Boolean> startMOTDListener(ImageView img) {
-        motdTitle.setVisible(true);
-        motdTextBox.setVisible(true);
-        motdSpeechBubble.setVisible(true);
+    private ChangeListener<Boolean> startMOTDListener(ImageView mainPane) {
         return (observable, oldValue, newValue) -> printMOTD();
-
         };
     }
 
