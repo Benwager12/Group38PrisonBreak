@@ -14,7 +14,7 @@
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="nameBox1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#mouseClickName" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/TextboxButton-removebg-preview.png" />
                            </image>
@@ -58,7 +58,7 @@
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="nameBox2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#mouseClickName" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/TextboxButton-removebg-preview.png" />
                            </image>
@@ -102,7 +102,7 @@
                <children>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="nameBox3" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#mouseClickName" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Menus/TextboxButton-removebg-preview.png" />
                            </image>
@@ -149,14 +149,14 @@
       </HBox>
    </center>
    <left>
-      <ImageView fx:id="leftArrowButton" fitHeight="150.0" fitWidth="100.0" onMouseClicked="#leftArrowClicked" pickOnBounds="true" preserveRatio="true" rotate="270.0" translateY="120.0" BorderPane.alignment="CENTER_LEFT">
+      <ImageView fx:id="leftArrowButton" disable="true" fitHeight="150.0" fitWidth="100.0" onMouseClicked="#leftArrowClicked" pickOnBounds="true" preserveRatio="true" rotate="270.0" translateY="120.0" visible="false" BorderPane.alignment="CENTER_LEFT">
          <image>
             <Image url="@../images/Menus/arrow.png" />
          </image>
       </ImageView>
    </left>
    <right>
-      <ImageView fx:id="rightArrowButton" fitHeight="150.0" fitWidth="100.0" onMouseClicked="#rightArrowClicked" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateY="120.0" BorderPane.alignment="CENTER_RIGHT">
+      <ImageView fx:id="rightArrowButton" fitHeight="150.0" fitWidth="100.0" onMouseClicked="#rightArrowClicked" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateY="120.0" visible="false" BorderPane.alignment="CENTER_RIGHT">
          <image>
             <Image url="@../images/Menus/arrow.png" />
          </image>

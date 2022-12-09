@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LevelMenuController">
    <center>
@@ -34,7 +35,7 @@
                         </ImageView>
                      </children>
                   </StackPane>
-                  <StackPane prefHeight="123.0" prefWidth="137.0">
+                  <StackPane fx:id="levelStack2" prefHeight="123.0" prefWidth="137.0">
                      <children>
                         <ImageView fitHeight="116.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -52,9 +53,19 @@
                               <Insets right="10.0" top="80.0" />
                            </StackPane.margin>
                         </ImageView>
+                        <StackPane fx:id="lockedLevel2">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34362adb" height="121.0" stroke="#040404" strokeType="INSIDE" strokeWidth="2.0" width="157.0" />
+                              <ImageView fitHeight="71.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/lock overlay.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
                      </children>
                   </StackPane>
-                  <StackPane>
+                  <StackPane fx:id="levelStack3">
                      <children>
                         <ImageView fitHeight="111.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -72,9 +83,19 @@
                               <Insets right="15.0" top="80.0" />
                            </StackPane.margin>
                         </ImageView>
+                        <StackPane fx:id="lockedLevel3">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34362adb" height="121.0" stroke="#040404" strokeType="INSIDE" strokeWidth="2.0" width="156.0" />
+                              <ImageView fitHeight="71.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/lock overlay.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
                      </children>
                   </StackPane>
-                  <StackPane>
+                  <StackPane fx:id="levelStack4">
                      <children>
                         <ImageView fitHeight="100.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -92,6 +113,20 @@
                               <Insets left="5.0" top="80.0" />
                            </StackPane.margin>
                         </ImageView>
+                        <StackPane fx:id="lockedLevel4" prefHeight="130.0" prefWidth="147.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34362adb" height="121.0" stroke="#040404" strokeType="INSIDE" strokeWidth="2.0" width="157.0">
+                                 <StackPane.margin>
+                                    <Insets left="1.0" />
+                                 </StackPane.margin>
+                              </Rectangle>
+                              <ImageView fitHeight="71.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/lock overlay.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
                      </children>
                   </StackPane>
                </children>
@@ -101,7 +136,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="185.0" prefWidth="600.0">
                <children>
-                  <StackPane>
+                  <StackPane fx:id="levelStack5">
                      <children>
                         <ImageView fitHeight="96.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -119,12 +154,22 @@
                               <Insets left="5.0" top="80.0" />
                            </StackPane.margin>
                         </ImageView>
+                        <StackPane fx:id="lockedLevel5">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34362adb" height="121.0" stroke="#040404" strokeType="INSIDE" strokeWidth="2.0" width="157.0" />
+                              <ImageView fitHeight="71.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/lock overlay.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
                      </children>
                      <HBox.margin>
                         <Insets left="65.0" />
                      </HBox.margin>
                   </StackPane>
-                  <StackPane>
+                  <StackPane fx:id="levelStack6">
                      <children>
                         <ImageView fitHeight="105.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -141,9 +186,19 @@
                               <Insets right="5.0" top="85.0" />
                            </StackPane.margin>
                         </ImageView>
+                        <StackPane fx:id="lockedLevel6">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34362adb" height="121.0" stroke="#040404" strokeType="INSIDE" strokeWidth="2.0" width="157.0" />
+                              <ImageView fitHeight="71.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/lock overlay.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
                      </children>
                   </StackPane>
-                  <StackPane>
+                  <StackPane fx:id="levelStack7">
                      <children>
                         <ImageView fitHeight="106.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -160,9 +215,19 @@
                               <Insets right="5.0" top="85.0" />
                            </StackPane.margin>
                         </ImageView>
+                        <StackPane fx:id="lockedLevel7">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34362adb" height="121.0" stroke="#040404" strokeType="INSIDE" strokeWidth="2.0" width="157.0" />
+                              <ImageView fitHeight="71.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/lock overlay.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
                      </children>
                   </StackPane>
-                  <StackPane>
+                  <StackPane fx:id="levelStack8">
                      <children>
                         <ImageView fitHeight="111.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -179,6 +244,16 @@
                               <Insets right="5.0" top="80.0" />
                            </StackPane.margin>
                         </ImageView>
+                        <StackPane fx:id="lockedLevel8" prefHeight="178.0" prefWidth="164.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34362adb" height="121.0" stroke="#040404" strokeType="INSIDE" strokeWidth="2.0" width="174.0" />
+                              <ImageView fitHeight="71.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/lock overlay.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
                      </children>
                   </StackPane>
                </children>

@@ -10,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+import java.io.File;
+
 public class LeaderboardController {
 
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
@@ -39,9 +41,8 @@ public class LeaderboardController {
 
     @FXML
     private void crossClicked(MouseEvent click) {
-        click.consume();
-        GameManager.exitGame();
-    }
+        FileUtilities.getGameInstance().setRoot("mainMenu"); //Needs to go to level menu instead
+            }
 
 
     /**
