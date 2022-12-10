@@ -16,6 +16,12 @@ import java.util.Collections;
  * @author Daniel Banks (2107922)
  */
 public class DanielsPathFinding {
+    /*
+     * Uses A* Algorithm
+     * Each Node is given a 'weight' (Distance from item + Distance from start point)
+     * Nodes with the lowest weight are traversed first until the item is found
+     */
+
 
     // Stores position of items
     private final ArrayList<int[]> itemPositions = new ArrayList<>();
@@ -146,6 +152,7 @@ public class DanielsPathFinding {
             }
             return shortestPath;
         }
+        // Return empty List if no paths are found
         return new ArrayList<>();
     }
 
@@ -163,19 +170,20 @@ public class DanielsPathFinding {
 
         ArrayList<int[]> foundRoute = new ArrayList<>();
 
-        // Creates first Node
+        // Creates start/root Node
         addNode(new TileNode(startX, startY, null, 0,
                 calculateDistance(startX, startY, itemXPos, itemYPos))
         );
 
-        // Gets the foundNode
+        // Finds and gets the foundNode with the item on it
         TileNode foundNode = searchForItem(itemXPos, itemYPos, 1);
 
-        // Finds the reverse route to get to the found node
+        // Finds the route in reverse to get to the found node
         while(foundNode != null) {
             foundRoute.add(new int[]{foundNode.getXPos(), foundNode.getYPos()});
             foundNode = foundNode.getPreviousNode();
         }
+        // Returns the route in the correct way (Unreserved)
         Collections.reverse(foundRoute);
         return foundRoute;
     }
@@ -240,7 +248,7 @@ public class DanielsPathFinding {
                 GameManager.getLevel().wontSetOffBomb(newPositionLeft[0], newPositionLeft[1])) {
             addNode(leftNode);
         }
-        // Recursively calls function again, incrementing one
+        // Recursively calls function again, incrementing distance (from start node)
         return searchForItem(itemXPos, itemYPos, ++distance);
     }
 }
