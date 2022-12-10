@@ -3,22 +3,26 @@ package com.group38.prisonbreak;
 /**
  * Implementation of a Player Profile
  * @author Daniel Banks (2107922)
+ * @since 02/12/2022
  */
 public class Profile {
 
-    // Id number of the player
+    /** Id number of the player */
     private final int id;
 
-    // Name of the player
+    /** Name of the player */
     private String name;
 
-    // Highest Level they've completed
+    /** Highest level they've completed */
     private int highestLevel;
 
     /**
      * Creates an instance of Profile
      * @param id Id number
      * @param name Name of the player
+     *
+     * @author Daniel Banks
+     * @since 02/12/2022
      */
     public Profile(int id, String name) {
         this.id = id;
@@ -30,6 +34,9 @@ public class Profile {
      * @param id Id number
      * @param name Name of the player
      * @param highestLevel Highest Completed Level
+     *
+     * @author Daniel Banks
+     * @since 02/12/2022
      */
     public Profile(int id, String name, int highestLevel) {
         this.id = id;
@@ -47,7 +54,9 @@ public class Profile {
 
     /**
      * Gets player's Name
-     * @return String Name
+     * @return String representation name
+     * @author Daniel Banks
+     * @since 02/12/2022
      */
     public String getName() {
         return name;
@@ -55,7 +64,9 @@ public class Profile {
 
     /**
      * Gets the highest Level Completed
-     * @return int
+     * @return The highest level in the form as an integer
+     * @author Daniel Banks
+     * @since 02/12/2022
      */
     public int getHighestLevel() {
         return highestLevel;
@@ -64,6 +75,8 @@ public class Profile {
     /**
      * Sets the highest level completed
      * @param highestLevel Highest Level completed
+     * @author Daniel Banks
+     * @since 02/12/2022
      */
     public void setHighestLevel(int highestLevel) {
         this.highestLevel = highestLevel;
@@ -72,15 +85,19 @@ public class Profile {
     /**
      * Sets the players name
      * @param name Name of the player
+     * @author Daniel Banks
+     * @since 02/12/2022
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * ToString of the profile
-     * Shows the Profile info in a nicely written way
-     * @return String
+     * Get a string representation of the profile
+     * @return String representation of profile
+     *
+     * @author Ben Wager
+     * @since 10/12/2022
      */
     @Override
     public String toString() {

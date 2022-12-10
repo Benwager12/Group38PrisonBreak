@@ -20,19 +20,19 @@ import java.util.HashMap;
 
 public class Level implements Drawable {
 
-    // Background image for Tiles
+    /** Background image for Tiles */
     private static final Image tileImage = FileUtilities.loadImageFromResource("images/GameImages/tile.png");
 
-    // The level Number
+    /** The level number */
     private final int levelNumber;
 
-    // Tiles that build up the level
+    /** Tiles that build up the level */
     private final Tile[][] tiles;
 
-    // All the entities in the Level
+    /** All the entities in the Level */
     private final ArrayList<Entity> entities;
 
-    // Stores the colours of the gates that are open
+    /** Stores the colours of the gates that are open */
     private final HashMap<Integer, Boolean> gatesOpen = new HashMap<>();
 
     /**
@@ -62,6 +62,8 @@ public class Level implements Drawable {
      * Gets the ArrayList of all the Entities on the level
      *
      * @return ArrayList of Entities
+     * @author Daniel Banks
+     * @since 01/12/2022
      */
     public ArrayList<Entity> getEntities() {
         return entities;
@@ -73,6 +75,8 @@ public class Level implements Drawable {
      * @param x X position
      * @param y Y position
      * @return Tile
+     * @author Daniel Banks
+     * @since 29/11/2022
      */
     public Tile getTile(int x, int y) {
         return tiles[y][x];
@@ -81,6 +85,8 @@ public class Level implements Drawable {
     /**
      * Gets the current Level number
      * @return level Number
+     * @author Daniel Banks
+     * @since 02/12/2022
      */
     public int getLevelNumber() {
         return levelNumber;
@@ -90,6 +96,8 @@ public class Level implements Drawable {
      * gets the player entity
      *
      * @return Entity
+     * @author Daniel Banks
+     * @since 01/12/2022
      */
     public Entity getPlayer() {
         return entities.get(entities.size() - 1);
@@ -99,6 +107,8 @@ public class Level implements Drawable {
      * Checks to see if there are any items left to be collected on the level
      *
      * @return boolean
+     * @since 29/11/2022
+     * @author Daniel Banks, Ben Wager
      */
     public boolean hasItemsLeft() {
         for (Tile[] tileX : tiles) {
@@ -118,6 +128,8 @@ public class Level implements Drawable {
      * Checks if an item is a gate and if it is whether it's open
      * @param item Item to check
      * @return boolean if gate's open
+     * @author Daniel Banks
+     * @since 29/11/2022
      */
     public boolean areAllGatesOpen(Item item) {
         // Return if gate is open
@@ -136,6 +148,8 @@ public class Level implements Drawable {
 
     /**
      * Removes all items from tiles apart from Doors and Gates
+     * @since 02/12/2022
+     * @author Matthew Salter, Daniel Banks
      */
     public void removeAllItemsExplosion() {
         for (Tile[] tileX : tiles) {
@@ -155,6 +169,8 @@ public class Level implements Drawable {
 
     /**
      * Draws all the Tiles onto the level
+     * @author Ben Wager, Daniel Banks
+     * @since 25/11/2022
      */
     private void drawTiles(GraphicsContext g) {
         int sideLength = getSideLength(g);
@@ -189,6 +205,8 @@ public class Level implements Drawable {
 
     /**
      * Draws all Entities onto the level
+     * @author Daniel Banks
+     * @since 01/12/2022
      */
     public void drawEntities(GraphicsContext g) {
         int sideLength = getSideLength(g);
@@ -204,6 +222,9 @@ public class Level implements Drawable {
     /**
      * Draws items onto the Level
      * @param g GraphicsContext
+     *
+     * @author Ben Wager
+     * @since 02/12/2022
      */
     public void drawItems(GraphicsContext g) {
         int sideLength = getSideLength(g);
@@ -220,10 +241,12 @@ public class Level implements Drawable {
     }
 
     /**
-     * gets the size of the tiles
+     * Gets the size of the tiles
      *
      * @param g GraphicsContext
      * @return sideLength
+     * @author Daniel Banks
+     * @since 01/12/2022
      */
     private int getSideLength(GraphicsContext g) {
         int canvasWidth = (int) g.getCanvas().getWidth();
@@ -240,6 +263,9 @@ public class Level implements Drawable {
      * @param posY           Y position of the entity
      * @param requiresColour If the Entity needs to stay on the same colour
      * @return boolean - If the move is valid
+     *
+     * @author Daniel Banks
+     * @since 24/11/2022
      */
     public boolean canMove(int posX, int posY, int direction, boolean requiresColour) {
         if (!requiresColour) {
@@ -257,23 +283,23 @@ public class Level implements Drawable {
      * @param posY           Y position of the entity
      * @param colourId       id of the colour (int) that the entity has to follow
      * @return boolean - if the move is valid
+     *
+     * @author Daniel Banks, Ben Wager
+     * @since 07/12/2022
      */
     public boolean canMove(int posX, int posY, int direction, int colourId) {
-        // Checks if direction is Up/Down (X)
+        int[] move = singleMove(posX, posY, direction);
+        int newX = move[0];
+        int newY = move[1];
+
         boolean isX = direction == 1 || direction == 3;
-
-        // Checks if direction is negative (Up/Left)
-        boolean isNegative = direction == 0 || direction == 3;
-
-        // Sets newX and newY
-        int newX = isX ? posX + (isNegative ? -1 : 1) : posX;
-        int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
 
         if (isX ? posX < tiles[0].length && posX >= 0 : posY < tiles.length && posY >= 0) {
             return tiles[newY][newX].hasColour(colourId);
         }
         return false;
     }
+
 
     public static int[] singleMove(int posX, int posY, int direction) {
         boolean isX = direction == 1 || direction == 3;
@@ -419,24 +445,19 @@ public class Level implements Drawable {
      * @param posY Current Y Position
      * @param direction Direction of the Entity
      * @return Tile or Null if no Tile found
+     *
+     * @author Daniel Banks, Ben Wager
+     * @since 01/12/20222
      */
     private Tile nextTile(int posX, int posY, int direction) {
-        // Checks if direction is Up/Down (X)
-        boolean isX = direction == 1 || direction == 3;
-
-        // Checks if direcltion is negative (Up/Left)
-        boolean isNegative = direction == 0 || direction == 3;
-
-        // Iterates through all the Tiles; from the Current Tile to the edge
-
-        //(newY + 1 < tiles.length || newY > 0) || (newX + 1 < tiles[0].length || newX > 0) &&
-
-        // X Position of the next Tile (Based on Direction)
-        int newX = isX ? posX + (isNegative ? -1 : 1) : posX;
-        // Y Position of the next Tile (Based on Direction)
-        int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
+        int[] newLocation = singleMove(posX, posY, direction);
+        int newX = newLocation[0];
+        int newY = newLocation[1];
 
         while (newY >= 0 && newY - 1 <= tiles.length && newX >= 0 && newX - 1 <= tiles[0].length) {
+            boolean isNegative = direction == Constants.UP_ID || direction == Constants.LEFT_ID;
+            boolean isX = direction == Constants.RIGHT_ID || direction == Constants.LEFT_ID;
+
             if (newY >= tiles.length || newX >= tiles[0].length) {
                 return null;
             }
@@ -453,6 +474,8 @@ public class Level implements Drawable {
 
     /**
      * @param g The graphics context
+     * @since 25/11/2022
+     * @author Ben Wager
      */
     @Override
     public void draw(GraphicsContext g) {
@@ -464,6 +487,16 @@ public class Level implements Drawable {
         drawItems(g);
     }
 
+    /**
+     * Math function to calculate length of any tile
+     * @param level Level of which tiles we need
+     * @param width Width of the canvas
+     * @param height Height of the canvas
+     * @return An integer representing the calculated side length
+     *
+     * @author Ben Wager
+     * @since 25/11/2022
+     */
     public static int getTileSideLength(Level level, int width, int height) {
         int tileYAmt = level.tiles.length;
         int tileXAmt = level.tiles[0].length;
@@ -491,18 +524,18 @@ public class Level implements Drawable {
     }
 
     /**
-     * Open gates based on the colour given
-     * @param gateColour int colourId of the gates to be opened
+     * Open the gate for a given colour
+     * @param gateColour An integer representing our colours
      */
     public void openGate(int gateColour) {
         gatesOpen.put(gateColour, true);
     }
 
     /**
-     * Checks that a position will not set of a bomb
-     * @param posX X Position to check
-     * @param posY Y Position to check
-     * @return boolean if it won't set a bomb
+     * Checks if a particular won't set off a bomb
+     * @param posX The X position of the tile
+     * @param posY The Y position of the tile
+     * @return Returns true of the bomb will not detonate, false otherwise
      */
     public boolean wontSetOffBomb(int posX, int posY) {
         return !(getTile(posX, posY).getItem() instanceof Bomb);
@@ -514,7 +547,7 @@ public class Level implements Drawable {
      * @param YPos Y Position of the entity
      * @return boolean has collided with flying assassin
      */
-    public boolean hasCollidedWithFlyingAssasin(int XPos, int YPos) {
+    public boolean hasCollidedWithFlyingAssassin(int XPos, int YPos) {
         for (Entity entity : entities) {
             if (entity instanceof FlyingAssassin) {
                 if (entity.getX() == XPos && entity.getY() == YPos) {

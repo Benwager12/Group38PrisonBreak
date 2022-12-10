@@ -8,35 +8,28 @@ import java.net.http.HttpResponse;
 import java.util.Scanner;
 
 
-/** This class fetches the Message of the day from CSWEBCAT.SWANSEA.AC.UK using HTTP GET Requests.
+/**
+ * This class fetches the Message of the day from CSWEBCAT.SWANSEA.AC.UK using HTTP GET Requests.
  * @author Issa (853846)
+ * @since 29/11/2022
  */
 
 
 public class MOTD {
 
-    /** Represents the message of the day.
-     */
-    private String messageOfTheDay;
-    /** Represents the puzzle received from the server.
-     */
-    public static String puzzle;
-
-
     /** Publicly accessible get method for the message of the day.
      * @return A string with the message of the day and its time stamp.
      */
     public String getMessageOfTheDay() throws IOException, InterruptedException {
-        getPuzzle();
-        messageOfTheDay = getFinalMessage(solvePuzzle(puzzle));
-        return messageOfTheDay;
+        String puzzle = getPuzzle();
+        return getFinalMessage(solvePuzzle(puzzle));
     }
 
 
     /** Private method to fetch the puzzle from the server
      * Updates the puzzle variable with the string received from the server
      */
-    private static void getPuzzle() throws IOException, InterruptedException {
+    private static String getPuzzle() throws IOException, InterruptedException {
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -45,7 +38,7 @@ public class MOTD {
 
         HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
 
-        puzzle = response.body();
+        return response.body();
 
     }
 
@@ -56,12 +49,11 @@ public class MOTD {
      * @return A string of the solution.
      */
     private static String solvePuzzle(String puzzle) {
-        String solution = String.valueOf(puzzle.length()+6);
+        StringBuilder solution = new StringBuilder(String.valueOf(puzzle.length() + 6));
 
         for (int i = 0; i < puzzle.length(); i++) {
 
-            char charTemp = puzzle.charAt(i);
-            int asciiTemp = (int) charTemp;
+            int asciiTemp = puzzle.charAt(i);
             //System.out.println(asciiTemp);
 
             if ((i % 2) != 0) { // if the index is odd, starting index counting at 1
@@ -83,11 +75,11 @@ public class MOTD {
                     asciiTemp -= (i+1); //shift the character backwards by the number of index
                 }
             }
-            solution = solution + (char) asciiTemp; //add shifted character to solution string
+            solution.append((char) asciiTemp); //add shifted character to solution string
         }
 
-        solution = solution + "CS-230"; //append CS-230 at end of solution string
-        return solution;
+        solution.append("CS-230"); //append CS-230 at end of solution string
+        return solution.toString();
     }
 
 
