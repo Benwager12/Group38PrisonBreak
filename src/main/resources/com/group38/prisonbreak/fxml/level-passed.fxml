@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -84,7 +83,7 @@
                               <Insets left="20.0" top="-110.0" />
                            </VBox.margin>
                         </StackPane>
-                        <HBox maxWidth="280.0" prefHeight="78.0">
+                        <HBox maxWidth="53.0" minWidth="0.0" prefHeight="57.0" prefWidth="53.0">
                            <VBox.margin>
                               <Insets left="193.0" top="-105.0" />
                            </VBox.margin>
@@ -132,9 +131,9 @@
                </children>
             </StackPane>
          </children>
+         <BorderPane.margin>
+            <Insets top="-198.0" />
+         </BorderPane.margin>
       </HBox>
    </center>
-   <bottom>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </bottom>
 </BorderPane>
