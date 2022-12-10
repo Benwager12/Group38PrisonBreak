@@ -105,7 +105,7 @@ public abstract class Entity {
      * @return boolean has Collided with Flying Assassin
      */
     protected boolean CheckCollision() {
-        if (GameManager.level.hasCollidedWithFlyingAssasin(x, y)) {
+        if (GameManager.getLevel().hasCollidedWithFlyingAssasin(x, y)) {
             killEntity();
             return true;
         }
@@ -133,7 +133,7 @@ public abstract class Entity {
      * @return tile
      */
     public Tile getCurrentTile() {
-        return GameManager.level.getTile(x, y);
+        return GameManager.getLevel().getTile(x, y);
     }
 
     public abstract void move();

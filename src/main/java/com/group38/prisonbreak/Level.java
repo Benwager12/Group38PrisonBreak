@@ -297,7 +297,7 @@ public class Level implements Drawable {
         } catch (IndexOutOfBoundsException e) {
             return new int[]{posX, posY};
         }
-        if (!GameManager.level.isGateOpen(nTile.getItem())) {
+        if (!isGateOpen(nTile.getItem())) {
             return new int[]{posX,posY};
         }
 
@@ -474,18 +474,36 @@ public class Level implements Drawable {
         return Math.min(tileXWidth, tileYWidth);
     }
 
+    /**
+     * Gets the width of the tiles
+     * @return int width
+     */
     public int getWidth() {
         return tiles[0].length;
     }
 
+    /**
+     * Gets the Height of the tiles
+     * @return int height
+     */
     public int getHeight() {
         return tiles.length;
     }
 
+    /**
+     * Open gates based on the colour given
+     * @param gateColour int colourId of the gates to be opened
+     */
     public void openGate(int gateColour) {
         gatesOpen.put(gateColour, true);
     }
 
+    /**
+     * Checks that a position will not set of a bomb
+     * @param posX X Position to check
+     * @param posY Y Position to check
+     * @return boolean if it won't set a bomb
+     */
     public boolean wontSetOffBomb(int posX, int posY) {
         return !(getTile(posX, posY).getItem() instanceof Bomb);
     }

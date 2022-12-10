@@ -42,10 +42,10 @@ public class FloorThief extends Enemy {
     }
 
     private int[] findMove() {
-        int[] downPos = GameManager.level.potentialMove(getX(),getY(),Constants.DOWN_ID,getChosenColour());
-        int[] rightPos = GameManager.level.potentialMove(getX(),getY(),Constants.RIGHT_ID,getChosenColour());
-        int[] leftPos = GameManager.level.potentialMove(getX(),getY(),Constants.LEFT_ID,getChosenColour());
-        int[] upPos = GameManager.level.potentialMove(getX(),getY(),Constants.UP_ID,getChosenColour());
+        int[] downPos = GameManager.getLevel().potentialMove(getX(),getY(),Constants.DOWN_ID,getChosenColour());
+        int[] rightPos = GameManager.getLevel().potentialMove(getX(),getY(),Constants.RIGHT_ID,getChosenColour());
+        int[] leftPos = GameManager.getLevel().potentialMove(getX(),getY(),Constants.LEFT_ID,getChosenColour());
+        int[] upPos = GameManager.getLevel().potentialMove(getX(),getY(),Constants.UP_ID,getChosenColour());
 
         if (getDirection() == Constants.UP_ID) {
             if (notAtPositiion(leftPos)) {

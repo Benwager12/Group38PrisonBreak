@@ -139,7 +139,7 @@ public class SaveLevelUtilities {
      * @param myWriter printWriter writing to the file
      */
     private static void saveScoreTime(PrintWriter myWriter) {
-        myWriter.write(String.format(TIME_SCORE_STRING_FORMAT, GameManager.time, GameManager.money));
+        myWriter.write(String.format(TIME_SCORE_STRING_FORMAT, GameManager.getTime(), GameManager.getMoney()));
     }
 
     /**

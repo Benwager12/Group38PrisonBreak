@@ -73,7 +73,7 @@ public class Bomb extends Item {
         if (imageIndex > 1) {
             imageIndex--;
         } else {
-            GameManager.level.removeAllItemsExplosion();
+            GameManager.getLevel().removeAllItemsExplosion();
             bombTimeLine.stop();
             imageIndex = -1;
             hasExploded = true;

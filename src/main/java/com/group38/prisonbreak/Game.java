@@ -1,8 +1,6 @@
 package com.group38.prisonbreak;
 
-import com.group38.prisonbreak.utilities.FileUtilities;
-import com.group38.prisonbreak.utilities.LeaderboardUtilities;
-import com.group38.prisonbreak.utilities.ProfileUtilities;
+import com.group38.prisonbreak.utilities.*;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
@@ -62,7 +60,7 @@ public class Game extends Application {
     public void setRoot(String paneType) {
 
         if(paneType.startsWith("loadLevel")) {
-            GameManager.level = FileUtilities.readLevel(Integer.parseInt(paneType.substring(9)));
+            GameManager.setLevel(FileUtilities.readLevel(Integer.parseInt(paneType.substring(9))));
             paneType = paneType.substring(0, paneType.length() - 1);
         }
         FXMLLoader loader = switch (paneType) {

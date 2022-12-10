@@ -31,12 +31,12 @@ public class Door extends Item {
     }
 
     public boolean isOpen() {
-        return !GameManager.level.hasItemsLeft();
+        return !GameManager.getLevel().hasItemsLeft();
     }
 
     @Override
     public boolean interact(boolean isPlayer) {
-        if (!(GameManager.level.hasItemsLeft())) {
+        if (!(GameManager.getLevel().hasItemsLeft())) {
             GameManager.endGame(isPlayer);
             return true;
         }

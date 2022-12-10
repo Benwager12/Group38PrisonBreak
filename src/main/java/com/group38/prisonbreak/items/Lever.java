@@ -40,7 +40,7 @@ public class Lever extends Item {
 
     @Override
     public boolean interact(boolean isPlayer) {
-            GameManager.level.openGate(imageIndex);
+            GameManager.getLevel().openGate(imageIndex);
         return true;
     }
 

@@ -54,9 +54,9 @@ public class LevelSuccessFailureController {
 
     @FXML
     public void initialize() {
-        profileNameText.setText(ProfileUtilities.getName(GameManager.currentProfileId));
-        playerScoreText.setText(Integer.toString(GameManager.calculateScore(GameManager.money,GameManager.time)));
-        if (GameManager.level.getLevelNumber() == 8) {
+        profileNameText.setText(ProfileUtilities.getName(GameManager.getCurrentProfileId()));
+        playerScoreText.setText(Integer.toString(GameManager.calculateScore(GameManager.getMoney(),GameManager.getTime())));
+        if (GameManager.getLevel().getLevelNumber() == 8) {
             //TO DO Remove next level button when all levels complete
         }
         // button animation
@@ -78,13 +78,13 @@ public class LevelSuccessFailureController {
 
     @FXML
     private void retryLevelClicked(MouseEvent mouseEvent) {
-        String currentLevel = Integer.toString((GameManager.level.getLevelNumber()));
+        String currentLevel = Integer.toString((GameManager.getLevel().getLevelNumber()));
         FileUtilities.getGameInstance().setRoot("loadLevel" + currentLevel);
     }
 
     @FXML
     private void goToNextLevel(MouseEvent mouseEvent) {
-        String nextLevel = Integer.toString((GameManager.level.getLevelNumber() + 1));
+        String nextLevel = Integer.toString((GameManager.getLevel().getLevelNumber() + 1));
         FileUtilities.getGameInstance().setRoot("loadLevel" + nextLevel);
     }
 

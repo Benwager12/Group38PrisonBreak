@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
-import static com.group38.prisonbreak.GameManager.currentProfileId;
+import static com.group38.prisonbreak.GameManager.getCurrentProfileId;
 
 /**
  * LevelMenuController handles...[add]
@@ -159,7 +159,7 @@ public class LevelMenuController {
 	 * @param levelPanes the set of level overlays
 	 */
 	private static void setOverlay(StackPane[] levelPanes) {
-		int highestLevel = ProfileUtilities.getLevelFromProfile(currentProfileId);
+		int highestLevel = ProfileUtilities.getLevelFromProfile(getCurrentProfileId());
 
 		for (StackPane lp : levelPanes) {
 			String levelPaneID = lp.getId();
