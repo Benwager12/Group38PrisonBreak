@@ -115,7 +115,7 @@ public class LevelMenuController {
 		}
 		String buttonId = iv.getId();
 		String levelNumber = buttonId.substring(5, buttonId.length() - 6);
-		FileUtilities.getGameInstance().setRoot("load" + levelNumber);
+		FileUtilities.getGameInstance().setRoot("loadLevel" + levelNumber);
 	}
 
 	/**

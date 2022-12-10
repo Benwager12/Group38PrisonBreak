@@ -69,13 +69,13 @@ public class LevelSuccessFailureController {
     @FXML
     private void retryLevelClicked(MouseEvent mouseEvent) {
         String currentLevel = Integer.toString((GameManager.level.getLevelNumber()));
-        FileUtilities.getGameInstance().setRoot("load" + currentLevel);
+        FileUtilities.getGameInstance().setRoot("loadLevel" + currentLevel);
     }
 
     @FXML
     private void goToNextLevel(MouseEvent mouseEvent) {
         String nextLevel = Integer.toString((GameManager.level.getLevelNumber() + 1));
-        FileUtilities.getGameInstance().setRoot("load" + nextLevel);
+        FileUtilities.getGameInstance().setRoot("loadLevel" + nextLevel);
     }
 
     @FXML

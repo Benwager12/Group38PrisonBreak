@@ -43,6 +43,9 @@ public class Game extends Application {
         primaryStage.show();
         primaryStage.setTitle("Cell Block 38");
 
+        //Delete if we don't want to ban resizing
+        //primaryStage.setResizable(false);
+
         String iconLocation = FileUtilities.getResourceURI("images/Menus/38Icon.png");
         if (iconLocation != null) {
             primaryStage.getIcons().add(new Image(iconLocation));
@@ -60,13 +63,13 @@ public class Game extends Application {
 
     public void setRoot(String paneType) {
 
-        if(paneType.startsWith("load")) {
-            GameManager.level = FileUtilities.readLevel(Integer.parseInt(paneType.substring(4)));
+        if(paneType.startsWith("loadLevel")) {
+            GameManager.level = FileUtilities.readLevel(Integer.parseInt(paneType.substring(9)));
             paneType = paneType.substring(0, paneType.length() - 1);
         }
         FXMLLoader loader = switch (paneType) {
             case "profile" -> new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
-            case "load" -> new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
+            case "loadLevel" -> new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
             case "mainMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
             case "levelMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/level-menu.fxml"));
             case "leaderboard" -> new FXMLLoader(FileUtilities.getResource("fxml/leaderboard.fxml"));
@@ -82,6 +85,14 @@ public class Game extends Application {
             throw new RuntimeException(e);
         }
         setStage();
+
+        //Delete if we don't want to ban resizing
+        /*
+        if(paneType.equals("load")) {
+            primaryStage.setResizable(true);
+        } else {
+            primaryStage.setResizable(false);
+        } */
     }
 
     private static void setStage() {
