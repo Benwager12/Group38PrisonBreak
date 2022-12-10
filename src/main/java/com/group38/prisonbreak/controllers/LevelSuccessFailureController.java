@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 public class LevelSuccessFailureController {
 
@@ -34,7 +35,7 @@ public class LevelSuccessFailureController {
     private ImageView LevelFailedImage;
 
     @FXML
-    private ImageView retryLevelButton;
+    private VBox retryLevelButton;
 
     @FXML
     private ImageView leaderboardButton;

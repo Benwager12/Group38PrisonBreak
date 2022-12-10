@@ -83,7 +83,7 @@
                         </StackPane>
                         <VBox fx:id="retryLevelButton" alignment="CENTER" onMousePressed="#retryLevelClicked">
                            <children>
-                              <ImageView fx:id="retryLevelButton" fitHeight="69.0" fitWidth="62.0" onMouseClicked="#retryLevelClicked" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="8.0">
+                              <ImageView fitHeight="69.0" fitWidth="62.0" onMouseClicked="#retryLevelClicked" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="8.0">
                                  <image>
                                     <Image url="@../images/Menus/RedoButton.png" />
                                  </image>
@@ -93,7 +93,7 @@
                                     <Image url="@../images/Menus/retryLabel.png" />
                                  </image>
                                  <VBox.margin>
-                                    <Insets top="15.0" />
+                                    <Insets right="8.0" top="15.0" />
                                  </VBox.margin>
                               </ImageView>
                            </children>
