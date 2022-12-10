@@ -39,7 +39,7 @@
       </BorderPane>
    </top>
    <center>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="674.0" BorderPane.alignment="CENTER">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="674.0" BorderPane.alignment="CENTER">
          <children>
             <StackPane prefHeight="168.0" prefWidth="675.0">
                <children>
@@ -121,7 +121,7 @@
                               <Image url="@../images/Menus/trophy.png" />
                            </image>
                            <StackPane.margin>
-                              <Insets bottom="-37.0" />
+                              <Insets bottom="-4.0" />
                            </StackPane.margin>
                         </ImageView>
                      </children>
