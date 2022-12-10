@@ -81,7 +81,7 @@
                               </Label>
                            </children>
                         </StackPane>
-                        <VBox fx:id="retryLevelButton" alignment="CENTER" onMousePressed="#retryLevelClicked">
+                        <VBox fx:id="retryLevelButton" alignment="CENTER">
                            <children>
                               <ImageView fitHeight="69.0" fitWidth="62.0" onMouseClicked="#retryLevelClicked" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="8.0">
                                  <image>
@@ -93,7 +93,7 @@
                                     <Image url="@../images/Menus/retryLabel.png" />
                                  </image>
                                  <VBox.margin>
-                                    <Insets right="8.0" top="15.0" />
+                                    <Insets right="9.0" top="15.0" />
                                  </VBox.margin>
                               </ImageView>
                            </children>
@@ -106,7 +106,7 @@
                         <Insets />
                      </StackPane.margin>
                   </VBox>
-                  <StackPane prefHeight="217.0" prefWidth="674.0">
+                  <StackPane maxHeight="-Infinity" maxWidth="1.0" minWidth="1.0" prefWidth="1.0">
                      <children>
                         <ImageView fitHeight="287.0" fitWidth="327.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="-50.0">
                            <image>

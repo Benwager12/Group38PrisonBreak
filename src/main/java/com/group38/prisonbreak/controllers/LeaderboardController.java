@@ -35,7 +35,7 @@ public class LeaderboardController {
 
 	@FXML
 	private void crossClicked(MouseEvent ignoredClick) {
-		FileUtilities.getGameInstance().setRoot("mainMenu"); //Needs to go to level menu instead
+		FileUtilities.getGameInstance().setRoot("levelMenu"); //Needs to go to level menu instead
 	}
 
 
