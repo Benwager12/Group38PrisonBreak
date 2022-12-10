@@ -85,7 +85,7 @@
                               </Text>
                               <Text fx:id="motdTextBox" fill="#fffefe" layoutX="104.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="322.0332055091858">
                                  <font>
-                                    <Font name="Consolas" size="15.0" />
+                                    <Font name="Consolas" size="13.0" />
                                  </font>
                                  <VBox.margin>
                                     <Insets left="80.0" />

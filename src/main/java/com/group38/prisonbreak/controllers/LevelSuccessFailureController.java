@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 public class LevelSuccessFailureController {
 
@@ -20,9 +21,6 @@ public class LevelSuccessFailureController {
 
     @FXML
     private ImageView homeImage;
-
-    @FXML
-    private ImageView retryLevelImage;
 
     @FXML
     private ImageView crossImage;
@@ -37,7 +35,7 @@ public class LevelSuccessFailureController {
     private ImageView LevelFailedImage;
 
     @FXML
-    private ImageView retryLevelButton;
+    private VBox retryLevelButton;
 
     @FXML
     private ImageView leaderboardButton;
@@ -52,6 +50,9 @@ public class LevelSuccessFailureController {
     public void initialize() {
         profileNameText.setText(ProfileUtilities.getName(GameManager.currentProfileId));
         playerScoreText.setText(Integer.toString(GameManager.calculateScore(GameManager.money,GameManager.time)));
+        if (GameManager.level.getLevelNumber() == 8) {
+            //TO DO Remove next level button when all levels complete
+        }
     }
 
     @FXML

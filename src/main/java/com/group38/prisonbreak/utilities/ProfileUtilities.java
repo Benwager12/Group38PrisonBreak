@@ -147,7 +147,7 @@ public class ProfileUtilities {
      * @param name New name of the player
      */
     public static void updateProfile(int id, String name) {
-        Profile profile = PROFILES.get(id);
+        Profile profile = PROFILES.get(id - 1);
         profile.setName(name);
     }
 
@@ -158,7 +158,7 @@ public class ProfileUtilities {
      * @param levelNumber New highest level completed
      */
     public static void updateProfile(int id, String name, int levelNumber) {
-        Profile profile = PROFILES.get(id);
+        Profile profile = PROFILES.get(id - 1);
         profile.setName(name);
         profile.setHighestLevel(levelNumber);
     }
@@ -187,7 +187,7 @@ public class ProfileUtilities {
      * @return String name
      */
     public static String getName(int id) {
-        return PROFILES.get(id).getName();
+        return PROFILES.get(id - 1).getName();
     }
 
     /**
