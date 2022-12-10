@@ -81,7 +81,7 @@ public class MenuController {
             motdTextBox.setText(message);
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
-        } //This was suggested by intellj ???
+        }
 
     }
     /**
