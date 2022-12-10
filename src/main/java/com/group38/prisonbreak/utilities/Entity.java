@@ -105,7 +105,7 @@ public abstract class Entity {
      * @return boolean has Collided with Flying Assassin
      */
     protected boolean CheckCollision() {
-        if (GameManager.getLevel().hasCollidedWithFlyingAssasin(x, y)) {
+        if (GameManager.getLevel().hasCollidedWithFlyingAssassin(x, y)) {
             killEntity();
             return true;
         }
