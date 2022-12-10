@@ -9,18 +9,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+/**
+ * A controller class for the leaderboard, contains button functions and
+ * and on initialisation updates the leaderboard to the current high scores.
+ * @author         ??             and Jennalee Llewellyn (967558)
+ */
+
 public class LeaderboardController {
 
     private final double ORIGINAL_BUTTON_ROTATION = 0;
     private final double MODIFIED_BUTTON_ROTATION = 1.7;
-
 
 	@FXML
 	private ImageView crossImage;
 
 	@FXML
 	private Text leaderboardText;
-
 
 	@FXML
 	public void initialize() {
@@ -53,6 +57,4 @@ public class LeaderboardController {
             }
         };
     }
-
-
 }
