@@ -15,10 +15,10 @@ import java.util.HashMap;
 public class Loot extends Item {
 
     private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
-        put(50, gameImagesStart + "loot_1.png");
-        put(100, gameImagesStart + "loot_2.png");
-        put(150, gameImagesStart + "loot_3.png");
-        put(250, gameImagesStart + "loot_4.png");
+        put(50, GAME_IMAGE_PATH + "loot_1.png");
+        put(100, GAME_IMAGE_PATH + "loot_2.png");
+        put(150, GAME_IMAGE_PATH + "loot_3.png");
+        put(250, GAME_IMAGE_PATH + "loot_4.png");
     }};
 
     private static final HashMap<Integer, Image> imageCache = new HashMap<>();

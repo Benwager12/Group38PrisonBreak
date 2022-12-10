@@ -229,12 +229,12 @@ public class Level implements Drawable {
     public void drawItems(GraphicsContext g) {
         int sideLength = getSideLength(g);
 
-        for (int tiley = 0; tiley < tiles.length; tiley++) {
-            for (int tilex = 0; tilex < tiles[tiley].length; tilex++) {
-                Tile t = tiles[tiley][tilex];
+        for (int tileY = 0; tileY < tiles.length; tileY++) {
+            for (int tileX = 0; tileX < tiles[tileY].length; tileX++) {
+                Tile t = tiles[tileY][tileX];
                 if (t.getItem() != null) {
                     Item it = t.getItem();
-                    g.drawImage(it.getImage(), tilex * sideLength, tiley * sideLength, sideLength, sideLength);
+                    it.draw(g, tileX, tileY, sideLength);
                 }
             }
         }
@@ -248,7 +248,7 @@ public class Level implements Drawable {
      * @author Daniel Banks
      * @since 01/12/2022
      */
-    private int getSideLength(GraphicsContext g) {
+    public int getSideLength(GraphicsContext g) {
         int canvasWidth = (int) g.getCanvas().getWidth();
         int canvasHeight = (int) g.getCanvas().getHeight();
 

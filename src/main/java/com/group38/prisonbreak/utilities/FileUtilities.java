@@ -26,6 +26,8 @@ import java.util.Scanner;
  * @author Daniel Banks (2107922), Ben Wager (2108500), Matthew Salter (986488)
  */
 public class FileUtilities {
+
+    /** An instance of the game */
     private static Game gameInstance;
 
     private static final int MAX_LEVEL_TIME = 300;
@@ -312,12 +314,7 @@ public class FileUtilities {
 
     private static int readLevelTime(Scanner in) {
         int levelTime = in.nextInt();
-
-        //Ensures level is not long than max level time.
-        if (levelTime > MAX_LEVEL_TIME) {
-            levelTime = MAX_LEVEL_TIME;
-        }
-        return levelTime;
+        return Math.min(MAX_LEVEL_TIME, levelTime);
     }
 
     private static int readScore(Scanner in) {

@@ -14,15 +14,14 @@ import java.util.HashMap;
 public class Bomb extends Item {
 
     private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
-        put(-1, gameImagesStart + "cracked_tile.png");
-        put(0, gameImagesStart + "alarm.png");
-        put(1, gameImagesStart + "alarm_1.png");
-        put(2, gameImagesStart + "alarm_2.png");
-        put(3, gameImagesStart + "alarm_3.png");
+        put(-1, GAME_IMAGE_PATH + "cracked_tile.png");
+        put(0, GAME_IMAGE_PATH + "alarm.png");
+        put(1, GAME_IMAGE_PATH + "alarm_1.png");
+        put(2, GAME_IMAGE_PATH + "alarm_2.png");
+        put(3, GAME_IMAGE_PATH + "alarm_3.png");
     }};
 
     private static final HashMap<Integer, Image> imageCache = new HashMap<>();
-    private boolean bombActivated;
     private boolean explodable = true;
     private boolean hasExploded = false;
 
