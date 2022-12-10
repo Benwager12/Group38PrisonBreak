@@ -1,10 +1,12 @@
 package com.group38.prisonbreak.controllers;
 
 import com.group38.prisonbreak.utilities.FileUtilities;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
-
-import java.util.concurrent.TimeUnit;
+import javafx.util.Duration;
 
 /**
  * A controller class for the pre-game video, controls the duration of the
@@ -26,12 +28,11 @@ public class GameIntroductionController {
      */
     @FXML
     private void initialize() {
-        try {
-            //Duration of the video before moving automatically onto the
-            TimeUnit.SECONDS.sleep(31);
+        //Duration of the video before moving automatically onto the level menu
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(29), ev -> {
             FileUtilities.getGameInstance().setRoot("levelMenu");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 }
