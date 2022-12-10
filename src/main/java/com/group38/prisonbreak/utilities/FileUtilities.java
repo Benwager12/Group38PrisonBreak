@@ -31,25 +31,6 @@ public class FileUtilities {
 
     private static final String LEVELS_PATH = "levels/%d.level";
 
-    //ADDED FOR MENU TESTER
-    private static MenuTester menuInstance;
-    private static NewProfileTester profileInstance;
-
-   /* public static void main(String[] args) {
-        testReadFile("C:\\Users\\danie\\OneDrive - Swansea University\\CS-230\\Code\\src\\main\\resources\\com\\group38\\prisonbreak\\testFiles\\1.level");
-    }
-
-    public static void testReadFile(String fileName) {
-        try {
-            File file = new File(fileName);
-            Scanner scanner = new Scanner(file);
-            readInfo(scanner);
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("An error occured");
-            e.printStackTrace();
-        }
-    } */
 
     public static void setGameInstance(Game gameInstance) {
         FileUtilities.gameInstance = gameInstance;
@@ -59,14 +40,6 @@ public class FileUtilities {
         return FileUtilities.gameInstance;
     }
 
-    //ADDED FOR MENU TESTER
-    public static void setMenuInstance(MenuTester menuInstance) {
-        FileUtilities.menuInstance = menuInstance;
-    }
-    //ADDED FOR NEW PROFILE TESTER
-    public static void setProfileInstance(NewProfileTester profileInstance) {
-        FileUtilities.profileInstance = profileInstance;
-    }
 
     public static Level readLevel(int levelName, int profileId) {
         return readLevel(getResourcePathUnsafe(
@@ -107,15 +80,6 @@ public class FileUtilities {
         return gameInstance.getClass().getResource(path);
     }
 
-    //ADDED FOR MENU TESTER
-    public static URL getMenuResource(String path) {
-        return menuInstance.getClass().getResource(path);
-    }
-
-    //ADDED FOR NEW PROFILE TESTER
-    public static URL getNewProfileResource(String path) {
-        return profileInstance.getClass().getResource(path);
-    }
 
     public static String getResourceURI(String path) {
         URL resource = getResource(path);
