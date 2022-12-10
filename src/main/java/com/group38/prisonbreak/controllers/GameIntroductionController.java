@@ -25,6 +25,8 @@ public class GameIntroductionController {
     @FXML
     private ImageView skipButton;
 
+    Timeline timeline = null;
+
     /**
      * Initialse method to trigger at the opening of the FXML file. Delays
      * the opening of the next FXML by 31 seconds which is the duration of
@@ -33,7 +35,8 @@ public class GameIntroductionController {
     @FXML
     private void initialize() {
         //Duration of the video before moving automatically onto the level menu
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(29), ev -> {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(29), ev -> {
+            timeline.stop();
             FileUtilities.getGameInstance().setRoot("levelMenu");
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -42,6 +45,7 @@ public class GameIntroductionController {
 
     @FXML
     private void skipClicked(MouseEvent ignoredActionEvent) {
+        timeline.stop();
         FileUtilities.getGameInstance().setRoot("levelMenu");
     }
 }
