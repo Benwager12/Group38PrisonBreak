@@ -98,7 +98,9 @@ public class SmartThief extends Enemy {
                 move();
             }
         }
+
         itemInteract();
+        CheckCollision();
     }
 
     @Override

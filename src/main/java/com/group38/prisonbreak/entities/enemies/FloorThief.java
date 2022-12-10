@@ -31,6 +31,10 @@ public class FloorThief extends Enemy {
 
         setX(potentialMoveTo[0]);
         setY(potentialMoveTo[1]);
+
+        itemInteract();
+        // Checks if it's collided with flying assassin
+        CheckCollision();
     }
 
     private boolean notAtPositiion(int[] xAndY) {

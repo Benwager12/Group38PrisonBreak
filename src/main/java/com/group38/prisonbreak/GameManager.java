@@ -1,10 +1,7 @@
 package com.group38.prisonbreak;
 
 import com.group38.prisonbreak.entities.Player;
-import com.group38.prisonbreak.utilities.FileUtilities;
-import com.group38.prisonbreak.utilities.LeaderboardUtilities;
-import com.group38.prisonbreak.utilities.ProfileUtilities;
-import com.group38.prisonbreak.utilities.SaveLevelUtilities;
+import com.group38.prisonbreak.utilities.*;
 import javafx.animation.Animation;
 import javafx.animation.Timeline;
 import javafx.scene.input.KeyCode;
@@ -31,7 +28,7 @@ public class GameManager {
     public static int time;
 
     // Tick timeline for the entities
-    public static Timeline entityTimeLine;
+    public static Timeline enemyTimeLine;
 
     // Tick timeline for the smartThief
     public static Timeline smartThiefTimeLine;
@@ -50,7 +47,7 @@ public class GameManager {
      * Sets all the cycles for the tick timelines
      */
     public static void initTimelines() {
-        entityTimeLine.setCycleCount(Animation.INDEFINITE);
+        enemyTimeLine.setCycleCount(Animation.INDEFINITE);
         smartThiefTimeLine.setCycleCount(Animation.INDEFINITE);
         timeTimeLine.setCycleCount(Animation.INDEFINITE);
         playerTimeLine.setCycleCount(Animation.INDEFINITE);
@@ -61,7 +58,7 @@ public class GameManager {
      * starts and plays the timelines
      */
     public static void playTimeLines(){
-        entityTimeLine.play();
+        enemyTimeLine.play();
         smartThiefTimeLine.play();
         timeTimeLine.play();
     }
@@ -70,7 +67,7 @@ public class GameManager {
      * stops the timelines
      */
     public static void stopTimeLines(){
-        entityTimeLine.stop();
+        enemyTimeLine.stop();
         smartThiefTimeLine.stop();
         playerTimeLine.stop();
         timeTimeLine.stop();

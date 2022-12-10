@@ -5,6 +5,7 @@
 
 package com.group38.prisonbreak.utilities;
 
+import com.group38.prisonbreak.Constants;
 import com.group38.prisonbreak.GameManager;
 import javafx.scene.image.Image;
 
@@ -22,12 +23,22 @@ public abstract class Entity {
     // Direction the entity is facing/moving
     private int direction;
 
+    private boolean isAlive;
+
+    // Image of the entity
     private Image entityImage;
 
+    /**
+     * Creates an instance of an Entity
+     * @param xPos Starting X Position
+     * @param yPos Starting Y Position
+     * @param direction Starting Direction
+     */
     public Entity(int xPos, int yPos, int direction) {
         x = xPos;
         y = yPos;
         this.direction = direction;
+        isAlive = true;
     }
 
     /**
@@ -62,12 +73,47 @@ public abstract class Entity {
         this.direction = direction;
     }
 
+    /**
+     * Gets the Entity's Image
+     * @return Image
+     */
     public Image getEntityImage() {
         return entityImage;
     }
 
     /**
-     * sets the X position
+     * Gets if the entity is alive
+     * @return boolean - isAlive
+     */
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    /**
+     * "Kills" the entity
+     * Moves the entity off-screen (Rather than deletes it to prevent Concurrency Error)
+     */
+    public void killEntity() {
+        isAlive = false;
+        x = Constants.KILLED_ENTITY_LOCATION;
+        y = Constants.KILLED_ENTITY_LOCATION;
+    }
+
+    /**
+     * Checks if entity has Collided with a flying Assassin
+     * If so; kills it
+     * @return boolean has Collided with Flying Assassin
+     */
+    protected boolean CheckCollision() {
+        if (GameManager.level.hasCollidedWithFlyingAssasin(x, y)) {
+            killEntity();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Sets the X position
      * @param newX X position
      */
     protected void setX(int newX) {
@@ -75,7 +121,7 @@ public abstract class Entity {
     }
 
     /**
-     * sets the Y position
+     * Sets the Y position
      * @param newY Y position
      */
     protected void setY(int newY) {
@@ -83,7 +129,7 @@ public abstract class Entity {
     }
 
     /**
-     * gets the current tile that the entity is on
+     * Gets the current tile that the entity is on
      * @return tile
      */
     public Tile getCurrentTile() {
@@ -98,7 +144,7 @@ public abstract class Entity {
     protected abstract void itemInteract();
 
     /**
-     * sets EntitySpriteURL
+     * Sets EntitySpriteURL
      * @param entityName Name of the png to be loaded
      */
     protected void setEntityImage(String entityName) {
