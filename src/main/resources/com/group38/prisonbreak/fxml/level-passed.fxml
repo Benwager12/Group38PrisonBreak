@@ -8,26 +8,22 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="LevelSuccessWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: BLack; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LevelSuccessFailureController">
    <top>
       <BorderPane maxHeight="-Infinity" minHeight="70.0" prefHeight="74.0" prefWidth="753.0" BorderPane.alignment="CENTER">
          <right>
-            <HBox prefHeight="74.0" prefWidth="126.0">
+            <HBox prefHeight="74.0" prefWidth="123.0">
                <children>
                   <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="150.0" fitWidth="50.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true" translateX="-10.0" HBox.hgrow="ALWAYS">
                      <image>
                         <Image url="@../images/Menus/HomeButton.png" />
                      </image>
                      <HBox.margin>
-                        <Insets top="5.0" />
+                        <Insets left="10.0" top="5.0" />
                      </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="retryLevelImage" fitHeight="69.0" fitWidth="62.0" onMouseClicked="#retryLevelClicked" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="8.0">
-                     <image>
-                        <Image url="@../images/Menus/RedoButton.png" />
-                     </image>
                   </ImageView>
                   <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="106.0" fitWidth="56.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" translateX="-5.0" HBox.hgrow="ALWAYS">
                      <image>
@@ -47,47 +43,98 @@
          <children>
             <StackPane prefHeight="168.0" prefWidth="675.0">
                <children>
-                  <ImageView fx:id="LevelClearedImage" fitHeight="218.0" fitWidth="603.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-                     <image>
-                        <Image url="@../images/Menus/LevelCleared.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="nextLevelButton" fitHeight="119.0" fitWidth="335.0" onMouseClicked="#goToNextLevel" pickOnBounds="true" preserveRatio="true" translateY="80.0">
-                     <image>
-                        <Image url="@../images/Menus/NextLevelButtton.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="155.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="-90.0">
-                     <image>
-                        <Image url="@../images/Menus/flyingmoney.gif" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="leaderboardButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#leaderboardClicked" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="128.0">
-                     <image>
-                        <Image url="@../images/Menus/trophy.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="297.0" fitWidth="548.0" pickOnBounds="true" preserveRatio="true" translateX="11.0" translateY="-120.0">
-                     <image>
-                        <Image url="@../images/Menus/PlayerScorePanelImage.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="profileNameText" prefHeight="35.0" prefWidth="124.0" text="Name" textAlignment="CENTER" translateX="48.0" translateY="-138.0">
-                     <font>
-                        <Font name="Consolas" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="playerScoreText" prefHeight="35.0" prefWidth="123.0" text="Score" textAlignment="CENTER" translateX="48.0" translateY="-112.0">
-                     <font>
-                        <Font name="Consolas" size="25.0" />
-                     </font>
-                  </Label>
+                  <VBox prefHeight="553.0" prefWidth="540.0">
+                     <children>
+                        <ImageView fx:id="LevelClearedImage" fitHeight="56.0" fitWidth="552.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/LevelCleared.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="130.0" top="30.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <StackPane>
+                           <children>
+                              <ImageView fitHeight="261.0" fitWidth="445.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/PlayerScorePanelImage.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets top="50.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                              <Label fx:id="profileNameText" prefHeight="35.0" prefWidth="124.0" text="Name" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas" size="25.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="90.0" top="23.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Label fx:id="playerScoreText" prefHeight="35.0" prefWidth="123.0" text="Score" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Consolas" size="25.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="90.0" top="63.0" />
+                                 </StackPane.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="-110.0" />
+                           </VBox.margin>
+                        </StackPane>
+                        <HBox maxWidth="280.0" prefHeight="78.0">
+                           <VBox.margin>
+                              <Insets left="193.0" top="-105.0" />
+                           </VBox.margin>
+                           <children>
+                              <ImageView fx:id="nextLevelButton" fitHeight="83.0" fitWidth="241.0" onMouseClicked="#goToNextLevel" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/NextLevelButtton.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="-2.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="retryArrow" fitHeight="36.0" fitWidth="35.0" onMouseClicked="#retryLevelClicked" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Menus/RedoButton.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="-30.0" right="20.0" top="24.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <StackPane maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <ImageView fitHeight="155.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="-90.0">
+                           <image>
+                              <Image url="@../images/Menus/flyingmoney.gif" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="leaderboardButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#leaderboardClicked" pickOnBounds="true" preserveRatio="true" translateX="-300.0" translateY="128.0">
+                           <image>
+                              <Image url="@../images/Menus/trophy.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets bottom="-37.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </StackPane>
                </children>
             </StackPane>
          </children>
       </HBox>
    </center>
    <bottom>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" visible="false" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

@@ -29,13 +29,7 @@ public class LevelSuccessFailureController {
     private ImageView crossImage;
 
     @FXML
-    private ImageView LevelClearedImage;
-
-    @FXML
     private ImageView nextLevelButton;
-
-    @FXML
-    private ImageView LevelFailedImage;
 
     @FXML
     private VBox retryLevelButton;
