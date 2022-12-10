@@ -118,6 +118,11 @@ public class ProfileUtilities {
         return playerHashMap;
     }
 
+    /**
+     * Gets the Profile from the profile
+     * @param id Id of the profile to be fetched
+     * @return Instance of the Profile
+     */
     private static Profile getProfileFromId(int id) {
         for (Profile profile : PROFILES) {
             if (profile.getId() == id) {
@@ -170,6 +175,7 @@ public class ProfileUtilities {
      */
     public static void addProfile(String name, int levelNumber) {
         PROFILES.add(new Profile(PROFILES.size() + 1, name, levelNumber));
+        saveProfiles();
     }
 
     /**

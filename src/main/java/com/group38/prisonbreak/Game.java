@@ -25,7 +25,13 @@ public class Game extends Application {
         Game.primaryStage = primaryStage;
 
         FileUtilities.setGameInstance(this);
+
+        // Initialize Profiles
         ProfileUtilities.initialise();
+
+        // Initialize Leaderboard
+        LeaderboardUtilities.initialise();
+
         try {
             FXMLLoader mainMenuLoader = new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
             root = mainMenuLoader.load();
@@ -49,12 +55,6 @@ public class Game extends Application {
 
         Game.primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, GameManager::processKeyEvent);
         Game.primaryStage.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
-
-        // Initialize Profiles
-
-
-        // Initialize Leaderboard
-        LeaderboardUtilities.initialise();
     }
 
     public void setRoot(String paneType) {

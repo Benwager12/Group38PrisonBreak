@@ -32,6 +32,10 @@ public class SmartThief extends Enemy {
         setEntityImage("Guard 1");
     }
 
+    /**
+     * Gets a random position to move to
+     * @return Position to move to as an int array [X, Y]
+     */
     public int[] getRandomMove() {
         ArrayList<Integer> triedDirections = new ArrayList<>();
         int[] newPosition = new int[] { super.getX(), super.getY()};
@@ -73,6 +77,9 @@ public class SmartThief extends Enemy {
         return GameManager.getLevel().getTile(itemXPosition, itemYPosition).getItem() != null;
    }
 
+    /**
+     * Moves the smartThief
+     */
     @Override
     public void move() {
         // If there's positions left to move to then change to the first position in the list of moves
@@ -86,8 +93,8 @@ public class SmartThief extends Enemy {
             // Gets the shortest path to an item and adds the list of moves/positions to the Arraylist
             ArrayList<int[]> path = searchFinding.searchForItems(super.getX(), super.getY());
 
+            // If no items/path to items are found then the Smart thief will move randomly
             if (path.size() == 0) {
-
                 int[] newPosition = getRandomMove();
 
                 if (GameManager.getLevel().wontCollide(this, newPosition[0], newPosition[1])) {
@@ -98,11 +105,15 @@ public class SmartThief extends Enemy {
                 move();
             }
         }
-
+        // Checks for item interaction and if it's collided with a flying assassin
         itemInteract();
         CheckCollision();
     }
 
+    /**
+     * Gets the image of the Smart Thief
+     * @return Image fo the Smart Thief
+     */
     @Override
     public Image getEntityImage() {
         return super.getEntityImage();

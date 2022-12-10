@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class LevelLeaderboard {
 
-    // Format of the string to show the current leaderboard if score is not empyu
+    // Format of the string to show the current leaderboard if score is not empty
     private static final String SHOW_SCORES_STRING_FORMAT = "%d:%s%s%s%d%n";
 
     // Format of the string to show the current leaderboard if score is empty

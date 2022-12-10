@@ -192,34 +192,66 @@ public class GameManager {
         SaveLevelUtilities.saveLevel(0, level);
     }
 
+    /**
+     * Gets the current level
+     * @return level
+     */
     public static Level getLevel() {
         return level;
     }
 
+    /**
+     * Gets the time remaining on the level
+     * @return int Time Remaining
+     */
     public static int getTime() {
         return time;
     }
 
+    /**
+     * Gets the current money collected/score
+     * @return int Money
+     */
     public static int getMoney() {
         return money;
     }
 
+    /**
+     * Gets the profile id of the profile that's currently playing
+     * @return int Id
+     */
     public static int getCurrentProfileId() {
         return currentProfileId;
     }
 
+    /**
+     * Gets the currently Pressed keys
+     * @return ArrayList of KeyCodes
+     */
     public static ArrayList<KeyCode> getCurrentlyPressed() {
         return CURRENTLY_PRESSED;
     }
 
+    /**
+     * Sets the money in the level
+     * @param money int money to be added
+     */
     public static void setMoney(int money) {
         GameManager.money = money;
     }
 
+    /**
+     * Sets the current level
+     * @param level level
+     */
     public static void setLevel(Level level) {
         GameManager.level = level;
     }
 
+    /**
+     * Sets the profile id of the current profile playing
+     * @param currentProfileId int profile id
+     */
     public static void setCurrentProfileId(int currentProfileId) {
         GameManager.currentProfileId = currentProfileId;
     }

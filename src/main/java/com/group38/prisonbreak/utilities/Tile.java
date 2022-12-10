@@ -28,6 +28,7 @@ public class Tile {
             this.colours[i] = Constants.COLOUR_MAP.get(colours[i]);
         }
     }
+
     /**
      * Gets all the colours of the tile
      * @return Color[]
@@ -52,15 +53,11 @@ public class Tile {
         return false;
     }
 
-    public boolean hasColour(Color checkColour) {
-        for (Color color : colours) {
-            if (color.equals(checkColour)) {
-                return  true;
-            }
-        }
-        return false;
-    }
-
+    /**
+     * Checks if the tile has matching colourIds
+     * @param checkColours int[] of size 4, with colourIds to check
+     * @return Boolean if one colour matches
+     */
     public boolean hasColours(int[] checkColours) {
         for (int id1 : colourIDs) {
             for (int id2 : checkColours) {
@@ -93,10 +90,19 @@ public class Tile {
         return item;
     }
 
+    /**
+     * Gets the all the colourIds that make up the tile
+     * @return int[] of size 4 with the colour Ids
+     */
     public int[] getColourIDs() {
         return colourIDs;
     }
 
+    /**
+     * Checks if the tile has a specific given colour
+     * @param checkColour colourId of the tile
+     * @return boolean, if it has the colour
+     */
 	public boolean hasColour(int checkColour) {
         for (int id : colourIDs) {
             if (id == checkColour) {

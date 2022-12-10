@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 
 /**
  * Implements an item that can be unlocked in the game
- * @author Daniel Banks
+ * @author Daniel Banks (2107922)
  */
 public class Unlockable {
 

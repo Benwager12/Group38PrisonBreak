@@ -2,7 +2,7 @@ package com.group38.prisonbreak;
 
 /**
  * Implementation of a Player Profile
- * @author Daniel Banks
+ * @author Daniel Banks (2107922)
  */
 public class Profile {
 
@@ -77,6 +77,11 @@ public class Profile {
         this.name = name;
     }
 
+    /**
+     * ToString of the profile
+     * Shows the Profile info in a nicely written way
+     * @return String
+     */
     @Override
     public String toString() {
         return "Profile{" +

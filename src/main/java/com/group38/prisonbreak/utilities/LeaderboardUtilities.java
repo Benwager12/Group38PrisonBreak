@@ -138,8 +138,8 @@ public class LeaderboardUtilities {
             System.out.println(FileUtilities.getResourcePath(FILE_LOCATION));
 
             for (Map.Entry<Integer, LevelLeaderboard> levelHScore : LEADERBOARD.entrySet()) {
-                int[][] levelHScoreVaules = levelHScore.getValue().getLeaderboard();
-                for (int[] score : levelHScoreVaules) {
+                int[][] levelHScoreValues = levelHScore.getValue().getLeaderboard();
+                for (int[] score : levelHScoreValues) {
                     String profileData = String.format(TXT_STRING_FORMAT, levelHScore.getKey(),
                             score[0],
                             score[1]

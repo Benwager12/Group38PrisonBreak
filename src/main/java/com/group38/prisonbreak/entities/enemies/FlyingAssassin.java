@@ -6,7 +6,6 @@ import com.group38.prisonbreak.utilities.Enemy;
 import com.group38.prisonbreak.utilities.Entity;
 import javafx.scene.image.Image;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -74,6 +73,10 @@ public class FlyingAssassin extends Enemy {
         return colliedEntities;
     }
 
+    /**
+     * Moves the FlyingAssassin
+     * Is called every tick in the enemyTimeLine (in LevelController)
+     */
     @Override
     public void move() {
         boolean canMove = false;
@@ -100,10 +103,14 @@ public class FlyingAssassin extends Enemy {
                 super.setDirection(newDir);
             }
         }
-
+        // Checks if it has collided with any other entities
         checkCollision();
     }
 
+    /**
+     * Gets the Image of the entity
+     * @return Image of the entity
+     */
     @Override
     public Image getEntityImage() {
         return super.getEntityImage();
