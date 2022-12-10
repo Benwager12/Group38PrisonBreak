@@ -61,7 +61,13 @@ public class Player extends Entity {
         int[] newPos = GameManager.level.moveTo(super.getX(), super.getY(), super.getDirection());
         super.setX(newPos[0]);
         super.setY(newPos[1]);
+
         itemInteract();
+
+        // Checks if player has collided with flying assassin
+        if (CheckCollision()) {
+            GameManager.endGame(false);
+        }
     }
 
     @Override
