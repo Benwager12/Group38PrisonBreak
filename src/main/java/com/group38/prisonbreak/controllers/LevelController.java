@@ -20,9 +20,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-
 public class LevelController {
 
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
@@ -60,8 +57,8 @@ public class LevelController {
             }
 
         };
-        GameManager.entityTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.ENTITY_TIMELINE_DURATION),
-                event -> moveEntities()));
+        GameManager.enemyTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.ENEMY_TIMELINE_DURATION),
+                event -> moveEnermies()));
         GameManager.smartThiefTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.SMART_THIEF_TIMELINE_DURATION),
                 event -> moveSmartThief()));
         GameManager.playerTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.PLAYER_TIMELINE_DURATION),
@@ -118,26 +115,21 @@ public class LevelController {
     /**
      * moves all the entities apart from smart thief
      */
-    private void moveEntities() {
+    private void moveEnermies() {
         // Try catch error of moving an entity while the entity is being deleted
-        try {
-            if (GameManager.level != null) {
-                for (Entity entity : GameManager.level.getEntities()) {
-                    if (!(entity instanceof SmartThief) && !(entity instanceof Player)) {
-                            entity.move();
+            for (Entity entity : GameManager.level.getEntities()) {
+                if (entity.isAlive() && !(entity instanceof SmartThief) && !(entity instanceof Player)) {
+                    entity.move();
 
-                        // Draws again if the flying assassin has collided with the player so it's visible before games ends
-                        if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
-                            GameManager.level.draw(g);
-                        }
+                    // Draws again if the flying assassin has collided with the player so it's visible before games ends
+                    if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
+                        GameManager.level.draw(g);
                     }
                 }
-
-                if (GameManager.level != null) {
-                    GameManager.level.draw(g);
-                }
             }
-        } catch (ConcurrentModificationException ignored) {}
+            if (GameManager.level != null) {
+                GameManager.level.draw(g);
+            }
     }
 
     /**
@@ -146,7 +138,7 @@ public class LevelController {
     private void moveSmartThief() {
         if (GameManager.level != null) {
             for (Entity entity : GameManager.level.getEntities()) {
-                if (entity instanceof SmartThief) {
+                if (entity.isAlive() && entity instanceof SmartThief) {
                     entity.move();
                 }
             }
@@ -156,6 +148,9 @@ public class LevelController {
         }
     }
 
+    /**
+     * Moves the player every tick
+     */
     private void movePlayerTick() {
         if (GameManager.level != null) {
             GameManager.level.getPlayer().move();
