@@ -1,12 +1,12 @@
 package com.group38.prisonbreak.controllers;
 
 import com.group38.prisonbreak.Constants;
+import com.group38.prisonbreak.Game;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.Level;
 import com.group38.prisonbreak.entities.enemies.FlyingAssassin;
 import com.group38.prisonbreak.entities.enemies.SmartThief;
-import com.group38.prisonbreak.utilities.Entity;
-import com.group38.prisonbreak.utilities.FileUtilities;
+import com.group38.prisonbreak.utilities.*;
 import com.group38.prisonbreak.entities.Player;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -80,6 +80,7 @@ public class LevelController {
         drawCanvas();
         recalculateCanvasSize();
         levelNumberLabel.setText(String.valueOf(GameManager.getLevel().getLevelNumber()));
+        GameManager.resetMoney();
         GameManager.playTimeLines();
     }
 
@@ -199,6 +200,12 @@ public class LevelController {
     private void crossClicked(MouseEvent click) {
         click.consume();
         GameManager.exitGame();
+    }
+
+    @FXML
+    private void saveClicked(MouseEvent actionEvent) {
+        GameManager.saveLevel();
+        FileUtilities.getGameInstance().setRoot("levelMenu");
     }
 
     /**
