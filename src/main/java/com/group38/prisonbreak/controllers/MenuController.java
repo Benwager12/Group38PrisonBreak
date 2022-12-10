@@ -4,17 +4,10 @@ import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.MOTD;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import javafx.beans.value.ChangeListener;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-
 import java.io.IOException;
 
 /**

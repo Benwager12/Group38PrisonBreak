@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.GameIntroductionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.GameIntroductionController">
    <children>
-      <ImageView fx:id="gameIntro" fitHeight="367.0" fitWidth="567.0" layoutX="17.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="gameIntro" fitHeight="397.0" fitWidth="713.0" layoutX="34.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+         <image>
+            <Image url="@../images/Menus/Game%20Promo.gif" />
+         </image></ImageView>
    </children>
 </AnchorPane>
