@@ -69,7 +69,7 @@ public class NewProfileController {
         if (submit.getCode().equals(KeyCode.ENTER)) {
             profileName = enterName.getText();
             ProfileUtilities.addProfile(profileName);
-            GameManager.currentProfileId = ProfileUtilities.getNoProfiles();
+            GameManager.setCurrentProfileId(ProfileUtilities.getNoProfiles());
             FileUtilities.getGameInstance().setRoot("levelMenu");
         }
     }

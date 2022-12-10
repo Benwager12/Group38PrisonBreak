@@ -52,13 +52,13 @@ public class LevelController {
     public void initialize() {
         ChangeListener<Number> paneSizeChange = (observable, oldValue, newValue) -> {
             recalculateCanvasSize();
-            if (GameManager.level != null) {
-                GameManager.level.draw(g);
+            if (GameManager.getLevel() != null) {
+                GameManager.getLevel().draw(g);
             }
 
         };
         GameManager.enemyTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.ENEMY_TIMELINE_DURATION),
-                event -> moveEnermies()));
+                event -> moveEnemies()));
         GameManager.smartThiefTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.SMART_THIEF_TIMELINE_DURATION),
                 event -> moveSmartThief()));
         GameManager.playerTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.PLAYER_TIMELINE_DURATION),
@@ -75,25 +75,25 @@ public class LevelController {
         GameManager.initTimelines();
         drawCanvas();
         recalculateCanvasSize();
-        levelNumberLabel.setText(String.valueOf(GameManager.level.getLevelNumber()));
+        levelNumberLabel.setText(String.valueOf(GameManager.getLevel().getLevelNumber()));
         GameManager.playTimeLines();
     }
 
     public void recalculateCanvasSize() {
-        if (GameManager.level == null) {
+        if (GameManager.getLevel() == null) {
             return;
         }
 
         int w = (int) mainPane.getWidth();
         int h = (int) mainPane.getHeight() - 46;
 
-        int newWidth = Level.getTileSideLength(GameManager.level, w, h) * GameManager.level.getWidth();
-        int newHeight = Level.getTileSideLength(GameManager.level, w, h) * GameManager.level.getHeight();
+        int newWidth = Level.getTileSideLength(GameManager.getLevel(), w, h) * GameManager.getLevel().getWidth();
+        int newHeight = Level.getTileSideLength(GameManager.getLevel(), w, h) * GameManager.getLevel().getHeight();
 
         gameCanvas.setWidth(newWidth);
         gameCanvas.setHeight(newHeight);
 
-        levelNumberLabel.setText(String.valueOf(GameManager.level.getLevelNumber()));
+        levelNumberLabel.setText(String.valueOf(GameManager.getLevel().getLevelNumber()));
     }
 
     public void drawCanvas() {
@@ -101,34 +101,34 @@ public class LevelController {
             g = gameCanvas.getGraphicsContext2D();
         }
 
-        GameManager.level.draw(g);
+        GameManager.getLevel().draw(g);
     }
 
     public void onMouseClickCanvas(MouseEvent ignoredMouseEvent) {
-        GameManager.level = FileUtilities.readLevel(GameManager.level.getLevelNumber());
+        GameManager.setLevel(FileUtilities.readLevel(GameManager.getLevel().getLevelNumber()));
         drawCanvas();
         recalculateCanvasSize();
-        levelNumberLabel.setText(String.valueOf(GameManager.level.getLevelNumber()));
+        levelNumberLabel.setText(String.valueOf(GameManager.getLevel().getLevelNumber()));
         GameManager.playTimeLines();
     }
 
     /**
      * moves all the entities apart from smart thief
      */
-    private void moveEnermies() {
+    private void moveEnemies() {
         // Try catch error of moving an entity while the entity is being deleted
-            for (Entity entity : GameManager.level.getEntities()) {
+            for (Entity entity : GameManager.getLevel().getEntities()) {
                 if (entity.isAlive() && !(entity instanceof SmartThief) && !(entity instanceof Player)) {
                     entity.move();
 
                     // Draws again if the flying assassin has collided with the player so it's visible before games ends
                     if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
-                        GameManager.level.draw(g);
+                        GameManager.getLevel().draw(g);
                     }
                 }
             }
-            if (GameManager.level != null) {
-                GameManager.level.draw(g);
+            if (GameManager.getLevel() != null) {
+                GameManager.getLevel().draw(g);
             }
     }
 
@@ -136,14 +136,14 @@ public class LevelController {
      * moves the smart thief
      */
     private void moveSmartThief() {
-        if (GameManager.level != null) {
-            for (Entity entity : GameManager.level.getEntities()) {
+        if (GameManager.getLevel() != null) {
+            for (Entity entity : GameManager.getLevel().getEntities()) {
                 if (entity.isAlive() && entity instanceof SmartThief) {
                     entity.move();
                 }
             }
-            if (GameManager.level != null) {
-                GameManager.level.draw(g);
+            if (GameManager.getLevel() != null) {
+                GameManager.getLevel().draw(g);
             }
         }
     }
@@ -152,11 +152,11 @@ public class LevelController {
      * Moves the player every tick
      */
     private void movePlayerTick() {
-        if (GameManager.level != null) {
-            GameManager.level.getPlayer().move();
-            GameManager.level.draw(g);
+        if (GameManager.getLevel() != null) {
+            GameManager.getLevel().getPlayer().move();
+            GameManager.getLevel().draw(g);
         }
-        scoreNumberLabel.setText(String.valueOf(GameManager.money));
+        scoreNumberLabel.setText(String.valueOf(GameManager.getMoney()));
 
 
     }
@@ -167,11 +167,11 @@ public class LevelController {
      * @since 02/12/2022
      */
     private void changeTime() {
-        GameManager.time--;
+        GameManager.setTime(GameManager.getTime() - 1);
 
         // Converting to minutes and seconds
-        int minutes = GameManager.time / 60;
-        int seconds = GameManager.time % 60;
+        int minutes = GameManager.getTime() / 60;
+        int seconds = GameManager.getTime() % 60;
 
         // Converting to 0 left padded
         String minutesStr = minutes < 9 ? String.format("0%d", minutes) : String.valueOf(minutes);
@@ -179,7 +179,7 @@ public class LevelController {
 
         // Displaying to the screen
         timeLabel.setText(minutesStr + ":" + secondsStr);
-        if (GameManager.time <= 0) {
+        if (GameManager.getTime() <= 0) {
             GameManager.stopTimeLines();
             timeLabel.setText("GAME OVER");
             GameManager.endGame(false);

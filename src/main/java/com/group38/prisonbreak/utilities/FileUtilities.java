@@ -210,7 +210,7 @@ public class FileUtilities {
         GameManager.setTime(readLevelTime(in));
 
         if(in.hasNextInt()) {
-            GameManager.money = readScore(in);
+            GameManager.setMoney(readScore(in));
         }
 
         in.close();

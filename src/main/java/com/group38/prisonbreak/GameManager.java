@@ -15,17 +15,14 @@ import java.util.ArrayList;
  * @author Ben Wager (2108500), Daniel Banks (2107922)
  */
 public class GameManager {
-
-    //POTENTIALLY MAKE THESE PRIVATE?
-
     // Instance of the level that's currently open
-    public static Level level;
+    private static Level level;
 
     // Amount of money the player has picked up
-    public static int money;
+    private static int money;
 
     // Time left in the game
-    public static int time;
+    private static int time;
 
     // Tick timeline for the entities
     public static Timeline enemyTimeLine;
@@ -39,9 +36,11 @@ public class GameManager {
     // Tick timeline for the main game clock, updates every 1000 milliseconds (1 second)
     public static Timeline timeTimeLine;
 
-    public static ArrayList<KeyCode> currentlyPressed = new ArrayList<>();
+    // ArrayList of currently pressed keys
+    private static final ArrayList<KeyCode> CURRENTLY_PRESSED = new ArrayList<>();
 
-    public static int currentProfileId;
+    // Id of the profile that's current playing
+    private static int currentProfileId;
 
     /**
      * Sets all the cycles for the tick timelines
@@ -153,14 +152,18 @@ public class GameManager {
         System.exit(0);
     }
 
+    /**
+     * Proccess Key events
+     * @param event key event
+     */
     public static void processKeyEvent(KeyEvent event) {
         if (level != null) {
             if (event.getEventType() == KeyEvent.KEY_PRESSED) {
-                if (currentlyPressed.contains(event.getCode())) {
+                if (CURRENTLY_PRESSED.contains(event.getCode())) {
                     return;
                 }
 
-                currentlyPressed.add(event.getCode());
+                CURRENTLY_PRESSED.add(event.getCode());
                 if (playerTimeLine.getStatus() != Animation.Status.RUNNING &&
                         Constants.MOVEMENT_KEYS.contains(event.getCode())) {
 
@@ -169,10 +172,10 @@ public class GameManager {
             }
             if (event.getEventType() == KeyEvent.KEY_RELEASED &&
                     Constants.MOVEMENT_KEYS.contains(event.getCode())) {
-                currentlyPressed.remove(event.getCode());
+                CURRENTLY_PRESSED.remove(event.getCode());
                 playerTimeLine.pause();
 
-                for (KeyCode kc : currentlyPressed) {
+                for (KeyCode kc : CURRENTLY_PRESSED) {
                     if (Constants.MOVEMENT_KEYS.contains(kc)) {
                         playerTimeLine.play();
                         break;
@@ -182,7 +185,42 @@ public class GameManager {
         }
     }
 
+    /**
+     * Saves the current Level
+     */
     public static void saveGame() {
         SaveLevelUtilities.saveLevel(0, level);
+    }
+
+    public static Level getLevel() {
+        return level;
+    }
+
+    public static int getTime() {
+        return time;
+    }
+
+    public static int getMoney() {
+        return money;
+    }
+
+    public static int getCurrentProfileId() {
+        return currentProfileId;
+    }
+
+    public static ArrayList<KeyCode> getCurrentlyPressed() {
+        return CURRENTLY_PRESSED;
+    }
+
+    public static void setMoney(int money) {
+        GameManager.money = money;
+    }
+
+    public static void setLevel(Level level) {
+        GameManager.level = level;
+    }
+
+    public static void setCurrentProfileId(int currentProfileId) {
+        GameManager.currentProfileId = currentProfileId;
     }
 }

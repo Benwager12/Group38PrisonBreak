@@ -46,7 +46,7 @@ public class SmartThief extends Enemy {
 
             // If it hasn't already tried the direction then get a position
             if (!triedDirections.contains(randomDirection)) {
-                newPosition = GameManager.level.moveTo(super.getX(), super.getY(), randomDirection);
+                newPosition = GameManager.getLevel().moveTo(super.getX(), super.getY(), randomDirection);
                 triedDirections.add(randomDirection);
             }
         }
@@ -70,14 +70,14 @@ public class SmartThief extends Enemy {
         if (positionsToItem.size() == 0) return false;
         int itemXPosition = positionsToItem.get(positionsToItem.size() - 1)[0];
         int itemYPosition = positionsToItem.get(positionsToItem.size() - 1)[1];
-        return GameManager.level.getTile(itemXPosition, itemYPosition).getItem() != null;
+        return GameManager.getLevel().getTile(itemXPosition, itemYPosition).getItem() != null;
    }
 
     @Override
     public void move() {
         // If there's positions left to move to then change to the first position in the list of moves
         if (positionsToItem.size() > 0 && itemExist()) {
-            if (GameManager.level.wontCollide(this, positionsToItem.get(0)[0], positionsToItem.get(0)[1])) {
+            if (GameManager.getLevel().wontCollide(this, positionsToItem.get(0)[0], positionsToItem.get(0)[1])) {
                 updatePosition(positionsToItem.get(0));
                 positionsToItem.remove(0);
             }
@@ -90,7 +90,7 @@ public class SmartThief extends Enemy {
 
                 int[] newPosition = getRandomMove();
 
-                if (GameManager.level.wontCollide(this, newPosition[0], newPosition[1])) {
+                if (GameManager.getLevel().wontCollide(this, newPosition[0], newPosition[1])) {
                     updatePosition(newPosition);
                 }
             } else {

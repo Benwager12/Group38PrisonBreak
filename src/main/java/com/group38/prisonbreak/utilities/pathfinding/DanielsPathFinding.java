@@ -35,16 +35,16 @@ public class DanielsPathFinding {
     public void getAllItems() {
         // Resets the array of items
         itemPositions.clear();
-        int levelWidth = GameManager.level.getWidth();
-        int levelHeight = GameManager.level.getHeight();
+        int levelWidth = GameManager.getLevel().getWidth();
+        int levelHeight = GameManager.getLevel().getHeight();
 
         for (int x = 0; x < levelWidth; x++) {
             for (int y = 0; y < levelHeight; y++) {
-                Item item = GameManager.level.getTile(x, y).getItem();
+                Item item = GameManager.getLevel().getTile(x, y).getItem();
 
                 // Will look for items that aren't null, isn't a gate, isn't a bomb and a door if the game has no items left
                 if (item != null && !(item instanceof Gate) && !(item instanceof Bomb) &&
-                        (!(item instanceof Door) || !GameManager.level.hasItemsLeft())) {
+                        (!(item instanceof Door) || !GameManager.getLevel().hasItemsLeft())) {
                     itemPositions.add(new int[] { x, y });
                 }
             }
@@ -206,38 +206,38 @@ public class DanielsPathFinding {
         int rootYPos = currentNode.getYPos();
 
         // Gets all possible positions/moves
-        int[] newPositionUp = GameManager.level.moveTo(rootXPos, rootYPos, Constants.UP_ID);
-        int[] newPositionDown = GameManager.level.moveTo(rootXPos, rootYPos, Constants.DOWN_ID);
-        int[] newPositionRight = GameManager.level.moveTo(rootXPos, rootYPos, Constants.RIGHT_ID);
-        int[] newPositionLeft = GameManager.level.moveTo(rootXPos, rootYPos, Constants.LEFT_ID);
+        int[] newPositionUp = GameManager.getLevel().moveTo(rootXPos, rootYPos, Constants.UP_ID);
+        int[] newPositionDown = GameManager.getLevel().moveTo(rootXPos, rootYPos, Constants.DOWN_ID);
+        int[] newPositionRight = GameManager.getLevel().moveTo(rootXPos, rootYPos, Constants.RIGHT_ID);
+        int[] newPositionLeft = GameManager.getLevel().moveTo(rootXPos, rootYPos, Constants.LEFT_ID);
 
-        // Creates an instance on TileNode for that position
+        // Creates an instance of TileNode for that direction
         TileNode upNode = new TileNode(newPositionUp[0], newPositionUp[1], currentNode, distance,
                 calculateDistance(newPositionUp[0], newPositionUp[1], itemXPos,itemYPos));
         // Checks if it hasn't been visited or that it won't set off the bomb
         if (newPositionUp[1] != rootYPos && hasNotBeenVisited(upNode) &&
-                GameManager.level.wontSetOffBomb(newPositionUp[0], newPositionUp[1])) {
+                GameManager.getLevel().wontSetOffBomb(newPositionUp[0], newPositionUp[1])) {
             addNode(upNode);
         }
 
         TileNode downNode = new TileNode(newPositionDown[0], newPositionDown[1], currentNode, distance,
                 calculateDistance(newPositionDown[0], newPositionDown[1], itemXPos,itemYPos));
         if (newPositionDown[1] != rootYPos && hasNotBeenVisited(downNode) &&
-                GameManager.level.wontSetOffBomb(newPositionDown[0], newPositionDown[1])) {
+                GameManager.getLevel().wontSetOffBomb(newPositionDown[0], newPositionDown[1])) {
             addNode(downNode);
         }
 
         TileNode rightNode = new TileNode(newPositionRight[0], newPositionRight[1], currentNode, distance,
                 calculateDistance(newPositionRight[0], newPositionRight[1], itemXPos,itemYPos));
         if (newPositionRight[0] != rootXPos && hasNotBeenVisited(rightNode) &&
-                GameManager.level.wontSetOffBomb(newPositionRight[0], newPositionRight[1])) {
+                GameManager.getLevel().wontSetOffBomb(newPositionRight[0], newPositionRight[1])) {
            addNode(rightNode);
         }
 
         TileNode leftNode = new TileNode(newPositionLeft[0], newPositionLeft[1], currentNode, distance,
                 calculateDistance(newPositionLeft[0], newPositionLeft[1], itemXPos,itemYPos));
         if (newPositionLeft[0] != rootXPos && hasNotBeenVisited(leftNode) &&
-                GameManager.level.wontSetOffBomb(newPositionLeft[0], newPositionLeft[1])) {
+                GameManager.getLevel().wontSetOffBomb(newPositionLeft[0], newPositionLeft[1])) {
             addNode(leftNode);
         }
         // Recursively calls function again, incrementing one

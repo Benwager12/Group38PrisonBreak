@@ -52,7 +52,7 @@ public class Gate extends Item {
      */
     @Override
     public Image getImage() {
-        boolean isGateOpen = GameManager.level.isGateOpen(this);
+        boolean isGateOpen = GameManager.getLevel().isGateOpen(this);
         return imageCache.get(isGateOpen ? null : gateColour);
     }
 

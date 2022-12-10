@@ -131,7 +131,7 @@ public class SelectProfileController {
         int selectedItem = Integer.parseInt(iv.getId().substring(9));
         Profile profile = ProfileUtilities.getProfiles()[getProfileFromButtonNumber(selectedItem)];
 
-        GameManager.currentProfileId = profile.getId();
+        GameManager.setCurrentProfileId(profile.getId());
         FileUtilities.getGameInstance().setRoot("levelMenu");
     }
 

@@ -25,7 +25,7 @@ public class LeaderboardController {
 	@FXML
 	public void initialize() {
 		crossImage.hoverProperty().addListener(rotateButton(crossImage));
-		leaderboardText.setText(LeaderboardUtilities.showScores(GameManager.level.getLevelNumber()));
+		leaderboardText.setText(LeaderboardUtilities.showScores(GameManager.getLevel().getLevelNumber()));
 	}
 
     @FXML

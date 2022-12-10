@@ -64,7 +64,7 @@ public class FlyingAssassin extends Enemy {
         // ArrayList of collisions with the flying assassin
         ArrayList<Entity> colliedEntities = new ArrayList<>();
 
-        for (Entity entity : GameManager.level.getEntities()) {
+        for (Entity entity : GameManager.getLevel().getEntities()) {
             if (entity != this) {
                 if (entity.getX() == super.getX() && entity.getY() == super.getY()) {
                     colliedEntities.add(entity);
@@ -89,7 +89,7 @@ public class FlyingAssassin extends Enemy {
             // Y Position of the next Tile (Based on Direction)
             int newY = !isX ? super.getY() + (isNegative ? -1 : 1) : super.getY();
 
-            if (GameManager.level.canMove(newX, newY, direction, false)) {
+            if (GameManager.getLevel().canMove(newX, newY, direction, false)) {
                 // sets the new X and Y positions
                 super.setX(newX);
                 super.setY(newY);
