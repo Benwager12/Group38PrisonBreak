@@ -41,6 +41,9 @@ public class LevelController {
     private ImageView crossImage;
 
     @FXML
+    private ImageView saveImage;
+
+    @FXML
     private Canvas gameCanvas;
 
     private GraphicsContext g;
@@ -70,6 +73,7 @@ public class LevelController {
 
         homeImage.hoverProperty().addListener(rotateButton(homeImage));
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
+        saveImage.hoverProperty().addListener(rotateButton(saveImage));
 
         // Initializes and starts timelines
         GameManager.initTimelines();

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane id="gamePane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LevelController">
+<BorderPane id="gamePane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LevelController">
    <center>
       <Canvas fx:id="gameCanvas" height="400.0" onMouseClicked="#onMouseClickCanvas" width="800.0" BorderPane.alignment="CENTER" />
    </center>
@@ -54,22 +57,37 @@
                         </Text>
                      </children>
                   </HBox>
-                  <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="28.0" fitWidth="24.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Menus/HomeButton.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets top="1.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="23.0" fitWidth="25.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Menus/CrossButton.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets right="20.0" top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
+                  <HBox>
+                     <children>
+                        <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="28.0" fitWidth="24.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/HomeButton.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="4.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="saveImage" fitHeight="27.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/GameImages/save_game.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="1.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="23.0" fitWidth="25.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Menus/CrossButton.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="4.0" top="4.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
                </children>
                <padding>
                   <Insets right="15.0" top="5.0" />
