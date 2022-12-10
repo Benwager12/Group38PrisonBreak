@@ -14,10 +14,4 @@ public interface Drawable {
      * @param g The graphics context
      */
     void draw(GraphicsContext g);
-
-    /** The X coordinate. */
-    int X = 0;
-
-    /** The Y coordinate. */
-    int Y = 0;
 }
