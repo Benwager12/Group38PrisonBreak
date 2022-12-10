@@ -20,8 +20,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * Generalised utilities for files.
- *
+ * A class containing the utilities used for file processing.
+ * This includes the reading a level file and parsing it into a Level.
+ * The class also contains key methods to get the paths to resources.
  * @author Daniel Banks (2107922), Ben Wager (2108500), Matthew Salter (986488)
  */
 public class FileUtilities {
@@ -32,25 +33,49 @@ public class FileUtilities {
     private static final String LEVELS_PATH = "levels/%d.level";
 
 
+    /**
+     * Set the instance of a Game
+     * @param gameInstance The instance of a Game
+     */
     public static void setGameInstance(Game gameInstance) {
         FileUtilities.gameInstance = gameInstance;
     }
 
+    /**
+     * Returns the current Game
+     * @return The current Game instance
+     */
     public static Game getGameInstance() {
         return FileUtilities.gameInstance;
     }
 
 
-    public static Level readLevel(int levelName, int profileId) {
+    /**
+     * Returns a Level instance using the level name and id of a profile
+     * @param levelNumber The chosen level number
+     * @param profileId The ID of the chosen profile
+     * @return An instance a Level
+     */
+    public static Level readLevel(int levelNumber, int profileId) {
         return readLevel(getResourcePathUnsafe(
-                String.format(SaveLevelUtilities.LEVEL_SAVE_LOCATION, levelName, profileId))
+                String.format(SaveLevelUtilities.LEVEL_SAVE_LOCATION, levelNumber, profileId))
         );
     }
 
-    public static Level readLevel(int levelName) {
-        return readLevel(getResourcePath(String.format(LEVELS_PATH, levelName)));
+    /**
+     * Returns a Level instance using the level name
+     * @param levelNumber The chosen level number
+     * @return An instance a Level
+     */
+    public static Level readLevel(int levelNumber) {
+        return readLevel(getResourcePath(String.format(LEVELS_PATH, levelNumber)));
     }
 
+    /**
+     * Returns a Level instance using the path of the level file
+     * @param levelPath The path to the chosen level file
+     * @return An instance a Level
+     */
     public static Level readLevel(String levelPath) {
         File file = new File(levelPath);
 
@@ -75,6 +100,7 @@ public class FileUtilities {
         }
         return readInfo(scanner, levelNumber);
     }
+
 
     public static URL getResource(String path) {
         return gameInstance.getClass().getResource(path);
@@ -107,6 +133,11 @@ public class FileUtilities {
         return uri.substring(6).replaceAll("%20", " ");
     }
 
+    /**
+     * Returns an Image based on its file path
+     * @param resourcePath Path to the chosen file
+     * @return The chosen Image
+     */
     public static Image loadImageFromResource(String resourcePath) {
         String path = getResourceURI(resourcePath);
         if (path == null) {
@@ -115,6 +146,12 @@ public class FileUtilities {
         return new Image(path);
     }
 
+    /**
+     * Returns a Level using the contents of a level file that follows the level file format
+     * @param in The scanner of the level file
+     * @param levelNumber The chosen level number
+     * @return An instance of the chosen Level
+     */
     private static Level readInfo(Scanner in, int levelNumber) {
         int levelWidth = in.nextInt();
         int levelHeight = in.nextInt();
