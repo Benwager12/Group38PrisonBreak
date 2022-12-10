@@ -22,9 +22,6 @@ public class LevelSuccessFailureController {
     private ImageView homeImage;
 
     @FXML
-    private ImageView retryLevelImage;
-
-    @FXML
     private ImageView crossImage;
 
     @FXML
