@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Static Class that stores char/string constants
+ * Static Class that stores constants used in multiple classes
  * @author Daniel Banks (2107922)
  */
 public class Constants {
@@ -130,11 +130,33 @@ public class Constants {
         addAll(LEFT_KEYS);
     }};
 
+    /**
+     * Duration of the Player Timeline (milli Seconds)
+     * (How often the player ticks/moves)
+     */
     public static final int PLAYER_TIMELINE_DURATION  = 350;
 
-    public static final int ENTITY_TIMELINE_DURATION = 500;
+    /**
+     * Duration of the Enemy Timeline (milli Seconds)
+     * (How often an enemy ticks/moves)
+     */
+    public static final int ENEMY_TIMELINE_DURATION = 500;
 
+    /**
+     * Duration of the Smart Thief Timeline (milli Seconds)
+     * (How often a smart Thief ticks/moves)
+     */
     public static final int SMART_THIEF_TIMELINE_DURATION = 1250;
 
+
+    /**
+     * Duration of the Clock Timeline (1 Second)
+     * (How often the clock decreases)
+     */
     public static final int CLOCK_TIMELINE_DURATION = 1000;
+
+    /**
+     * position of where entities go upon being 'Killed'
+     */
+    public static final int KILLED_ENTITY_LOCATION = -1;
 }
