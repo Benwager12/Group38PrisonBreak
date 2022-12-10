@@ -92,6 +92,7 @@ public class SaveLevelUtilities {
     public static void saveLevel(int profileId, Level level) {
         String saveLocation = String.format(LEVEL_SAVE_LOCATION, level.getLevelNumber(), profileId);
         String newSaveLocation = FileUtilities.getResourcePathUnsafe(saveLocation);
+
         // Creates a file
         File saveFile = new File(newSaveLocation);
         boolean isFileCreated = false;
@@ -101,7 +102,7 @@ public class SaveLevelUtilities {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        // If the file exists delete and save the new file (overwrite it)
         if (!isFileCreated) {
             boolean success = saveFile.delete();
             assert (success);

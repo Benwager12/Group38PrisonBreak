@@ -11,6 +11,7 @@ import java.util.HashMap;
  */
 public class UnlockableUtilities {
 
+    // File locations of all the different unlockables/outfits
     private static final String IMAGE_LOCATIONS = "images/PlayerOutfits/outfit_%s.png";
 
     // Hashmap of Arraylist of unlockables where the key is the level the item is unlocked at

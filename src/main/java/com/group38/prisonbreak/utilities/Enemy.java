@@ -19,6 +19,10 @@ public class Enemy extends Entity {
         super(xPos, yPos, direction);
     }
 
+    /**
+     * if the enemy isn't a flyingAssassin; it calls item interaction
+     * (Happens everytime an entity moves)
+     */
     @Override
     public void move() {
         if (!(this instanceof FlyingAssassin)) {
@@ -26,6 +30,10 @@ public class Enemy extends Entity {
         }
     }
 
+    /**
+     * Handles interaction between Enemy's and items
+     * Removes an item if it's not an instance of a door
+     */
     @Override
     protected void itemInteract() {
         Item item = getCurrentTile().getItem();
