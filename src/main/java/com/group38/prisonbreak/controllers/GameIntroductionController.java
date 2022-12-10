@@ -6,6 +6,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 /**
@@ -21,6 +22,9 @@ public class GameIntroductionController {
     @FXML
     private ImageView gameIntro;
 
+    @FXML
+    private ImageView skipButton;
+
     /**
      * Initialse method to trigger at the opening of the FXML file. Delays
      * the opening of the next FXML by 31 seconds which is the duration of
@@ -34,5 +38,10 @@ public class GameIntroductionController {
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+    }
+
+    @FXML
+    private void skipClicked(MouseEvent ignoredActionEvent) {
+        FileUtilities.getGameInstance().setRoot("levelMenu");
     }
 }

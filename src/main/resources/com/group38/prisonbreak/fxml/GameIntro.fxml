@@ -6,9 +6,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5a5a5a; -fx-border-color: black; -fx-border-width: 17;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.GameIntroductionController">
    <children>
-      <ImageView fx:id="gameIntro" fitHeight="397.0" fitWidth="713.0" layoutX="34.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+      <ImageView fx:id="gameIntro" fitHeight="397.0" fitWidth="713.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="59.67083740234375" AnchorPane.topAnchor="14.0">
          <image>
             <Image url="@../images/Menus/Game%20Promo.gif" />
          </image></ImageView>
+      <ImageView fx:id="skipButton" fitHeight="63.0" fitWidth="82.0" layoutX="691.0" layoutY="34.0" onMouseClicked="#skipClicked" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/Menus/arrow.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
