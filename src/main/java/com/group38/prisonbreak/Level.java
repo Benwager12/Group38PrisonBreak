@@ -1,5 +1,6 @@
 package com.group38.prisonbreak;
 
+import com.group38.prisonbreak.entities.enemies.FlyingAssassin;
 import com.group38.prisonbreak.items.Bomb;
 import com.group38.prisonbreak.items.Door;
 import com.group38.prisonbreak.items.Gate;
@@ -489,7 +490,20 @@ public class Level implements Drawable {
         return !(getTile(posX, posY).getItem() instanceof Bomb);
     }
 
-    public void killEntity(Entity entity) {
-        entities.remove(entity);
+    /**
+     * Checks if an entity has collided with a flying assassin
+     * @param XPos X Position of the entity
+     * @param YPos Y Position of the entity
+     * @return boolean has collided with flying assassin
+     */
+    public boolean hasCollidedWithFlyingAssasin(int XPos, int YPos) {
+        for (Entity entity : entities) {
+            if (entity instanceof FlyingAssassin) {
+                if (entity.getX() == XPos && entity.getY() == YPos) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -6,6 +6,9 @@ import com.group38.prisonbreak.utilities.Enemy;
 import com.group38.prisonbreak.utilities.Entity;
 import javafx.scene.image.Image;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Implements an Enemy in the game
  * @author Daniel Banks (2107922)
@@ -40,14 +43,16 @@ public class FlyingAssassin extends Enemy {
      * If it's collided with the player it ends the game
      */
     private void checkCollision() {
-        // Gets collision
-        Entity collidedEntity = getCollision();
-        if (collidedEntity != null) {
-            GameManager.level.killEntity(collidedEntity);
-            if (collidedEntity instanceof Player) {
-                hasColliedWithPlayer = true;
-                GameManager.endGame(false);
-            }
+        // Gets collisions
+        ArrayList<Entity> collidedEntities = getCollision();
+        if (collidedEntities != null) {
+            collidedEntities.forEach(collidedEntity -> {
+                collidedEntity.killEntity();
+                if (collidedEntity instanceof Player) {
+                    hasColliedWithPlayer = true;
+                    GameManager.endGame(false);
+                }
+            });
         }
     }
 
@@ -55,15 +60,18 @@ public class FlyingAssassin extends Enemy {
      * Gets for a collision between with an entity
      * @return Entity object of the entity it's collided with
      */
-    private Entity getCollision() {
+    private ArrayList<Entity> getCollision() {
+        // ArrayList of collisions with the flying assassin
+        ArrayList<Entity> colliedEntities = new ArrayList<>();
+
         for (Entity entity : GameManager.level.getEntities()) {
             if (entity != this) {
                 if (entity.getX() == super.getX() && entity.getY() == super.getY()) {
-                    return entity;
+                    colliedEntities.add(entity);
                 }
             }
         }
-        return null;
+        return colliedEntities;
     }
 
     @Override
