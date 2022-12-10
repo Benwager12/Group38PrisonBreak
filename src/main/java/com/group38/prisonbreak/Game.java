@@ -42,9 +42,7 @@ public class Game extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle("Cell Block 38");
-
-        //Delete if we don't want to ban resizing
-        //primaryStage.setResizable(false);
+        primaryStage.setResizable(false);
 
         String iconLocation = FileUtilities.getResourceURI("images/Menus/38Icon.png");
         if (iconLocation != null) {
@@ -86,13 +84,11 @@ public class Game extends Application {
         }
         setStage();
 
-        //Delete if we don't want to ban resizing
-        /*
         if(paneType.equals("load")) {
             primaryStage.setResizable(true);
         } else {
             primaryStage.setResizable(false);
-        } */
+        }
     }
 
     private static void setStage() {
