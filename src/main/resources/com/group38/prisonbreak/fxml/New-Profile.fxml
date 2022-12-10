@@ -110,6 +110,9 @@
                            </StackPane.margin>
                         </Text>
                      </children>
+                     <StackPane.margin>
+                        <Insets left="-110.0" />
+                     </StackPane.margin>
                   </StackPane>
                </children>
             </StackPane>
