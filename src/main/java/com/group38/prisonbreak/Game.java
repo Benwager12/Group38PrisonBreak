@@ -13,13 +13,19 @@ import java.io.IOException;
 
 public class Game extends Application {
 
-    // Size of the scene
+    /** Size of the scene */
     private static final int WIDTH = 800;
     private static final int HEIGHT = 446;
+
+    /** Key components of the scene */
     private static Pane root = null;
     private static Scene scene = null;
     private static Stage primaryStage = null;
 
+    /**
+     * The initialization of the scene/stage.
+     * @param primaryStage The primary stage that we start on
+     */
     public void start(Stage primaryStage) {
 
         Game.primaryStage = primaryStage;
@@ -57,6 +63,10 @@ public class Game extends Application {
         Game.primaryStage.addEventFilter(KeyEvent.KEY_RELEASED, GameManager::processKeyEvent);
     }
 
+    /**
+     * Setting the root to a specific scene.
+     * @param paneType The specific window to load
+     */
     public void setRoot(String paneType) {
 
         if(paneType.startsWith("loadLevel")) {
@@ -82,13 +92,12 @@ public class Game extends Application {
         }
         setStage();
 
-        if(paneType.equals("load")) {
-            primaryStage.setResizable(true);
-        } else {
-            primaryStage.setResizable(false);
-        }
+        primaryStage.setResizable(paneType.startsWith("load"));
     }
 
+    /**
+     * Setting up the stage.
+     */
     private static void setStage() {
         scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);

@@ -39,8 +39,8 @@ public class Level implements Drawable {
      * Creates a Level instance
      *
      * @param levelNumber Level number
-     * @param tiles       2D array of Tiles that make up the level
-     * @param entities    All the entities that are on the level
+     * @param tiles 2D array of Tiles that make up the level
+     * @param entities All the entities that are on the level
      */
     public Level(int levelNumber, Tile[][] tiles, ArrayList<Entity> entities) {
         this.levelNumber = levelNumber;
