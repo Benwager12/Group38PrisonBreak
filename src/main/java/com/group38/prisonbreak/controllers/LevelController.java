@@ -25,56 +25,56 @@ import javafx.util.Duration;
  */
 public class LevelController {
 
-    /* Rotation of buttons that aren't moused over. */
+    /* The original position of the button */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /*  Rotation of buttons that are moused over. */
+    /* The modified position of the button */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    /*  Size of the Top Pane with the level information. */
+    /*  Size of the Top Pane which holds level information */
     private static final int LEVEL_TEXT_PANE_SIZE = 46;
 
-    /* Number of seconds in minutes. */
+    /* Number of seconds in minutes */
     private static final int SECONDS_IN_MINUTES = 60;
 
-    /* Max size of a number before it requires 2 digits. */
+    /* Max size of a number before it requires 2 digits */
     private static final int MAX_INT = 9;
 
-    /* String Format of the clock to be displayed when playing the game */
+    /* String format of the clock to display time in minutes and seconds */
     private static final String CLOCK_TEXT_FORMAT = "0%d";
 
-    /*     */
+    /* Utilised to draw items to the screen */
     private GraphicsContext g;
 
-    /* Fx:id for the text for the level number within FXML file. */
+    /* Fx:id for the displayed level number */
     @FXML
     private Text levelNumberLabel;
 
-    /* Fx:id for the text for the time label within FXML file. */
+    /* Fx:id for the displayed time */
     @FXML
     private Text timeLabel;
 
-    /* Fx:id for the text for the score number within FXML file. */
+    /* Fx:id for the displayed score number */
     @FXML
     private Text scoreNumberLabel;
 
-    /* Fx:id for the home image within FXML file. */
+    /* Fx:id for the displayed home button image */
     @FXML
     private ImageView homeImage;
 
-    /* Fx:id for the cross image within FXML file. */
+    /* Fx:id for the displayed exit button image */
     @FXML
     private ImageView crossImage;
 
-    /* Fx:id for the save image within FXML file. */
+    /* Fx:id for the displayed save button image */
     @FXML
     private ImageView saveImage;
 
-    /* Fx:id for the game canvas within FXML file. */
+    /* Fx:id for the displayed game canvas */
     @FXML
     private Canvas gameCanvas;
 
-    /* Fx:id for the main borderpane within FXML file. */
+    /* Fx:id for the window's main borderpane */
     @FXML
     private BorderPane mainPane;
 
@@ -112,7 +112,7 @@ public class LevelController {
         mainPane.heightProperty().addListener(paneSizeChange);
         mainPane.widthProperty().addListener(paneSizeChange);
 
-        /* Animate buttons on hover detection. */
+        /* Animate buttons on hover detection */
         homeImage.hoverProperty().addListener(rotateButton(homeImage));
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
         saveImage.hoverProperty().addListener(rotateButton(saveImage));
