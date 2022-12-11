@@ -14,17 +14,32 @@ public class FloorThief extends Enemy {
     /** Represents the color ID that FloorThief follows. */
     private final int chosenColour;
 
+    /**
+     * The initialization of a floor thief.
+     *
+     * @param xPos The initial X coordinate of the enemy.
+     * @param yPos The initial Y coordinate of the enemy.
+     * @param direction The initial direction of the enemy.
+     * @param chosenColour The chosen colour for the floor thief to floor.
+     */
     public FloorThief(int xPos, int yPos, int direction, int chosenColour) {
         super(xPos, yPos, direction);
         setEntityImage("thief_floor");
         this.chosenColour = chosenColour;
-        //this.chosenColourRgb[0] = colourMap.get(chosenColour);
     }
 
+    /**
+     * Get the chosen colour of the floor thief.
+     *
+     * @return An integer representing the chosen colour.
+     */
     public int getChosenColour() {
         return chosenColour;
     }
 
+    /**
+     * Move to the next tile using it's path finding algorithm.
+     */
     @Override
     public void move() {
         int[] potentialMoveTo = findMove();
@@ -37,10 +52,20 @@ public class FloorThief extends Enemy {
         CheckCollision();
     }
 
-    private boolean notAtPosition(int[] xAndY) {
+    /** Check if a position is equal to the current position.
+     *
+     * @param xAndY The inputted modified X and Y.
+     * @return Returns true if the input is the same as the position
+     */
+    private boolean notAtPosition(final int[] xAndY) {
         return xAndY[0] != getX() || xAndY[1] != getY();
     }
 
+    /**
+     * Finds the Floor thief's next move.
+     *
+     * @return An integer array containing the X and Y of the floor thief's next move.
+     */
     private int[] findMove() {
         int[] downPos = GameManager.getLevel().potentialMove(
                 getX(), getY(),
