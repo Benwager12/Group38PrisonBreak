@@ -41,6 +41,7 @@ public class NewProfileController {
      */
     @FXML
     private void initialize() {
+        // animate buttons on hover detection
         homeImage.hoverProperty().addListener(rotateButton(homeImage));
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
     }
@@ -72,14 +73,18 @@ public class NewProfileController {
 
     /**
      * Rotates button when applicable.
+     *
      * @param img the button to be rotated
      * @return rotated/unrotated button depending on situation
      */
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
+                // modify button position
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
+
             } else {
+                // maintain original button position
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };
