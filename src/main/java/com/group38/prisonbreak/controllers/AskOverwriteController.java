@@ -63,7 +63,7 @@ public class AskOverwriteController {
     private void noClicked(MouseEvent actionEvent) {
         //Needs to be able to set the level to run from a "saved progress level file"
 
-        //Then runs this
+        //Then runs this which just loads the level FXML
         FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
     }
 
