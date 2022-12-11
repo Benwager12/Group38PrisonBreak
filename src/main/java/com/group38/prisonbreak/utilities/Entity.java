@@ -138,7 +138,7 @@ public abstract class Entity {
     }
 
     /**
-     * Defines how an entity moves
+     * Defines how an entity moves.
      */
     public abstract void move();
 
@@ -148,7 +148,7 @@ public abstract class Entity {
     protected abstract void itemInteract();
 
     /**
-     * Sets EntitySpriteURL
+     * Sets EntitySpriteURL.
      * @param entityName Name of the png to be loaded.
      */
     protected void setEntityImage(String entityName) {

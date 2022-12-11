@@ -4,7 +4,7 @@ import com.group38.prisonbreak.entities.enemies.FlyingAssassin;
 import com.group38.prisonbreak.items.Door;
 
 /**
- * Implements an Enemy in the game
+ * Implements an Enemy in the game.
  * @author Daniel Banks (2107922)
  */
 public class Enemy extends Entity {

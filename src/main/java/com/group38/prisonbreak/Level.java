@@ -32,7 +32,7 @@ public class Level implements Drawable {
     /** All the entities in the Level. */
     private final ArrayList<Entity> entities;
 
-    /** Stores the colours of the gates that are open */
+    /** Stores the colours of the gates that are open. */
     private final HashMap<Integer, Boolean> gatesOpen = new HashMap<>();
 
     /**
@@ -156,6 +156,7 @@ public class Level implements Drawable {
 
     /**
      * Draws all the Tiles onto the level.
+     * @param g The graphic context of the scene
      */
     private void drawTiles(GraphicsContext g) {
         int sideLength = getSideLength(g);

@@ -253,8 +253,10 @@ public class PathFinding {
         TileNode downNode =
                 new TileNode(newPositionDown[0], newPositionDown[1],
                         currentNode, distance,
-                        calculateDistance(newPositionDown[0], newPositionDown[1],
-                        itemXPos, itemYPos)
+                        calculateDistance(newPositionDown[0],
+                                newPositionDown[1],
+                                itemXPos, itemYPos
+                        )
                 );
         if (newPositionDown[1] != rootYPos && hasNotBeenVisited(downNode)
                 && GameManager.getLevel()
@@ -265,8 +267,10 @@ public class PathFinding {
         TileNode rightNode =
                 new TileNode(newPositionRight[0], newPositionRight[1],
                         currentNode, distance,
-                        calculateDistance(newPositionRight[0], newPositionRight[1],
-                        itemXPos, itemYPos));
+                        calculateDistance(newPositionRight[0],
+                                newPositionRight[1],
+                                itemXPos, itemYPos)
+                );
         if (newPositionRight[0] != rootXPos && hasNotBeenVisited(rightNode)
                 && GameManager.getLevel()
                 .wontSetOffBomb(newPositionRight[0], newPositionRight[1])) {
@@ -276,8 +280,10 @@ public class PathFinding {
         TileNode leftNode =
                 new TileNode(newPositionLeft[0], newPositionLeft[1],
                         currentNode, distance,
-                        calculateDistance(newPositionLeft[0], newPositionLeft[1],
-                        itemXPos, itemYPos));
+                        calculateDistance(newPositionLeft[0],
+                                newPositionLeft[1],
+                                itemXPos, itemYPos)
+                );
         if (newPositionLeft[0] != rootXPos && hasNotBeenVisited(leftNode)
                 && GameManager.getLevel()
                 .wontSetOffBomb(newPositionLeft[0], newPositionLeft[1])) {

@@ -33,7 +33,7 @@ public class LeaderboardUtilities {
     /**
      * Initialises all the leaderboards.
      */
-    public static void initialise(){
+    public static void initialise() {
         loadLeaderboard();
     }
 
@@ -66,7 +66,7 @@ public class LeaderboardUtilities {
         LevelLeaderboard levelLeaderboard;
         while (in.hasNextLine() && in.hasNextInt()) {
             int levelNumber = in.nextInt();
-            int [] score = new int[] {
+            int[] score = new int[] {
                     in.nextInt(),
                     in.nextInt()
             };
@@ -137,13 +137,13 @@ public class LeaderboardUtilities {
     public static void saveProfiles() {
         try {
             PrintWriter myWriter = new PrintWriter(
-                    FileUtilities.getResourcePath(FILE_LOCATION))
-                    ;
+                    FileUtilities.getResourcePath(FILE_LOCATION));
             System.out.println(FileUtilities.getResourcePath(FILE_LOCATION));
 
             for (Map.Entry<Integer, LevelLeaderboard> levelHScore
                     : LEADERBOARD.entrySet()) {
-                int[][] levelHScoreValues = levelHScore.getValue().getLeaderboard();
+                int[][] levelHScoreValues =
+                        levelHScore.getValue().getLeaderboard();
                 for (int[] score : levelHScoreValues) {
                     String profileData = String.format(
                             TXT_STRING_FORMAT,
