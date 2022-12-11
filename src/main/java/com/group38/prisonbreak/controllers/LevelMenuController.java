@@ -14,7 +14,8 @@ import static com.group38.prisonbreak.GameManager.getCurrentProfileId;
 
 /**
  * LevelMenuController is responsible for animating level menu buttons,
- * directing _, and displaying levels correctly i.e. locked or unlocked during level selection.
+ * directing button clicks, and displaying levels correctly i.e.
+ * locked or unlocked during level selection.
  *
  * @author Maisha Begum Chowdhury (2114962)
  */
@@ -83,7 +84,7 @@ public class LevelMenuController {
 
 	@FXML
 	private void initialize() {
-		// button animation
+		// animate buttons (as specified) on hover detection
 		ImageView[] buttons = new ImageView[] {
 				level1Button, level2Button,
 				level3Button, level4Button,

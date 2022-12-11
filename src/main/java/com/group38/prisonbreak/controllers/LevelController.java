@@ -71,7 +71,7 @@ public class LevelController {
         mainPane.heightProperty().addListener(paneSizeChange);
         mainPane.widthProperty().addListener(paneSizeChange);
 
-        // button animation
+        // animate buttons on hover detection
         homeImage.hoverProperty().addListener(rotateButton(homeImage));
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
         saveImage.hoverProperty().addListener(rotateButton(saveImage));

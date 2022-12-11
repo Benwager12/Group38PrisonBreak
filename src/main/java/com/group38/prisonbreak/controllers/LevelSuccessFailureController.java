@@ -59,7 +59,7 @@ public class LevelSuccessFailureController {
         if (GameManager.getLevel().getLevelNumber() == 8 && nextLevelHbox != null) {
             nextLevelButton.setVisible(false);
         }
-        // button animation
+        // animate buttons on hover detection
         homeImage.hoverProperty().addListener(rotateButton(homeImage));
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
         retryArrow.hoverProperty().addListener(rotateButton(retryArrow));
