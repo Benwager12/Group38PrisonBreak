@@ -15,17 +15,17 @@ import javafx.scene.input.MouseEvent;
  */
 public class AskOverwriteController {
 
-    /* The original rotation of the button. */
+    /* The original position of the button */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /* The modified rotation of the button. */
+    /* The modified position of the button */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    /* Fx:id for the image of a house within FXML file. */
+    /* Fx:id for the menu's home button image */
     @FXML
     private ImageView homeImage;
 
-    /* Fx:id for the image of the cross within FXML file. */
+    /* Fx:id for the menu's exit button image */
     @FXML
     private ImageView crossImage;
 
@@ -35,7 +35,7 @@ public class AskOverwriteController {
      */
     @FXML
     private void initialize() {
-        /* Animate buttons on hover detection. */
+        /* Animate buttons on hover detection */
         homeImage.hoverProperty().addListener(rotateButton(homeImage));
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
     }
@@ -60,13 +60,13 @@ public class AskOverwriteController {
     }
 
     /**
-     * On 'yes' button clicked, loads the level with saved progress
-     * @param click Trigger on mouse clicked.
+     * On 'yes' button clicked, loads the level with saved progress.
+     * @param click trigger on mouse clicked.
      */
     @FXML
     private void yesClicked(MouseEvent click) {
 
-        /* Sets the level to run from a "saved progress level file". */
+        /* Sets the level to run from a "saved progress level file" */
         Level savedLevel = FileUtilities.readLevel(
                 GameManager.getCurrentProfileId(),
                 GameManager.getLevel().getLevelNumber()
@@ -78,7 +78,7 @@ public class AskOverwriteController {
 
     /**
      * On 'no' button clicked, loads the level from scratch.
-     * @param click Trigger on mouse clicked.
+     * @param click trigger on mouse clicked.
      */
     @FXML
     private void noClicked(MouseEvent click) {
@@ -93,10 +93,10 @@ public class AskOverwriteController {
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
-                /* Modify button position. */
+                /* Modify button position */
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
             } else {
-                /* Maintain original button position. */
+                /* Maintain original button position */
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };
