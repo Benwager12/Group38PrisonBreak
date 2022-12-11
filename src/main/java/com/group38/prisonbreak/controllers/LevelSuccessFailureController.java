@@ -17,40 +17,40 @@ import javafx.scene.layout.HBox;
  */
 public class LevelSuccessFailureController {
 
-    /* The original rotation of the button. */
+    /* The original position of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /* The modified rotation of the button. */
+    /* The modified position of the button. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
     /* The amount of levels. */
     private static final int NUMBER_OF_LEVELS = 8;
 
-    /* Fx:id for the image of a house within FXML file. */
+    /* Fx:id for the menu's home button image. */
     @FXML
     private ImageView homeImage;
 
-    /* Fx:id for the image of the cross within FXML file. */
+    /* Fx:id for the menu's exit button image. */
     @FXML
     private ImageView crossImage;
 
-    /* Fx:id for the next level image within FXML file. */
+    /* Fx:id for the menu's next level button image. */
     @FXML
     private ImageView nextLevelButton;
 
-    /* Fx:id for the image of the retry arrow within FXML file. */
+    /* Fx:id for the menu's retry button image. */
     @FXML
     private ImageView retryArrow;
 
-    /* Fx:id for the label of the profile name within FXML file. */
+    /* Fx:id for the menu's profile name text box. */
     @FXML
     private Label profileNameText;
 
-    /* Fx:id for the label of the player score within FXML file. */
+    /* Fx:id for the menu's player score text box. */
     @FXML
     private Label playerScoreText;
 
-    /* Fx:id for the Hbox for the next level. */
+    /* Fx:id for the Hbox that is the parent of the next level button. */
     @FXML
     private HBox nextLevelHbox;
 
@@ -78,7 +78,7 @@ public class LevelSuccessFailureController {
 
     /**
      * On home image clicked redirect the root window.
-     * @param click trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
     private void homeClicked(MouseEvent click) {
@@ -87,7 +87,7 @@ public class LevelSuccessFailureController {
 
     /**
      * On cross image clicked, exit the game window.
-     * @param click trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
     private void crossClicked(MouseEvent click) {
@@ -121,7 +121,7 @@ public class LevelSuccessFailureController {
     }
 
     /**
-     * When the leaderboard is clicked, re-direct the root.
+     * When the leaderboard is clicked, re-direct to the leaderboard.
      * @param click Triggered on mouse event.
      */
     @FXML
@@ -131,8 +131,8 @@ public class LevelSuccessFailureController {
 
     /**
      * Rotates button when applicable.
-     * @param img the button to be rotated.
-     * @return rotated/non-rotated button depending on situation.
+     * @param img The button to be rotated.
+     * @return Rotated/non-rotated button depending on situation.
      */
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {

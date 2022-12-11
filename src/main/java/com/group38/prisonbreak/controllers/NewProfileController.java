@@ -51,7 +51,7 @@ public class NewProfileController {
 
     /**
      * On home image clicked redirect the root window.
-     * @param click trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
     private void homeClicked(MouseEvent click) {
@@ -60,7 +60,7 @@ public class NewProfileController {
 
     /**
      * On cross image clicked, exit the game window.
-     * @param click trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
     private void crossClicked(MouseEvent click) {
@@ -70,7 +70,7 @@ public class NewProfileController {
 
     /**
      * On enter pressed, create a new profile and re-direct to the game introduction.
-     * @param submit the action of pressing the enter key.
+     * @param submit The action of pressing the enter key.
      */
     @FXML
     public void onEnter(KeyEvent submit) {
