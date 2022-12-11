@@ -32,7 +32,7 @@ public class Level implements Drawable {
     /** All the entities in the Level. */
     private final ArrayList<Entity> entities;
 
-    /** Stores the colours of the gates that are open */
+    /** Stores the colours of the gates that are open. */
     private final HashMap<Integer, Boolean> gatesOpen = new HashMap<>();
 
     /**
@@ -113,29 +113,7 @@ public class Level implements Drawable {
         return false;
     }
 
-    /**
-     * Checks if an item is a gate and if it is whether it's open.
-     * @param item Item to check
-     * @return If a gate is open
-     */
-    public boolean areAllGatesOpen(Item item) {
-        // Return if gate is open
-        if (!(item instanceof Gate gate)) {
-            return true;
-        }
-
-        // Returns if gate is open
-        for (int colourId : gatesOpen.keySet()) {
-            if (gate.getGateColour() == colourId) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Removes all items from tiles apart from Doors and Gates.
-     */
+    /** Removes all items from tiles apart from Doors and Gates. */
     public void removeAllItemsExplosion() {
         for (Tile[] tileX : tiles) {
             for (Tile tile : tileX) {
@@ -156,6 +134,7 @@ public class Level implements Drawable {
 
     /**
      * Draws all the Tiles onto the level.
+     * @param g The graphics context to draw the tiles onto.
      */
     private void drawTiles(GraphicsContext g) {
         int sideLength = getSideLength(g);
@@ -172,22 +151,9 @@ public class Level implements Drawable {
                         sideLength,
                         sideLength
                 );
-                Tile t = getTile(x, y);
-
-                // Tile colour side length
-                int tileColourSL = sideLength / 2;
 
                 // Loop through every colour in tile
-                for (int col = 0; col < t.getColours().length; col++) {
-                    g.setFill(t.getColours()[col]);
-
-                    // Ternary checks to fill the correct part of the square
-                    g.fillRect(tileXDraw
-                                    + (col == 1 || col == 3 ? tileColourSL : 0),
-                            tileYDraw
-                                    + (col == 2 || col == 3 ? tileColourSL : 0),
-                            tileColourSL, tileColourSL);
-                }
+                colourTiles(g, tileXDraw, tileYDraw);
 
                 tileXDraw += sideLength;
             }
@@ -197,7 +163,35 @@ public class Level implements Drawable {
     }
 
     /**
+     * With a given tile coordinate, apply the colours.
+     * @param g The graphics context to apply the colours
+     * @param tileXDraw Tile on the X coordinate to draw.
+     * @param tileYDraw Tile on the Y coordinate to draw.
+     */
+    private void colourTiles(GraphicsContext g, int tileXDraw, int tileYDraw) {
+        Tile t = getTile(tileXDraw, tileYDraw);
+        int tileColourSL = getSideLength(g) / 2;
+
+        for (int col = 0; col < t.getColours().length; col++) {
+            boolean isRight = col == 1 || col == 3;
+            boolean isBottom = col == 2 || col == 3;
+
+            g.setFill(t.getColours()[col]);
+
+            // Ternary checks to fill the correct part of the square
+            g.fillRect(
+                    tileXDraw + (isRight ? tileColourSL : 0),
+                    tileYDraw + (isBottom ? tileColourSL : 0),
+                    tileColourSL,
+                    tileColourSL);
+        }
+    }
+
+
+    /**
      * Draws all Entities onto the level.
+     *
+     * @param g The graphics context we draw the entities onto.
      */
     public void drawEntities(GraphicsContext g) {
         int sideLength = getSideLength(g);
@@ -214,7 +208,7 @@ public class Level implements Drawable {
 
     /**
      * Draws items onto the Level.
-     * @param g The GraphicsContext
+     * @param g The graphics context we draw items onto.
      */
     public void drawItems(GraphicsContext g) {
         int sideLength = getSideLength(g);
@@ -232,7 +226,7 @@ public class Level implements Drawable {
 
     /**
      * Gets the size of the tiles.
-     * @param g The GraphicsContext
+     * @param g The graphics context that we would use to find the canvas size.
      * @return The side length
      */
     public int getSideLength(GraphicsContext g) {
@@ -262,29 +256,13 @@ public class Level implements Drawable {
     }
 
     /**
-     * Checks if a move is valid with a given colour.
-     * @param direction The direction the entity wishes to move
-     * @param posX X position of the entity
-     * @param posY Y position of the entity
-     * @param colourId Id of the colour (int) that the entity has to follow
-     * @return boolean - if the move is valid
+     * Acts out a single move onto the tile board.
+     *
+     * @param posX The initial X position of the tile.
+     * @param posY The initial Y position of the tile.
+     * @param direction The direction that you want to travel in.
+     * @return The returned position after moving.
      */
-    public boolean canMove(int posX, int posY, int direction, int colourId) {
-        int[] move = singleMove(posX, posY, direction);
-        int newX = move[0];
-        int newY = move[1];
-
-        boolean isX = direction == Constants.LEFT_ID
-                || direction == Constants.RIGHT_ID;
-
-        if (isX ? posX < tiles[0].length
-                && posX >= 0 : posY < tiles.length && posY >= 0) {
-            return tiles[newY][newX].hasColour(colourId);
-        }
-        return false;
-    }
-
-
     public static int[] singleMove(int posX, int posY, int direction) {
         boolean isX = direction == Constants.RIGHT_ID
                 || direction == Constants.LEFT_ID;
@@ -300,6 +278,14 @@ public class Level implements Drawable {
         return new int[] {newX, newY};
     }
 
+    /**
+     * See if a move would be a potentially good idea
+     * @param posX Current position X
+     * @param posY Current position Y
+     * @param direction Direction that is planned on going
+     * @param colourID Colour ID that you have to follow
+     * @return An int[] of the new position in the form of {X, Y}.
+     */
     public int[] potentialMove(int posX, int posY, int direction, int colourID) {
         int[] move = singleMove(posX, posY, direction);
 
@@ -322,7 +308,8 @@ public class Level implements Drawable {
     }
 
     /**
-     * Finds the position of the next tile an entity should go if they follow colours.
+     * Finds the position of the next tile an entity
+     * should go if they follow colours.
      * @param posX Current X Position
      * @param posY Current Y Position
      * @param direction Direction of the Entity
@@ -334,17 +321,14 @@ public class Level implements Drawable {
                 ? tiles[posY][posX].getColourIDs() : coloursOptional;
 
         // Checks if direction is Up/Down (X)
-        boolean isX = direction == Constants.RIGHT_ID
-                || direction == Constants.LEFT_ID;
+        int[] singleMove = singleMove(posX, posY, direction);
+        int newX = singleMove[0];
+        int newY = singleMove[1];
 
-        // Checks if direction is negative (Up/Left)
         boolean isNegative = direction == Constants.UP_ID
                 || direction == Constants.LEFT_ID;
-
-        // X Position of the next Tile (Based on Direction)
-        int newX = isX ? posX + (isNegative ? -1 : 1) : posX;
-        // Y Position of the next Tile (Based on Direction)
-        int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
+        boolean isX = direction == Constants.RIGHT_ID
+                || direction == Constants.LEFT_ID;
 
         while (newY >= 0 && newY - 1 <= tiles.length
                 && newX >= 0 && newX - 1 <= tiles[0].length) {
@@ -433,7 +417,7 @@ public class Level implements Drawable {
      * @param baseEntity instance of the entity
      * @param posX X position to check
      * @param posY Y position to check
-     * @return
+     * @return Boolean for SmartThief for whether it wont collide to another entity.
      */
     public boolean wontCollide(Entity baseEntity, int posX, int posY) {
         for (Entity entity : entities) {
