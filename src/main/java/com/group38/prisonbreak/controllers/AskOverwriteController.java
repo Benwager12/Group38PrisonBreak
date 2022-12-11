@@ -9,10 +9,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * NewProfileController handles the...[add]
+ * AskOverwriteController is the controller that handles the
+ * ask-overwrite-menu.fxml.
+ *
+ * @author Matthew Salter, Daniel Banks, Ben Wager
  */
 public class AskOverwriteController {
+
+    /** The original rotation of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
+
+    /** The modified rotation of level. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
     @FXML
@@ -44,24 +51,23 @@ public class AskOverwriteController {
 
     @FXML
     private void yesClicked(MouseEvent ignoredActionEvent) {
-        //Maybe add functionality to delete a saved level file???
-        FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
-    }
 
-    @FXML
-    private void noClicked(MouseEvent ignoredActionEvent) {
-        //Needs to be able to set the level to run from a "saved progress level file"
-
+        //Sets the level to run from a "saved progress level file"
         Level savedLevel = FileUtilities.readLevel(
                 GameManager.getCurrentProfileId(),
                 GameManager.getLevel().getLevelNumber()
         );
 
         GameManager.setLevel(savedLevel);
-
-        //Then runs this which just loads the level FXML
         FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
     }
+
+    @FXML
+    private void noClicked(MouseEvent ignoredActionEvent) {
+        FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
+    }
+
+
 
     /**
      * Rotates button when applicable.

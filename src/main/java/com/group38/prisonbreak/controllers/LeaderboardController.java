@@ -11,16 +11,16 @@ import javafx.scene.text.Text;
 
 /**
  * A controller class for the leaderboard, contains button functions and
- * on initialisation updates the leaderboard to the current high scores.
- * @author         ??             and Jennalee Llewellyn (967558)
+ * and on initialisation updates the leaderboard to the current high scores.
+ * @author Matthew Salter (986488), Jennalee Llewellyn (967558)
  */
 
 public class LeaderboardController {
 
-    // Rotation of buttons that aren't moused over.
+    // Rotation of buttons that aren't moused over
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    // Rotation of buttons that are moused over.
+    // Rotation of buttons that are moused over
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
     // Fx:id for image of cross within FXML file.
@@ -69,6 +69,7 @@ public class LeaderboardController {
 
     /**
      * Rotates button when applicable.
+     *
      * @param img the button to be rotated
      * @return rotated/unrotated button depending on situation
      */
