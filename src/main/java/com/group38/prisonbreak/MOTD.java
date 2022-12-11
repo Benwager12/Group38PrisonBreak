@@ -41,18 +41,6 @@ public class MOTD {
     }
 
     /**
-     * Removes date and time from MoTD.
-     * @param finalMessage message of the day
-     * @return message without date
-     */
-    public static String removeDateTime(String finalMessage) {
-        Scanner in = new Scanner(finalMessage);
-        //stop by braces as date documentation starts with brace
-        in.useDelimiter("\\(");
-        return in.next();
-    }
-
-    /**
      * Private method to fetch the puzzle from the server.
      * Updates the puzzle variable with the string received from the server
      * @return puzzle to be decoded
@@ -147,6 +135,17 @@ public class MOTD {
         return removeDateTime(finalMessage);
     }
 
+    /**
+     * Removes date and time from MoTD.
+     * @param finalMessage message of the day
+     * @return message without date
+     */
+    private static String removeDateTime(String finalMessage) {
+        Scanner in = new Scanner(finalMessage);
+        //stop by braces as date documentation starts with brace
+        in.useDelimiter("\\(");
+        return in.next();
+    }
 }
 
 
