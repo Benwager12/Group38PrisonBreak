@@ -38,7 +38,7 @@ public class FloorThief extends Enemy {
     }
 
     /**
-     * Move to the next tile using it's path finding algorithm.
+     * Move to the next tile using its path finding algorithm.
      */
     @Override
     public void move() {
