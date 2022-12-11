@@ -16,10 +16,10 @@ import javafx.util.Duration;
 
 public class GameIntroductionController {
 
-    /* Game introduction timeline which tells the game when the video has ended. */
+    /* Game introduction timeline which tells the game when the video has ended */
     private Timeline timeline = null;
 
-    /* Duration of the video played at the beginning. */
+    /* Duration of the video played at the beginning */
     private static final int VIDEO_DURATION = 29;
 
     /**
@@ -28,7 +28,7 @@ public class GameIntroductionController {
     @FXML
     private void initialize() {
         /* Creates a new timeline for the duration of the video, redirects root window
-            after video is complete. */
+            after video is complete */
         timeline = new Timeline(new KeyFrame(Duration.seconds(VIDEO_DURATION), ev -> {
             timeline.stop();
             FileUtilities.getGameInstance().setRoot("levelMenu");
