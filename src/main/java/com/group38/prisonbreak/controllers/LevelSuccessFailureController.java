@@ -2,14 +2,12 @@ package com.group38.prisonbreak.controllers;
 
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
-import com.group38.prisonbreak.utilities.LeaderboardUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -17,11 +15,7 @@ public class LevelSuccessFailureController {
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    @FXML
-    private BorderPane LevelFailWindow;
-
-    @FXML
-    private BorderPane LevelSuccessWindow;
+    private static final int NUMBER_OF_LEVELS = 8;
 
     @FXML
     private ImageView homeImage;
@@ -52,11 +46,14 @@ public class LevelSuccessFailureController {
 
     @FXML
     public void initialize() {
-        profileNameText.setText(ProfileUtilities.getName(GameManager.getCurrentProfileId()));
-        playerScoreText.setText(Integer.toString(GameManager.calculateScore(GameManager.getMoney(),GameManager.getTime())));
+        profileNameText.setText(ProfileUtilities
+                .getName(GameManager.getCurrentProfileId()));
+        playerScoreText.setText(Integer.toString(GameManager
+                .calculateScore(GameManager.getMoney(), GameManager.getTime())));
 
         //Removes the next level button if the player has completed level 8
-        if (GameManager.getLevel().getLevelNumber() == 8 && nextLevelHbox != null) {
+        if (GameManager.getLevel().getLevelNumber() == NUMBER_OF_LEVELS
+                && nextLevelHbox != null) {
             nextLevelButton.setVisible(false);
         }
         // animate buttons on hover detection
@@ -78,13 +75,16 @@ public class LevelSuccessFailureController {
 
     @FXML
     private void retryLevelClicked(MouseEvent mouseEvent) {
-        String currentLevel = Integer.toString((GameManager.getLevel().getLevelNumber()));
+        String currentLevel = Integer.toString(
+                (GameManager.getLevel().getLevelNumber())
+        );
         FileUtilities.getGameInstance().setRoot("loadLevel" + currentLevel);
     }
 
     @FXML
     private void goToNextLevel(MouseEvent mouseEvent) {
-        String nextLevel = Integer.toString((GameManager.getLevel().getLevelNumber() + 1));
+        String nextLevel = Integer.toString(
+                (GameManager.getLevel().getLevelNumber() + 1));
         FileUtilities.getGameInstance().setRoot("loadLevel" + nextLevel);
     }
 

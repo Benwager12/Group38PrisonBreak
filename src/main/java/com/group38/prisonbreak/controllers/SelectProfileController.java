@@ -15,6 +15,9 @@ public class SelectProfileController {
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
+    // The number of Profiles Shown
+    private static final int PROFILES_SHOW = 3;
+
     @FXML
     private ImageView homeImage;
 
@@ -22,28 +25,28 @@ public class SelectProfileController {
     private ImageView crossImage;
 
     @FXML
-    public ImageView leftArrowButton;
+    private ImageView leftArrowButton;
 
     @FXML
-    public ImageView rightArrowButton;
+    private ImageView rightArrowButton;
 
     @FXML
-    public Label profileName1;
+    private Label profileName1;
 
     @FXML
-    public Label profileName2;
+    private Label profileName2;
 
     @FXML
-    public Label profileName3;
+    private Label profileName3;
 
     @FXML
-    public StackPane selectPane1;
+    private StackPane selectPane1;
 
     @FXML
-    public StackPane selectPane2;
+    private StackPane selectPane2;
 
     @FXML
-    public StackPane selectPane3;
+    private StackPane selectPane3;
 
     @FXML
     private ImageView profileCross1;
@@ -58,41 +61,54 @@ public class SelectProfileController {
     private int profileOffset = 0;
 
     @FXML
-    public ImageView faceImage1;
+    private ImageView faceImage1;
 
     @FXML
-    public ImageView faceImage2;
+    private ImageView faceImage2;
 
     @FXML
-    public ImageView faceImage3;
+    private ImageView faceImage3;
 
     @FXML
     public void initialize() {
         displayProfiles();
 
         // button animation
-        ImageView[] rotateButtons = new ImageView[]{homeImage, crossImage, profileCross1, profileCross2, profileCross3};
+        ImageView[] rotateButtons = new ImageView[] {
+                homeImage,
+                crossImage,
+                profileCross1,
+                profileCross2,
+                profileCross3 };
         for (ImageView rb : rotateButtons) {
             rb.hoverProperty().addListener(rotateButton(rb));
         }
 
         //
-        rightArrowButton.setVisible(ProfileUtilities.getNoProfiles() > 3);
-        rightArrowButton.setDisable(ProfileUtilities.getNoProfiles() <= 3);
+        rightArrowButton
+                .setVisible(ProfileUtilities.getNoProfiles() > PROFILES_SHOW);
+        rightArrowButton
+                .setDisable(ProfileUtilities.getNoProfiles() <= PROFILES_SHOW);
     }
 
 
 
     private void displayProfiles() {
         Profile[] profiles = ProfileUtilities.getProfiles();
-        StackPane[] selectPanes = new StackPane[] {selectPane1, selectPane2, selectPane3};
+        StackPane[] selectPanes = new StackPane[] {
+                selectPane1,
+                selectPane2,
+                selectPane3 };
 
         for (int item = 0; item < selectPanes.length; item++) {
-            selectPanes[item].setVisible(profiles.length > profileOffset + item);
-            selectPanes[item].setDisable(profiles.length <= profileOffset + item);
+            selectPanes[item]
+                    .setVisible(profiles.length > profileOffset + item);
+            selectPanes[item]
+                    .setDisable(profiles.length <= profileOffset + item);
 
             if (profiles.length > profileOffset + item) {
-                Label profileLabel = (Label) selectPanes[item].getChildren().get(1);
+                Label profileLabel =
+                        (Label) selectPanes[item].getChildren().get(1);
                 String profileName = profiles[profileOffset + item].getName();
                 profileLabel.setText(profileName);
             }
@@ -100,7 +116,9 @@ public class SelectProfileController {
     }
 
     public void rightArrowClicked(MouseEvent ignoredMouseEvent) {
-        profileOffset = Math.min(ProfileUtilities.getNoProfiles() - 3, profileOffset + 1);
+        profileOffset =
+                Math.min(ProfileUtilities.getNoProfiles()
+                        - PROFILES_SHOW, profileOffset + 1);
 
         displayButtons();
         displayProfiles();
@@ -110,8 +128,12 @@ public class SelectProfileController {
         leftArrowButton.setVisible(profileOffset != 0);
         leftArrowButton.setDisable(profileOffset == 0);
 
-        rightArrowButton.setVisible(profileOffset + 3 != ProfileUtilities.getNoProfiles());
-        rightArrowButton.setDisable(profileOffset + 3 == ProfileUtilities.getNoProfiles());
+        rightArrowButton
+                .setVisible(profileOffset + PROFILES_SHOW
+                        != ProfileUtilities.getNoProfiles());
+        rightArrowButton
+                .setDisable(profileOffset + PROFILES_SHOW
+                        == ProfileUtilities.getNoProfiles());
     }
 
     public void leftArrowClicked(MouseEvent ignoredMouseEvent) {
@@ -131,7 +153,9 @@ public class SelectProfileController {
         }
 
         int selectedItem = Integer.parseInt(iv.getId().substring(9));
-        Profile profile = ProfileUtilities.getProfiles()[getProfileFromButtonNumber(selectedItem)];
+        Profile profile =
+                ProfileUtilities.
+                        getProfiles()[getProfileFromButtonNumber(selectedItem)];
 
         GameManager.setCurrentProfileId(profile.getId());
         FileUtilities.getGameInstance().setRoot("levelMenu");
@@ -197,8 +221,7 @@ public class SelectProfileController {
         int profileId = getProfileFromButtonNumber(id);
 
         String name = ProfileUtilities.getName(profileId);
-        int highestLevel = ProfileUtilities.getLevelFromProfile(profileId + 1);
-        System.out.printf("You clicked on \"%s\", they have an ID of %d, their highest level is %d. %n",
-                name, profileId + 1, highestLevel);
+        int highestLevel =
+                ProfileUtilities.getLevelFromProfile(profileId + 1);
     }
 }
