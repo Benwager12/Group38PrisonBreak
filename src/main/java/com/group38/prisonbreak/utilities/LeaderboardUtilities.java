@@ -9,35 +9,36 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Utility that stores and deals with the leaderboard
+ * Utility that stores and deals with the leaderboard.
  * @author Daniel Banks (2107922)
  */
 public class LeaderboardUtilities {
 
-    // Number of HighScores Shown
+    /** Number of HighScores Shown. */
     public static final int MAX_NUMBER_OF_HIGH_SCORES = 10;
 
-    // Location of the .txt file that stores the leaderboard
+    /** Location of the .txt file that stores the leaderboard. */
     private static final String FILE_LOCATION = "data/Leaderboard.txt";
 
-    // HashMap of level numbers to [profileId, high-score]
-    private static final HashMap<Integer, LevelLeaderboard> LEADERBOARD = new HashMap<>();
+    /** HashMap of level numbers to [profileId, high-score]. */
+    private static final HashMap<Integer, LevelLeaderboard> LEADERBOARD =
+            new HashMap<>();
 
-    // Format of the Leaderboard.txt file "<levelNumber>, "
+    /** Format of the Leaderboard.txt file "<levelNumber>, ".*/
     private static final String TXT_STRING_FORMAT = "%d  %d %d%n";
 
-    // Format of the string used when showLevel is called
+    /** Format of the string used when showLevel is called. */
     private static final String SHOW_LEADERBOARD_STRING_FORMAT = "Level %d%n%s";
 
     /**
-     * Initialises all the leaderboards
+     * Initialises all the leaderboards.
      */
     public static void initialise(){
         loadLeaderboard();
     }
 
     /**
-     * Loads leaderboards from Leaderboards.txt
+     * Loads leaderboards from Leaderboards.txt.
      */
     private static void loadLeaderboard() {
         String filePath = FileUtilities.getResourcePath(FILE_LOCATION);
@@ -57,8 +58,8 @@ public class LeaderboardUtilities {
     }
 
     /**
-     * Reads leaderboard information from a scanner
-     * @param in Scanner containing leaderboard information
+     * Reads leaderboard information from a scanner.
+     * @param in Scanner containing leaderboard information.
      */
     private static void readInfo(Scanner in) {
         int currentLevel = -1;
@@ -80,7 +81,7 @@ public class LeaderboardUtilities {
     }
 
     /**
-     * Gets the highest scores from a levelNumber in order
+     * Gets the highest scores from a levelNumber in order.
      * @param levelNumber Level number
      * @return int[] of the highest scores
      */
@@ -89,7 +90,7 @@ public class LeaderboardUtilities {
     }
 
     /**
-     * Gets the profile id and scores of the highest scores of a level in order
+     * Gets the profile id and scores of the highest scores of a level in order.
      * @param levelNumber Level number
      * @return int[][] of the profileId to highest score
      */
@@ -98,7 +99,7 @@ public class LeaderboardUtilities {
     }
 
     /**
-     * Shows the details of a given level in a formatted way
+     * Shows the details of a given level in a formatted way.
      * @param levelNumber Level Number
      * @return String of leaderboard values
      */
@@ -110,12 +111,13 @@ public class LeaderboardUtilities {
     }
 
     /**
-     * Adds a new highscore to a level
+     * Adds a new highscore to a level.
      * @param levelNumber level number
      * @param profileId profile id of the player
      * @param highestScore high score
      */
-    public static void addNewHighscore(int levelNumber, int profileId, int highestScore) {
+    public static void addNewHighscore(int levelNumber, int profileId,
+                                       int highestScore) {
         int[] score = new int[] {
                 profileId,
                 highestScore
@@ -129,18 +131,23 @@ public class LeaderboardUtilities {
     }
 
     /**
-     * Saves the current stored high scores in Leaderboard.txt
+     * Saves the current stored high scores in Leaderboard.txt.
      * NOTE: THIS WILL OVERRIDE EVERYTHING THAT'S CURRENTLY IN LEADERBOARD.TXT
      */
     public static void saveProfiles() {
         try {
-            PrintWriter myWriter = new PrintWriter(FileUtilities.getResourcePath(FILE_LOCATION));
+            PrintWriter myWriter = new PrintWriter(
+                    FileUtilities.getResourcePath(FILE_LOCATION))
+                    ;
             System.out.println(FileUtilities.getResourcePath(FILE_LOCATION));
 
-            for (Map.Entry<Integer, LevelLeaderboard> levelHScore : LEADERBOARD.entrySet()) {
+            for (Map.Entry<Integer, LevelLeaderboard> levelHScore
+                    : LEADERBOARD.entrySet()) {
                 int[][] levelHScoreValues = levelHScore.getValue().getLeaderboard();
                 for (int[] score : levelHScoreValues) {
-                    String profileData = String.format(TXT_STRING_FORMAT, levelHScore.getKey(),
+                    String profileData = String.format(
+                            TXT_STRING_FORMAT,
+                            levelHScore.getKey(),
                             score[0],
                             score[1]
                     );

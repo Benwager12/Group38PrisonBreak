@@ -23,8 +23,8 @@ import java.util.HashMap;
  */
 public class SaveLevelUtilities {
 
-    // Hash map of Colors to Ints (Reverse of Hashmap in Tiles)
-    private static final HashMap<Color, Integer> colourMap = new HashMap<>() {{
+    /** Hash map of Colors to Ints (Reverse of Hashmap in Tiles). */
+    private static final HashMap<Color, Integer> COLOUR_MAP = new HashMap<>() {{
         put(Color.rgb(253, 101, 105, .25), 0); // Red
         put(Color.rgb(107, 255, 109, .25), 1); // Green
         put(Color.rgb(104, 104, 252, .25), 2); // Blue
@@ -33,57 +33,65 @@ public class SaveLevelUtilities {
         put(Color.rgb(253, 5, 253, .25), 5);  // Magenta
     }};
 
-    // File name formula for the levels
+    /** File name formula for the levels. */
     public static final String LEVEL_SAVE_LOCATION = "data/saves/%d_%d.level";
 
-    // New line string
+    /** New line string. */
     private static final String NEW_LINE = "\n";
 
-    /* String Format for saving time and score
+    /**
+     *  String Format for saving time and score.
      * <Time> <Score>
      */
     private static final String TIME_SCORE_STRING_FORMAT = "%d %d%n";
 
-    /* String Format for saving the Height and Width of a level
+    /**
+     *  String Format for saving the Height and Width of a level.
      * <Height> <Width>
      */
     private static final String LEVEL_SIZE_STRING_FORMAT = "%d %d%n";
 
-    /* String Format for saving Tiles (Tile colours)
+    /**
+     *  String Format for saving Tiles (Tile colours).
      * <ColourID><ColourID><ColourID><ColourID>
      */
     private static final String TILE_STRING_FORMAT = "%d%d%d%d ";
 
-    /* String Format for saving a Player
+    /**
+     *  String Format for saving a Player.
      * <XPos> <YPos> <(Int) Direction>
      */
     private static final String PLAYER_STRING_FORMAT = "%d %d %d%n";
 
-    /* String Format for saving an item with metadata
+    /**
+     *  String Format for saving an item with metadata.
      * <itemChar> <XPos> <YPos> <(Int) Metadata>
      */
     private static final String ITEM_STRING_FORMAT_METADATA = "%c %d %d %d%n";
 
-    /* String Format for saving an item with no metadata
+    /**
+     *  String Format for saving an item with no metadata.
      * <itemChar> <XPos> <YPos>
      */
     private static final String ITEM_STRING_FORMAT = "%c %d %d%n";
 
-    // Number of players in the game
+    /** Number of players in the game. */
     private static final int NO_PLAYERS = 1;
 
-    /* String Format for saving an Entity
+    /**
+     *  String Format for saving an Entity.
      * <entityChar> <XPos> <YPos> <(Char) Direction>
      */
     private static final String ENEMY_STRING_FORMAT = "%c %d %d %c%n";
 
-    /* String Format for saving a Floor Thief
+    /**
+     *  String Format for saving a Floor Thief.
      * <entityChar> <XPos> <YPos> <(Char) Direction> <ColourId>
      */
     private static final String FLOOR_THIEF_STRING = "%c %d %d %c %d%n";
 
     /**
-     * Creates a save file
+     * Creates a save file.
      * @param profileId id of the profile
      * @param levelNumber level number of the current level
      * @return File to be saved
@@ -100,7 +108,7 @@ public class SaveLevelUtilities {
     }
 
     /**
-     * Checks if a save file already exists
+     * Checks if a save file already exists.
      * @param profileId Profile id of the profile
      * @param levelNumber level number of the current level
      * @return if there already is a save for the level
@@ -181,10 +189,10 @@ public class SaveLevelUtilities {
             for (int x = 0; x < level.getWidth(); x++) {
                 Color[] colours = level.getTile(x, y).getColours();
                 myWriter.write(String.format(TILE_STRING_FORMAT,
-                        colourMap.get(colours[0]),
-                        colourMap.get(colours[1]),
-                        colourMap.get(colours[2]),
-                        colourMap.get(colours[3])));
+                        COLOUR_MAP.get(colours[0]),
+                        COLOUR_MAP.get(colours[1]),
+                        COLOUR_MAP.get(colours[2]),
+                        COLOUR_MAP.get(colours[3])));
             }
             myWriter.write(NEW_LINE);
         }
@@ -218,24 +226,49 @@ public class SaveLevelUtilities {
         for (int y = 0; y < level.getHeight(); y++) {
             for (int x = 0; x < level.getWidth(); x++) {
                 item = level.getTile(x, y).getItem();
-                if (item != null && !(item instanceof Gate) && !(item instanceof Bomb)) {
-                    char itemChar = item instanceof Loot ?
-                            Constants.LOOT_CHAR : item instanceof Clock ?
-                            Constants.CLOCK_CHAR : item instanceof Lever ?
-                            Constants.LEVER_CHAR : Constants.DOOR_CHAR;
+                if (item != null
+                        && !(item instanceof Gate) && !(item instanceof Bomb)) {
+                    char itemChar = item instanceof Loot
+                            ? Constants.LOOT_CHAR : item instanceof Clock
+                            ? Constants.CLOCK_CHAR : item instanceof Lever
+                            ? Constants.LEVER_CHAR : Constants.DOOR_CHAR;
                     switch (itemChar) {
-                        case Constants.LOOT_CHAR -> myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA,
-                                Constants.LOOT_CHAR, x, y, ((Loot) item).getLootType()));
-                        case Constants.LEVER_CHAR -> myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA,
-                                Constants.LEVER_CHAR, x, y,
-                                ((Lever) item).getItemColour()));
-                        default -> myWriter.write(String.format(ITEM_STRING_FORMAT, itemChar, x, y));
+                        case Constants.LOOT_CHAR ->
+                                myWriter.write(
+                                        String.format(
+                                                ITEM_STRING_FORMAT_METADATA,
+                                                Constants.LOOT_CHAR,
+                                                x, y,
+                                                ((Loot) item).getLootType())
+                                );
+                        case Constants.LEVER_CHAR ->
+                                myWriter.write(
+                                        String.format(
+                                                ITEM_STRING_FORMAT_METADATA,
+                                                Constants.LEVER_CHAR, x, y,
+                                                ((Lever) item).getItemColour())
+                                );
+                        default ->
+                                myWriter.write(
+                                        String.format(ITEM_STRING_FORMAT,
+                                                itemChar, x, y)
+                                );
                     }
                 } else if (item instanceof Gate) {
-                    myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA, Constants.GATE_CHAR, x, y,
-                            ((Gate) item).getGateColour()));
+                    myWriter.write(String.format(
+                            ITEM_STRING_FORMAT_METADATA,
+                            Constants.GATE_CHAR,
+                            x,
+                            y,
+                            ((Gate) item).getGateColour())
+                    );
                 } else if (item != null && ((Bomb) item).isExplodable()) {
-                    myWriter.write(String.format(ITEM_STRING_FORMAT, Constants.BOMB_CHAR, x, y));
+                    myWriter.write(String.format(
+                            ITEM_STRING_FORMAT,
+                            Constants.BOMB_CHAR,
+                            x,
+                            y)
+                    );
                 }
 
             }
@@ -268,25 +301,28 @@ public class SaveLevelUtilities {
             char direction = 0;
 
             switch (intDir) {
-                case 0 -> direction = 'U';
-                case 1 -> direction = 'R';
-                case 2 -> direction = 'D';
-                case 3 -> direction = 'L';
+                case Constants.UP_ID -> direction = 'U';
+                case Constants.RIGHT_ID -> direction = 'R';
+                case Constants.DOWN_ID -> direction = 'D';
+                case Constants.LEFT_ID -> direction = 'L';
                 default -> {
                 }
             }
 
-            if (entity.isAlive() && !(entity instanceof Player) && !(entity instanceof FloorThief)) {
+            if (entity.isAlive() && !(entity instanceof Player)
+                    && !(entity instanceof FloorThief)) {
                 char entityChar =
-                        entity instanceof SmartThief ?
-                                Constants.SMART_THIEF_CHAR : Constants.FLYING_ASSASSIN_CHAR;
+                        entity instanceof SmartThief
+                                ? Constants.SMART_THIEF_CHAR
+                                : Constants.FLYING_ASSASSIN_CHAR;
                 myWriter.write(String.format(ENEMY_STRING_FORMAT,
                         entityChar,
                         entity.getX(),
                         entity.getY(),
                         direction)
                 );
-            } else if (entity.isAlive() && entity instanceof FloorThief floorThief) {
+            } else if (entity.isAlive()
+                    && entity instanceof FloorThief floorThief) {
                 char entityChar = Constants.FLOOR_THIEF_CHAR;
                 myWriter.write(String.format(FLOOR_THIEF_STRING,
                         entityChar,

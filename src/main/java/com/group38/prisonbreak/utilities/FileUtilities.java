@@ -27,16 +27,19 @@ import java.util.Scanner;
  */
 public class FileUtilities {
 
-    /** An instance of the game */
+    /** An instance of the game. */
     private static Game gameInstance;
 
+    /** Maximum time a level can have. */
     private static final int MAX_LEVEL_TIME = 300;
 
+    /** String Format of the plath to a level file. */
     private static final String LEVELS_PATH = "levels/%d.level";
 
+    private static final String NO_FILE_ERROR = "Can't find file";
 
     /**
-     * Set the instance of a Game
+     * Set the instance of a Game.
      * @param gameInstance The instance of a Game
      */
     public static void setGameInstance(Game gameInstance) {
@@ -44,7 +47,7 @@ public class FileUtilities {
     }
 
     /**
-     * Returns the current Game
+     * Returns the current Game.
      * @return The current Game instance
      */
     public static Game getGameInstance() {
@@ -53,28 +56,34 @@ public class FileUtilities {
 
 
     /**
-     * Returns a Level instance using the level name and id of a profile
+     * Returns a Level instance using the level name and id of a profile.
      * @param levelNumber The chosen level number
      * @param profileId The ID of the chosen profile
      * @return An instance a Level
      */
     public static Level readLevel(int levelNumber, int profileId) {
         return readLevel(getResourcePathUnsafe(
-                String.format(SaveLevelUtilities.LEVEL_SAVE_LOCATION, profileId, levelNumber))
+                String.format(
+                        SaveLevelUtilities.LEVEL_SAVE_LOCATION,
+                        profileId,
+                        levelNumber)
+                )
         );
     }
 
     /**
-     * Returns a Level instance using the level name
+     * Returns a Level instance using the level name.
      * @param levelNumber The chosen level number
      * @return An instance a Level
      */
     public static Level readLevel(int levelNumber) {
-        return readLevel(getResourcePath(String.format(LEVELS_PATH, levelNumber)));
+        return readLevel(getResourcePath(
+                String.format(LEVELS_PATH, levelNumber))
+        );
     }
 
     /**
-     * Returns a Level instance using the path of the level file
+     * Returns a Level instance using the path of the level file.
      * @param levelPath The path to the chosen level file
      * @return An instance a Level
      */
@@ -85,7 +94,7 @@ public class FileUtilities {
         try {
             scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.println("Can't find the level file.");
+            System.out.println(NO_FILE_ERROR);
             e.printStackTrace();
             System.exit(-1);
         }
@@ -97,10 +106,15 @@ public class FileUtilities {
         String levelFileName = splitBySlash[splitBySlash.length - 1];
 
         if (levelPath.contains("saves")) {
-            levelNumber = Integer.parseInt(levelFileName.split("_")[0]);
+            levelNumber =
+                    Integer.parseInt(levelFileName.split("_")[0]);
             System.out.println(levelNumber);
         } else {
-            levelNumber = Integer.parseInt(levelFileName.substring(0, levelFileName.length() - 6));
+            levelNumber =
+                    Integer.parseInt(levelFileName.substring(
+                            0,
+                            levelFileName.length() - 6)
+                    );
         }
         System.out.println(levelPath);
         return readInfo(scanner, levelNumber);
@@ -139,7 +153,7 @@ public class FileUtilities {
     }
 
     /**
-     * Returns an Image based on its file path
+     * Returns an Image based on its file path.
      * @param resourcePath Path to the chosen file
      * @return The chosen Image
      */
@@ -152,7 +166,7 @@ public class FileUtilities {
     }
 
     /**
-     * Returns a Level using the contents of a level file that follows the level file format
+     * Returns a Level using the contents of a level file that follows the level file format.
      * @param in The scanner of the level file
      * @param levelNumber The chosen level number
      * @return An instance of the chosen Level
@@ -163,7 +177,12 @@ public class FileUtilities {
 
         Tile[][] tiles = readTiles(in, levelWidth, levelHeight);
         int[] playerLocation = readPlayerLocation(in);
-        Player p = new Player(playerLocation[0], playerLocation[1], playerLocation[2],levelNumber);
+        Player p = new Player(
+                playerLocation[0],
+                playerLocation[1],
+                playerLocation[2],
+                levelNumber
+        );
 
         int numOfItems = in.nextInt();
         HashMap<int[], Item> items = readItems(in, numOfItems);
@@ -179,21 +198,31 @@ public class FileUtilities {
             for (int tileX = 0; tileX < tiles[tileY].length; tileX++) {
                 Tile t = tiles[tileY][tileX];
                 //Checks if there is a real (explodable) bomb on the tile.
-                if (!(t.getItem() == null) && (t.getItem() instanceof Bomb b) && b.isExplodable()) {
+                if (!(t.getItem() == null)
+                        && (t.getItem() instanceof Bomb b)
+                        && b.isExplodable()) {
                     if (tileY > 0) {
-                        tiles[tileY - 1][tileX].setItem(new Bomb((Bomb) t.getItem()));
+                        tiles[tileY - 1][tileX].setItem(
+                                new Bomb((Bomb) t.getItem())
+                        );
                     }
 
                     if (!(tileY == tiles.length - 1)) {
-                        tiles[tileY + 1][tileX].setItem(new Bomb((Bomb) t.getItem()));
+                        tiles[tileY + 1][tileX].setItem(
+                                new Bomb((Bomb) t.getItem())
+                        );
                     }
 
                     if (tileX > 0) {
-                        tiles[tileY][tileX - 1].setItem(new Bomb((Bomb) t.getItem()));
+                        tiles[tileY][tileX - 1].setItem(
+                                new Bomb((Bomb) t.getItem())
+                        );
                     }
 
                     if (!(tileX == tiles[tileY].length - 1)) {
-                        tiles[tileY][tileX + 1].setItem(new Bomb((Bomb) t.getItem()));
+                        tiles[tileY][tileX + 1].setItem(
+                                new Bomb((Bomb) t.getItem())
+                        );
                     }
                 }
             }
@@ -203,18 +232,9 @@ public class FileUtilities {
         ArrayList<Entity> enemies = readEnemies(in, numOfEnemies);
         enemies.add(p);
 
-        enemies.forEach(e -> {
-            if (e instanceof FloorThief ft) {
-                if (!tiles[e.getY()][e.getX()].hasColours(new int[]{ft.getChosenColour()})) {
-                    System.out.printf("A floor thief at (X:%d,Y:%d) has a chosen colour of %d, but"
-                            + " that is not its current tile.%n", e.getX(), e.getY(), ft.getChosenColour());
-                }
-            }
-        });
-
         GameManager.setTime(readLevelTime(in));
 
-        if(in.hasNextInt()) {
+        if (in.hasNextInt()) {
             GameManager.setMoney(readScore(in));
         }
 
@@ -251,18 +271,25 @@ public class FileUtilities {
     private static HashMap<int[], Item> readItems(Scanner in, int numOfItems) {
         HashMap<int[], Item> itemMap = new HashMap<>();
 
-        for(int i = 0; i < numOfItems; i++) {
+        for (int i = 0; i < numOfItems; i++) {
             char itemType = (in.next()).charAt(0);
 
             int[] itemPosition = new int[]{in.nextInt(), in.nextInt()};
 
             switch (itemType) {
-                case Constants.LOOT_CHAR -> itemMap.put(itemPosition, new Loot(in.next()));
-                case Constants.CLOCK_CHAR -> itemMap.put(itemPosition, new Clock());
-                case Constants.GATE_CHAR -> itemMap.put(itemPosition, new Gate(in.next()));
-                case Constants.LEVER_CHAR -> itemMap.put(itemPosition, new Lever(in.next()));
-                case Constants.BOMB_CHAR -> itemMap.put(itemPosition, new Bomb());
-                case Constants.DOOR_CHAR -> itemMap.put(itemPosition, new Door());
+                case Constants.LOOT_CHAR ->
+                        itemMap.put(itemPosition, new Loot(in.next()));
+                case Constants.CLOCK_CHAR ->
+                        itemMap.put(itemPosition, new Clock());
+                case Constants.GATE_CHAR ->
+                        itemMap.put(itemPosition, new Gate(in.next()));
+                case Constants.LEVER_CHAR ->
+                        itemMap.put(itemPosition, new Lever(in.next()));
+                case Constants.BOMB_CHAR ->
+                        itemMap.put(itemPosition, new Bomb());
+                case Constants.DOOR_CHAR ->
+                        itemMap.put(itemPosition, new Door());
+                default -> { }
             }
         }
         return itemMap;
@@ -281,7 +308,7 @@ public class FileUtilities {
         ArrayList<Entity> enemies = new ArrayList<>();
         Enemy nextEnemy = null;
 
-        for(int i = 0; i < numOfEnemies; i++) {
+        for (int i = 0; i < numOfEnemies; i++) {
             char enemyType = (in.next()).charAt(0);
             int enemyXPos;
             int enemyYPos;
@@ -293,21 +320,34 @@ public class FileUtilities {
                     enemyXPos = in.nextInt();
                     enemyYPos = in.nextInt();
                     direction = convertDirection(in.next());
-                    nextEnemy = new FlyingAssassin(enemyXPos, enemyYPos, direction);
+                    nextEnemy =
+                            new FlyingAssassin(enemyXPos, enemyYPos, direction);
                 }
                 case Constants.FLOOR_THIEF_CHAR -> {
                     enemyXPos = in.nextInt();
                     enemyYPos = in.nextInt();
                     direction = convertDirection(in.next());
                     chosenColour = in.nextInt();
-                    nextEnemy = new FloorThief(enemyXPos, enemyYPos, direction, chosenColour);
+                    nextEnemy =
+                            new FloorThief(
+                                    enemyXPos,
+                                    enemyYPos,
+                                    direction,
+                                    chosenColour
+                            );
                 }
                 case Constants.SMART_THIEF_CHAR -> {
                     enemyXPos = in.nextInt();
                     enemyYPos = in.nextInt();
                     direction = convertDirection(in.next());
-                    nextEnemy = new SmartThief(enemyXPos, enemyYPos, direction);
+                    nextEnemy =
+                            new SmartThief(
+                                    enemyXPos,
+                                    enemyYPos,
+                                    direction
+                            );
                 }
+                default -> { }
             }
 
             enemies.add(nextEnemy);

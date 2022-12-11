@@ -16,10 +16,10 @@ import javafx.scene.image.Image;
  */
 public abstract class Item implements Drawable {
 
-    /** The path that you're getting the images from */
+    /** The path that you're getting the images from. */
     protected static final String GAME_IMAGE_PATH = "images/GameImages/";
 
-    /** The index of the specific image we are displaying */
+    /** The index of the specific image we are displaying. */
     protected int imageIndex;
 
     /** Defines what happens when a non-player interacts with an Item. */
@@ -28,7 +28,7 @@ public abstract class Item implements Drawable {
     }
 
     /**
-     * Called when an entity interacts with an item
+     * Called when an entity interacts with an item.
      * Defines how an item is intractable
      * @param isPlayer if the entity interacting with the item is the player
      * @return
@@ -39,13 +39,13 @@ public abstract class Item implements Drawable {
     public abstract String getImagePath();
 
     /**
-     * Gets the image of the item
+     * Gets the image of the item.
      * @return Image of the item
      */
     public abstract Image getImage();
 
     /**
-     * Draw the item onto the screen at point 0
+     * Draw the item onto the screen at point 0.
      * @param g The graphics context
      */
     @Override
@@ -59,11 +59,15 @@ public abstract class Item implements Drawable {
     }
 
     /**
-     * Draw the item onto the tile
+     * Draw the item onto the tile.
      * @param g The graphics context
      */
     public void draw(GraphicsContext g, int tileX, int tileY, int sideLength) {
-        g.drawImage(getImage(), tileX * sideLength, tileY * sideLength, sideLength, sideLength);
+        g.drawImage(
+                getImage(),
+                tileX * sideLength, tileY * sideLength,
+                sideLength, sideLength
+        );
     }
 }
 
