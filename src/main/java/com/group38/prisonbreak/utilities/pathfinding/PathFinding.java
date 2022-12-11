@@ -24,13 +24,13 @@ public class PathFinding {
      */
 
 
-    // Stores position of items
+    /** Stores position of items. */
     private final ArrayList<int[]> itemPositions = new ArrayList<>();
 
-    // Stores all the visited nodes
+    /** Stores all the visited nodes. */
     private final ArrayList<TileNode> visitedNodes = new ArrayList<>();
 
-    /* Stores all the found nodes and is ordered by each TileNode's weight
+    /** Stores all the found nodes and is ordered by each TileNode's weight.
      * (How close it is to the item)
      */
     private final ArrayList<TileNode> nodesFound = new ArrayList<>();
@@ -254,7 +254,8 @@ public class PathFinding {
                 new TileNode(newPositionDown[0], newPositionDown[1],
                         currentNode, distance,
                         calculateDistance(newPositionDown[0], newPositionDown[1],
-                        itemXPos, itemYPos));
+                        itemXPos, itemYPos)
+                );
         if (newPositionDown[1] != rootYPos && hasNotBeenVisited(downNode)
                 && GameManager.getLevel()
                 .wontSetOffBomb(newPositionDown[0], newPositionDown[1])) {
