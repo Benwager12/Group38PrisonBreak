@@ -34,7 +34,6 @@ public class LeaderboardController {
         // animate button on hover detection
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
 
-        //
         leaderboardText.setText(
                 LeaderboardUtilities.showScores(
                         GameManager.getLevel().getLevelNumber()
