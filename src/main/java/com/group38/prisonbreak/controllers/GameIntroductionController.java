@@ -31,8 +31,8 @@ public class GameIntroductionController {
     private static final int VIDEO_DURATION = 29;
 
     /**
-     * triggers at the opening of the FXML file.
-     * and Plays Video
+     * Triggers at the opening of the FXML file.
+     * and plays video
      */
     @FXML
     private void initialize() {
