@@ -1,22 +1,22 @@
 package com.group38.prisonbreak;
 
 /**
- * Implementation of a Player Profile
+ * Implementation of a Player Profile.
  * @author Daniel Banks (2107922)
  */
 public class Profile {
 
-    /** Id number of the player */
+    /** Id number of the player. */
     private final int id;
 
-    /** Name of the player */
+    /** Name of the player. */
     private String name;
 
-    /** Highest level they've completed */
+    /** Highest level they've completed. */
     private int highestLevel;
 
     /**
-     * Creates an instance of Profile
+     * Creates an instance of Profile.
      * @param id Id number
      * @param name Name of the player
      */
@@ -26,7 +26,7 @@ public class Profile {
     }
 
     /**
-     * Creates an instance of Profile
+     * Creates an instance of Profile.
      * @param id Id number
      * @param name Name of the player
      * @param highestLevel Highest Completed Level
@@ -38,7 +38,7 @@ public class Profile {
     }
 
     /**
-     * Gets id
+     * Gets id.
      * @return int Id
      */
     public int getId() {
@@ -46,7 +46,7 @@ public class Profile {
     }
 
     /**
-     * Gets player's Name
+     * Gets player's Name.
      * @return String representation name
      */
     public String getName() {
@@ -54,7 +54,7 @@ public class Profile {
     }
 
     /**
-     * Gets the highest Level Completed
+     * Gets the highest Level Completed.
      * @return The highest level in the form as an integer
      */
     public int getHighestLevel() {
@@ -62,7 +62,7 @@ public class Profile {
     }
 
     /**
-     * Sets the highest level completed
+     * Sets the highest level completed.
      * @param highestLevel Highest Level completed
      */
     public void setHighestLevel(int highestLevel) {
@@ -70,7 +70,7 @@ public class Profile {
     }
 
     /**
-     * Sets the players name
+     * Sets the players name.
      * @param name Name of the player
      */
     public void setName(String name) {
@@ -78,15 +78,15 @@ public class Profile {
     }
 
     /**
-     * Get a string representation of the profile
+     * Get a string representation of the profile.
      * @return String representation of profile
      */
     @Override
     public String toString() {
-        return "Profile{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", highestLevel=" + highestLevel +
-                '}';
+        return "Profile{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", highestLevel=" + highestLevel
+                + '}';
     }
 }

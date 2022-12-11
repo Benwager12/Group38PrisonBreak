@@ -86,7 +86,6 @@ public class MenuController {
     private void exitLevel(MouseEvent click) {
         click.consume();
         GameManager.exitGame();
-        //Needs to save info to file
     }
 
     /**

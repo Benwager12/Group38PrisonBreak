@@ -60,8 +60,7 @@ public class AskOverwriteController {
     }
 
     /**
-     * On 'yes' button clicked, access the saved information for the
-     * level progress.
+     * On 'yes' button clicked, loads the level with saved progress
      * @param click Trigger on mouse clicked.
      */
     @FXML
@@ -78,7 +77,7 @@ public class AskOverwriteController {
     }
 
     /**
-     * On 'no' button clicked, re-navigate the root window.
+     * On 'no' button clicked, loads the level from scratch.
      * @param click Trigger on mouse clicked.
      */
     @FXML

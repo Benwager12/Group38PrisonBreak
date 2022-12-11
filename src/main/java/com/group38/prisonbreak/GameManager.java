@@ -15,35 +15,39 @@ import java.util.ArrayList;
  * @author Ben Wager (2108500), Daniel Banks (2107922)
  */
 public class GameManager {
-    // Instance of the level that's currently open
+    /** Instance of the level that's currently open. */
     private static Level level;
 
-    // Amount of money the player has picked up
+    /** Amount of money the player has picked up. */
     private static int money;
 
-    // Time left in the game
+    /** Time left in the game. */
     private static int time;
 
-    // Tick timeline for the entities
+    /** Tick timeline for the entities. */
     public static Timeline enemyTimeLine;
 
-    // Tick timeline for the smartThief
+    /** Tick timeline for the smartThief. */
     public static Timeline smartThiefTimeLine;
 
-    // Tick timeline for the player
+    /** Tick timeline for the player. */
     public static Timeline playerTimeLine;
 
-    // Tick timeline for the main game clock, updates every 1000 milliseconds (1 second)
+    /**
+     *  Tick timeline for the main game clock.
+     *  updates every 1000 milliseconds (1 second)
+     */
     public static Timeline timeTimeLine;
 
-    // ArrayList of currently pressed keys
-    private static final ArrayList<KeyCode> CURRENTLY_PRESSED = new ArrayList<>();
+    /** ArrayList of currently pressed keys. */
+    private static final ArrayList<KeyCode> CURRENTLY_PRESSED =
+            new ArrayList<>();
 
-    // Id of the profile that's current playing
+    /** Id of the profile that's current playing. */
     private static int currentProfileId;
 
     /**
-     * Sets all the cycles for the tick timelines
+     * Sets all the cycles for the tick timelines.
      */
     public static void initTimelines() {
         enemyTimeLine.setCycleCount(Animation.INDEFINITE);
@@ -54,18 +58,18 @@ public class GameManager {
     }
 
     /**
-     * starts and plays the timelines
+     * Starts and plays the timelines.
      */
-    public static void playTimeLines(){
+    public static void playTimeLines() {
         enemyTimeLine.play();
         smartThiefTimeLine.play();
         timeTimeLine.play();
     }
 
     /**
-     * stops the timelines
+     * Stops the timelines.
      */
-    public static void stopTimeLines(){
+    public static void stopTimeLines() {
         if (timeTimeLine != null) {
             enemyTimeLine.stop();
             smartThiefTimeLine.stop();
@@ -76,7 +80,7 @@ public class GameManager {
     }
 
     /**
-     * Adds a specific amount of time to the game clock
+     * Adds a specific amount of time to the game clock.
      * @param amount The amount of time to be added
      */
     public static void addTime(int amount) {
@@ -84,7 +88,7 @@ public class GameManager {
     }
 
     /**
-     * Sets the time on the level to a given amount
+     * Sets the time on the level to a given amount.
      * @param amount The time the level time should be set to
      */
     public static void setTime(int amount) {
@@ -92,7 +96,7 @@ public class GameManager {
     }
 
     /**
-     * removes a specific amount of time to the game clock
+     * removes a specific amount of time to the game clock.
      * @param amount The amount of time to be removed
      */
     public static void removeTime(int amount) {
@@ -100,7 +104,7 @@ public class GameManager {
     }
 
     /**
-     * Adds money to the total money collected
+     * Adds money to the total money collected.
      * @param moneyAmount The amount of money collected by the player
      */
     public static void collectMoney(int moneyAmount) {
@@ -108,7 +112,7 @@ public class GameManager {
     }
 
     /**
-     * Calculates the players score in the level
+     * Calculates the players score in the level.
      * @param money The amount of money collected by the player
      * @param timeRemaining The time remaining in the level
      * @return the players score in the level
@@ -118,15 +122,20 @@ public class GameManager {
     }
 
     /**
-     * Ends the level when a level is finished
+     * Ends the level when a level is finished.
      * @param hasWon If the player has won/beaten the level
      */
-    public static void endGame (boolean hasWon) {
+    public static void endGame(boolean hasWon) {
         stopTimeLines();
         if (hasWon) {
-            ProfileUtilities.updateProfile(currentProfileId, level.getLevelNumber());
-            LeaderboardUtilities.addNewHighscore(level.getLevelNumber(), currentProfileId,
-                    calculateScore(GameManager.money,GameManager.time)
+            ProfileUtilities.updateProfile(
+                    currentProfileId,
+                    level.getLevelNumber()
+            );
+            LeaderboardUtilities.addNewHighscore(
+                    level.getLevelNumber(),
+                    currentProfileId,
+                    calculateScore(GameManager.money, GameManager.time)
             );
         }
         System.out.println(hasWon);
@@ -139,11 +148,10 @@ public class GameManager {
         } else {
             FileUtilities.getGameInstance().setRoot("levelLost");
         }
-        // TODO: End the game when the player goes through the door
     }
 
     /**
-     * Saves the current level and profile data
+     * Saves the current level and profile data.
      */
     public static void saveLevel() {
         ProfileUtilities.saveProfiles();
@@ -155,7 +163,7 @@ public class GameManager {
     }
 
     /**
-     * Exits the game and saves profile and level data
+     * Exits the game and saves profile and level data.
      */
     public static void exitGame() {
         saveLevel();
@@ -163,7 +171,7 @@ public class GameManager {
     }
 
     /**
-     * Proccess Key events
+     * Proccess Key events.
      * @param event key event
      */
     public static void processKeyEvent(KeyEvent event) {
@@ -174,14 +182,14 @@ public class GameManager {
                 }
 
                 CURRENTLY_PRESSED.add(event.getCode());
-                if (playerTimeLine.getStatus() != Animation.Status.RUNNING &&
-                        Constants.MOVEMENT_KEYS.contains(event.getCode())) {
+                if (playerTimeLine.getStatus() != Animation.Status.RUNNING
+                        && Constants.MOVEMENT_KEYS.contains(event.getCode())) {
 
                     playerTimeLine.play();
                 }
             }
-            if (event.getEventType() == KeyEvent.KEY_RELEASED &&
-                    Constants.MOVEMENT_KEYS.contains(event.getCode())) {
+            if (event.getEventType() == KeyEvent.KEY_RELEASED
+                    && Constants.MOVEMENT_KEYS.contains(event.getCode())) {
                 CURRENTLY_PRESSED.remove(event.getCode());
                 playerTimeLine.pause();
 
@@ -195,14 +203,14 @@ public class GameManager {
     }
 
     /**
-     * Saves the current Level
+     * Saves the current Level.
      */
     public static void saveGame() {
         SaveLevelUtilities.saveLevel(0, level);
     }
 
     /**
-     * Gets the current level
+     * Gets the current level.
      * @return level
      */
     public static Level getLevel() {
@@ -210,7 +218,7 @@ public class GameManager {
     }
 
     /**
-     * Gets the time remaining on the level
+     * Gets the time remaining on the level.
      * @return int Time Remaining
      */
     public static int getTime() {
@@ -218,7 +226,7 @@ public class GameManager {
     }
 
     /**
-     * Gets the current money collected/score
+     * Gets the current money collected/score.
      * @return int Money
      */
     public static int getMoney() {
@@ -233,7 +241,7 @@ public class GameManager {
     }
 
     /**
-     * Gets the profile id of the profile that's currently playing
+     * Gets the profile id of the profile that's currently playing.
      * @return int Id
      */
     public static int getCurrentProfileId() {
@@ -241,7 +249,7 @@ public class GameManager {
     }
 
     /**
-     * Gets the currently Pressed keys
+     * Gets the currently Pressed keys.
      * @return ArrayList of KeyCodes
      */
     public static ArrayList<KeyCode> getCurrentlyPressed() {
@@ -249,7 +257,7 @@ public class GameManager {
     }
 
     /**
-     * Sets the money in the level
+     * Sets the money in the level.
      * @param money int money to be added
      */
     public static void setMoney(int money) {
@@ -257,7 +265,7 @@ public class GameManager {
     }
 
     /**
-     * Sets the current level
+     * Sets the current level.
      * @param level level
      */
     public static void setLevel(Level level) {
@@ -265,7 +273,7 @@ public class GameManager {
     }
 
     /**
-     * Sets the profile id of the current profile playing
+     * Sets the profile id of the current profile playing.
      * @param currentProfileId int profile id
      */
     public static void setCurrentProfileId(int currentProfileId) {
