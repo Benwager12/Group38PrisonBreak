@@ -243,6 +243,7 @@ public class LevelController {
     @FXML
     private void homeClicked(MouseEvent ignoredActionEvent) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
+        GameManager.stopTimeLines();
     }
 
     @FXML
@@ -255,6 +256,7 @@ public class LevelController {
     private void saveClicked(MouseEvent actionEvent) {
         GameManager.saveLevel();
         FileUtilities.getGameInstance().setRoot("levelMenu");
+        GameManager.stopTimeLines();
     }
 
     /**

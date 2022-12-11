@@ -251,8 +251,16 @@ public class SaveLevelUtilities {
     private static void saveEntities(PrintWriter myWriter, Level level) {
         ArrayList<Entity> entities = level.getEntities();
 
+        int noEnermies = 0;
+
+        for (Entity entity : entities) {
+            if (entity.isAlive() && !(entity instanceof Player)) {
+                noEnermies++;
+            }
+        }
+
         // Writing number of Enemies
-        myWriter.write(String.valueOf(entities.size() - NO_PLAYERS));
+        myWriter.write(String.valueOf(noEnermies));
         myWriter.write(NEW_LINE);
 
         for (Entity entity : entities) {
@@ -268,7 +276,7 @@ public class SaveLevelUtilities {
                 }
             }
 
-            if (!(entity instanceof Player) && !(entity instanceof FloorThief)) {
+            if (entity.isAlive() && !(entity instanceof Player) && !(entity instanceof FloorThief)) {
                 char entityChar =
                         entity instanceof SmartThief ?
                                 Constants.SMART_THIEF_CHAR : Constants.FLYING_ASSASSIN_CHAR;
@@ -278,7 +286,7 @@ public class SaveLevelUtilities {
                         entity.getY(),
                         direction)
                 );
-            } else if (entity instanceof FloorThief floorThief) {
+            } else if (entity.isAlive() && entity instanceof FloorThief floorThief) {
                 char entityChar = Constants.FLOOR_THIEF_CHAR;
                 myWriter.write(String.format(FLOOR_THIEF_STRING,
                         entityChar,
