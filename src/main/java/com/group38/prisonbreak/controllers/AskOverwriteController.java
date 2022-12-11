@@ -15,10 +15,10 @@ import javafx.scene.input.MouseEvent;
  */
 public class AskOverwriteController {
 
-    /** The original rotation of the button. */
+    /* The original rotation of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /** The modified rotation of level. */
+    /* The modified rotation of the button. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
     /* Fx:id for the image of a house within FXML file. */
@@ -42,10 +42,10 @@ public class AskOverwriteController {
 
     /**
      * On home image clicked redirect the root window.
-     * @param ignoredActionEvent trigger on mouse clicked.
+     * @param click trigger on mouse clicked.
      */
     @FXML
-    private void homeClicked(MouseEvent ignoredActionEvent) {
+    private void homeClicked(MouseEvent click) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 
@@ -62,10 +62,10 @@ public class AskOverwriteController {
     /**
      * On 'yes' button clicked, access the saved information for the
      * level progress.
-     * @param ignoredActionEvent Trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
-    private void yesClicked(MouseEvent ignoredActionEvent) {
+    private void yesClicked(MouseEvent click) {
 
         /* Sets the level to run from a "saved progress level file". */
         Level savedLevel = FileUtilities.readLevel(
@@ -79,10 +79,10 @@ public class AskOverwriteController {
 
     /**
      * On 'no' button clicked, re-navigate the root window.
-     * @param ignoredActionEvent Trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
-    private void noClicked(MouseEvent ignoredActionEvent) {
+    private void noClicked(MouseEvent click) {
         FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
     }
 

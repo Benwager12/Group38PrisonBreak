@@ -9,41 +9,55 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
+/**
+ * LevelSuccessFailure is the controller that handles both the
+ * Level-passed.fxml and the Level-failed.fxml.
+ * @author
+ */
 public class LevelSuccessFailureController {
+
+    /* The original rotation of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
+
+    /* The modified rotation of the button. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
+    /* The amount of levels. */
     private static final int NUMBER_OF_LEVELS = 8;
 
+    /* Fx:id for the image of a house within FXML file. */
     @FXML
     private ImageView homeImage;
 
+    /* Fx:id for the image of the cross within FXML file. */
     @FXML
     private ImageView crossImage;
 
+    /* Fx:id for the next level image within FXML file. */
     @FXML
     private ImageView nextLevelButton;
 
-    @FXML
-    private VBox retryLevelButton;
-
+    /* Fx:id for the image of the retry arrow within FXML file. */
     @FXML
     private ImageView retryArrow;
 
-    @FXML
-    private ImageView leaderboardButton;
-
+    /* Fx:id for the label of the profile name within FXML file. */
     @FXML
     private Label profileNameText;
 
+    /* Fx:id for the label of the player score within FXML file. */
     @FXML
     private Label playerScoreText;
 
+    /* Fx:id for the Hbox for the next level. */
     @FXML
     private HBox nextLevelHbox;
 
+    /**
+     * Triggers at the opening of the FXML files and sets the text
+     * and listeners for hover properties.
+     */
     @FXML
     public void initialize() {
         profileNameText.setText(ProfileUtilities
@@ -51,62 +65,81 @@ public class LevelSuccessFailureController {
         playerScoreText.setText(Integer.toString(GameManager
                 .calculateScore(GameManager.getMoney(), GameManager.getTime())));
 
-        //Removes the next level button if the player has completed level 8
+        /* Removes the next level button if the player has completed level 8. */
         if (GameManager.getLevel().getLevelNumber() == NUMBER_OF_LEVELS
                 && nextLevelHbox != null) {
             nextLevelButton.setVisible(false);
         }
-        // animate buttons on hover detection
+        /* Animate buttons on hover detection. */
         homeImage.hoverProperty().addListener(rotateButton(homeImage));
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
         retryArrow.hoverProperty().addListener(rotateButton(retryArrow));
     }
 
+    /**
+     * On home image clicked redirect the root window.
+     * @param click trigger on mouse clicked.
+     */
     @FXML
-    private void homeClicked(MouseEvent actionEvent) {
+    private void homeClicked(MouseEvent click) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 
+    /**
+     * On cross image clicked, exit the game window.
+     * @param click trigger on mouse clicked.
+     */
     @FXML
     private void crossClicked(MouseEvent click) {
         click.consume();
         GameManager.exitGame();
     }
 
+    /**
+     * Restart the level by re-directing the pane to the current root.
+     * @param click Triggered on mouse event.
+     */
     @FXML
-    private void retryLevelClicked(MouseEvent mouseEvent) {
+    private void retryLevelClicked(MouseEvent click) {
         String currentLevel = Integer.toString(
                 (GameManager.getLevel().getLevelNumber())
         );
         FileUtilities.getGameInstance().setRoot("loadLevel" + currentLevel);
     }
 
+    /**
+     * Update the root pane to the new level.
+     * @param click Triggered on mouse event.
+     */
     @FXML
-    private void goToNextLevel(MouseEvent mouseEvent) {
+    private void goToNextLevel(MouseEvent click) {
         String nextLevel = Integer.toString(
                 (GameManager.getLevel().getLevelNumber() + 1));
         FileUtilities.getGameInstance().setRoot("loadLevel" + nextLevel);
     }
 
+    /**
+     * When the leaderboard is clicked, re-direct the root.
+     * @param click Triggered on mouse event.
+     */
     @FXML
-    private void leaderboardClicked(MouseEvent mouseEvent) {
+    private void leaderboardClicked(MouseEvent click) {
         FileUtilities.getGameInstance().setRoot("leaderboard");
     }
 
     /**
      * Rotates button when applicable.
-     *
-     * @param img the button to be rotated
-     * @return rotated/unrotated button depending on situation
+     * @param img the button to be rotated.
+     * @return rotated/non-rotated button depending on situation.
      */
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
-                // modify button position
+                /* Modify button position */
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
 
             } else {
-                // maintain original button position
+                /* Maintain original button position */
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };

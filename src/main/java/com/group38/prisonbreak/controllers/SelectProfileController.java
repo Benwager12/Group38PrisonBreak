@@ -11,33 +11,36 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
+/**
+ * SelectProfileController is the controller for the
+ * Select-profile.fxml.
+ */
 public class SelectProfileController {
+
+    /* The original rotation of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
+
+    /* The modified rotation of the button. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    // The number of Profiles Shown
+    /* The amount of profiles to show at a given time. */
     private static final int PROFILES_SHOW = 3;
 
+    /* Fx:id for the image of a house within FXML file. */
     @FXML
     private ImageView homeImage;
 
+    /* Fx:id for the image of a cross within FXML file. */
     @FXML
     private ImageView crossImage;
 
+    /* Fx:id for the image of a left arrow within FXML file. */
     @FXML
     private ImageView leftArrowButton;
 
+    /* Fx:id for the image of a right arrow within FXML file. */
     @FXML
     private ImageView rightArrowButton;
-
-    @FXML
-    private Label profileName1;
-
-    @FXML
-    private Label profileName2;
-
-    @FXML
-    private Label profileName3;
 
     @FXML
     private StackPane selectPane1;
@@ -48,32 +51,29 @@ public class SelectProfileController {
     @FXML
     private StackPane selectPane3;
 
+    /* Fx:id for the cross on profile 1 within FXML file. */
     @FXML
     private ImageView profileCross1;
 
+    /* Fx:id for the cross on profile 2 within FXML file. */
     @FXML
     private ImageView profileCross2;
 
+    /* Fx:id for the cross on profile 3 within FXML file. */
     @FXML
     private ImageView profileCross3;
 
-
     private int profileOffset = 0;
 
-    @FXML
-    private ImageView faceImage1;
-
-    @FXML
-    private ImageView faceImage2;
-
-    @FXML
-    private ImageView faceImage3;
-
+    /**
+     * Triggers at the opening of the FXML file and creates listeners
+     * for hover properties and displays the profiles.
+     */
     @FXML
     public void initialize() {
         displayProfiles();
 
-        // button animation
+        /* Button animation */
         ImageView[] rotateButtons = new ImageView[] {
                 homeImage,
                 crossImage,
@@ -84,15 +84,15 @@ public class SelectProfileController {
             rb.hoverProperty().addListener(rotateButton(rb));
         }
 
-        //
         rightArrowButton
                 .setVisible(ProfileUtilities.getNoProfiles() > PROFILES_SHOW);
         rightArrowButton
                 .setDisable(ProfileUtilities.getNoProfiles() <= PROFILES_SHOW);
     }
 
-
-
+    /**
+     *
+     */
     private void displayProfiles() {
         Profile[] profiles = ProfileUtilities.getProfiles();
         StackPane[] selectPanes = new StackPane[] {
@@ -115,15 +115,10 @@ public class SelectProfileController {
         }
     }
 
-    public void rightArrowClicked(MouseEvent ignoredMouseEvent) {
-        profileOffset =
-                Math.min(ProfileUtilities.getNoProfiles()
-                        - PROFILES_SHOW, profileOffset + 1);
-
-        displayButtons();
-        displayProfiles();
-    }
-
+    /**
+     * Display left/right arrows if there are more profiles to
+     * the left or right that do not fit on the current screen.
+     */
     private void displayButtons() {
         leftArrowButton.setVisible(profileOffset != 0);
         leftArrowButton.setDisable(profileOffset == 0);
@@ -136,19 +131,40 @@ public class SelectProfileController {
                         == ProfileUtilities.getNoProfiles());
     }
 
-    public void leftArrowClicked(MouseEvent ignoredMouseEvent) {
+    /**
+     * Navigate to the right through the stored profiles.
+     * @param click Triggered on mouse click.
+     */
+    public void rightArrowClicked(MouseEvent click) {
+        profileOffset =
+                Math.min(ProfileUtilities.getNoProfiles()
+                        - PROFILES_SHOW, profileOffset + 1);
+        displayButtons();
+        displayProfiles();
+    }
+
+    /**
+     * Navigate to the left through the stored profiles.
+     * @param click Triggered on mouse click.
+     */
+    public void leftArrowClicked(MouseEvent click) {
         profileOffset = Math.max(profileOffset - 1, 0);
         displayButtons();
         displayProfiles();
     }
 
-    public void profileSelect(MouseEvent mouseEvent) {
-        if (mouseEvent.getEventType() != MouseEvent.MOUSE_CLICKED) {
+    /**
+     * Selection of the profile and re-direct the root to
+     * the level selection pane.
+     * @param click Triggered on the click of the mouse.
+     */
+    public void profileSelect(MouseEvent click) {
+        if (click.getEventType() != MouseEvent.MOUSE_CLICKED) {
             System.out.println("not gonna happen chief");
             return;
         }
 
-        if (!(mouseEvent.getSource() instanceof ImageView iv)) {
+        if (!(click.getSource() instanceof ImageView iv)) {
             return;
         }
 
@@ -161,15 +177,28 @@ public class SelectProfileController {
         FileUtilities.getGameInstance().setRoot("levelMenu");
     }
 
+    /**
+     *
+     * @param selectedNumber
+     * @return
+     */
     private int getProfileFromButtonNumber(int selectedNumber) {
         return profileOffset + (selectedNumber - 1);
     }
 
+    /**
+     * On home image clicked redirect the root window.
+     * @param click trigger on mouse clicked.
+     */
     @FXML
-    private void homeClicked(MouseEvent ignoredActionEvent) {
+    private void homeClicked(MouseEvent click) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 
+    /**
+     * On cross image clicked, exit the game window.
+     * @param click trigger on mouse clicked.
+     */
     @FXML
     private void crossClicked(MouseEvent click) {
         click.consume();
@@ -178,25 +207,29 @@ public class SelectProfileController {
 
     /**
      * Rotates button when applicable.
-     *
-     * @param img the button to be rotated
-     * @return rotated/unrotated button depending on situation
+     * @param img the button to be rotated.
+     * @return rotated/non-rotated button depending on situation.
      */
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
-                // modify button position
+                /* Modify button position. */
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
 
             } else {
-                // maintain original button position
+                /* Maintain original button position. */
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };
     }
 
-    public void profileDeleteClick(MouseEvent mouseEvent) {
-        if (!(mouseEvent.getSource() instanceof ImageView iv)) {
+    /**
+     * Delete the profile from the list of profiles and the
+     * corresponding stored data.
+     * @param click Triggered on mouse click.
+     */
+    public void profileDeleteClick(MouseEvent click) {
+        if (!(click.getSource() instanceof ImageView iv)) {
             return;
         }
 
@@ -212,8 +245,12 @@ public class SelectProfileController {
         displayButtons();
     }
 
-    public void mouseClickName(MouseEvent mouseEvent) {
-        if (!(mouseEvent.getSource() instanceof ImageView iv)) {
+    /**
+     *
+     * @param click Triggered on mouse click.
+     */
+    public void mouseClickName(MouseEvent click) {
+        if (!(click.getSource() instanceof ImageView iv)) {
             return;
         }
         String clickedItem = iv.getId();
