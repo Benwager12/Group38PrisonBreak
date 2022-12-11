@@ -85,23 +85,19 @@ public class MOTD {
                     //shifts the character forward till Z, and remaining number of shifts start from A
                     asciiTemp = FIRST_ASCII_VALUE - 1
                             + ((asciiTemp + (i + 1)) - LAST_ASCII_VALUE);
-                }
-                else {
+                } else {
                     //shift the character forward by the number of index
                     asciiTemp += (i + 1);
                 }
 
-            }
-            //if the index is even, starting index counting at 1
-            else {
+            } else {
 
                 //check if shifting the character backwards needs to start from Z again
                 if ((asciiTemp - (i + 1)) < FIRST_ASCII_VALUE) {
                     //shifts the character backwards till A, and remaining number of shifts start from Z
                     asciiTemp = LAST_ASCII_VALUE + 1
                             - (FIRST_ASCII_VALUE - (asciiTemp - (i + 1)));
-                }
-                else {
+                } else {
                     //shift the character backwards by the number of index
                     asciiTemp -= (i + 1);
                 }
