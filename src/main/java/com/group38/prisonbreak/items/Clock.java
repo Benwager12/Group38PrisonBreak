@@ -7,21 +7,32 @@ import javafx.scene.image.Image;
 
 public class Clock extends Item {
 
-    // Amount of time to be added/deducted to the timer when the clock is picked up
+    /**
+     * Amount of time to be added/deducted to/from the timer when
+     * the clock is picked up.
+     */
     private static final int CLOCK_AMOUNT = 10;
 
-    private static Image clockImage = null;
+    /** The clock image for the item. */
+    private static Image clockImage;
 
+    /**
+     * Initialize the clock and set the clock image.
+     */
     public Clock() {
-
         if (clockImage == null) {
-            clockImage =
-                    FileUtilities.loadImageFromResource(
+            clockImage = FileUtilities.loadImageFromResource(
                             GAME_IMAGE_PATH + "clock.png"
-                    );
+                        );
         }
     }
 
+    /**
+     * Called when an entity interacts with an item.
+     *
+     * @param isPlayer If the entity interacting with the item is the player
+     * @return Always returns true.
+     */
     @Override
     public boolean interact(boolean isPlayer) {
         if (isPlayer) {
@@ -32,14 +43,18 @@ public class Clock extends Item {
         return true;
     }
 
+    /**
+     * Gets the image path for the clock.
+     * @return The image path for the clock as a string.
+     */
     @Override
     public String getImagePath() {
         return "images/items/clock.png";
     }
 
     /**
-     * Image that represents a clock
-     * @return Returns the clock image used
+     * Image that represents a clock.
+     * @return Returns the clock image used.
      */
     @Override
     public Image getImage() {
