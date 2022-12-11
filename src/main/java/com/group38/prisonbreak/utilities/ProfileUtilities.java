@@ -30,49 +30,6 @@ public class ProfileUtilities {
     }
 
     /**
-     * Loads player profiles from Profiles.txt.
-     */
-    private static void loadProfiles() {
-        String filePath = FileUtilities.getResourcePath(FILE_LOCATION);
-
-        if (System.getProperty("os.name").equals("Mac OS X")) {
-            filePath = "/" + filePath;
-        }
-        File file = new File(filePath);
-
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            System.out.println("Can't find profiles file");
-            e.printStackTrace();
-            System.exit(-1);
-        }
-        readInfo(scanner);
-        scanner.close();
-    }
-
-    /**
-     * Reads player profile information from a scanner.
-     * @param in Scanner containing profile information
-     */
-    private static void readInfo(Scanner in) {
-        int id = 1;
-        while (in.hasNextLine()) {
-            String[] profile = in.nextLine().split(", ");
-            String name = profile[0];
-
-            if (profile.length != 1) {
-                int highestLevel = Integer.parseInt(profile[1]);
-                PROFILES.add(new Profile(id, name, highestLevel));
-            } else {
-                PROFILES.add(new Profile(id, name));
-            }
-            id++;
-        }
-    }
-
-    /**
      * Gets all the profiles.
      * @return Profile array
      */
@@ -116,20 +73,6 @@ public class ProfileUtilities {
             playerHashMap.put(profile.getId(), profile.getName());
         }
         return playerHashMap;
-    }
-
-    /**
-     * Gets the Profile from the profile.
-     * @param id Id of the profile to be fetched
-     * @return Instance of the Profile
-     */
-    private static Profile getProfileFromId(int id) {
-        for (Profile profile : PROFILES) {
-            if (profile.getId() == id) {
-                return profile;
-            }
-        }
-        return null;
     }
 
     /**
@@ -254,5 +197,62 @@ public class ProfileUtilities {
 
         int level = usrProfile.getHighestLevel();
         updateProfile(profileId, level + 1);
+    }
+
+    /**
+     * Loads player profiles from Profiles.txt.
+     */
+    private static void loadProfiles() {
+        String filePath = FileUtilities.getResourcePath(FILE_LOCATION);
+
+        if (System.getProperty("os.name").equals("Mac OS X")) {
+            filePath = "/" + filePath;
+        }
+        File file = new File(filePath);
+
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Can't find profiles file");
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        readInfo(scanner);
+        scanner.close();
+    }
+
+    /**
+     * Reads player profile information from a scanner.
+     * @param in Scanner containing profile information
+     */
+    private static void readInfo(Scanner in) {
+        int id = 1;
+        while (in.hasNextLine()) {
+            String[] profile = in.nextLine().split(", ");
+            String name = profile[0];
+
+            if (profile.length != 1) {
+                int highestLevel = Integer.parseInt(profile[1]);
+                PROFILES.add(new Profile(id, name, highestLevel));
+            } else {
+                PROFILES.add(new Profile(id, name));
+            }
+            id++;
+        }
+    }
+
+    /**
+     * Gets the Profile from the profile.
+     * @param id Id of the profile to be fetched
+     * @return Instance of the Profile
+     */
+    private static Profile getProfileFromId(int id) {
+        for (Profile profile : PROFILES) {
+            if (profile.getId() == id) {
+                return profile;
+            }
+        }
+        return null;
     }
 }

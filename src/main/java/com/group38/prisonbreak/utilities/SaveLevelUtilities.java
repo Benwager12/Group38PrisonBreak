@@ -91,23 +91,6 @@ public class SaveLevelUtilities {
     private static final String FLOOR_THIEF_STRING = "%c %d %d %c %d%n";
 
     /**
-     * Creates a save file.
-     * @param profileId id of the profile
-     * @param levelNumber level number of the current level
-     * @return File to be saved
-     */
-    private static File getFile(int profileId, int levelNumber) {
-        String saveLocation = String.format(LEVEL_SAVE_LOCATION,
-                levelNumber,
-                profileId
-        );
-        String newSaveLocation =
-                FileUtilities.getResourcePathUnsafe(saveLocation);
-
-        return new File(newSaveLocation);
-    }
-
-    /**
      * Checks if a save file already exists.
      * @param profileId Profile id of the profile
      * @param levelNumber level number of the current level
@@ -160,6 +143,23 @@ public class SaveLevelUtilities {
 
             myWriter.close();
         }
+    }
+
+    /**
+     * Creates a save file.
+     * @param profileId id of the profile
+     * @param levelNumber level number of the current level
+     * @return File to be saved
+     */
+    private static File getFile(int profileId, int levelNumber) {
+        String saveLocation = String.format(LEVEL_SAVE_LOCATION,
+                levelNumber,
+                profileId
+        );
+        String newSaveLocation =
+                FileUtilities.getResourcePathUnsafe(saveLocation);
+
+        return new File(newSaveLocation);
     }
 
     /**

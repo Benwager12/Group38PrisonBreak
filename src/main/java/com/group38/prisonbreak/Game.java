@@ -11,6 +11,11 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
+/**
+ * A class that represents a Game and sets the scenes, stage and runs the FXML.
+ * @author Ben Wager (2108500), Daniel Banks (2107922), Matthew Salter (986488)
+ */
+
 public class Game extends Application {
 
     /** Location of the new profile fxml file. */
@@ -89,6 +94,10 @@ public class Game extends Application {
     private static Pane root = null;
     private static Scene scene = null;
     private static Stage primaryStage = null;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     /**
      * The initialization of the scene/stage.
@@ -200,10 +209,6 @@ public class Game extends Application {
         scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
 }

@@ -8,6 +8,7 @@ import com.group38.prisonbreak.items.Door;
 import com.group38.prisonbreak.items.Gate;
 import com.group38.prisonbreak.utilities.Item;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -35,6 +36,38 @@ public class PathFinding {
      */
     private final ArrayList<TileNode> nodesFound = new ArrayList<>();
 
+    public PathFinding() {}
+
+    /**
+     * Searches for all the items and then finds the shortest path to the closet one.
+     * @param startX Start X point of the search
+     * @param startY Start Y point of the search
+     * @return ArrayList of positions int [X, Y]
+     */
+    public ArrayList<int[]> searchForItems(int startX, int startY) {
+        ArrayList<ArrayList<int[]>> pathToItems = new ArrayList<>();
+        getAllItems();
+
+        // Finds path to each item using A* Algorithm
+        for (int[] itemPosition : itemPositions) {
+            pathToItems.add(search(startX, startY, itemPosition[0],
+                    itemPosition[1]));
+        }
+
+        // Finds which path is shorter
+        if (pathToItems.size() != 0) {
+            ArrayList<int[]> shortestPath = pathToItems.get(0);
+            for (ArrayList<int[]> paths : pathToItems) {
+                if ((paths.size() > 0 && paths.size() < shortestPath.size())
+                        || shortestPath.size() == 0) {
+                    shortestPath = paths;
+                }
+            }
+            return shortestPath;
+        }
+        // Return empty List if no paths are found
+        return new ArrayList<>();
+    }
 
     /**
      * Gets all the items that it has to collect.
@@ -137,37 +170,6 @@ public class PathFinding {
     }
 
     /**
-     * Searches for all the items and then finds the shortest path to the closet one.
-     * @param startX Start X point of the search
-     * @param startY Start Y point of the search
-     * @return ArrayList of positions int [X, Y]
-     */
-    public ArrayList<int[]> searchForItems(int startX, int startY) {
-        ArrayList<ArrayList<int[]>> pathToItems = new ArrayList<>();
-        getAllItems();
-
-        // Finds path to each item using A* Algorithm
-        for (int[] itemPosition : itemPositions) {
-            pathToItems.add(search(startX, startY, itemPosition[0],
-                    itemPosition[1]));
-        }
-
-        // Finds which path is shorter
-        if (pathToItems.size() != 0) {
-            ArrayList<int[]> shortestPath = pathToItems.get(0);
-            for (ArrayList<int[]> paths : pathToItems) {
-                if ((paths.size() > 0 && paths.size() < shortestPath.size())
-                        || shortestPath.size() == 0) {
-                    shortestPath = paths;
-                }
-            }
-            return shortestPath;
-        }
-        // Return empty List if no paths are found
-        return new ArrayList<>();
-    }
-
-    /**
      * Searches for a path between two points (Player Position and Item Position).
      * @param startX Start X point of the search
      * @param startY Start Y point of the search
@@ -175,7 +177,7 @@ public class PathFinding {
      * @param itemYPos Y Position of the item
      * @return Arraylist of position int[X, Y]
      */
-    public ArrayList<int[]> search(int startX, int startY,
+    private ArrayList<int[]> search(int startX, int startY,
                                    int itemXPos, int itemYPos)  {
         visitedNodes.clear();
         nodesFound.clear();
@@ -207,7 +209,7 @@ public class PathFinding {
      * @param distance Distance from the start point
      * @return TileNode with the item
      */
-    public TileNode searchForItem(int itemXPos, int itemYPos, int distance) {
+    private TileNode searchForItem(int itemXPos, int itemYPos, int distance) {
         // Return if no nodes found (meaning there's no path)
         if (nodesFound.size() == 0) {
             return null;

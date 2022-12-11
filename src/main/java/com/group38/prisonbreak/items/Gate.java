@@ -13,21 +13,21 @@ import java.util.HashMap;
  */
 public class Gate extends Item {
 
-    /** The integer representing the gate colour. */
-    private final int gateColour;
-
     /** A list of all the paths that gate would use. */
     private static final HashMap<Integer, String> IMAGE_PATH_CACHE =
             new HashMap<>() {{
-            put(0, GAME_IMAGE_PATH + "gate_rusted_locked.png");
-            put(1, GAME_IMAGE_PATH + "gate_bronze_locked.png");
-            put(2, GAME_IMAGE_PATH + "gate_silver_locked.png");
-            put(3, GAME_IMAGE_PATH + "gate_gold_locked.png");
+                put(0, GAME_IMAGE_PATH + "gate_rusted_locked.png");
+                put(1, GAME_IMAGE_PATH + "gate_bronze_locked.png");
+                put(2, GAME_IMAGE_PATH + "gate_silver_locked.png");
+                put(3, GAME_IMAGE_PATH + "gate_gold_locked.png");
 
-    }};
+            }};
 
     /** The image cache that will store all images from IMAGE_PATH_CACHE. */
     private static final HashMap<Integer, Image> IMAGE_CACHE = new HashMap<>();
+
+    /** The integer representing the gate colour. */
+    private final int gateColour;
 
     /**
      * The initialization of Gate and the loading of the images.
