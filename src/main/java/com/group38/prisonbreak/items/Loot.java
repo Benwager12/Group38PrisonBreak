@@ -8,22 +8,37 @@ import javafx.scene.image.Image;
 import java.util.HashMap;
 
 /**
- * A class that represents loot in the game
- * @author Daniel Banks (2107922)
+ * A class that represents loot in the game.
+ * @author Daniel Banks (2107922), Ben Wager (2108500)
  */
 
 public class Loot extends Item {
 
+    /** The pricing for the first type of loot. */
+    private static final int LOOT_AMOUNT_ONE = 50;
+
+    /** The pricing for the second type of loot. */
+    private static final int LOOT_AMOUNT_TWO = 100;
+
+    /** The pricing for the third type of loot. */
+    private static final int LOOT_AMOUNT_THREE = 150;
+
+    /** The pricing for the fourth type of loot. */
+    public static final int LOOT_AMOUNT_FOUR = 250;
+
+    /** A list of all the paths that loot would use. */
     private static final HashMap<Integer, String> IMAGE_PATH_CACHE =
             new HashMap<>() {{
-            put(50, GAME_IMAGE_PATH + "loot_1.png");
-            put(100, GAME_IMAGE_PATH + "loot_2.png");
-            put(150, GAME_IMAGE_PATH + "loot_3.png");
-            put(250, GAME_IMAGE_PATH + "loot_4.png");
+            put(LOOT_AMOUNT_ONE, GAME_IMAGE_PATH + "loot_1.png");
+            put(LOOT_AMOUNT_TWO, GAME_IMAGE_PATH + "loot_2.png");
+            put(LOOT_AMOUNT_THREE, GAME_IMAGE_PATH + "loot_3.png");
+            put(LOOT_AMOUNT_FOUR, GAME_IMAGE_PATH + "loot_4.png");
     }};
 
+    /** The image cache that will store all images from IMAGE_PATH_CACHE. */
     private static final HashMap<Integer, Image> IMAGE_CACHE = new HashMap<>();
 
+    /** The type of loot that this particular item is. */
     private final int lootType;
 
     /**
@@ -44,7 +59,7 @@ public class Loot extends Item {
     }
 
     /**
-     * adds money to the game iff the entity is a player.
+     * Adds money to the game iff the entity is a player.
      * @param isPlayer Is the entity a player
      */
     @Override
@@ -55,16 +70,28 @@ public class Loot extends Item {
         return true;
     }
 
+    /**
+     * The path for the image for the particular loot index.
+     * @return The current used image for the loot.
+     */
     @Override
     public String getImagePath() {
-        return "images/items/loot.png";
+        return IMAGE_PATH_CACHE.get(imageIndex);
     }
 
+    /**
+     * Get the image for the particular type of loot being used.
+     * @return The image for the loot in the form of an image.
+     */
     @Override
     public Image getImage() {
         return IMAGE_CACHE.get(imageIndex);
     }
 
+    /**
+     * Get the type of loot that this is.
+     * @return Return the pricing of the loot as an integer.
+     */
     public int getLootType() {
         return lootType;
     }
