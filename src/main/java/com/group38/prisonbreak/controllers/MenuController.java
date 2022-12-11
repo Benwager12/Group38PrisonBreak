@@ -11,9 +11,11 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 /**
- * MenuController manages the ...[add]
+ * MenuController is responsible for animating menu buttons,
+ * directing button clicks, and presenting the message of the day
+ * on the game's starting menu.
  *
- * @author Maisha Begum Chowdhury (2114962)
+ * @author Maisha Begum Chowdhury (2114962), ... [Jenna i think this is ur cue]
  */
 public class MenuController {
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
