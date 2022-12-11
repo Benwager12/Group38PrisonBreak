@@ -185,7 +185,6 @@ public class GameManager {
                 for (KeyCode kc : CURRENTLY_PRESSED) {
                     if (Constants.MOVEMENT_KEYS.contains(kc)) {
                         playerTimeLine.play();
-                        break;
                     }
                 }
             }

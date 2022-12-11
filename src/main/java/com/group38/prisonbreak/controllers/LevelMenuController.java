@@ -137,7 +137,7 @@ public class LevelMenuController {
 
 		if (SaveLevelUtilities.doesSaveFileExist(profileId, intLevelNumber)) {
 			GameManager.setLevel(FileUtilities.readLevel(intLevelNumber));
-			System.out.println("save");
+			GameManager.stopTimeLines();
 			FileUtilities.getGameInstance().setRoot("overwriteMenu");
 		} else {
 			FileUtilities.getGameInstance().setRoot("loadLevel" + levelNumber);

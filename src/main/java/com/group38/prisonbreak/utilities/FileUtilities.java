@@ -60,7 +60,7 @@ public class FileUtilities {
      */
     public static Level readLevel(int levelNumber, int profileId) {
         return readLevel(getResourcePathUnsafe(
-                String.format(SaveLevelUtilities.LEVEL_SAVE_LOCATION, levelNumber, profileId))
+                String.format(SaveLevelUtilities.LEVEL_SAVE_LOCATION, profileId, levelNumber))
         );
     }
 
@@ -93,13 +93,16 @@ public class FileUtilities {
         System.out.println(levelPath);
         // This is the level data
         int levelNumber;
+        String[] splitBySlash = levelPath.split("/");
+        String levelFileName = splitBySlash[splitBySlash.length - 1];
+
         if (levelPath.contains("saves")) {
-            levelNumber = Integer.parseInt(levelPath.split("_")[0]);
+            levelNumber = Integer.parseInt(levelFileName.split("_")[0]);
+            System.out.println(levelNumber);
         } else {
-            String[] splitBySlash = levelPath.split("/");
-            String levelFileName = splitBySlash[splitBySlash.length - 1];
             levelNumber = Integer.parseInt(levelFileName.substring(0, levelFileName.length() - 6));
         }
+        System.out.println(levelPath);
         return readInfo(scanner, levelNumber);
     }
 

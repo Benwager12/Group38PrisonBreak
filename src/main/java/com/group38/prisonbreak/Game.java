@@ -75,8 +75,7 @@ public class Game extends Application {
         }
         FXMLLoader loader = switch (paneType) {
             case "profile" -> new FXMLLoader(FileUtilities.getResource("fxml/New-Profile.fxml"));
-            case "loadLevel" -> new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
-            case "loadOverwriteLevel" -> new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
+            case "loadLevel", "loadOverwriteLevel" -> new FXMLLoader(FileUtilities.getResource("fxml/level-view.fxml"));
             case "overwriteMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/ask-overwrite-menu.fxml"));
             case "mainMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/start-menu.fxml"));
             case "levelMenu" -> new FXMLLoader(FileUtilities.getResource("fxml/level-menu.fxml"));

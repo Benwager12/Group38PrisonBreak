@@ -1,14 +1,11 @@
 package com.group38.prisonbreak.controllers;
 
 import com.group38.prisonbreak.GameManager;
+import com.group38.prisonbreak.Level;
 import com.group38.prisonbreak.utilities.FileUtilities;
-import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -24,16 +21,6 @@ public class AskOverwriteController {
     @FXML
     private ImageView crossImage;
 
-    @FXML
-    private ImageView logoImage;
-
-    @FXML
-    private ImageView yesButton;
-
-    @FXML
-    private ImageView noButton;
-
-
     /**
      * [add]
      */
@@ -45,7 +32,7 @@ public class AskOverwriteController {
     }
 
     @FXML
-    private void homeClicked(MouseEvent actionEvent) {
+    private void homeClicked(MouseEvent ignoredActionEvent) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 
@@ -56,17 +43,21 @@ public class AskOverwriteController {
     }
 
     @FXML
-    private void yesClicked(MouseEvent actionEvent) {
+    private void yesClicked(MouseEvent ignoredActionEvent) {
         //Maybe add functionality to delete a saved level file???
-
         FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
     }
 
     @FXML
-    private void noClicked(MouseEvent actionEvent) {
+    private void noClicked(MouseEvent ignoredActionEvent) {
         //Needs to be able to set the level to run from a "saved progress level file"
 
-        FileUtilities.readLevel(GameManager.getCurrentProfileId(), GameManager.getLevel().getLevelNumber());
+        Level savedLevel = FileUtilities.readLevel(
+                GameManager.getCurrentProfileId(),
+                GameManager.getLevel().getLevelNumber()
+        );
+
+        GameManager.setLevel(savedLevel);
 
         //Then runs this which just loads the level FXML
         FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
