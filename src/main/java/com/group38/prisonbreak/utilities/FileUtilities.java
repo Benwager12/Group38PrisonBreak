@@ -243,6 +243,13 @@ public class FileUtilities {
         return new Level(levelNumber, tiles, enemies);
     }
 
+    /**
+     * Returns a 2D array of tiles present in a level file.
+     * @param in Scanner of the file
+     * @param width Width of the level
+     * @param height Height of the level
+     * @return A 2D array of Tiles
+     */
     private static Tile[][] readTiles(Scanner in, int width, int height) {
         Tile[][] tiles = new Tile[height][width];
 
@@ -260,6 +267,11 @@ public class FileUtilities {
         return tiles;
     }
 
+    /**
+     * Returns the players location in the level as an array.
+     * @param in Scanner of the file
+     * @return The players location in the level as an array of integers
+     */
     private static int[] readPlayerLocation(Scanner in) {
         return new int[]{
                 in.nextInt(),
@@ -268,6 +280,12 @@ public class FileUtilities {
         };
     }
 
+    /**
+     * Returns a hashmap of Items present in a level from the level file.
+     * @param in Scanner of the file
+     * @param numOfItems Number of Items present in a level
+     * @return A hashmap of Items
+     */
     private static HashMap<int[], Item> readItems(Scanner in, int numOfItems) {
         HashMap<int[], Item> itemMap = new HashMap<>();
 
@@ -295,6 +313,11 @@ public class FileUtilities {
         return itemMap;
     }
 
+    /**
+     * Converts the direction string into integer format
+     * @param directionString The direction in string format
+     * @return The directing in integer format
+     */
     private static int convertDirection(String directionString) {
         return switch (directionString) {
             case "L" -> 3;
@@ -304,6 +327,12 @@ public class FileUtilities {
         };
     }
 
+    /**
+     * Returns an ArrayList of enemies from a level file.
+     * @param in Scanner of the file
+     * @param numOfEnemies Number of enemies present in a level
+     * @return An Arraylist of enemies
+     */
     private static ArrayList<Entity> readEnemies(Scanner in, int numOfEnemies) {
         ArrayList<Entity> enemies = new ArrayList<>();
         Enemy nextEnemy = null;
@@ -355,11 +384,21 @@ public class FileUtilities {
         return enemies;
     }
 
+    /**
+     * Returns the time of a level
+     * @param in Scanner of the file
+     * @return Time remaining for a level
+     */
     private static int readLevelTime(Scanner in) {
         int levelTime = in.nextInt();
         return Math.min(MAX_LEVEL_TIME, levelTime);
     }
 
+    /**
+     * Returns the score in the saved level file.
+     * @param in Scanner of the file
+     * @return The score saved in the file
+     */
     private static int readScore(Scanner in) {
         return in.nextInt();
     }
