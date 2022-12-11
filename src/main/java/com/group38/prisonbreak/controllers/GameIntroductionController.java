@@ -5,14 +5,13 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 /**
- * A controller class for the pre-game video, controls the duration of the
- * video and when to open the next window.
- * @author Jennalee Llewellyn (967558) and Matthew Salter
+ * GameIntroductionController is the controller that handles the
+ * Game-intro.fxml.
+ * @author Jennalee Llewellyn (967558), Matthew Salter (986488)
  */
 
 public class GameIntroductionController {
@@ -24,13 +23,12 @@ public class GameIntroductionController {
     private static final int VIDEO_DURATION = 29;
 
     /**
-     * Triggers at the opening of the FXML file
-     * and plays video.
+     * Triggers at the opening of the FXML file and plays video.
      */
     @FXML
     private void initialize() {
-        //Creates a new timeline for the duration of the video, redirects root window
-        //after video is complete.
+        /* Creates a new timeline for the duration of the video, redirects root window
+            after video is complete. */
         timeline = new Timeline(new KeyFrame(Duration.seconds(VIDEO_DURATION), ev -> {
             timeline.stop();
             FileUtilities.getGameInstance().setRoot("levelMenu");
@@ -41,7 +39,7 @@ public class GameIntroductionController {
 
     /**
      * On skip button clicked, stop timeline and redirect the root window.
-     * @param ignoredActionEvent
+     * @param ignoredActionEvent Trigger on mouse clicked.
      */
     @FXML
     private void skipClicked(final MouseEvent ignoredActionEvent) {
