@@ -8,24 +8,29 @@ import javafx.scene.image.Image;
 import java.util.HashMap;
 
 /**
- * Implements a Door  in the game
+ * Implements a Door  in the game.
  * @author Daniel Banks (2107922)
  */
 public class Door extends Item {
 
-    private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
-        put(0, GAME_IMAGE_PATH + "door_close.png");
-        put(1, GAME_IMAGE_PATH + "door_open.png");
+    /**
+     * Hashmap of id's to image to show the door locked and unlocked.
+     */
+    private static final HashMap<Integer, String> IMAGE_PATH_CACHE =
+            new HashMap<>() {{
+            put(0, GAME_IMAGE_PATH + "door_close.png");
+            put(1, GAME_IMAGE_PATH + "door_open.png");
     }};
 
-    private static final HashMap<Integer, Image> imageCache = new HashMap<>();
+    private static final HashMap<Integer, Image> IMAGE_CACHE = new HashMap<>();
 
     public Door() {
-        // TODO: Implement Constructor
-
-        if (imageCache.isEmpty()) {
-            imagePathCache.keySet().forEach(index -> {
-                imageCache.put(index, FileUtilities.loadImageFromResource(imagePathCache.get(index)));
+        if (IMAGE_CACHE.isEmpty()) {
+            IMAGE_PATH_CACHE.keySet().forEach(index -> {
+                IMAGE_CACHE.put(
+                        index, FileUtilities.loadImageFromResource(
+                                IMAGE_PATH_CACHE.get(index))
+                );
             });
         }
     }
@@ -45,15 +50,16 @@ public class Door extends Item {
 
     @Override
     public String getImagePath() {
-        return imagePathCache.get(imageIndex);
+        return IMAGE_PATH_CACHE.get(imageIndex);
     }
 
     /**
-     * @return The image that represents an open or closed door
+     * Gets the image of the door
+     * @return The image that represents an open or closed door.
      */
     @Override
     public Image getImage() {
-        return imageCache.get(isOpen() ? 0 : 1);
+        return IMAGE_CACHE.get(isOpen() ? 0 : 1);
     }
 
 }

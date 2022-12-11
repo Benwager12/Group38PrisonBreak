@@ -132,7 +132,7 @@ public class SmartThief extends Enemy {
         }
         // Checks for item interaction and if it's collided with a flying assassin
         itemInteract();
-        CheckCollision();
+        checkCollision();
     }
 
     /**

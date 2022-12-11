@@ -19,52 +19,70 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+/**
+ * LevelController is the controller that handles the Level-view.fxml.
+ * @author Matthew Salter (986488), Daniel Banks (2107922), Ben Wager (2108500)
+ */
 public class LevelController {
 
-    // Rotation of buttons that aren't moused over
+    /* Rotation of buttons that aren't moused over. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    // Rotation of buttons that are moused over
+    /*  Rotation of buttons that are moused over. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    // Size of the Top Pane with the level info
+    /*  Size of the Top Pane with the level information. */
     private static final int LEVEL_TEXT_PANE_SIZE = 46;
 
-    // Number of seconds in minutes
+    /* Number of seconds in minutes. */
     private static final int SECONDS_IN_MINUTES = 60;
 
-    // Max size of a number before it requires 2 digits
+    /* Max size of a number before it requires 2 digits. */
     private static final int MAX_INT = 9;
 
-    // String Format of the clock to be displayed when playing the game
+    /* String Format of the clock to be displayed when playing the game */
     private static final String CLOCK_TEXT_FORMAT = "0%d";
 
+    /*     */
+    private GraphicsContext g;
+
+    /* Fx:id for the text for the level number within FXML file. */
     @FXML
     private Text levelNumberLabel;
 
+    /* Fx:id for the text for the time label within FXML file. */
     @FXML
     private Text timeLabel;
 
+    /* Fx:id for the text for the score number within FXML file. */
     @FXML
     private Text scoreNumberLabel;
 
+    /* Fx:id for the home image within FXML file. */
     @FXML
     private ImageView homeImage;
 
+    /* Fx:id for the cross image within FXML file. */
     @FXML
     private ImageView crossImage;
 
+    /* Fx:id for the save image within FXML file. */
     @FXML
     private ImageView saveImage;
 
+    /* Fx:id for the game canvas within FXML file. */
     @FXML
     private Canvas gameCanvas;
 
-    private GraphicsContext g;
-
+    /* Fx:id for the main borderpane within FXML file. */
     @FXML
     private BorderPane mainPane;
 
+    /**
+     * Triggers at the opening of the FXML file and creates the
+     * timeline, pane sizing, hover property listeners, sets level/score
+     * information to text and draws the canvas
+     */
     @FXML
     public void initialize() {
         ChangeListener<Number> paneSizeChange =
@@ -94,12 +112,12 @@ public class LevelController {
         mainPane.heightProperty().addListener(paneSizeChange);
         mainPane.widthProperty().addListener(paneSizeChange);
 
-        // animate buttons on hover detection
+        /* Animate buttons on hover detection. */
         homeImage.hoverProperty().addListener(rotateButton(homeImage));
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
         saveImage.hoverProperty().addListener(rotateButton(saveImage));
 
-        // Initializes and starts timelines
+        /* Initializes and starts timelines */
         GameManager.initTimelines();
         drawCanvas();
         recalculateCanvasSize();
@@ -109,8 +127,12 @@ public class LevelController {
                 .getLevelNumber())
         );
         GameManager.playTimeLines();
+        scoreNumberLabel.setText(String.valueOf(GameManager.getMoney()));
     }
 
+    /**
+     *
+     */
     public void recalculateCanvasSize() {
         if (GameManager.getLevel() == null) {
             return;
@@ -137,6 +159,9 @@ public class LevelController {
         );
     }
 
+    /**
+     *
+     */
     public void drawCanvas() {
         if (g == null) {
             g = gameCanvas.getGraphicsContext2D();
@@ -145,30 +170,19 @@ public class LevelController {
         GameManager.getLevel().draw(g);
     }
 
-    public void onMouseClickCanvas(MouseEvent ignoredMouseEvent) {
-        GameManager.setLevel(
-                FileUtilities.readLevel(GameManager.getLevel().getLevelNumber())
-        );
-        drawCanvas();
-        recalculateCanvasSize();
-        levelNumberLabel.setText(
-                String.valueOf(GameManager.getLevel().getLevelNumber())
-        );
-        GameManager.playTimeLines();
-    }
 
     /**
-     * moves all the entities apart from smart thief
+     * Moves all the entities apart from smart thief.
      */
     private void moveEnemies() {
-        // Try catch error of moving an entity while the entity is being deleted
+        /* Try catch error of moving an entity while the entity is being deleted */
             for (Entity entity : GameManager.getLevel().getEntities()) {
                 if (entity.isAlive() && !(entity instanceof SmartThief)
                         && !(entity instanceof Player)) {
                     entity.move();
 
                     /* Draws again if the flying assassin has collided with the player
-                     * So it's visible before games ends
+                     * So it's visible before games ends.
                      */
                     if (entity instanceof FlyingAssassin
                             && ((FlyingAssassin) entity)
@@ -183,7 +197,7 @@ public class LevelController {
     }
 
     /**
-     * moves the smart thief
+     * Moves the smart thief.
      */
     private void moveSmartThief() {
         if (GameManager.getLevel() != null) {
@@ -199,7 +213,7 @@ public class LevelController {
     }
 
     /**
-     * Moves the player every tick
+     * Moves the player every tick.
      */
     private void movePlayerTick() {
         if (GameManager.getLevel() != null) {
@@ -212,18 +226,18 @@ public class LevelController {
     }
 
     /**
-     * Changes the main game timer
+     * Changes the main game timer.
      * @author Daniel Banks, Ben Wager
      * @since 02/12/2022
      */
     private void changeTime() {
         GameManager.setTime(GameManager.getTime() - 1);
 
-        // Converting to minutes and seconds
+        /* Converting to minutes and seconds */
         int minutes = GameManager.getTime() / SECONDS_IN_MINUTES;
         int seconds = GameManager.getTime() % SECONDS_IN_MINUTES;
 
-        // Converting to 0 left padded
+        /* Converting to 0 left padded. */
         String minutesStr =
                 minutes < MAX_INT ? String.format(CLOCK_TEXT_FORMAT, minutes)
                         : String.valueOf(minutes);
@@ -231,7 +245,7 @@ public class LevelController {
                 seconds < MAX_INT ? String.format(CLOCK_TEXT_FORMAT, seconds)
                         : String.valueOf(seconds);
 
-        // Displaying to the screen
+        /* Displaying to the screen. */
         timeLabel.setText(minutesStr + ":" + secondsStr);
         if (GameManager.getTime() <= 0) {
             GameManager.stopTimeLines();
@@ -240,37 +254,50 @@ public class LevelController {
         }
     }
 
+    /**
+     * On home image clicked redirect the root window.
+     * @param ignoredActionEvent trigger on mouse clicked.
+     */
     @FXML
     private void homeClicked(MouseEvent ignoredActionEvent) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
+        GameManager.stopTimeLines();
     }
 
+    /**
+     * On cross image clicked, exit the game window.
+     * @param click trigger on mouse clicked.
+     */
     @FXML
     private void crossClicked(MouseEvent click) {
         click.consume();
         GameManager.exitGame();
     }
 
+    /**
+     * Save the level and re-direct the root pane.
+     * @param actionEvent Trigger on mouse clicked.
+     */
     @FXML
     private void saveClicked(MouseEvent actionEvent) {
         GameManager.saveLevel();
         FileUtilities.getGameInstance().setRoot("levelMenu");
+        GameManager.stopTimeLines();
     }
 
     /**
      * Rotates button when applicable.
-     *
-     * @param img the button to be rotated
-     * @return rotated/unrotated button depending on situation
+     * @param img the button to be rotated.
+     * @return rotated/non-rotated button depending on situation.
      */
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
-                // modify button position
+                /* Modify button position. */
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
 
             } else {
-                // maintain original button position
+                /* Maintain original button position. */
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };

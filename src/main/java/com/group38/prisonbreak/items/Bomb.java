@@ -13,7 +13,8 @@ import java.util.HashMap;
 
 public class Bomb extends Item {
 
-    private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
+    private static final HashMap<Integer, String> IMAGE_PATH_CACHE =
+            new HashMap<>() {{
         put(-1, GAME_IMAGE_PATH + "cracked_tile.png");
         put(0, GAME_IMAGE_PATH + "alarm.png");
         put(1, GAME_IMAGE_PATH + "alarm_1.png");
@@ -21,22 +22,31 @@ public class Bomb extends Item {
         put(3, GAME_IMAGE_PATH + "alarm_3.png");
     }};
 
-    private static final HashMap<Integer, Image> imageCache = new HashMap<>();
+    private static final int BOMB_START_TIME = 3;
+
+    private static final HashMap<Integer, Image> IMAGE_CACHE = new HashMap<>();
     private boolean explodable = true;
     private boolean hasExploded = false;
+
+    private Timeline bombTimeLine =
+            new Timeline(new KeyFrame(
+                    Duration.millis(1000), event -> countdownBomb()));
+
+    private Bomb mainBomb;
 
     public Bomb() {
         //Implement Constructor
         imageIndex = 0;
 
-        if (imageCache.isEmpty()) {
-            imagePathCache.keySet().forEach(index -> {
-                imageCache.put(index, FileUtilities.loadImageFromResource(imagePathCache.get(index)));
+        if (IMAGE_CACHE.isEmpty()) {
+            IMAGE_PATH_CACHE.keySet().forEach(index -> {
+                IMAGE_CACHE.put(
+                        index, FileUtilities.loadImageFromResource(
+                                IMAGE_PATH_CACHE.get(index)));
             });
         }
     }
 
-    private Bomb mainBomb;
 
     // If the bomb isn't explodable, then it must have a main bomb
     public Bomb(Bomb mainBomb) {
@@ -48,11 +58,6 @@ public class Bomb extends Item {
         return explodable;
     }
 
-
-    /* The time left when the player activates the bomb */
-    private final int BOMB_ACTIVATE_TIME = 3;
-    private Timeline bombTimeLine = new Timeline(new KeyFrame(Duration.millis(1000), event -> countdownBomb()));
-
     @Override
     public boolean interact(boolean isPlayer) {
         if (!explodable) {
@@ -60,7 +65,8 @@ public class Bomb extends Item {
         }
 
         if (imageIndex == 0) {
-            imageIndex = BOMB_ACTIVATE_TIME;
+            /* The time left when the player activates the bomb */
+            imageIndex = BOMB_START_TIME;
             bombTimeLine.setCycleCount(Animation.INDEFINITE);
             bombTimeLine.play();
         }
@@ -85,7 +91,7 @@ public class Bomb extends Item {
 
     @Override
     public String getImagePath() {
-        return imagePathCache.get(imageIndex);
+        return IMAGE_PATH_CACHE.get(imageIndex);
     }
 
     public int getImageIndex() {
@@ -97,6 +103,6 @@ public class Bomb extends Item {
      */
     @Override
     public Image getImage() {
-        return imageCache.get(explodable ? imageIndex : null);
+        return IMAGE_CACHE.get(explodable ? imageIndex : null);
     }
 }

@@ -11,25 +11,26 @@ import javafx.scene.image.Image;
 
 public abstract class Entity {
 
-    // Path of the entity images
+    /** Path of the entity images. */
     private static final String IMAGE_URL = "images/EntityImages/%s.png";
 
-    // X position of the entity
+    /** X position of the entity. */
     private int x;
 
-    // Y position of the entity
+    /** Y position of the entity. */
     private int y;
 
-    // Direction the entity is facing/moving
+    /** Direction the entity is facing/moving. */
     private int direction;
 
+    /** If the entity is still alive. */
     private boolean isAlive;
 
-    // Image of the entity
+    /** Image of the entity. */
     private Image entityImage;
 
     /**
-     * Creates an instance of an Entity
+     * Creates an instance of an Entity.
      * @param xPos Starting X Position
      * @param yPos Starting Y Position
      * @param direction Starting Direction
@@ -42,7 +43,7 @@ public abstract class Entity {
     }
 
     /**
-     * gets the x position
+     * Gets the x position.
      * @return X
      */
     public int getX() {
@@ -50,7 +51,7 @@ public abstract class Entity {
     }
 
     /**
-     * gets the y position
+     * Gets the y position.
      * @return Y
      */
     public int getY() {
@@ -58,7 +59,7 @@ public abstract class Entity {
     }
 
     /**
-     * gets the direction
+     * Gets the direction.
      * @return direction
      */
     public int getDirection() {
@@ -66,7 +67,7 @@ public abstract class Entity {
     }
 
     /**
-     * sets the direction of the entity
+     * Sets the direction of the entity.
      * @param direction the new direction
      */
     public void setDirection(int direction) {
@@ -74,7 +75,7 @@ public abstract class Entity {
     }
 
     /**
-     * Gets the Entity's Image
+     * Gets the Entity's Image.
      * @return Image
      */
     public Image getEntityImage() {
@@ -82,7 +83,7 @@ public abstract class Entity {
     }
 
     /**
-     * Gets if the entity is alive
+     * Gets if the entity is alive.
      * @return boolean - isAlive
      */
     public boolean isAlive() {
@@ -90,8 +91,8 @@ public abstract class Entity {
     }
 
     /**
-     * "Kills" the entity
-     * Moves the entity off-screen (Rather than deletes it to prevent Concurrency Error)
+     * "Kills" the entity.
+     * Moves the entity off-screen (Rather than deletes it to prevent Concurrency Error).
      */
     public void killEntity() {
         isAlive = false;
@@ -100,11 +101,11 @@ public abstract class Entity {
     }
 
     /**
-     * Checks if entity has Collided with a flying Assassin
-     * If so; kills it
+     * Checks if entity has Collided with a flying Assassin.
+     * If so; kills it.
      * @return boolean has Collided with Flying Assassin
      */
-    protected boolean CheckCollision() {
+    protected boolean checkCollision() {
         if (GameManager.getLevel().hasCollidedWithFlyingAssassin(x, y)) {
             killEntity();
             return true;
@@ -113,7 +114,7 @@ public abstract class Entity {
     }
 
     /**
-     * Sets the X position
+     * Sets the X position.
      * @param newX X position
      */
     protected void setX(int newX) {
@@ -121,7 +122,7 @@ public abstract class Entity {
     }
 
     /**
-     * Sets the Y position
+     * Sets the Y position.
      * @param newY Y position
      */
     protected void setY(int newY) {
@@ -129,25 +130,31 @@ public abstract class Entity {
     }
 
     /**
-     * Gets the current tile that the entity is on
+     * Gets the current tile that the entity is on.
      * @return tile
      */
     public Tile getCurrentTile() {
         return GameManager.getLevel().getTile(x, y);
     }
 
+    /**
+     * Defines how an entity moves
+     */
     public abstract void move();
 
     /**
-     * Interacts with an item that's on the current tile
+     * Interacts with an item that's on the current tile.
      */
     protected abstract void itemInteract();
 
     /**
      * Sets EntitySpriteURL
-     * @param entityName Name of the png to be loaded
+     * @param entityName Name of the png to be loaded.
      */
     protected void setEntityImage(String entityName) {
-        entityImage = FileUtilities.loadImageFromResource(String.format(IMAGE_URL, entityName));
+        entityImage =
+                FileUtilities.loadImageFromResource(
+                        String.format(IMAGE_URL, entityName)
+                );
     }
 }

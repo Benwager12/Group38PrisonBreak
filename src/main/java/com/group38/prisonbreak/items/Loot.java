@@ -14,33 +14,37 @@ import java.util.HashMap;
 
 public class Loot extends Item {
 
-    private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
-        put(50, GAME_IMAGE_PATH + "loot_1.png");
-        put(100, GAME_IMAGE_PATH + "loot_2.png");
-        put(150, GAME_IMAGE_PATH + "loot_3.png");
-        put(250, GAME_IMAGE_PATH + "loot_4.png");
+    private static final HashMap<Integer, String> IMAGE_PATH_CACHE =
+            new HashMap<>() {{
+            put(50, GAME_IMAGE_PATH + "loot_1.png");
+            put(100, GAME_IMAGE_PATH + "loot_2.png");
+            put(150, GAME_IMAGE_PATH + "loot_3.png");
+            put(250, GAME_IMAGE_PATH + "loot_4.png");
     }};
 
-    private static final HashMap<Integer, Image> imageCache = new HashMap<>();
+    private static final HashMap<Integer, Image> IMAGE_CACHE = new HashMap<>();
 
     private final int lootType;
 
     /**
-     * Constructor for Loot class
+     * Constructor for Loot class.
      * @param metadata Type of loot (each type is an icon)
      */
     public Loot(String metadata) {
         this.lootType = Integer.parseInt(metadata);
         this.imageIndex = lootType;
 
-        if (imageCache.isEmpty()) {
-            imagePathCache.keySet().forEach(index ->
-                    imageCache.put(index, FileUtilities.loadImageFromResource(imagePathCache.get(index))));
+        if (IMAGE_CACHE.isEmpty()) {
+            IMAGE_PATH_CACHE.keySet().forEach(index ->
+                    IMAGE_CACHE.put(index, FileUtilities.loadImageFromResource(
+                            IMAGE_PATH_CACHE.get(index))
+                    )
+            );
         }
     }
 
     /**
-     * adds money to the game iff the entity is a player
+     * adds money to the game iff the entity is a player.
      * @param isPlayer Is the entity a player
      */
     @Override
@@ -58,7 +62,7 @@ public class Loot extends Item {
 
     @Override
     public Image getImage() {
-        return imageCache.get(imageIndex);
+        return IMAGE_CACHE.get(imageIndex);
     }
 
     public int getLootType() {
