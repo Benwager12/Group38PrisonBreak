@@ -15,21 +15,10 @@ import java.util.ArrayList;
  * @author Ben Wager (2108500), Daniel Banks (2107922)
  */
 public class GameManager {
+
     /** ArrayList of currently pressed keys. */
     private static final ArrayList<KeyCode> CURRENTLY_PRESSED =
             new ArrayList<>();
-
-    /** Instance of the level that's currently open. */
-    private static Level level;
-
-    /** Amount of money the player has picked up. */
-    private static int money;
-
-    /** Time left in the game. */
-    private static int time;
-
-    /** Tick timeline for the entities. */
-    public static Timeline enemyTimeLine;
 
     /** Tick timeline for the smartThief. */
     public static Timeline smartThiefTimeLine;
@@ -42,6 +31,18 @@ public class GameManager {
      *  updates every 1000 milliseconds (1 second)
      */
     public static Timeline timeTimeLine;
+
+    /** Tick timeline for the entities. */
+    public static Timeline enemyTimeLine;
+
+    /** Instance of the level that's currently open. */
+    private static Level level;
+
+    /** Amount of money the player has picked up. */
+    private static int money;
+
+    /** Time left in the game. */
+    private static int time;
 
     /** Id of the profile that's current playing. */
     private static int currentProfileId;
