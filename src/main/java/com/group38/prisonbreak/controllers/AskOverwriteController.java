@@ -9,10 +9,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * NewProfileController handles the...[add]
+ * AskOverwriteController is the controller that handles the
+ * ask-overwrite-menu.fxml.
+ *
+ * @author Matthew Salter, Daniel Banks, Ben Wager
  */
 public class AskOverwriteController {
+
+    /** The original rotation of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
+
+    /** The modified rotation of level. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
     @FXML
