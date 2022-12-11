@@ -193,6 +193,10 @@ public class Game extends Application {
         primaryStage.setResizable(paneType.startsWith(LOAD));
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     /**
      * Setting up the stage.
      */
@@ -200,10 +204,6 @@ public class Game extends Application {
         scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
 }
