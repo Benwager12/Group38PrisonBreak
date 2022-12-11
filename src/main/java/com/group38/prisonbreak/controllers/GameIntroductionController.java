@@ -38,7 +38,7 @@ public class GameIntroductionController {
     }
 
     /**
-     * On skip button clicked, stop timeline and redirect the root window.
+     * On skip button clicked, stop timeline and redirect the level menu.
      * @param click Trigger on mouse clicked.
      */
     @FXML
