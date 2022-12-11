@@ -4,11 +4,7 @@ import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.beans.value.ChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -27,9 +23,6 @@ public class NewProfileController {
 
     @FXML
     private ImageView crossImage;
-
-    @FXML
-    private ImageView logoImage;
 
     @FXML
     private TextField enterName;
@@ -67,7 +60,7 @@ public class NewProfileController {
         }
     }
 
-    public String getProfileName(){
+    public String getProfileName() {
         return profileName;
     }
 
@@ -89,8 +82,4 @@ public class NewProfileController {
             }
         };
     }
-    
-
-    
-
 }

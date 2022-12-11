@@ -44,16 +44,16 @@ public class MenuController {
         newGameImage.hoverProperty().addListener(rotateButton(newGameImage));
         loadGameImage.hoverProperty().addListener(rotateButton(loadGameImage));
         exitImage.hoverProperty().addListener(rotateButton(exitImage));
-        gateImage.hoverProperty().addListener(startMOTDListener(gateImage));
+        gateImage.hoverProperty().addListener(startMOTDListener());
     }
 
     @FXML
-    private void newGameClicked(MouseEvent actionEvent){
+    private void newGameClicked(MouseEvent actionEvent) {
         FileUtilities.getGameInstance().setRoot("profile");
     }
 
     @FXML
-    private void loadGameClicked(MouseEvent actionEvent){
+    private void loadGameClicked(MouseEvent actionEvent) {
         FileUtilities.getGameInstance().setRoot("selectProfile");
     }
 
@@ -65,7 +65,7 @@ public class MenuController {
     }
 
     @FXML
-    private void printMOTD(){
+    private void printMOTD() {
         MOTD motd = new MOTD();
         try {
             message = motd.getMessageOfTheDay();
@@ -95,7 +95,7 @@ public class MenuController {
         };
     }
 
-    private ChangeListener<Boolean> startMOTDListener(ImageView gateImage) {
+    private ChangeListener<Boolean> startMOTDListener() {
         return (observable, oldValue, newValue) -> printMOTD();
         };
     }

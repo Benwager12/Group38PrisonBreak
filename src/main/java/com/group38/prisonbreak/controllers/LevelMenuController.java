@@ -27,6 +27,15 @@ public class LevelMenuController {
 	private static final double ORIGINAL_BUTTON_ROTATION = 0;
 	private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
+	// Start position of the level number in a sub string
+	private static final int LEVEL_NUMBER_START = 5;
+
+	// End position of the level number
+	private static final int LEVEL_NUMBER_END = 6;
+
+	// Position of the level number in the fxml
+	private static final int LEVEL_NUMBER_FXML = 10;
+
 	/* levelStack corresponds to the respective level's fxml StackPane
 	 * which contains its preview graphic, button and overlay
 	 */
@@ -130,7 +139,8 @@ public class LevelMenuController {
 			return;
 		}
 		String buttonId = iv.getId();
-		String levelNumber = buttonId.substring(5, buttonId.length() - 6);
+		String levelNumber = buttonId.substring(LEVEL_NUMBER_START,
+				buttonId.length() - LEVEL_NUMBER_END);
 
 		int intLevelNumber = Integer.parseInt(levelNumber);
 		int profileId = GameManager.getCurrentProfileId();
@@ -198,7 +208,8 @@ public class LevelMenuController {
 			String levelPaneID = lp.getId();
 
 			// extract corresponding level number from fxid
-			int levelStackNumber = Integer.parseInt(levelPaneID.substring(10));
+			int levelStackNumber =
+					Integer.parseInt(levelPaneID.substring(LEVEL_NUMBER_FXML));
 
 			// remove overlay when player has already completed level
 			if (levelStackNumber <= highestLevel + 1) {

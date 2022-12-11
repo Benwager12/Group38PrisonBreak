@@ -17,33 +17,40 @@ import javafx.scene.text.Text;
 
 public class LeaderboardController {
 
-    private final double ORIGINAL_BUTTON_ROTATION = 0;
-    private final double MODIFIED_BUTTON_ROTATION = 1.7;
+    // Rotation of buttons that aren't moused over
+    private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-	@FXML
-	private ImageView crossImage;
+    // Rotation of buttons that are moused over
+    private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-	@FXML
-	private Text leaderboardText;
+    @FXML
+    private ImageView crossImage;
 
-	@FXML
-	public void initialize() {
+    @FXML
+    private Text leaderboardText;
+
+    @FXML
+    public void initialize() {
         // animate button on hover detection
-		crossImage.hoverProperty().addListener(rotateButton(crossImage));
+        crossImage.hoverProperty().addListener(rotateButton(crossImage));
 
         //
-		leaderboardText.setText(LeaderboardUtilities.showScores(GameManager.getLevel().getLevelNumber()));
-	}
+        leaderboardText.setText(
+                LeaderboardUtilities.showScores(
+                        GameManager.getLevel().getLevelNumber()
+                )
+        );
+    }
 
     @FXML
     private void homeClicked(MouseEvent actionEvent) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 
-	@FXML
-	private void crossClicked(MouseEvent ignoredClick) {
-		FileUtilities.getGameInstance().setRoot("levelMenu");
-	}
+    @FXML
+    private void crossClicked(MouseEvent ignoredClick) {
+        FileUtilities.getGameInstance().setRoot("levelMenu");
+    }
 
 
     /**
@@ -57,7 +64,6 @@ public class LeaderboardController {
             if (observable.getValue()) {
                 // modify button position
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
-
             } else {
                 // maintain original button position
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);

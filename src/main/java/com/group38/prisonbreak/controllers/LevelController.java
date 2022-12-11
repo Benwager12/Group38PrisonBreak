@@ -1,7 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
 import com.group38.prisonbreak.Constants;
-import com.group38.prisonbreak.Game;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.Level;
 import com.group38.prisonbreak.entities.enemies.FlyingAssassin;
@@ -22,8 +21,23 @@ import javafx.util.Duration;
 
 public class LevelController {
 
+    // Rotation of buttons that aren't moused over
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
+
+    // Rotation of buttons that are moused over
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
+
+    // Size of the Top Pane with the level info
+    private static final int LEVEL_TEXT_PANE_SIZE = 46;
+
+    // Number of seconds in minutes
+    private static final int SECONDS_IN_MINUTES = 60;
+
+    // Max size of a number before it requires 2 digits
+    private static final int MAX_INT = 9;
+
+    // String Format of the clock to be displayed when playing the game
+    private static final String CLOCK_TEXT_FORMAT = "0%d";
 
     @FXML
     private Text levelNumberLabel;
@@ -53,21 +67,30 @@ public class LevelController {
 
     @FXML
     public void initialize() {
-        ChangeListener<Number> paneSizeChange = (observable, oldValue, newValue) -> {
-            recalculateCanvasSize();
-            if (GameManager.getLevel() != null) {
-                GameManager.getLevel().draw(g);
-            }
+        ChangeListener<Number> paneSizeChange =
+                (observable, oldValue, newValue) -> {
+                    recalculateCanvasSize();
+                    if (GameManager.getLevel() != null) {
+                        GameManager.getLevel().draw(g);
+                    }
 
         };
-        GameManager.enemyTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.ENEMY_TIMELINE_DURATION),
-                event -> moveEnemies()));
-        GameManager.smartThiefTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.SMART_THIEF_TIMELINE_DURATION),
-                event -> moveSmartThief()));
-        GameManager.playerTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.PLAYER_TIMELINE_DURATION),
-                event -> movePlayerTick()));
-        GameManager.timeTimeLine = new Timeline(new KeyFrame(Duration.millis(Constants.CLOCK_TIMELINE_DURATION),
-                event -> changeTime()));
+        GameManager.enemyTimeLine =
+                new Timeline(new KeyFrame(
+                        Duration.millis(Constants.ENEMY_TIMELINE_DURATION),
+                        event -> moveEnemies()));
+        GameManager.smartThiefTimeLine =
+                new Timeline(new KeyFrame(
+                        Duration.millis(Constants.SMART_THIEF_TIMELINE_DURATION),
+                        event -> moveSmartThief()));
+        GameManager.playerTimeLine =
+                new Timeline(new KeyFrame(
+                        Duration.millis(Constants.PLAYER_TIMELINE_DURATION),
+                        event -> movePlayerTick()));
+        GameManager.timeTimeLine =
+                new Timeline(new KeyFrame(
+                        Duration.millis(Constants.CLOCK_TIMELINE_DURATION),
+                        event -> changeTime()));
         mainPane.heightProperty().addListener(paneSizeChange);
         mainPane.widthProperty().addListener(paneSizeChange);
 
@@ -80,7 +103,11 @@ public class LevelController {
         GameManager.initTimelines();
         drawCanvas();
         recalculateCanvasSize();
-        levelNumberLabel.setText(String.valueOf(GameManager.getLevel().getLevelNumber()));
+        levelNumberLabel.setText(
+                String.valueOf(GameManager
+                .getLevel()
+                .getLevelNumber())
+        );
         GameManager.playTimeLines();
     }
 
@@ -90,15 +117,24 @@ public class LevelController {
         }
 
         int w = (int) mainPane.getWidth();
-        int h = (int) mainPane.getHeight() - 46;
+        int h = (int) mainPane.getHeight() - LEVEL_TEXT_PANE_SIZE;
 
-        int newWidth = Level.getTileSideLength(GameManager.getLevel(), w, h) * GameManager.getLevel().getWidth();
-        int newHeight = Level.getTileSideLength(GameManager.getLevel(), w, h) * GameManager.getLevel().getHeight();
+        int newWidth =
+                Level.getTileSideLength(GameManager.getLevel(), w, h)
+                        * GameManager.getLevel().getWidth();
+        int newHeight =
+                Level.getTileSideLength(GameManager.getLevel(), w, h)
+                        * GameManager.getLevel().getHeight();
 
         gameCanvas.setWidth(newWidth);
         gameCanvas.setHeight(newHeight);
 
-        levelNumberLabel.setText(String.valueOf(GameManager.getLevel().getLevelNumber()));
+        levelNumberLabel.setText(
+                String.valueOf(
+                        GameManager
+                                .getLevel()
+                                .getLevelNumber())
+        );
     }
 
     public void drawCanvas() {
@@ -110,10 +146,14 @@ public class LevelController {
     }
 
     public void onMouseClickCanvas(MouseEvent ignoredMouseEvent) {
-        GameManager.setLevel(FileUtilities.readLevel(GameManager.getLevel().getLevelNumber()));
+        GameManager.setLevel(
+                FileUtilities.readLevel(GameManager.getLevel().getLevelNumber())
+        );
         drawCanvas();
         recalculateCanvasSize();
-        levelNumberLabel.setText(String.valueOf(GameManager.getLevel().getLevelNumber()));
+        levelNumberLabel.setText(
+                String.valueOf(GameManager.getLevel().getLevelNumber())
+        );
         GameManager.playTimeLines();
     }
 
@@ -123,11 +163,16 @@ public class LevelController {
     private void moveEnemies() {
         // Try catch error of moving an entity while the entity is being deleted
             for (Entity entity : GameManager.getLevel().getEntities()) {
-                if (entity.isAlive() && !(entity instanceof SmartThief) && !(entity instanceof Player)) {
+                if (entity.isAlive() && !(entity instanceof SmartThief)
+                        && !(entity instanceof Player)) {
                     entity.move();
 
-                    // Draws again if the flying assassin has collided with the player so it's visible before games ends
-                    if (entity instanceof FlyingAssassin && ((FlyingAssassin) entity).getHasColliedWithPlayer()) {
+                    /* Draws again if the flying assassin has collided with the player
+                     * So it's visible before games ends
+                     */
+                    if (entity instanceof FlyingAssassin
+                            && ((FlyingAssassin) entity)
+                            .getHasColliedWithPlayer()) {
                         GameManager.getLevel().draw(g);
                     }
                 }
@@ -175,12 +220,16 @@ public class LevelController {
         GameManager.setTime(GameManager.getTime() - 1);
 
         // Converting to minutes and seconds
-        int minutes = GameManager.getTime() / 60;
-        int seconds = GameManager.getTime() % 60;
+        int minutes = GameManager.getTime() / SECONDS_IN_MINUTES;
+        int seconds = GameManager.getTime() % SECONDS_IN_MINUTES;
 
         // Converting to 0 left padded
-        String minutesStr = minutes < 9 ? String.format("0%d", minutes) : String.valueOf(minutes);
-        String secondsStr = seconds < 9 ? String.format("0%d", seconds) : String.valueOf(seconds);
+        String minutesStr =
+                minutes < MAX_INT ? String.format(CLOCK_TEXT_FORMAT, minutes)
+                        : String.valueOf(minutes);
+        String secondsStr =
+                seconds < MAX_INT ? String.format(CLOCK_TEXT_FORMAT, seconds)
+                        : String.valueOf(seconds);
 
         // Displaying to the screen
         timeLabel.setText(minutesStr + ":" + secondsStr);

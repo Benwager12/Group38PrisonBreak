@@ -65,7 +65,6 @@ public class AskOverwriteController {
 
     /**
      * Rotates button when applicable.
-     * 
      * @param img the button to be rotated
      * @return rotated/unrotated button depending on situation
      */
@@ -81,8 +80,4 @@ public class AskOverwriteController {
             }
         };
     }
-    
-
-    
-
 }
