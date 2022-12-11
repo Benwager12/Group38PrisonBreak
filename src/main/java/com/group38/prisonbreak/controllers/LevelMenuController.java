@@ -11,7 +11,10 @@ import javafx.scene.layout.StackPane;
 import static com.group38.prisonbreak.GameManager.getCurrentProfileId;
 
 /**
- * LevelMenuController handles...[add]
+ * LevelMenuController is responsible for animating level menu buttons,
+ * directing _, and displaying levels correctly i.e. locked or unlocked during level selection.
+ *
+ * @author Maisha Begum Chowdhury (2114962)
  */
 public class LevelMenuController {
 	private static final double ORIGINAL_BUTTON_HEIGHT = 41;
@@ -20,6 +23,10 @@ public class LevelMenuController {
 	private static final double MODIFIED_BUTTON_WIDTH = 54;
 	private static final double ORIGINAL_BUTTON_ROTATION = 0;
 	private static final double MODIFIED_BUTTON_ROTATION = 1.7;
+
+	/* levelStack corresponds to the respective level's fxml StackPane
+	 * which contains its preview graphic, button and overlay
+	 */
 
 	@FXML
 	private ImageView level1Button;
@@ -85,7 +92,7 @@ public class LevelMenuController {
 		homeButton.hoverProperty().addListener(rotateButton(homeButton));
 		exitButton.hoverProperty().addListener(rotateButton(exitButton));
 
-		// overlay levels that have not been unlocked [CHANGE]
+		// overlay setting
 		StackPane[] levelPanes = {levelStack2, levelStack3, levelStack4, levelStack5,
 				levelStack6, levelStack7, levelStack8};
 		setOverlay(levelPanes);
@@ -127,9 +134,12 @@ public class LevelMenuController {
 	private static ChangeListener<Boolean> enlargeButton(ImageView img) {
 		return (observable, oldValue, newValue) -> {
 			if (observable.getValue()) {
+				// scale up button
 				img.setFitHeight(MODIFIED_BUTTON_HEIGHT);
 				img.setFitWidth(MODIFIED_BUTTON_WIDTH);
+
 			} else {
+				// maintain original dimensions of button
 				img.setFitHeight(ORIGINAL_BUTTON_HEIGHT);
 				img.setFitWidth(ORIGINAL_BUTTON_WIDTH);
 			}
@@ -145,27 +155,31 @@ public class LevelMenuController {
 	private static ChangeListener<Boolean> rotateButton(ImageView img) {
 		return (observable, oldValue, newValue) -> {
 			if (observable.getValue()) {
+				// modify button position
 				img.setRotate(MODIFIED_BUTTON_ROTATION);
+
 			} else {
+				// maintain original button position
 				img.setRotate(ORIGINAL_BUTTON_ROTATION);
 			}
 		};
 	}
 
 	/**
-	 * [FIX]
-	 * Adds an overlay to locked levels to disable its selection.
+	 * Sets overlays such that levels not yet unlocked are disabled for selection.
 	 *
-	 * @param levelPanes the set of level overlays
+	 * @param levelPanes the levels to be displayed in the menu
 	 */
 	private static void setOverlay(StackPane[] levelPanes) {
 		int highestLevel = ProfileUtilities.getLevelFromProfile(getCurrentProfileId());
 
 		for (StackPane lp : levelPanes) {
 			String levelPaneID = lp.getId();
+
+			// extract corresponding level number from fxid
 			int levelStackNumber = Integer.parseInt(levelPaneID.substring(10));
 
-			// remove overlay child
+			// remove overlay when player has already completed level
 			if (levelStackNumber <= highestLevel + 1) {
 				lp.getChildren().remove(2);
 			}
