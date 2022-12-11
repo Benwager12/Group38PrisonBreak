@@ -130,8 +130,8 @@ public class LevelMenuController {
 		//FileUtilities.getGameInstance().setRoot("loadLevel" + levelNumber);
 
 		//If they do have save needs to do this
-		//GameManager.setLevel(FileUtilities.readLevel(Integer.parseInt(levelNumber)));
-		//FileUtilities.getGameInstance().setRoot("overwriteMenu");
+		GameManager.setLevel(FileUtilities.readLevel(Integer.parseInt(levelNumber)));
+		FileUtilities.getGameInstance().setRoot("overwriteMenu");
 	}
 
 	/**
