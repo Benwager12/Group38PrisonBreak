@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 /**
  * A controller class for the leaderboard, contains button functions and
  * and on initialisation updates the leaderboard to the current high scores.
- * @author         ??             and Jennalee Llewellyn (967558)
+ * @author Matthew Salter (986488), Jennalee Llewellyn (967558)
  */
 
 public class LeaderboardController {

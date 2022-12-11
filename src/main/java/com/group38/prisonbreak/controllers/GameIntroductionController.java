@@ -5,7 +5,6 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
@@ -17,22 +16,14 @@ import javafx.util.Duration;
 
 public class GameIntroductionController {
 
-    //The game 'video' variable, saved in a .gif format to act as a video but stored
-    //in an image view pane.
-    @FXML
-    private ImageView gameIntro;
-
-    @FXML
-    private ImageView skipButton;
-
+    /** Game introduction timeline which tells the game when the video has ended. */
     private Timeline timeline = null;
 
-    // Duration of the video played at the beginning
+    /** Duration of the video played at the beginning. */
     private static final int VIDEO_DURATION = 29;
 
     /**
-     * Triggers at the opening of the FXML file.
-     * and plays video
+     * Triggers at the opening of the FXML file and plays video.
      */
     @FXML
     private void initialize() {
@@ -46,7 +37,7 @@ public class GameIntroductionController {
     }
 
     @FXML
-    private void skipClicked(MouseEvent ignoredActionEvent) {
+    private void skipClicked(final MouseEvent ignoredActionEvent) {
         timeline.stop();
         FileUtilities.getGameInstance().setRoot("levelMenu");
     }
