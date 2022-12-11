@@ -8,29 +8,29 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * Utility that stores and deals with Player Profiles
+ * Utility that stores and deals with Player Profiles.
  * @author Daniel Banks (2107922)
  */
 public class ProfileUtilities {
 
-    // Location of the .txt file that stores the profiles
+    /** Location of the .txt file that stores the profiles. */
     private static final String FILE_LOCATION = "data/Profiles.txt";
 
-    // Arraylist of Profiles
+    /** Arraylist of Profiles. */
     private static final ArrayList<Profile> PROFILES = new ArrayList<>();
 
-    // Format of the Profiles.txt file "<id>, <name>, <highest level>"
+    /** Format of the Profiles.txt file "<id>, <name>, <highest level>". */
     private static final String TXT_STRING_FORMAT = "%s, %d%n";
 
     /**
-     * Initialises all the profiles
+     * Initialises all the profiles.
      */
     public static void initialise() {
         loadProfiles();
     }
 
     /**
-     * Loads player profiles from Profiles.txt
+     * Loads player profiles from Profiles.txt.
      */
     private static void loadProfiles() {
         String filePath = FileUtilities.getResourcePath(FILE_LOCATION);
@@ -53,7 +53,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Reads player profile information from a scanner
+     * Reads player profile information from a scanner.
      * @param in Scanner containing profile information
      */
     private static void readInfo(Scanner in) {
@@ -73,7 +73,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Gets all the profiles
+     * Gets all the profiles.
      * @return Profile array
      */
     public static Profile[] getProfiles() {
@@ -81,7 +81,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Gets all the player names from all the stored profiles
+     * Gets all the player names from all the stored profiles.
      * @return String array of profile names
      */
     public static String[] getProfileNames() {
@@ -93,7 +93,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Gets the highest level of the player from their ID
+     * Gets the highest level of the player from their ID.
      * @param id The ID of the player
      * @return The highest level of the player
      */
@@ -107,7 +107,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Gets a hashmap of Profile id's to profile names
+     * Gets a hashmap of Profile id's to profile names.
      * @return Hashmap of id's to profiles
      */
     public static HashMap<Integer, String> getProfileMap() {
@@ -119,7 +119,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Gets the Profile from the profile
+     * Gets the Profile from the profile.
      * @param id Id of the profile to be fetched
      * @return Instance of the Profile
      */
@@ -133,7 +133,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Updates a player's details
+     * Updates a player's details.
      * @param id Id of the player's profile
      * @param levelNumber New highest level completed
      */
@@ -147,7 +147,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Updates a player's details
+     * Updates a player's details.
      * @param id Id of the player's profile
      * @param name New name of the player
      */
@@ -157,7 +157,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Updates a player's details
+     * Updates a player's details.
      * @param id Id of the player's profile
      * @param name New name of the player
      * @param levelNumber New highest level completed
@@ -169,7 +169,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Adds a profile to the profile list with the level they last completed
+     * Adds a profile to the profile list with the level they last completed.
      * @param name Name of the profile
      * @param levelNumber Highest Level that profile has created
      */
@@ -179,7 +179,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Adds a blank profile to the profile list
+     * Adds a blank profile to the profile list.
      * @param name Name of the profile
      */
     public static void addProfile(String name) {
@@ -188,7 +188,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Gets the name of a profile from the id
+     * Gets the name of a profile from the id.
      * @param id id of the Profile
      * @return String name
      */
@@ -197,7 +197,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Gets the number of profiles
+     * Gets the number of profiles.
      * @return int amount of profiles
      */
     public static int getNoProfiles() {
@@ -205,7 +205,7 @@ public class ProfileUtilities {
     }
 
     /**
-     * Removes a profile with the given id
+     * Removes a profile with the given id.
      * @param id int id of the profile to be removed
      */
     public static void removeProfile(int id) {
@@ -214,12 +214,14 @@ public class ProfileUtilities {
     }
 
     /**
-     * Saves the current stored Profile classes in Profile.txt
+     * Saves the current stored Profile classes in Profile.txt.
      * NOTE: THIS WILL OVERRIDE EVERYTHING THAT'S CURRENTLY IN PROFILE.TXT
      */
     public static void saveProfiles() {
         try {
-            PrintWriter myWriter = new PrintWriter(FileUtilities.getResourcePath(FILE_LOCATION));
+            PrintWriter myWriter = new PrintWriter(
+                    FileUtilities.getResourcePath(FILE_LOCATION)
+            );
             System.out.println(FileUtilities.getResourcePath(FILE_LOCATION));
 
             for (Profile profile : PROFILES) {
@@ -241,7 +243,8 @@ public class ProfileUtilities {
     }
 
     /**
-     * Increment level number
+     * Increment level number.
+     * @param profileId id of the profile to increment
      */
     public static void incrementLevelNumber(int profileId) {
         Profile usrProfile = getProfileFromId(profileId);
