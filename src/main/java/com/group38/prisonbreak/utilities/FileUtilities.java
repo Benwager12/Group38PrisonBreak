@@ -36,6 +36,7 @@ public class FileUtilities {
     /** String Format of the plath to a level file. */
     private static final String LEVELS_PATH = "levels/%d.level";
 
+    /** String formatting for when a file couldn't be found. */
     private static final String NO_FILE_ERROR = "Can't find file";
 
     /**
@@ -110,22 +111,31 @@ public class FileUtilities {
                     Integer.parseInt(levelFileName.split("_")[0]);
             System.out.println(levelNumber);
         } else {
+            String extension = ".level";
             levelNumber =
                     Integer.parseInt(levelFileName.substring(
                             0,
-                            levelFileName.length() - 6)
+                            levelFileName.length() - extension.length())
                     );
         }
         System.out.println(levelPath);
         return readInfo(scanner, levelNumber);
     }
 
-
+    /**
+     * Utilise the game instance to get a resource.
+     * @param path The path of the file.
+     * @return A URL representing the file.
+     */
     public static URL getResource(String path) {
         return gameInstance.getClass().getResource(path);
     }
 
-
+    /**
+     * Get a resource URI in the form of a string.
+     * @param path The path of the file.
+     * @return A string representation of the URI of the file.
+     */
     public static String getResourceURI(String path) {
         URL resource = getResource(path);
         if (resource == null) {
@@ -138,18 +148,31 @@ public class FileUtilities {
         }
     }
 
+    /**
+     * An unsafe version of getResourcePath,
+     * this is when you are unsure whether the file exists.
+     * @param path The path to the unsafe file.
+     * @return The string representation of a file URI.
+     */
     public static String getResourcePathUnsafe(String path) {
-        String lvl = getResourcePath("levels/1.level");
-        return lvl.substring(0, lvl.length() - 14) + path;
+        String firstLevel = "levels/1.level";
+        String lvl = getResourcePath(firstLevel);
+        return lvl.substring(0, lvl.length() - firstLevel.length()) + path;
     }
 
+    /**
+     * Get a resource path that is converted to use in either Mac or Windows.
+     * @param path The path of the file.
+     * @return A string representation of a file URL.
+     */
     public static String getResourcePath(String path) {
         String uri = getResourceURI(path);
         if (System.getProperty("os.name").equals("Mac OS X")) {
             uri = "/" + uri;
         }
+        String fileStart = "file:/";
         assert uri != null;
-        return uri.substring(6).replaceAll("%20", " ");
+        return uri.substring(fileStart.length()).replaceAll("%20", " ");
     }
 
     /**
@@ -314,16 +337,16 @@ public class FileUtilities {
     }
 
     /**
-     * Converts the direction string into integer format
-     * @param directionString The direction in string format
-     * @return The directing in integer format
+     * Converts the direction string into integer format.
+     * @param directionString The direction in string format.
+     * @return The directing in integer format.
      */
     private static int convertDirection(String directionString) {
         return switch (directionString) {
-            case "L" -> 3;
-            case "R" -> 1;
-            case "D" -> 2;
-            default -> 0;
+            case "L" -> Constants.LEFT_ID;
+            case "R" -> Constants.RIGHT_ID;
+            case "D" -> Constants.DOWN_ID;
+            default -> Constants.UP_ID;
         };
     }
 
@@ -385,9 +408,9 @@ public class FileUtilities {
     }
 
     /**
-     * Returns the time of a level
-     * @param in Scanner of the file
-     * @return Time remaining for a level
+     * Returns the time of a level.
+     * @param in Scanner of the file.
+     * @return Time remaining for a level.
      */
     private static int readLevelTime(Scanner in) {
         int levelTime = in.nextInt();
@@ -396,7 +419,7 @@ public class FileUtilities {
 
     /**
      * Returns the score in the saved level file.
-     * @param in Scanner of the file
+     * @param in Scanner of the file.
      * @return The score saved in the file
      */
     private static int readScore(Scanner in) {
