@@ -9,9 +9,6 @@ import javafx.scene.paint.Color;
  */
 
 public class Tile {
-
-
-
     /** colourIds that make up the tile. */
     private final int[] colourIDs;
 

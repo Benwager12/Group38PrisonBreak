@@ -38,49 +38,6 @@ public class LeaderboardUtilities {
     }
 
     /**
-     * Loads leaderboards from Leaderboards.txt.
-     */
-    private static void loadLeaderboard() {
-        String filePath = FileUtilities.getResourcePath(FILE_LOCATION);
-
-        File file = new File(filePath);
-
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            System.out.println("Can't find leaderboards file");
-            e.printStackTrace();
-            System.exit(-1);
-        }
-        readInfo(scanner);
-        scanner.close();
-    }
-
-    /**
-     * Reads leaderboard information from a scanner.
-     * @param in Scanner containing leaderboard information.
-     */
-    private static void readInfo(Scanner in) {
-        int currentLevel = -1;
-        LevelLeaderboard levelLeaderboard;
-        while (in.hasNextLine() && in.hasNextInt()) {
-            int levelNumber = in.nextInt();
-            int[] score = new int[] {
-                    in.nextInt(),
-                    in.nextInt()
-            };
-            if (levelNumber != currentLevel) {
-                currentLevel = levelNumber;
-                levelLeaderboard = new LevelLeaderboard(score);
-                LEADERBOARD.put(levelNumber, levelLeaderboard);
-            } else {
-                LEADERBOARD.get(levelNumber).addToLeaderboard(score);
-            }
-        }
-    }
-
-    /**
      * Gets the highest scores from a levelNumber in order.
      * @param levelNumber Level number
      * @return int[] of the highest scores
@@ -160,6 +117,49 @@ public class LeaderboardUtilities {
             System.out.println("Can't find Profiles file");
             e.printStackTrace();
             System.exit(-1);
+        }
+    }
+
+    /**
+     * Loads leaderboards from Leaderboards.txt.
+     */
+    private static void loadLeaderboard() {
+        String filePath = FileUtilities.getResourcePath(FILE_LOCATION);
+
+        File file = new File(filePath);
+
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Can't find leaderboards file");
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        readInfo(scanner);
+        scanner.close();
+    }
+
+    /**
+     * Reads leaderboard information from a scanner.
+     * @param in Scanner containing leaderboard information.
+     */
+    private static void readInfo(Scanner in) {
+        int currentLevel = -1;
+        LevelLeaderboard levelLeaderboard;
+        while (in.hasNextLine() && in.hasNextInt()) {
+            int levelNumber = in.nextInt();
+            int[] score = new int[] {
+                    in.nextInt(),
+                    in.nextInt()
+            };
+            if (levelNumber != currentLevel) {
+                currentLevel = levelNumber;
+                levelLeaderboard = new LevelLeaderboard(score);
+                LEADERBOARD.put(levelNumber, levelLeaderboard);
+            } else {
+                LEADERBOARD.get(levelNumber).addToLeaderboard(score);
+            }
         }
     }
 }
