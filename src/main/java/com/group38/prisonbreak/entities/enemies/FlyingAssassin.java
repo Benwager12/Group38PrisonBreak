@@ -35,7 +35,7 @@ public class FlyingAssassin extends Enemy {
      * Gets if the flying assassin has collided with the player.
      * @return boolean has collied with player
      */
-    public boolean getHasColliedWithPlayer() {
+    public boolean getHasCollidedWithPlayer() {
         return hasColliedWithPlayer;
     }
 

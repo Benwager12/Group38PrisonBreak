@@ -190,7 +190,7 @@ public class LevelController {
                      */
                     if (entity instanceof FlyingAssassin
                             && ((FlyingAssassin) entity)
-                            .getHasColliedWithPlayer()) {
+                            .getHasCollidedWithPlayer()) {
                         GameManager.getLevel().draw(g);
                     }
                 }
