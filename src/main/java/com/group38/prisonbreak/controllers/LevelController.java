@@ -81,7 +81,6 @@ public class LevelController {
         drawCanvas();
         recalculateCanvasSize();
         levelNumberLabel.setText(String.valueOf(GameManager.getLevel().getLevelNumber()));
-        GameManager.resetMoney();
         GameManager.playTimeLines();
     }
 

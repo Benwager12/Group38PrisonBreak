@@ -66,10 +66,13 @@ public class GameManager {
      * stops the timelines
      */
     public static void stopTimeLines(){
-        enemyTimeLine.stop();
-        smartThiefTimeLine.stop();
-        playerTimeLine.stop();
-        timeTimeLine.stop();
+        if (timeTimeLine != null) {
+            enemyTimeLine.stop();
+            smartThiefTimeLine.stop();
+            playerTimeLine.stop();
+            timeTimeLine.stop();
+        }
+
     }
 
     /**

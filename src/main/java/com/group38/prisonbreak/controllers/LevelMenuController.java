@@ -134,6 +134,7 @@ public class LevelMenuController {
 
 		int intLevelNumber = Integer.parseInt(levelNumber);
 		int profileId = GameManager.getCurrentProfileId();
+		GameManager.resetMoney();
 
 		if (SaveLevelUtilities.doesSaveFileExist(profileId, intLevelNumber)) {
 			GameManager.setLevel(FileUtilities.readLevel(intLevelNumber));
@@ -142,15 +143,6 @@ public class LevelMenuController {
 		} else {
 			FileUtilities.getGameInstance().setRoot("loadLevel" + levelNumber);
 		}
-
-		//Add functionality to check if the current profile has a save for the selected level number
-
-		//If they don't have save needs to do this
-		//FileUtilities.getGameInstance().setRoot("loadLevel" + levelNumber);
-
-		//If they do have save needs to do this
-	//	GameManager.setLevel(FileUtilities.readLevel(Integer.parseInt(levelNumber)));
-	//	FileUtilities.getGameInstance().setRoot("overwriteMenu");
 	}
 
 	/**
