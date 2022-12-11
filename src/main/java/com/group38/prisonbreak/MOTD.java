@@ -44,7 +44,7 @@ public class MOTD {
     /**
      * Private method to fetch the puzzle from the server.
      * Updates the puzzle variable with the string received from the server
-     * @return
+     * @return puzzle to be decoded
      */
     private static String getPuzzle() throws IOException, InterruptedException {
 
@@ -137,7 +137,7 @@ public class MOTD {
     }
 
     /**
-     * Removes date and time from MoTD
+     * Removes date and time from MoTD.
      * @param finalMessage message of the day
      * @return message without date
      */

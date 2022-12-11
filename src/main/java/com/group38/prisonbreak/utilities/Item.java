@@ -31,11 +31,13 @@ public abstract class Item implements Drawable {
      * Called when an entity interacts with an item.
      * Defines how an item is intractable
      * @param isPlayer if the entity interacting with the item is the player
-     * @return
+     * @return if the item should be destroyed upon interaction
      */
     public abstract boolean interact(boolean isPlayer);
 
-    /** Get the path of the image for the item. */
+    /** Get the path of the image for the item.
+     * @return file path of the image
+     */
     public abstract String getImagePath();
 
     /**
@@ -61,6 +63,9 @@ public abstract class Item implements Drawable {
     /**
      * Draw the item onto the tile.
      * @param g The graphics context
+     * @param tileX X position of the tile
+     * @param tileY Y position of the tile
+     * @param sideLength Length of the tile
      */
     public void draw(GraphicsContext g, int tileX, int tileY, int sideLength) {
         g.drawImage(

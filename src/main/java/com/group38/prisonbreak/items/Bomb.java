@@ -36,12 +36,14 @@ public class Bomb extends Item {
     private boolean explodable = true;
 
     /** A second in millis, used for the creation of the timeline. */
-    private final int SECOND_IN_MILLIS = 1000;
+    private static final int SECOND_IN_MILLIS = 1000;
 
     /** The bomb timeline is used for ticking down from 3 to explode. */
     private final Timeline bombTimeLine =
             new Timeline(new KeyFrame(
-                    Duration.millis(SECOND_IN_MILLIS), event -> countdownBomb()));
+                    Duration.millis(SECOND_IN_MILLIS),
+                    event -> countdownBomb())
+            );
 
     /**
      * The main bomb, this is only utilised if it is a filler
@@ -65,7 +67,6 @@ public class Bomb extends Item {
 
     /**
      * This is the initialization of bomb if it is a secondary bomb.
-     *
      * @param mainBomb The reference to a main bomb, which would have no "mainBomb" attribute.
      */
     public Bomb(Bomb mainBomb) {

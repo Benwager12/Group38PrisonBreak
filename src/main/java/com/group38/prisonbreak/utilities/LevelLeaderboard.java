@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class LevelLeaderboard {
 
-    /** Highest number of scores shown on the leaderboard */
+    /** Highest number of scores shown on the leaderboard. */
     private static final int MAX_NUMBER_SCORES = 10;
 
     /** Format of the string to show the current leaderboard if score is not empty. */
@@ -113,7 +113,8 @@ public class LevelLeaderboard {
         int noSpaces;
         String repeatedSpacesBeforeName;
         String repeatedSpacesAfterName;
-        for (int i = 0; i < LeaderboardUtilities.MAX_NUMBER_OF_HIGH_SCORES; i++) {
+        for (int i = 0;
+             i < LeaderboardUtilities.MAX_NUMBER_OF_HIGH_SCORES; i++) {
             if (scores[i][1] != 0) {
                 name = ProfileUtilities.getName(scores[i][0]);
                 noSpaces = MAX_NO_SPACES_BEFORE_NAME

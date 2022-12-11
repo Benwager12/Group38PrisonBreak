@@ -151,9 +151,13 @@ public class Level implements Drawable {
                         sideLength,
                         sideLength
                 );
+                Tile t = getTile(x, y);
+
+                // Tile colour side length
+                int tileColourSL = sideLength / 2;
 
                 // Loop through every colour in tile
-                colourTiles(g, tileXDraw, tileYDraw);
+                colourTiles(g, tileXDraw, tileYDraw, t, tileColourSL);
 
                 tileXDraw += sideLength;
             }
@@ -167,10 +171,9 @@ public class Level implements Drawable {
      * @param g The graphics context to apply the colours
      * @param tileXDraw Tile on the X coordinate to draw.
      * @param tileYDraw Tile on the Y coordinate to draw.
+     * @param tileColourSL The side length of any individual colour.
      */
-    private void colourTiles(GraphicsContext g, int tileXDraw, int tileYDraw) {
-        Tile t = getTile(tileXDraw, tileYDraw);
-        int tileColourSL = getSideLength(g) / 2;
+    private void colourTiles(GraphicsContext g, int tileXDraw, int tileYDraw, Tile t, int tileColourSL) {
 
         for (int col = 0; col < t.getColours().length; col++) {
             boolean isRight = col == 1 || col == 3;
@@ -187,10 +190,8 @@ public class Level implements Drawable {
         }
     }
 
-
     /**
      * Draws all Entities onto the level.
-     *
      * @param g The graphics context we draw the entities onto.
      */
     public void drawEntities(GraphicsContext g) {
