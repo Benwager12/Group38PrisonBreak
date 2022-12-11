@@ -14,7 +14,6 @@ import java.util.HashMap;
 
 /**
  * A Class that stores the data about a level
- *
  * @author Daniel Banks (2107922), Matthew Salter (986488), Ben Wager (2108500)
  */
 
@@ -36,8 +35,7 @@ public class Level implements Drawable {
     private final HashMap<Integer, Boolean> gatesOpen = new HashMap<>();
 
     /**
-     * Creates a Level instance
-     *
+     * Creates a Level instance.
      * @param levelNumber Level number
      * @param tiles 2D array of Tiles that make up the level
      * @param entities All the entities that are on the level
@@ -59,56 +57,42 @@ public class Level implements Drawable {
     }
 
     /**
-     * Gets the ArrayList of all the Entities on the level
-     *
-     * @return ArrayList of Entities
-     * @author Daniel Banks
-     * @since 01/12/2022
+     * Gets the ArrayList of all the Entities on the level.
+     * @return An ArrayList of Entities
      */
     public ArrayList<Entity> getEntities() {
         return entities;
     }
 
     /**
-     * Gets a tile from the X and Y position
-     *
+     * Gets a tile from the X and Y position.
      * @param x X position
      * @param y Y position
-     * @return Tile
-     * @author Daniel Banks
-     * @since 29/11/2022
+     * @return A Tile
      */
     public Tile getTile(int x, int y) {
         return tiles[y][x];
     }
 
     /**
-     * Gets the current Level number
-     * @return level Number
-     * @author Daniel Banks
-     * @since 02/12/2022
+     * Gets the current Level number.
+     * @return The level Number
      */
     public int getLevelNumber() {
         return levelNumber;
     }
 
     /**
-     * gets the player entity
-     *
-     * @return Entity
-     * @author Daniel Banks
-     * @since 01/12/2022
+     * Gets the player entity.
+     * @return An Entity
      */
     public Entity getPlayer() {
         return entities.get(entities.size() - 1);
     }
 
     /**
-     * Checks to see if there are any items left to be collected on the level
-     *
-     * @return boolean
-     * @since 29/11/2022
-     * @author Daniel Banks, Ben Wager
+     * Checks to see if there are any items left to be collected on the level.
+     * @return If there are items left
      */
     public boolean hasItemsLeft() {
         for (Tile[] tileX : tiles) {
@@ -125,11 +109,9 @@ public class Level implements Drawable {
     }
 
     /**
-     * Checks if an item is a gate and if it is whether it's open
+     * Checks if an item is a gate and if it is whether it's open.
      * @param item Item to check
-     * @return boolean if gate's open
-     * @author Daniel Banks
-     * @since 29/11/2022
+     * @return If a gate is open
      */
     public boolean areAllGatesOpen(Item item) {
         // Return if gate is open
@@ -147,9 +129,7 @@ public class Level implements Drawable {
     }
 
     /**
-     * Removes all items from tiles apart from Doors and Gates
-     * @since 02/12/2022
-     * @author Matthew Salter, Daniel Banks
+     * Removes all items from tiles apart from Doors and Gates.
      */
     public void removeAllItemsExplosion() {
         for (Tile[] tileX : tiles) {
@@ -168,9 +148,7 @@ public class Level implements Drawable {
     }
 
     /**
-     * Draws all the Tiles onto the level
-     * @author Ben Wager, Daniel Banks
-     * @since 25/11/2022
+     * Draws all the Tiles onto the level.
      */
     private void drawTiles(GraphicsContext g) {
         int sideLength = getSideLength(g);
@@ -204,9 +182,7 @@ public class Level implements Drawable {
     }
 
     /**
-     * Draws all Entities onto the level
-     * @author Daniel Banks
-     * @since 01/12/2022
+     * Draws all Entities onto the level.
      */
     public void drawEntities(GraphicsContext g) {
         int sideLength = getSideLength(g);
@@ -220,11 +196,8 @@ public class Level implements Drawable {
     }
 
     /**
-     * Draws items onto the Level
-     * @param g GraphicsContext
-     *
-     * @author Ben Wager
-     * @since 02/12/2022
+     * Draws items onto the Level.
+     * @param g The GraphicsContext
      */
     public void drawItems(GraphicsContext g) {
         int sideLength = getSideLength(g);
@@ -241,12 +214,9 @@ public class Level implements Drawable {
     }
 
     /**
-     * Gets the size of the tiles
-     *
-     * @param g GraphicsContext
-     * @return sideLength
-     * @author Daniel Banks
-     * @since 01/12/2022
+     * Gets the size of the tiles.
+     * @param g The GraphicsContext
+     * @return The side length
      */
     public int getSideLength(GraphicsContext g) {
         int canvasWidth = (int) g.getCanvas().getWidth();
@@ -256,16 +226,12 @@ public class Level implements Drawable {
     }
 
     /**
-     * Checks if a move is valid
-     *
-     * @param direction      The direction the entity wishes to move
-     * @param posX           X position of the entity
-     * @param posY           Y position of the entity
+     * Checks if a move is valid.
+     * @param direction The direction the entity wishes to move
+     * @param posX X position of the entity
+     * @param posY Y position of the entity
      * @param requiresColour If the Entity needs to stay on the same colour
      * @return boolean - If the move is valid
-     *
-     * @author Daniel Banks
-     * @since 24/11/2022
      */
     public boolean canMove(int posX, int posY, int direction, boolean requiresColour) {
         if (!requiresColour) {
@@ -277,15 +243,12 @@ public class Level implements Drawable {
     }
 
     /**
-     * Checks if a move is valid with a given colour
-     * @param direction      The direction the entity wishes to move
-     * @param posX           X position of the entity
-     * @param posY           Y position of the entity
-     * @param colourId       id of the colour (int) that the entity has to follow
+     * Checks if a move is valid with a given colour.
+     * @param direction The direction the entity wishes to move
+     * @param posX X position of the entity
+     * @param posY Y position of the entity
+     * @param colourId Id of the colour (int) that the entity has to follow
      * @return boolean - if the move is valid
-     *
-     * @author Daniel Banks, Ben Wager
-     * @since 07/12/2022
      */
     public boolean canMove(int posX, int posY, int direction, int colourId) {
         int[] move = singleMove(posX, posY, direction);
@@ -336,7 +299,7 @@ public class Level implements Drawable {
     }
 
     /**
-     * Finds the position of the next tile an entity should go if they follow colours
+     * Finds the position of the next tile an entity should go if they follow colours.
      * @param posX Current X Position
      * @param posY Current Y Position
      * @param direction Direction of the Entity
@@ -386,8 +349,8 @@ public class Level implements Drawable {
     }
 
     /**
-     * Gets number of items left on the level
-     * @return Int number of items left
+     * Gets number of items left on the level.
+     * @return The number of items left
      */
     public int getNoItems() {
         int items = 0;
@@ -417,12 +380,6 @@ public class Level implements Drawable {
         return true;
     }
 
-    public boolean isGateOpen(int colour) {
-        return gatesOpen.get(colour);
-    }
-
-
-
     private boolean isDoorOpen(Item item) {
         if (item instanceof Door) {
             return ((Door) item).isOpen();
@@ -440,14 +397,11 @@ public class Level implements Drawable {
     }
 
     /**
-     * Finds the next tile an entity can move to if they follow colours
+     * Finds the next tile an entity can move to if they follow colours.
      * @param posX Current X Position
      * @param posY Current Y Position
      * @param direction Direction of the Entity
      * @return Tile or Null if no Tile found
-     *
-     * @author Daniel Banks, Ben Wager
-     * @since 01/12/20222
      */
     private Tile nextTile(int posX, int posY, int direction) {
         int[] newLocation = singleMove(posX, posY, direction);
@@ -473,9 +427,8 @@ public class Level implements Drawable {
     }
 
     /**
+     * Draws a level.
      * @param g The graphics context
-     * @since 25/11/2022
-     * @author Ben Wager
      */
     @Override
     public void draw(GraphicsContext g) {
@@ -488,14 +441,11 @@ public class Level implements Drawable {
     }
 
     /**
-     * Math function to calculate length of any tile
+     * Math function to calculate length of any tile.
      * @param level Level of which tiles we need
      * @param width Width of the canvas
      * @param height Height of the canvas
      * @return An integer representing the calculated side length
-     *
-     * @author Ben Wager
-     * @since 25/11/2022
      */
     public static int getTileSideLength(Level level, int width, int height) {
         int tileYAmt = level.tiles.length;
@@ -508,7 +458,7 @@ public class Level implements Drawable {
     }
 
     /**
-     * Gets the width of the tiles
+     * Gets the width of the tiles.
      * @return int width
      */
     public int getWidth() {
@@ -516,7 +466,7 @@ public class Level implements Drawable {
     }
 
     /**
-     * Gets the Height of the tiles
+     * Gets the Height of the tiles.
      * @return int height
      */
     public int getHeight() {
@@ -524,7 +474,7 @@ public class Level implements Drawable {
     }
 
     /**
-     * Open the gate for a given colour
+     * Open the gate for a given colour.
      * @param gateColour An integer representing our colours
      */
     public void openGate(int gateColour) {
@@ -532,7 +482,7 @@ public class Level implements Drawable {
     }
 
     /**
-     * Checks if a particular won't set off a bomb
+     * Checks if a particular won't set off a bomb.
      * @param posX The X position of the tile
      * @param posY The Y position of the tile
      * @return Returns true of the bomb will not detonate, false otherwise
@@ -542,7 +492,7 @@ public class Level implements Drawable {
     }
 
     /**
-     * Checks if an entity has collided with a flying assassin
+     * Checks if an entity has collided with a flying assassin.
      * @param XPos X Position of the entity
      * @param YPos Y Position of the entity
      * @return boolean has collided with flying assassin
