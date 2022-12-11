@@ -93,6 +93,8 @@ public class LevelController {
                     }
 
         };
+
+        /* Initializes timelines */
         GameManager.enemyTimeLine =
                 new Timeline(new KeyFrame(
                         Duration.millis(Constants.ENEMY_TIMELINE_DURATION),
@@ -109,6 +111,8 @@ public class LevelController {
                 new Timeline(new KeyFrame(
                         Duration.millis(Constants.CLOCK_TIMELINE_DURATION),
                         event -> changeTime()));
+
+        /* Observe changes in main pane size */
         mainPane.heightProperty().addListener(paneSizeChange);
         mainPane.widthProperty().addListener(paneSizeChange);
 
@@ -117,7 +121,7 @@ public class LevelController {
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
         saveImage.hoverProperty().addListener(rotateButton(saveImage));
 
-        /* Initializes and starts timelines */
+        /* Set out game window */
         GameManager.initTimelines();
         drawCanvas();
         recalculateCanvasSize();
@@ -131,7 +135,7 @@ public class LevelController {
     }
 
     /**
-     * Sets the size of the canvas window
+     * Sets the size of the canvas window.
      */
     public void recalculateCanvasSize() {
         if (GameManager.getLevel() == null) {
