@@ -3,7 +3,7 @@ package com.group38.prisonbreak.entities.enemies;
 import com.group38.prisonbreak.Constants;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.Enemy;
-import com.group38.prisonbreak.utilities.pathfinding.DanielsPathFinding;
+import com.group38.prisonbreak.utilities.pathfinding.PathFinding;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.Random;
 public class SmartThief extends Enemy {
 
     // Class to find and search for items on the level
-    private final DanielsPathFinding searchFinding = new DanielsPathFinding();
+    private final PathFinding searchFinding = new PathFinding();
 
     // ArrayList of moves to get to the closest item
     private final ArrayList<int[]> positionsToItem = new ArrayList<>();

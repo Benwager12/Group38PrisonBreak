@@ -15,7 +15,7 @@ import java.util.Collections;
  * Implements a path finding algorithm for smart thief.
  * @author Daniel Banks (2107922)
  */
-public class DanielsPathFinding {
+public class PathFinding {
     /*
      * Uses A* Algorithm
      * Each Node is given a 'weight'
