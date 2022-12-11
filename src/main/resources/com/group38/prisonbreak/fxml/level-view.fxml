@@ -11,7 +11,7 @@
 
 <BorderPane id="gamePane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.LevelController">
    <center>
-      <Canvas fx:id="gameCanvas" height="400.0" onMouseClicked="#onMouseClickCanvas" width="800.0" BorderPane.alignment="CENTER" />
+      <Canvas fx:id="gameCanvas" height="400.0" width="800.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
       <BorderPane id="gameInfoPane" fx:id="gameInfoPane" prefHeight="45.0" prefWidth="600.0" BorderPane.alignment="CENTER">
