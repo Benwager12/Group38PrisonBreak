@@ -25,17 +25,19 @@ public class GameIntroductionController {
     @FXML
     private ImageView skipButton;
 
-    Timeline timeline = null;
+    private Timeline timeline = null;
+
+    // Duration of the video played at the beginning
+    private static final int VIDEO_DURATION = 29;
 
     /**
-     * Initialse method to trigger at the opening of the FXML file. Delays
-     * the opening of the next FXML by 31 seconds which is the duration of
-     * the video. Before setting the new root pane to the level selection menu.
+     * triggers at the opening of the FXML file.
+     * and Plays Video
      */
     @FXML
     private void initialize() {
         //Duration of the video before moving automatically onto the level menu
-        timeline = new Timeline(new KeyFrame(Duration.seconds(29), ev -> {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(VIDEO_DURATION), ev -> {
             timeline.stop();
             FileUtilities.getGameInstance().setRoot("levelMenu");
         }));
