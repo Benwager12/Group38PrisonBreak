@@ -14,6 +14,7 @@ import java.util.HashMap;
  */
 public class Player extends Entity {
 
+    /** Image cache for the player outfits in the game. */
     private static final HashMap<Integer, String> IMAGE_PATH_CACHE =
             new HashMap<>() {{
                 put(1, "outfit_jumpsuit");
@@ -28,6 +29,7 @@ public class Player extends Entity {
 
     /**
      * Creates and instance of player.
+     *
      * @param xPos X position of the player
      * @param yPos Y position of the player
      * @param direction starting direction of the player
@@ -39,8 +41,7 @@ public class Player extends Entity {
     }
 
     /**
-     * Moves the player based on the keys pressed.
-     * Is called every player tick
+     * Moves the player based on the keys pressed is called every player tick.
      */
     @Override
     public void move() {
@@ -57,10 +58,6 @@ public class Player extends Entity {
             } else if (c == KeyCode.LEFT || c == KeyCode.A) {
                 setDirection(Constants.LEFT_ID);
                 break;
-            } else if (c == KeyCode.K) {
-                break;
-            } else if (c == KeyCode.F) {
-                GameManager.saveGame();
             }
         }
 
@@ -82,6 +79,9 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Calls the interaction of the item when an entity collides with it.
+     */
     @Override
     protected void itemInteract() {
         Item item = getCurrentTile().getItem();

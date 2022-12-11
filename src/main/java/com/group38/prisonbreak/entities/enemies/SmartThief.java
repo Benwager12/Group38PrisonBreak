@@ -4,7 +4,6 @@ import com.group38.prisonbreak.Constants;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.Enemy;
 import com.group38.prisonbreak.utilities.pathfinding.PathFinding;
-import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,14 +14,10 @@ import java.util.Random;
  */
 public class SmartThief extends Enemy {
 
-    /**
-     * Class to find and search for items on the level.
-     */
+    /** Class to find and search for items on the level. */
     private final PathFinding searchFinding = new PathFinding();
 
-    /**
-     * ArrayList of moves to get to the closest item.
-     */
+    /** ArrayList of moves to get to the closest item. */
     private final ArrayList<int[]> positionsToItem = new ArrayList<>();
 
     /**
@@ -38,6 +33,7 @@ public class SmartThief extends Enemy {
 
     /**
      * Gets a random position to move to.
+     *
      * @return Position to move to as an int array [X, Y]
      */
     public int[] getRandomMove() {
@@ -96,7 +92,8 @@ public class SmartThief extends Enemy {
      */
     @Override
     public void move() {
-        // If there's positions left to move to then change to the first position in the list of moves
+        // If there's positions left to move to then change
+        // to the first position in the list of moves.
         if (positionsToItem.size() > 0 && itemExist()) {
             if (GameManager.getLevel()
                     .wontCollide(
@@ -109,20 +106,22 @@ public class SmartThief extends Enemy {
             }
         } else {
             positionsToItem.clear();
-            // Gets the shortest path to an item and adds the list of moves/positions to the Arraylist
+            // Gets the shortest path to an item and
+            // adds the list of moves/positions to the Arraylist.
             ArrayList<int[]> path =
                     searchFinding.searchForItems(super.getX(), super.getY());
 
-            // If no items/path to items are found then the Smart thief will move randomly
+            // If no items/path to items are found then
+            // the Smart thief will move randomly.
             if (path.size() == 0) {
                 int[] newPosition = getRandomMove();
+                boolean whetherCollide = GameManager.getLevel().wontCollide(
+                        this,
+                        newPosition[0],
+                        newPosition[1]
+                );
 
-                if (GameManager.getLevel()
-                        .wontCollide(
-                                this,
-                                newPosition[0],
-                                newPosition[1])
-                ) {
+                if (whetherCollide) {
                     updatePosition(newPosition);
                 }
             } else {
@@ -130,17 +129,9 @@ public class SmartThief extends Enemy {
                 move();
             }
         }
-        // Checks for item interaction and if it's collided with a flying assassin
+        // Checks for item interaction and if it's collided
+        // with a flying assassin.
         itemInteract();
         checkCollision();
-    }
-
-    /**
-     * Gets the image of the Smart Thief.
-     * @return Image fo the Smart Thief
-     */
-    @Override
-    public Image getEntityImage() {
-        return super.getEntityImage();
     }
 }
