@@ -44,7 +44,7 @@ public class FlyingAssassin extends Enemy {
      * If it has then it 'Destroys that entity'
      * If it's collided with the player it ends the game
      */
-    private void checkCollision() {
+    private void checkCollisions() {
         // Gets collisions
         ArrayList<Entity> collidedEntities = getCollision();
         if (collidedEntities != null) {
@@ -116,7 +116,7 @@ public class FlyingAssassin extends Enemy {
             }
         }
         // Checks if it has collided with any other entities
-        checkCollision();
+        checkCollisions();
     }
 
     /**

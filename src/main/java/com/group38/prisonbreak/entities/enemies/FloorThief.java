@@ -49,7 +49,7 @@ public class FloorThief extends Enemy {
 
         itemInteract();
         // Checks if it's collided with flying assassin
-        CheckCollision();
+        checkCollision();
     }
 
     /** Check if a position is equal to the current position.

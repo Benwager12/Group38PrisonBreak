@@ -77,7 +77,7 @@ public class Player extends Entity {
         itemInteract();
 
         // Checks if player has collided with flying assassin
-        if (CheckCollision()) {
+        if (checkCollision()) {
             GameManager.endGame(false);
         }
     }

@@ -10,7 +10,7 @@ import com.group38.prisonbreak.items.Door;
 public class Enemy extends Entity {
 
     /**
-     * Creates an instance of an Enemy
+     * Creates an instance of an Enemy.
      * @param xPos X position
      * @param yPos Y position
      * @param direction Direction the entity will move/face
@@ -20,7 +20,7 @@ public class Enemy extends Entity {
     }
 
     /**
-     * if the enemy isn't a flyingAssassin; it calls item interaction
+     * if the enemy isn't a flyingAssassin; it calls item interaction.
      * (Happens everytime an entity moves)
      */
     @Override
@@ -31,14 +31,14 @@ public class Enemy extends Entity {
     }
 
     /**
-     * Handles interaction between Enemy's and items
-     * Removes an item if it's not an instance of a door
+     * Handles interaction between Enemy's and items.
+     * Removes an item if it's not an instance of a door.
      */
     @Override
     protected void itemInteract() {
         Item item = getCurrentTile().getItem();
         if (item != null) {
-            if (item.interact(false) && !(item instanceof Door) ) {
+            if (item.interact(false) && !(item instanceof Door)) {
                 getCurrentTile().removeItem();
             }
         }
