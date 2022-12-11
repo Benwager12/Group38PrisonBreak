@@ -104,6 +104,7 @@ public class LevelSuccessFailureController {
         String currentLevel = Integer.toString(
                 (GameManager.getLevel().getLevelNumber())
         );
+        GameManager.resetMoney();
         FileUtilities.getGameInstance().setRoot("loadLevel" + currentLevel);
     }
 
@@ -115,6 +116,7 @@ public class LevelSuccessFailureController {
     private void goToNextLevel(MouseEvent click) {
         String nextLevel = Integer.toString(
                 (GameManager.getLevel().getLevelNumber() + 1));
+        GameManager.resetMoney();
         FileUtilities.getGameInstance().setRoot("loadLevel" + nextLevel);
     }
 

@@ -12,8 +12,11 @@ import java.util.HashMap;
  * @author Daniel Banks (2107922)
  */
 public class Gate extends Item {
+
+    /** The integer representing the gate colour. */
     private final int gateColour;
 
+    /** A list of all the paths that gate would use. */
     private static final HashMap<Integer, String> IMAGE_PATH_CACHE =
             new HashMap<>() {{
             put(0, GAME_IMAGE_PATH + "gate_rusted_locked.png");
@@ -23,14 +26,19 @@ public class Gate extends Item {
 
     }};
 
+    /** The image cache that will store all images from IMAGE_PATH_CACHE. */
     private static final HashMap<Integer, Image> IMAGE_CACHE = new HashMap<>();
 
+    /**
+     * The initialization of Gate and the loading of the images.
+     * @param metadata The gate colour stored in the form of metadata.
+     */
     public Gate(String metadata) {
         gateColour = Integer.parseInt(metadata);
         if (IMAGE_CACHE.isEmpty()) {
             IMAGE_PATH_CACHE.keySet().forEach(index -> {
                 IMAGE_CACHE.put(index, FileUtilities.loadImageFromResource(
-                        IMAGE_PATH_CACHE.get(index)
+                                IMAGE_PATH_CACHE.get(index)
                         )
                 );
             });
@@ -39,19 +47,25 @@ public class Gate extends Item {
 
     /**
      * @param isPlayer Whether the interacted person is a player.
-     * @return
+     * @return Always returns true.
      */
     @Override
     public boolean interact(boolean isPlayer) {
         return true;
     }
 
+    /**
+     * Gets the image path of this specific image.
+     * @return The image path of this specific image as a string.
+     */
     @Override
     public String getImagePath() {
         return "images/items/gate.png";
     }
 
     /**
+     * Specify which gate is being used and whether the gate is open or closed.
+     *
      * @return An image that represents whether a gate is open or closed.
      */
     @Override
@@ -60,6 +74,11 @@ public class Gate extends Item {
         return IMAGE_CACHE.get(isGateOpen ? null : gateColour);
     }
 
+    /**
+     * Get the gate colour.
+     *
+     * @return The gate colour in the form of an integer.
+     */
     public int getGateColour() {
         return gateColour;
     }
