@@ -6,12 +6,12 @@ import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.Enemy;
 
 /**
- * Implements an FloorThief Enemy type in the game
+ * Implements an FloorThief Enemy type in the game.
  * @author ISSA (853846), Ben Wager (2108500)
  */
 public class FloorThief extends Enemy {
 
-    /** Represents the color ID that FloorThief follows */
+    /** Represents the color ID that FloorThief follows. */
     private final int chosenColour;
 
     public FloorThief(int xPos, int yPos, int direction, int chosenColour) {
@@ -37,95 +37,111 @@ public class FloorThief extends Enemy {
         CheckCollision();
     }
 
-    private boolean notAtPositiion(int[] xAndY) {
+    private boolean notAtPosition(int[] xAndY) {
         return xAndY[0] != getX() || xAndY[1] != getY();
     }
 
     private int[] findMove() {
-        int[] downPos = GameManager.getLevel().potentialMove(getX(),getY(),Constants.DOWN_ID,getChosenColour());
-        int[] rightPos = GameManager.getLevel().potentialMove(getX(),getY(),Constants.RIGHT_ID,getChosenColour());
-        int[] leftPos = GameManager.getLevel().potentialMove(getX(),getY(),Constants.LEFT_ID,getChosenColour());
-        int[] upPos = GameManager.getLevel().potentialMove(getX(),getY(),Constants.UP_ID,getChosenColour());
+        int[] downPos = GameManager.getLevel().potentialMove(
+                getX(), getY(),
+                Constants.DOWN_ID,
+                getChosenColour()
+        );
+        int[] rightPos = GameManager.getLevel().potentialMove(getX(), getY(),
+                Constants.RIGHT_ID,
+                getChosenColour()
+
+        );
+        int[] leftPos = GameManager.getLevel().potentialMove(
+                getX(), getY(),
+                Constants.LEFT_ID,
+                getChosenColour()
+        );
+        int[] upPos = GameManager.getLevel().potentialMove(
+                getX(),
+                getY(),
+                Constants.UP_ID, getChosenColour()
+        );
 
         if (getDirection() == Constants.UP_ID) {
-            if (notAtPositiion(leftPos)) {
+            if (notAtPosition(leftPos)) {
                 setDirection(Constants.LEFT_ID);
                 return leftPos;
             }
 
-            if (notAtPositiion(upPos)) {
+            if (notAtPosition(upPos)) {
                 return upPos;
             }
 
-            if (notAtPositiion(rightPos)) {
+            if (notAtPosition(rightPos)) {
                 setDirection(Constants.RIGHT_ID);
                 return rightPos;
             }
 
-            if (notAtPositiion(downPos)) {
+            if (notAtPosition(downPos)) {
                 setDirection(Constants.DOWN_ID);
                 return downPos;
             }
         }
 
         if (getDirection() == Constants.RIGHT_ID) {
-            if (notAtPositiion(upPos)) {
+            if (notAtPosition(upPos)) {
                 setDirection(Constants.UP_ID);
                 return upPos;
             }
 
-            if (notAtPositiion(rightPos)) {
+            if (notAtPosition(rightPos)) {
                 return rightPos;
             }
 
-            if (notAtPositiion(downPos)) {
+            if (notAtPosition(downPos)) {
                 setDirection(Constants.DOWN_ID);
                 return downPos;
             }
 
-            if (notAtPositiion(leftPos)) {
+            if (notAtPosition(leftPos)) {
                 setDirection(Constants.LEFT_ID);
                 return leftPos;
             }
         }
 
         if (getDirection() == Constants.DOWN_ID) {
-            if (notAtPositiion(rightPos)) {
+            if (notAtPosition(rightPos)) {
                 setDirection(Constants.RIGHT_ID);
                 return rightPos;
             }
 
-            if (notAtPositiion(downPos)) {
+            if (notAtPosition(downPos)) {
                 return downPos;
             }
 
-            if (notAtPositiion(leftPos)) {
+            if (notAtPosition(leftPos)) {
                 setDirection(Constants.LEFT_ID);
                 return leftPos;
             }
 
-            if (notAtPositiion(upPos)) {
+            if (notAtPosition(upPos)) {
                 setDirection(Constants.UP_ID);
                 return upPos;
             }
         }
 
         if (getDirection() == Constants.LEFT_ID) {
-            if (notAtPositiion(downPos)) {
+            if (notAtPosition(downPos)) {
                 setDirection(Constants.DOWN_ID);
                 return downPos;
             }
 
-            if (notAtPositiion(leftPos)) {
+            if (notAtPosition(leftPos)) {
                 return leftPos;
             }
 
-            if (notAtPositiion(upPos)) {
+            if (notAtPosition(upPos)) {
                 setDirection(Constants.UP_ID);
                 return upPos;
             }
 
-            if (notAtPositiion(rightPos)) {
+            if (notAtPosition(rightPos)) {
                 setDirection(Constants.RIGHT_ID);
                 return rightPos;
             }
