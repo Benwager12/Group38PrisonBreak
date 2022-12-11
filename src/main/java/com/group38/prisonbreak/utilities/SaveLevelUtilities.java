@@ -242,6 +242,10 @@ public class SaveLevelUtilities {
         }
     }
 
+    private static boolean isValidPos(Entity entity) {
+        return entity.getX() >= 0 && entity.getY() >= 0;
+    }
+
     /**
      * Writes all the entities' info to the file.
      *
@@ -268,7 +272,7 @@ public class SaveLevelUtilities {
                 }
             }
 
-            if (!(entity instanceof Player) && !(entity instanceof FloorThief)) {
+            if (isValidPos(entity) && !(entity instanceof Player) && !(entity instanceof FloorThief)) {
                 char entityChar =
                         entity instanceof SmartThief ?
                                 Constants.SMART_THIEF_CHAR : Constants.FLYING_ASSASSIN_CHAR;
@@ -278,7 +282,7 @@ public class SaveLevelUtilities {
                         entity.getY(),
                         direction)
                 );
-            } else if (entity instanceof FloorThief floorThief) {
+            } else if (isValidPos(entity) && entity instanceof FloorThief floorThief) {
                 char entityChar = Constants.FLOOR_THIEF_CHAR;
                 myWriter.write(String.format(FLOOR_THIEF_STRING,
                         entityChar,
