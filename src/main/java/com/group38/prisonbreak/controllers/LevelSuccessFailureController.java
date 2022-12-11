@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class LevelSuccessFailureController {
@@ -47,11 +48,16 @@ public class LevelSuccessFailureController {
     private Label playerScoreText;
 
     @FXML
+    private HBox nextLevelHbox;
+
+    @FXML
     public void initialize() {
         profileNameText.setText(ProfileUtilities.getName(GameManager.getCurrentProfileId()));
         playerScoreText.setText(Integer.toString(GameManager.calculateScore(GameManager.getMoney(),GameManager.getTime())));
-        if (GameManager.getLevel().getLevelNumber() == 8) {
-            //TO DO Remove next level button when all levels complete
+
+        //Removes the next level button if the player has completed level 8
+        if (GameManager.getLevel().getLevelNumber() == 8 && nextLevelHbox != null) {
+            nextLevelButton.setVisible(false);
         }
         // button animation
         homeImage.hoverProperty().addListener(rotateButton(homeImage));
