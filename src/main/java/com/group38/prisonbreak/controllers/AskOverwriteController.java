@@ -51,24 +51,23 @@ public class AskOverwriteController {
 
     @FXML
     private void yesClicked(MouseEvent ignoredActionEvent) {
-        //Maybe add functionality to delete a saved level file???
-        FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
-    }
 
-    @FXML
-    private void noClicked(MouseEvent ignoredActionEvent) {
-        //Needs to be able to set the level to run from a "saved progress level file"
-
+        //Sets the level to run from a "saved progress level file"
         Level savedLevel = FileUtilities.readLevel(
                 GameManager.getCurrentProfileId(),
                 GameManager.getLevel().getLevelNumber()
         );
 
         GameManager.setLevel(savedLevel);
-
-        //Then runs this which just loads the level FXML
         FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
     }
+
+    @FXML
+    private void noClicked(MouseEvent ignoredActionEvent) {
+        FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
+    }
+
+
 
     /**
      * Rotates button when applicable.

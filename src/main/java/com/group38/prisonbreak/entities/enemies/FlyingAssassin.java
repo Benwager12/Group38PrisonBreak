@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.entities.enemies;
 
+import com.group38.prisonbreak.Constants;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.entities.Player;
 import com.group38.prisonbreak.utilities.Enemy;
@@ -9,16 +10,18 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 /**
- * Implements an Enemy in the game
+ * Implements an Enemy in the game.
  * @author Daniel Banks (2107922)
  */
 public class FlyingAssassin extends Enemy {
 
-    // Boolean to sa if this flying assasin has collied with the player
+    /**
+     * Boolean to sa if this flying assassin has collied with the player.
+     */
     private boolean hasColliedWithPlayer = false;
 
     /**
-     * Creates an instance of a flying assassin
+     * Creates an instance of a flying assassin.
      * @param xPos Starting X Position
      * @param yPos Starting Y Position
      * @param direction Starting direction
@@ -29,7 +32,7 @@ public class FlyingAssassin extends Enemy {
     }
 
     /**
-     * Gets if the flying assassin has collided with the player
+     * Gets if the flying assassin has collided with the player.
      * @return boolean has collied with player
      */
     public boolean getHasColliedWithPlayer() {
@@ -37,7 +40,7 @@ public class FlyingAssassin extends Enemy {
     }
 
     /**
-     * Checks if the flying assassin has collided with an entity
+     * Checks if the flying assassin has collided with an entity.
      * If it has then it 'Destroys that entity'
      * If it's collided with the player it ends the game
      */
@@ -56,7 +59,7 @@ public class FlyingAssassin extends Enemy {
     }
 
     /**
-     * Gets for a collision between with an entity
+     * Gets for a collision between with an entity.
      * @return Entity object of the entity it's collided with
      */
     private ArrayList<Entity> getCollision() {
@@ -65,7 +68,8 @@ public class FlyingAssassin extends Enemy {
 
         for (Entity entity : GameManager.getLevel().getEntities()) {
             if (entity != this) {
-                if (entity.getX() == super.getX() && entity.getY() == super.getY()) {
+                if (entity.getX() == super.getX()
+                        && entity.getY() == super.getY()) {
                     colliedEntities.add(entity);
                 }
             }
@@ -74,7 +78,7 @@ public class FlyingAssassin extends Enemy {
     }
 
     /**
-     * Moves the FlyingAssassin
+     * Moves the FlyingAssassin.
      * Is called every tick in the enemyTimeLine (in LevelController)
      */
     @Override
@@ -83,14 +87,18 @@ public class FlyingAssassin extends Enemy {
         while (!canMove) {
             int direction = super.getDirection();
 
-            boolean isX = direction == 1 || direction == 3;
-            boolean isNegative = direction == 0 || direction == 3;
+            boolean isX = direction == Constants.RIGHT_ID
+                    || direction == Constants.LEFT_ID;
+            boolean isNegative = direction == Constants.UP_ID
+                    || direction == Constants.LEFT_ID;
 
             // X Position of the next Tile (Based on Direction)
-            int newX = isX ?  super.getX() + (isNegative ? -1 : 1) : super.getX();
+            int newX =
+                    isX ?  super.getX() + (isNegative ? -1 : 1) : super.getX();
 
             // Y Position of the next Tile (Based on Direction)
-            int newY = !isX ? super.getY() + (isNegative ? -1 : 1) : super.getY();
+            int newY =
+                    !isX ? super.getY() + (isNegative ? -1 : 1) : super.getY();
 
             if (GameManager.getLevel().canMove(newX, newY, direction, false)) {
                 // sets the new X and Y positions
@@ -99,7 +107,11 @@ public class FlyingAssassin extends Enemy {
                 canMove = true;
             } else {
                 // Switches direction
-                int newDir = isX ? (direction == 1 ? 3 : 1) : (direction == 0 ? 2 : 0);
+                int newDir =
+                        isX ? (direction == Constants.RIGHT_ID
+                                ? Constants.LEFT_ID : Constants.RIGHT_ID)
+                                : (direction == Constants.UP_ID
+                                ? Constants.DOWN_ID : Constants.UP_ID);
                 super.setDirection(newDir);
             }
         }
@@ -108,7 +120,7 @@ public class FlyingAssassin extends Enemy {
     }
 
     /**
-     * Gets the Image of the entity
+     * Gets the Image of the entity.
      * @return Image of the entity
      */
     @Override
