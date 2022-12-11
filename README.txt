@@ -1,4 +1,4 @@
-Group 38: Prison Break
+Cell Block 38
 
 In the module of CS-230, we were tasked with making a game similar to the Windows arcade game named "Jewel Chase".
 
