@@ -3,6 +3,7 @@ package com.group38.prisonbreak.controllers;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
+import com.group38.prisonbreak.utilities.SaveLevelUtilities;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -83,8 +84,11 @@ public class LevelMenuController {
 	@FXML
 	private void initialize() {
 		// button animation
-		ImageView[] buttons = new ImageView[]{level1Button, level2Button, level3Button,
-				level4Button, level5Button, level6Button, level7Button, level8Button};
+		ImageView[] buttons = new ImageView[] {
+				level1Button, level2Button,
+				level3Button, level4Button,
+				level5Button, level6Button,
+				level7Button, level8Button };
 
 		for (ImageView b : buttons) {
 			b.hoverProperty().addListener(enlargeButton(b));
@@ -94,8 +98,11 @@ public class LevelMenuController {
 		exitButton.hoverProperty().addListener(rotateButton(exitButton));
 
 		// overlay setting
-		StackPane[] levelPanes = {levelStack2, levelStack3, levelStack4, levelStack5,
-				levelStack6, levelStack7, levelStack8};
+		StackPane[] levelPanes = {
+				levelStack2, levelStack3,
+				levelStack4, levelStack5,
+				levelStack6, levelStack7,
+				levelStack8 };
 		setOverlay(levelPanes);
 
 	}
@@ -124,14 +131,25 @@ public class LevelMenuController {
 		String buttonId = iv.getId();
 		String levelNumber = buttonId.substring(5, buttonId.length() - 6);
 
+		int intLevelNumber = Integer.parseInt(levelNumber);
+		int profileId = GameManager.getCurrentProfileId();
+
+		if (SaveLevelUtilities.doesSaveFileExist(profileId, intLevelNumber)) {
+			GameManager.setLevel(FileUtilities.readLevel(intLevelNumber));
+			System.out.println("save");
+			FileUtilities.getGameInstance().setRoot("overwriteMenu");
+		} else {
+			FileUtilities.getGameInstance().setRoot("loadLevel" + levelNumber);
+		}
+
 		//Add functionality to check if the current profile has a save for the selected level number
 
 		//If they don't have save needs to do this
 		//FileUtilities.getGameInstance().setRoot("loadLevel" + levelNumber);
 
 		//If they do have save needs to do this
-		GameManager.setLevel(FileUtilities.readLevel(Integer.parseInt(levelNumber)));
-		FileUtilities.getGameInstance().setRoot("overwriteMenu");
+	//	GameManager.setLevel(FileUtilities.readLevel(Integer.parseInt(levelNumber)));
+	//	FileUtilities.getGameInstance().setRoot("overwriteMenu");
 	}
 
 	/**
@@ -180,7 +198,8 @@ public class LevelMenuController {
 	 * @param levelPanes the levels to be displayed in the menu
 	 */
 	private static void setOverlay(StackPane[] levelPanes) {
-		int highestLevel = ProfileUtilities.getLevelFromProfile(getCurrentProfileId());
+		int highestLevel =
+				ProfileUtilities.getLevelFromProfile(getCurrentProfileId());
 
 		for (StackPane lp : levelPanes) {
 			String levelPaneID = lp.getId();

@@ -89,8 +89,13 @@ public class SaveLevelUtilities {
      * @return File to be saved
      */
     private static File getFile(int profileId, int levelNumber) {
-        String saveLocation = String.format(LEVEL_SAVE_LOCATION, levelNumber, profileId);
-        String newSaveLocation = FileUtilities.getResourcePathUnsafe(saveLocation);
+        String saveLocation = String.format(LEVEL_SAVE_LOCATION,
+                profileId,
+                levelNumber
+        );
+        String newSaveLocation =
+                FileUtilities.getResourcePathUnsafe(saveLocation);
+
         return new File(newSaveLocation);
     }
 
@@ -102,7 +107,8 @@ public class SaveLevelUtilities {
      */
     public static boolean doesSaveFileExist(int profileId, int levelNumber) {
         File file = getFile(profileId, levelNumber);
-        return (file.exists() && file.isDirectory());
+        System.out.println(file.exists());
+        return (file.exists());
     }
 
     /**
@@ -113,24 +119,21 @@ public class SaveLevelUtilities {
      * @param level     instance of the level
      */
     public static void saveLevel(int profileId, Level level) {
+        System.out.println(profileId);
         // Creates a file
         File saveFile = getFile(profileId, level.getLevelNumber());
-        boolean isFileCreated = false;
-        try {
-            isFileCreated = saveFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // If the file exists delete and save the new file (overwrite it)
-        if (!isFileCreated) {
+
+        // Delete file if exists
+        if (doesSaveFileExist(profileId, level.getLevelNumber())) {
             boolean success = saveFile.delete();
             assert (success);
-            try {
-                success = saveFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            assert (success);
+        }
+
+        try {
+            boolean fileSaved = saveFile.createNewFile();
+            assert (fileSaved);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         PrintWriter myWriter = null;
@@ -157,7 +160,10 @@ public class SaveLevelUtilities {
      * @param myWriter printWriter writing to the file
      */
     private static void saveScoreTime(PrintWriter myWriter) {
-        myWriter.write(String.format(TIME_SCORE_STRING_FORMAT, GameManager.getTime(), GameManager.getMoney()));
+        myWriter.write(String.format(TIME_SCORE_STRING_FORMAT,
+                GameManager.getTime(),
+                GameManager.getMoney())
+        );
     }
 
     /**
@@ -167,7 +173,10 @@ public class SaveLevelUtilities {
      * @param level    instance of level that's being saved
      */
     private static void saveTiles(PrintWriter myWriter, Level level) {
-        myWriter.write(String.format(LEVEL_SIZE_STRING_FORMAT, level.getWidth(), level.getHeight()));
+        myWriter.write(String.format(LEVEL_SIZE_STRING_FORMAT,
+                level.getWidth(),
+                level.getHeight())
+        );
         for (int y = 0; y < level.getHeight(); y++) {
             for (int x = 0; x < level.getWidth(); x++) {
                 Color[] colours = level.getTile(x, y).getColours();
@@ -188,7 +197,11 @@ public class SaveLevelUtilities {
      * @param player   instance of the player that's in the current level
      */
     private static void savePlayer(PrintWriter myWriter, Player player) {
-        myWriter.write(String.format(PLAYER_STRING_FORMAT, player.getX(), player.getY(), player.getDirection()));
+        myWriter.write(String.format(PLAYER_STRING_FORMAT,
+                player.getX(),
+                player.getY(),
+                player.getDirection())
+        );
     }
 
     /**
@@ -205,26 +218,26 @@ public class SaveLevelUtilities {
         for (int y = 0; y < level.getHeight(); y++) {
             for (int x = 0; x < level.getWidth(); x++) {
                 item = level.getTile(x, y).getItem();
-                if (item != null) {
-                    if (!(item instanceof Gate) && !(item instanceof Bomb)) {
-                        char itemChar = item instanceof Loot ? Constants.LOOT_CHAR : item instanceof Clock ?
-                                Constants.CLOCK_CHAR : item instanceof Lever ?
-                                Constants.LEVER_CHAR : Constants.DOOR_CHAR;
-                        switch (itemChar) {
-                            case Constants.LOOT_CHAR -> myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA,
-                                    Constants.LOOT_CHAR, x, y, ((Loot) item).getLootType()));
-                            case Constants.LEVER_CHAR -> myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA,
-                                    Constants.LEVER_CHAR, x, y,
-                                    ((Lever) item).getItemColour()));
-                            default -> myWriter.write(String.format(ITEM_STRING_FORMAT, itemChar, x, y));
-                        }
-                    } else if (item instanceof Gate) {
-                        myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA, Constants.GATE_CHAR, x, y,
-                                ((Gate) item).getGateColour()));
-                    } else if (((Bomb) item).isExplodable()) {
-                        myWriter.write(String.format(ITEM_STRING_FORMAT, Constants.BOMB_CHAR, x, y));
+                if (item != null && !(item instanceof Gate) && !(item instanceof Bomb)) {
+                    char itemChar = item instanceof Loot ?
+                            Constants.LOOT_CHAR : item instanceof Clock ?
+                            Constants.CLOCK_CHAR : item instanceof Lever ?
+                            Constants.LEVER_CHAR : Constants.DOOR_CHAR;
+                    switch (itemChar) {
+                        case Constants.LOOT_CHAR -> myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA,
+                                Constants.LOOT_CHAR, x, y, ((Loot) item).getLootType()));
+                        case Constants.LEVER_CHAR -> myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA,
+                                Constants.LEVER_CHAR, x, y,
+                                ((Lever) item).getItemColour()));
+                        default -> myWriter.write(String.format(ITEM_STRING_FORMAT, itemChar, x, y));
                     }
+                } else if (item instanceof Gate) {
+                    myWriter.write(String.format(ITEM_STRING_FORMAT_METADATA, Constants.GATE_CHAR, x, y,
+                            ((Gate) item).getGateColour()));
+                } else if (item != null && ((Bomb) item).isExplodable()) {
+                    myWriter.write(String.format(ITEM_STRING_FORMAT, Constants.BOMB_CHAR, x, y));
                 }
+
             }
         }
     }
@@ -256,9 +269,15 @@ public class SaveLevelUtilities {
             }
 
             if (!(entity instanceof Player) && !(entity instanceof FloorThief)) {
-                char entityChar = entity instanceof SmartThief ?
-                        Constants.SMART_THIEF_CHAR : Constants.FLYING_ASSASSIN_CHAR;
-                myWriter.write(String.format(ENEMY_STRING_FORMAT, entityChar, entity.getX(), entity.getY(), direction));
+                char entityChar =
+                        entity instanceof SmartThief ?
+                                Constants.SMART_THIEF_CHAR : Constants.FLYING_ASSASSIN_CHAR;
+                myWriter.write(String.format(ENEMY_STRING_FORMAT,
+                        entityChar,
+                        entity.getX(),
+                        entity.getY(),
+                        direction)
+                );
             } else if (entity instanceof FloorThief floorThief) {
                 char entityChar = Constants.FLOOR_THIEF_CHAR;
                 myWriter.write(String.format(FLOOR_THIEF_STRING,
