@@ -38,7 +38,7 @@ public class Gate extends Item {
     }
 
     /**
-     * @param isPlayer Whether the interacted person is a player
+     * @param isPlayer Whether the interacted person is a player.
      * @return
      */
     @Override

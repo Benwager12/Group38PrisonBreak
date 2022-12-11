@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Door extends Item {
 
     /**
-     * Hashmap of id's to images to show the door locked and unlocked
+     * Hashmap of id's to image to show the door locked and unlocked.
      */
     private static final HashMap<Integer, String> IMAGE_PATH_CACHE =
             new HashMap<>() {{
@@ -54,7 +54,8 @@ public class Door extends Item {
     }
 
     /**
-     * @return The image that represents an open or closed door
+     * Gets the image of the door
+     * @return The image that represents an open or closed door.
      */
     @Override
     public Image getImage() {

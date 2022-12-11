@@ -27,7 +27,7 @@ public class Loot extends Item {
     private final int lootType;
 
     /**
-     * Constructor for Loot class
+     * Constructor for Loot class.
      * @param metadata Type of loot (each type is an icon)
      */
     public Loot(String metadata) {
@@ -44,7 +44,7 @@ public class Loot extends Item {
     }
 
     /**
-     * adds money to the game iff the entity is a player
+     * adds money to the game iff the entity is a player.
      * @param isPlayer Is the entity a player
      */
     @Override

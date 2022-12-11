@@ -38,6 +38,7 @@ public class Clock extends Item {
     }
 
     /**
+     * Image that represents a clock
      * @return Returns the clock image used
      */
     @Override

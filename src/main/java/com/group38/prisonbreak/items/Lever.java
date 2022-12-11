@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import java.util.HashMap;
 
 /**
- * Implements a Lever
+ * Implements a Lever.
  * @author Daniel Banks (2107922)
  */
 public class Lever extends Item {
@@ -26,7 +26,7 @@ public class Lever extends Item {
     private final int itemColour;
 
     /**
-     * Creates an instance of a Lever
+     * Creates an instance of a Lever.
      * @param metadata Colour of tile (int)
      */
     public Lever(String metadata) {
