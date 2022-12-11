@@ -49,7 +49,7 @@ public class LeaderboardController {
     }
 
     /**
-     * On home image clicked redirect the root window.
+     * On home image clicked redirect to the main menu.
      * @param click trigger on mouse clicked.
      */
     @FXML
@@ -58,7 +58,7 @@ public class LeaderboardController {
     }
 
     /**
-     * On cross image clicked redirect the root window.
+     * On cross image clicked redirect the level menu.
      * @param click trigger on mouse clicked.
      */
     @FXML

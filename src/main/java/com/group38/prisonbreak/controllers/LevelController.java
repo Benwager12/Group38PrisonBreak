@@ -131,7 +131,7 @@ public class LevelController {
     }
 
     /**
-     *
+     * Sets the size of the canvas window
      */
     public void recalculateCanvasSize() {
         if (GameManager.getLevel() == null) {
@@ -160,7 +160,7 @@ public class LevelController {
     }
 
     /**
-     *
+     * Draws the canvas to the screen.
      */
     public void drawCanvas() {
         if (g == null) {
@@ -253,7 +253,7 @@ public class LevelController {
     }
 
     /**
-     * On home image clicked redirect the root window.
+     * On home image clicked redirect to the main menu.
      * @param click trigger on mouse clicked.
      */
     @FXML
@@ -273,7 +273,7 @@ public class LevelController {
     }
 
     /**
-     * Save the level and re-direct the root pane.
+     * Save the level and redirect to the level menu
      * @param click Trigger on mouse clicked.
      */
     @FXML
