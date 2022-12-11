@@ -4,11 +4,7 @@ import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.beans.value.ChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -18,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 /**
  * NewProfileController handles the...[add]
  */
-public class NewProfileController {
+public class AskOverwriteController {
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
@@ -32,9 +28,11 @@ public class NewProfileController {
     private ImageView logoImage;
 
     @FXML
-    private TextField enterName;
+    private ImageView yesButton;
 
-    private String profileName = null;
+    @FXML
+    private ImageView noButton;
+
 
     /**
      * [add]
@@ -57,17 +55,18 @@ public class NewProfileController {
     }
 
     @FXML
-    public void onEnter(KeyEvent submit) {
-        if (submit.getCode().equals(KeyCode.ENTER)) {
-            profileName = enterName.getText();
-            ProfileUtilities.addProfile(profileName);
-            GameManager.setCurrentProfileId(ProfileUtilities.getNoProfiles());
-            FileUtilities.getGameInstance().setRoot("gameIntro");
-        }
+    private void yesClicked(MouseEvent actionEvent) {
+        //Maybe add functionality to delete a saved level file???
+
+        FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
     }
 
-    public String getProfileName(){
-        return profileName;
+    @FXML
+    private void noClicked(MouseEvent actionEvent) {
+        //Needs to be able to set the level to run from a "saved progress level file"
+
+        //Then runs this which just loads the level FXML
+        FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
     }
 
     /**

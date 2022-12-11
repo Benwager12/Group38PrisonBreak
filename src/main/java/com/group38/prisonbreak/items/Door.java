@@ -14,8 +14,8 @@ import java.util.HashMap;
 public class Door extends Item {
 
     private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
-        put(0, gameImagesStart + "door_close.png");
-        put(1, gameImagesStart + "door_open.png");
+        put(0, GAME_IMAGE_PATH + "door_close.png");
+        put(1, GAME_IMAGE_PATH + "door_open.png");
     }};
 
     private static final HashMap<Integer, Image> imageCache = new HashMap<>();

@@ -15,10 +15,10 @@ public class Gate extends Item {
     private final int gateColour;
 
     private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
-        put(0, gameImagesStart + "gate_rusted_locked.png");
-        put(1, gameImagesStart + "gate_bronze_locked.png");
-        put(2, gameImagesStart + "gate_silver_locked.png");
-        put(3, gameImagesStart + "gate_gold_locked.png");
+        put(0, GAME_IMAGE_PATH + "gate_rusted_locked.png");
+        put(1, GAME_IMAGE_PATH + "gate_bronze_locked.png");
+        put(2, GAME_IMAGE_PATH + "gate_silver_locked.png");
+        put(3, GAME_IMAGE_PATH + "gate_gold_locked.png");
 
     }};
 
@@ -34,7 +34,7 @@ public class Gate extends Item {
     }
 
     /**
-     * @param isPlayer
+     * @param isPlayer Whether the interacted person is a player
      * @return
      */
     @Override

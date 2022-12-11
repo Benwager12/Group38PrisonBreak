@@ -67,7 +67,7 @@
                               <Insets right="4.0" />
                            </HBox.margin>
                         </ImageView>
-                        <ImageView fx:id="saveImage" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="saveImage" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#saveClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/GameImages/save_game.png" />
                            </image>

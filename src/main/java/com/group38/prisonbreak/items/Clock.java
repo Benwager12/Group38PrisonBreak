@@ -15,7 +15,7 @@ public class Clock extends Item {
     public Clock() {
 
         if (clockImage == null) {
-            clockImage = FileUtilities.loadImageFromResource(gameImagesStart + "clock.png");
+            clockImage = FileUtilities.loadImageFromResource(GAME_IMAGE_PATH + "clock.png");
         }
     }
 
@@ -35,7 +35,7 @@ public class Clock extends Item {
     }
 
     /**
-     * @return
+     * @return Returns the clock image used
      */
     @Override
     public Image getImage() {

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane id="gamePane" fx:id="AskOverwritePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: black; -fx-border-width: 25;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="gamePane" fx:id="AskOverwritePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="800.0" style="-fx-background-color: #5A5A5A; -fx-border-color: black; -fx-border-width: 25;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group38.prisonbreak.controllers.AskOverwriteController">
    <top>
       <BorderPane id="gameInfoPane" prefHeight="45.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
@@ -21,7 +21,7 @@
             <HBox id="scoreHBox" fx:id="scoreHBox" alignment="TOP_CENTER" prefHeight="46.0" prefWidth="215.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox minWidth="-Infinity" prefHeight="100.0" prefWidth="190.0" />
-                  <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="28.0" fitWidth="24.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true" translateX="20.0">
+                  <ImageView fx:id="homeImage" accessibleRole="BUTTON" fitHeight="46.0" fitWidth="35.0" onMouseClicked="#homeClicked" pickOnBounds="true" preserveRatio="true" translateX="20.0">
                      <image>
                         <Image url="@../images/Menus/HomeButton.png" />
                      </image>
@@ -29,7 +29,7 @@
                         <Insets top="1.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="23.0" fitWidth="25.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" translateX="20.0">
+                  <ImageView fx:id="crossImage" accessibleRole="BUTTON" fitHeight="49.0" fitWidth="39.0" onMouseClicked="#crossClicked" pickOnBounds="true" preserveRatio="true" translateX="20.0">
                      <image>
                         <Image url="@../images/Menus/CrossButton.png" />
                      </image>
@@ -56,12 +56,12 @@
                   <Image url="@../images/Menus/OverwriteTextImage.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="120.0">
+            <ImageView fx:id="yesButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#yesClicked" pickOnBounds="true" preserveRatio="true" translateX="120.0">
                <image>
                   <Image url="@../images/Menus/YesButtonImage.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="410.0" translateY="-74.0">
+            <ImageView fx:id="noButton" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#noClicked" pickOnBounds="true" preserveRatio="true" translateX="410.0" translateY="-74.0">
                <image>
                   <Image url="@../images/Menus/NoButtonImage.png" />
                </image>

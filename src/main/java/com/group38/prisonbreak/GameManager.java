@@ -140,15 +140,22 @@ public class GameManager {
     }
 
     /**
-     * Exists the game and saves profile and level data
+     * Saves the current level and profile data
      */
-    public static void exitGame() {
+    public static void saveLevel() {
         ProfileUtilities.saveProfiles();
         LeaderboardUtilities.saveProfiles();
 
         if (level != null && level.getPlayer() instanceof Player) {
             SaveLevelUtilities.saveLevel(currentProfileId, level);
         }
+    }
+
+    /**
+     * Exits the game and saves profile and level data
+     */
+    public static void exitGame() {
+        saveLevel();
         System.exit(0);
     }
 
@@ -214,6 +221,13 @@ public class GameManager {
      */
     public static int getMoney() {
         return money;
+    }
+
+    /**
+     * Resets the money collected/score.
+     */
+    public static void resetMoney() {
+        GameManager.money = 0;
     }
 
     /**

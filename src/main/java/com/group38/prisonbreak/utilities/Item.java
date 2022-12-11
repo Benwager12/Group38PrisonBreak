@@ -5,6 +5,8 @@
 
 package com.group38.prisonbreak.utilities;
 
+import com.group38.prisonbreak.GameManager;
+import com.group38.prisonbreak.Level;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -14,10 +16,13 @@ import javafx.scene.image.Image;
  */
 public abstract class Item implements Drawable {
 
-    protected static final String gameImagesStart = "images/GameImages/";
+    /** The path that you're getting the images from */
+    protected static final String GAME_IMAGE_PATH = "images/GameImages/";
+
+    /** The index of the specific image we are displaying */
     protected int imageIndex;
 
-    /** Defines what happens when a player interacts with an Item. */
+    /** Defines what happens when a non-player interacts with an Item. */
     public boolean interact() {
         return interact(false);
     }
@@ -39,10 +44,26 @@ public abstract class Item implements Drawable {
      */
     public abstract Image getImage();
 
+    /**
+     * Draw the item onto the screen at point 0
+     * @param g The graphics context
+     */
     @Override
     public void draw(GraphicsContext g) {
-        // Needs to be changed when we implement the drawing of tiles
-        g.drawImage(getImage(), 0, 0);
+        Level lvl = GameManager.getLevel();
+        if (lvl == null) {
+            return;
+        }
+        int sideLength = lvl.getSideLength(g);
+        g.drawImage(getImage(), 0, 0, sideLength, sideLength);
+    }
+
+    /**
+     * Draw the item onto the tile
+     * @param g The graphics context
+     */
+    public void draw(GraphicsContext g, int tileX, int tileY, int sideLength) {
+        g.drawImage(getImage(), tileX * sideLength, tileY * sideLength, sideLength, sideLength);
     }
 }
 

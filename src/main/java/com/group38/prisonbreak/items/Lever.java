@@ -14,10 +14,10 @@ import java.util.HashMap;
 public class Lever extends Item {
 
     private static final HashMap<Integer, String> imagePathCache = new HashMap<>() {{
-        put(0, gameImagesStart + "key_rusted.png");
-        put(1, gameImagesStart + "key_bronze.png");
-        put(2, gameImagesStart + "key_silver.png");
-        put(3, gameImagesStart + "key_gold.png");
+        put(0, GAME_IMAGE_PATH + "key_rusted.png");
+        put(1, GAME_IMAGE_PATH + "key_bronze.png");
+        put(2, GAME_IMAGE_PATH + "key_silver.png");
+        put(3, GAME_IMAGE_PATH + "key_gold.png");
     }};
 
     private static final HashMap<Integer, Image> imageCache = new HashMap<>();

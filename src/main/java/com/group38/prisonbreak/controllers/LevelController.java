@@ -1,12 +1,12 @@
 package com.group38.prisonbreak.controllers;
 
 import com.group38.prisonbreak.Constants;
+import com.group38.prisonbreak.Game;
 import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.Level;
 import com.group38.prisonbreak.entities.enemies.FlyingAssassin;
 import com.group38.prisonbreak.entities.enemies.SmartThief;
-import com.group38.prisonbreak.utilities.Entity;
-import com.group38.prisonbreak.utilities.FileUtilities;
+import com.group38.prisonbreak.utilities.*;
 import com.group38.prisonbreak.entities.Player;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -71,6 +71,7 @@ public class LevelController {
         mainPane.heightProperty().addListener(paneSizeChange);
         mainPane.widthProperty().addListener(paneSizeChange);
 
+        // button animation
         homeImage.hoverProperty().addListener(rotateButton(homeImage));
         crossImage.hoverProperty().addListener(rotateButton(crossImage));
         saveImage.hoverProperty().addListener(rotateButton(saveImage));
@@ -80,6 +81,7 @@ public class LevelController {
         drawCanvas();
         recalculateCanvasSize();
         levelNumberLabel.setText(String.valueOf(GameManager.getLevel().getLevelNumber()));
+        GameManager.resetMoney();
         GameManager.playTimeLines();
     }
 
@@ -201,16 +203,26 @@ public class LevelController {
         GameManager.exitGame();
     }
 
+    @FXML
+    private void saveClicked(MouseEvent actionEvent) {
+        GameManager.saveLevel();
+        FileUtilities.getGameInstance().setRoot("levelMenu");
+    }
+
     /**
      * Rotates button when applicable.
+     *
      * @param img the button to be rotated
      * @return rotated/unrotated button depending on situation
      */
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
+                // modify button position
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
+
             } else {
+                // maintain original button position
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };
