@@ -1,5 +1,6 @@
 package com.group38.prisonbreak.controllers;
 
+import com.group38.prisonbreak.GameManager;
 import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.ProfileUtilities;
 import javafx.beans.value.ChangeListener;
@@ -122,7 +123,15 @@ public class LevelMenuController {
 		}
 		String buttonId = iv.getId();
 		String levelNumber = buttonId.substring(5, buttonId.length() - 6);
-		FileUtilities.getGameInstance().setRoot("loadLevel" + levelNumber);
+
+		//Add functionality to check if the current profile has a save for the selected level number
+
+		//If they don't have save needs to do this
+		//FileUtilities.getGameInstance().setRoot("loadLevel" + levelNumber);
+
+		//If they do have save needs to do this
+		//GameManager.setLevel(FileUtilities.readLevel(Integer.parseInt(levelNumber)));
+		//FileUtilities.getGameInstance().setRoot("overwriteMenu");
 	}
 
 	/**
