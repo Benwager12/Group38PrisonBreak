@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Utility that saves a current level to a .level file
+ * Utility that saves a current level to a .level file.
  *
  * @author Daniel Banks (2107922)
  */
@@ -83,21 +83,40 @@ public class SaveLevelUtilities {
     private static final String FLOOR_THIEF_STRING = "%c %d %d %c %d%n";
 
     /**
-     * Saves the progress of the current level into a file
+     * Creates a save file
+     * @param profileId id of the profile
+     * @param levelNumber level number of the current level
+     * @return File to be saved
+     */
+    private static File getFile(int profileId, int levelNumber) {
+        String saveLocation = String.format(LEVEL_SAVE_LOCATION, levelNumber, profileId);
+        String newSaveLocation = FileUtilities.getResourcePathUnsafe(saveLocation);
+        return new File(newSaveLocation);
+    }
+
+    /**
+     * Checks if a save file already exists
+     * @param profileId Profile id of the profile
+     * @param levelNumber level number of the current level
+     * @return if there already is a save for the level
+     */
+    public static boolean doesSaveFileExist(int profileId, int levelNumber) {
+        File file = getFile(profileId, levelNumber);
+        return (file.exists() && file.isDirectory());
+    }
+
+    /**
+     * Saves the progress of the current level into a file.
      * NOTE: THIS WILL REPLACE ANY SAVE MADE BY THAT PROFILE ON THE SAME LEVEL
      *
      * @param profileId id of the profile that's currently player
      * @param level     instance of the level
      */
     public static void saveLevel(int profileId, Level level) {
-        String saveLocation = String.format(LEVEL_SAVE_LOCATION, level.getLevelNumber(), profileId);
-        String newSaveLocation = FileUtilities.getResourcePathUnsafe(saveLocation);
-
         // Creates a file
-        File saveFile = new File(newSaveLocation);
+        File saveFile = getFile(profileId, level.getLevelNumber());
         boolean isFileCreated = false;
         try {
-            System.out.println(newSaveLocation);
             isFileCreated = saveFile.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
@@ -113,8 +132,6 @@ public class SaveLevelUtilities {
             }
             assert (success);
         }
-
-        System.out.println("Saved at " + saveLocation);
 
         PrintWriter myWriter = null;
         try {
@@ -135,7 +152,7 @@ public class SaveLevelUtilities {
     }
 
     /**
-     * Writes the time left and score of the level to the file
+     * Writes the time left and score of the level to the file.
      *
      * @param myWriter printWriter writing to the file
      */
@@ -144,7 +161,7 @@ public class SaveLevelUtilities {
     }
 
     /**
-     * Writes all the tiles colours to the file
+     * Writes all the tiles colours to the file.
      *
      * @param myWriter printWriter writing to the file
      * @param level    instance of level that's being saved
@@ -165,7 +182,7 @@ public class SaveLevelUtilities {
     }
 
     /**
-     * Writes all the player info to the file
+     * Writes all the player info to the file.
      *
      * @param myWriter printWriter writing to the file
      * @param player   instance of the player that's in the current level
@@ -175,7 +192,7 @@ public class SaveLevelUtilities {
     }
 
     /**
-     * Writes all the info for all the tiles in the level to the file
+     * Writes all the info for all the tiles in the level to the file.
      *
      * @param myWriter printWriter writing to the file
      * @param level    instance of the level that's being saved
@@ -213,7 +230,7 @@ public class SaveLevelUtilities {
     }
 
     /**
-     * Writes all the entities' info to the file
+     * Writes all the entities' info to the file.
      *
      * @param myWriter printWriter writing to the file
      * @param level    instance of the level that's being saved
