@@ -75,6 +75,7 @@ public class MenuController {
         }
 
     }
+
     /**
      * Rotates button when applicable.
      *
