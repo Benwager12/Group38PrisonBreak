@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 /**
  * A singleton class that holds everything in the level.
- *
  * @author Ben Wager (2108500), Daniel Banks (2107922)
  */
 public class GameManager {

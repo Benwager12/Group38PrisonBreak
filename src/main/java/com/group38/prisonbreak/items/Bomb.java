@@ -11,6 +11,11 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
+/**
+ * Implements a Bomb in the game.
+ * @author Daniel Banks (2107922)
+ */
+
 public class Bomb extends Item {
 
     /** Every image path that bomb ever uses. */
@@ -32,9 +37,6 @@ public class Bomb extends Item {
      */
     private static final HashMap<Integer, Image> IMAGE_CACHE = new HashMap<>();
 
-    /** A boolean that points out whether the bomb has been exploded. */
-    private boolean explodable = true;
-
     /** A second in millis, used for the creation of the timeline. */
     private static final int SECOND_IN_MILLIS = 1000;
 
@@ -44,6 +46,9 @@ public class Bomb extends Item {
                     Duration.millis(SECOND_IN_MILLIS),
                     event -> countdownBomb())
             );
+
+    /** A boolean that points out whether the bomb has been exploded. */
+    private boolean explodable = true;
 
     /**
      * The main bomb, this is only utilised if it is a filler
@@ -105,19 +110,6 @@ public class Bomb extends Item {
         return true;
     }
 
-    /**
-     * The method used to count down from 3 to 0 on the bomb.
-     */
-    private void countdownBomb() {
-        if (imageIndex > 1) {
-            imageIndex--;
-        } else {
-            GameManager.getLevel().removeAllItemsExplosion();
-            bombTimeLine.stop();
-            imageIndex = -1;
-        }
-    }
-
     /** Utilised when another bomb explodes. */
     public void immediateExplosion() {
         imageIndex = -1;
@@ -136,5 +128,18 @@ public class Bomb extends Item {
     @Override
     public Image getImage() {
         return IMAGE_CACHE.get(explodable ? imageIndex : null);
+    }
+
+    /**
+     * The method used to count down from 3 to 0 on the bomb.
+     */
+    private void countdownBomb() {
+        if (imageIndex > 1) {
+            imageIndex--;
+        } else {
+            GameManager.getLevel().removeAllItemsExplosion();
+            bombTimeLine.stop();
+            imageIndex = -1;
+        }
     }
 }

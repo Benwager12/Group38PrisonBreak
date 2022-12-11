@@ -5,6 +5,11 @@ import com.group38.prisonbreak.utilities.FileUtilities;
 import com.group38.prisonbreak.utilities.Item;
 import javafx.scene.image.Image;
 
+/**
+ * Implements a Clock in the game.
+ * @author Daniel Banks (2107922)
+ */
+
 public class Clock extends Item {
 
     /**

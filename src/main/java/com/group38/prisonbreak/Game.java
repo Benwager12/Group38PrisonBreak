@@ -11,6 +11,11 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
+/**
+ * A class that represents a Game and sets the scenes, stage and runs the FXML.
+ * @author Ben Wager (2108500), Daniel Banks (2107922), Matthew Salter (986488)
+ */
+
 public class Game extends Application {
 
     /** Location of the new profile fxml file. */
