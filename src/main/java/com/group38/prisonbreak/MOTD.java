@@ -141,7 +141,7 @@ public class MOTD {
      * @param finalMessage message of the day
      * @return message without date
      */
-    public static String removeDateTime(String finalMessage) {
+    private static String removeDateTime(String finalMessage) {
         Scanner in = new Scanner(finalMessage);
         //stop by braces as date documentation starts with brace
         in.useDelimiter("\\(");

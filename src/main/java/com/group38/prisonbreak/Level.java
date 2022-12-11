@@ -133,64 +133,6 @@ public class Level implements Drawable {
     }
 
     /**
-     * Draws all the Tiles onto the level.
-     * @param g The graphics context to draw the tiles onto.
-     */
-    private void drawTiles(GraphicsContext g) {
-        int sideLength = getSideLength(g);
-
-        int tileXDraw = 0;
-        int tileYDraw = 0;
-
-        for (int y = 0; y < getHeight(); y++) {
-            for (int x = 0; x < getWidth(); x++) {
-                g.drawImage(
-                        Level.TILE_IMAGE,
-                        tileXDraw,
-                        tileYDraw,
-                        sideLength,
-                        sideLength
-                );
-                Tile t = getTile(x, y);
-
-                // Tile colour side length
-                int tileColourSL = sideLength / 2;
-
-                // Loop through every colour in tile
-                colourTiles(g, tileXDraw, tileYDraw, t, tileColourSL);
-
-                tileXDraw += sideLength;
-            }
-            tileXDraw = 0;
-            tileYDraw += sideLength;
-        }
-    }
-
-    /**
-     * With a given tile coordinate, apply the colours.
-     * @param g The graphics context to apply the colours
-     * @param tileXDraw Tile on the X coordinate to draw.
-     * @param tileYDraw Tile on the Y coordinate to draw.
-     * @param tileColourSL The side length of any individual colour.
-     */
-    private void colourTiles(GraphicsContext g, int tileXDraw, int tileYDraw, Tile t, int tileColourSL) {
-
-        for (int col = 0; col < t.getColours().length; col++) {
-            boolean isRight = col == 1 || col == 3;
-            boolean isBottom = col == 2 || col == 3;
-
-            g.setFill(t.getColours()[col]);
-
-            // Ternary checks to fill the correct part of the square
-            g.fillRect(
-                    tileXDraw + (isRight ? tileColourSL : 0),
-                    tileYDraw + (isBottom ? tileColourSL : 0),
-                    tileColourSL,
-                    tileColourSL);
-        }
-    }
-
-    /**
      * Draws all Entities onto the level.
      * @param g The graphics context we draw the entities onto.
      */
@@ -300,7 +242,7 @@ public class Level implements Drawable {
             return new int[]{posX, posY};
         }
 
-            if (tiles[move[1]][move[0]].hasColour(colourID)) {
+        if (tiles[move[1]][move[0]].hasColour(colourID)) {
             return move;
         }
 
@@ -399,6 +341,64 @@ public class Level implements Drawable {
             return gatesOpen.get(g.getGateColour());
         }
         return true;
+    }
+
+    /**
+     * Draws all the Tiles onto the level.
+     * @param g The graphics context to draw the tiles onto.
+     */
+    private void drawTiles(GraphicsContext g) {
+        int sideLength = getSideLength(g);
+
+        int tileXDraw = 0;
+        int tileYDraw = 0;
+
+        for (int y = 0; y < getHeight(); y++) {
+            for (int x = 0; x < getWidth(); x++) {
+                g.drawImage(
+                        Level.TILE_IMAGE,
+                        tileXDraw,
+                        tileYDraw,
+                        sideLength,
+                        sideLength
+                );
+                Tile t = getTile(x, y);
+
+                // Tile colour side length
+                int tileColourSL = sideLength / 2;
+
+                // Loop through every colour in tile
+                colourTiles(g, tileXDraw, tileYDraw, t, tileColourSL);
+
+                tileXDraw += sideLength;
+            }
+            tileXDraw = 0;
+            tileYDraw += sideLength;
+        }
+    }
+
+    /**
+     * With a given tile coordinate, apply the colours.
+     * @param g The graphics context to apply the colours
+     * @param tileXDraw Tile on the X coordinate to draw.
+     * @param tileYDraw Tile on the Y coordinate to draw.
+     * @param tileColourSL The side length of any individual colour.
+     */
+    private void colourTiles(GraphicsContext g, int tileXDraw, int tileYDraw, Tile t, int tileColourSL) {
+
+        for (int col = 0; col < t.getColours().length; col++) {
+            boolean isRight = col == 1 || col == 3;
+            boolean isBottom = col == 2 || col == 3;
+
+            g.setFill(t.getColours()[col]);
+
+            // Ternary checks to fill the correct part of the square
+            g.fillRect(
+                    tileXDraw + (isRight ? tileColourSL : 0),
+                    tileYDraw + (isBottom ? tileColourSL : 0),
+                    tileColourSL,
+                    tileColourSL);
+        }
     }
 
     /**

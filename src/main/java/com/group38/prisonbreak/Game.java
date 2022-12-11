@@ -90,6 +90,10 @@ public class Game extends Application {
     private static Scene scene = null;
     private static Stage primaryStage = null;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     /**
      * The initialization of the scene/stage.
      * @param primaryStage The primary stage that we start on
@@ -201,10 +205,5 @@ public class Game extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
 }
 

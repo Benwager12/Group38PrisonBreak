@@ -15,6 +15,10 @@ import java.util.ArrayList;
  * @author Ben Wager (2108500), Daniel Banks (2107922)
  */
 public class GameManager {
+    /** ArrayList of currently pressed keys. */
+    private static final ArrayList<KeyCode> CURRENTLY_PRESSED =
+            new ArrayList<>();
+
     /** Instance of the level that's currently open. */
     private static Level level;
 
@@ -38,10 +42,6 @@ public class GameManager {
      *  updates every 1000 milliseconds (1 second)
      */
     public static Timeline timeTimeLine;
-
-    /** ArrayList of currently pressed keys. */
-    private static final ArrayList<KeyCode> CURRENTLY_PRESSED =
-            new ArrayList<>();
 
     /** Id of the profile that's current playing. */
     private static int currentProfileId;
