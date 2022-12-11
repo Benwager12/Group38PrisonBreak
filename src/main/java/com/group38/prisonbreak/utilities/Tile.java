@@ -4,7 +4,7 @@ import com.group38.prisonbreak.Constants;
 import javafx.scene.paint.Color;
 
 /**
- * A Class that implements a tile
+ * A Class that implements a tile.
  * @author Daniel Banks (2107922), Ben Wager (2108500)
  */
 
@@ -12,25 +12,27 @@ public class Tile {
 
 
 
-    // colours that make up the tile
-    private int[] colourIDs;
+    /** colourIds that make up the tile. */
+    private final int[] colourIDs;
+
+    /** Array of colours that make up a tile. */
     private final Color[] colours = new Color[4];
 
-    // the Item that's on the tile
+    /** the Item that's on the tile. */
     private Item item;
     /**
-     * creates a tile instance with set colours
+     * creates a tile instance with set colours.
      * @param colours array of ints (0-5) that represent the colours
      */
     public Tile(int[] colours) {
         this.colourIDs = colours;
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < colours.length; i++) {
             this.colours[i] = Constants.COLOUR_MAP.get(colours[i]);
         }
     }
 
     /**
-     * Gets all the colours of the tile
+     * Gets all the colours of the tile.
      * @return Color[]
      */
     public Color[] getColours() {
@@ -38,7 +40,7 @@ public class Tile {
     }
 
     /**
-     * Checks if any of the colours in a given array is on the tile
+     * Checks if any of the colours in a given array is on the tile.
      * @param checkColours array of Colors
      * @return boolean
      */
@@ -54,7 +56,7 @@ public class Tile {
     }
 
     /**
-     * Checks if the tile has matching colourIds
+     * Checks if the tile has matching colourIds.
      * @param checkColours int[] of size 4, with colourIds to check
      * @return Boolean if one colour matches
      */
@@ -70,20 +72,20 @@ public class Tile {
     }
 
     /**
-     * Sets the item on the tile
+     * Sets the item on the tile.
      * @param item The item to set
      */
     public void setItem(Item item) {
         this.item = item;
     }
 
-    /** Removes the item from the tile */
+    /** Removes the item from the tile. */
     public void removeItem() {
         item = null;
     }
 
     /**
-     * gets the item on the tile
+     * gets the item on the tile.
      * @return item
      */
     public Item getItem() {
@@ -91,7 +93,7 @@ public class Tile {
     }
 
     /**
-     * Gets the all the colourIds that make up the tile
+     * Gets the all the colourIds that make up the tile.
      * @return int[] of size 4 with the colour Ids
      */
     public int[] getColourIDs() {
@@ -99,11 +101,11 @@ public class Tile {
     }
 
     /**
-     * Checks if the tile has a specific given colour
+     * Checks if the tile has a specific given colour.
      * @param checkColour colourId of the tile
      * @return boolean, if it has the colour
      */
-	public boolean hasColour(int checkColour) {
+    public boolean hasColour(int checkColour) {
         for (int id : colourIDs) {
             if (id == checkColour) {
                 return true;
