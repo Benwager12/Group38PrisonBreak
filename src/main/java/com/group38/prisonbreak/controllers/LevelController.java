@@ -227,8 +227,6 @@ public class LevelController {
 
     /**
      * Changes the main game timer.
-     * @author Daniel Banks, Ben Wager
-     * @since 02/12/2022
      */
     private void changeTime() {
         GameManager.setTime(GameManager.getTime() - 1);
@@ -256,10 +254,10 @@ public class LevelController {
 
     /**
      * On home image clicked redirect the root window.
-     * @param ignoredActionEvent trigger on mouse clicked.
+     * @param click trigger on mouse clicked.
      */
     @FXML
-    private void homeClicked(MouseEvent ignoredActionEvent) {
+    private void homeClicked(MouseEvent click) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
         GameManager.stopTimeLines();
     }
@@ -276,10 +274,10 @@ public class LevelController {
 
     /**
      * Save the level and re-direct the root pane.
-     * @param actionEvent Trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
-    private void saveClicked(MouseEvent actionEvent) {
+    private void saveClicked(MouseEvent click) {
         GameManager.saveLevel();
         FileUtilities.getGameInstance().setRoot("levelMenu");
         GameManager.stopTimeLines();
