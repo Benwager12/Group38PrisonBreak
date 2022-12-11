@@ -90,8 +90,8 @@ public class SaveLevelUtilities {
      */
     private static File getFile(int profileId, int levelNumber) {
         String saveLocation = String.format(LEVEL_SAVE_LOCATION,
-                profileId,
-                levelNumber
+                levelNumber,
+                profileId
         );
         String newSaveLocation =
                 FileUtilities.getResourcePathUnsafe(saveLocation);
