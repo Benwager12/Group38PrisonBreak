@@ -56,6 +56,8 @@ public class AskOverwriteController {
 
     @FXML
     private void yesClicked(MouseEvent actionEvent) {
+        //Maybe add functionality to delete a saved level file???
+
         FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
     }
 
