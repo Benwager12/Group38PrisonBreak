@@ -127,6 +127,7 @@ public class LevelController {
                 .getLevelNumber())
         );
         GameManager.playTimeLines();
+        scoreNumberLabel.setText(String.valueOf(GameManager.getMoney()));
     }
 
     /**
@@ -169,22 +170,6 @@ public class LevelController {
         GameManager.getLevel().draw(g);
     }
 
-    /**
-     * Click the canvas to trigger the start of the level and draw the
-     * canvas, update the level number and start timelines.
-     * @param ignoredMouseEvent Trigger on mouse click
-     */
-    public void onMouseClickCanvas(MouseEvent ignoredMouseEvent) {
-        GameManager.setLevel(
-                FileUtilities.readLevel(GameManager.getLevel().getLevelNumber())
-        );
-        drawCanvas();
-        recalculateCanvasSize();
-        levelNumberLabel.setText(
-                String.valueOf(GameManager.getLevel().getLevelNumber())
-        );
-        GameManager.playTimeLines();
-    }
 
     /**
      * Moves all the entities apart from smart thief.
@@ -236,6 +221,7 @@ public class LevelController {
             GameManager.getLevel().draw(g);
         }
         scoreNumberLabel.setText(String.valueOf(GameManager.getMoney()));
+
 
     }
 
