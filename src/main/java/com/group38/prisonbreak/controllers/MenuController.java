@@ -11,7 +11,9 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 /**
- * MenuController handles the...[add]
+ * MenuController manages the ...[add]
+ *
+ * @author Maisha Begum Chowdhury (2114962)
  */
 public class MenuController {
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
@@ -30,19 +32,13 @@ public class MenuController {
     private ImageView gateImage;
 
     @FXML
-    private ImageView motdSpeechBubble;
-
-    @FXML
-    private Text motdTitle;
-
-    @FXML
     private Text motdTextBox;
 
     private static String message;
 
     @FXML
     private void initialize() {
-        // button animation
+        // animate buttons on hover detection
         newGameImage.hoverProperty().addListener(rotateButton(newGameImage));
         loadGameImage.hoverProperty().addListener(rotateButton(loadGameImage));
         exitImage.hoverProperty().addListener(rotateButton(exitImage));
@@ -79,14 +75,18 @@ public class MenuController {
     }
     /**
      * Rotates button when applicable.
+     *
      * @param img the button to be rotated
      * @return rotated/unrotated button depending on situation
      */
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
+                // modify button position
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
+
             } else {
+                // maintain original button position
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };
