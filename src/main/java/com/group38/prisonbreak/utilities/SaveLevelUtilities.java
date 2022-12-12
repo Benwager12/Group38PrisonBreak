@@ -23,6 +23,8 @@ import java.util.HashMap;
  */
 public class SaveLevelUtilities {
 
+    /** File name formula for the levels. */
+    public static final String LEVEL_SAVE_LOCATION = "data/saves/%d_%d.level";
     /** Hash map of Colors to Ints (Reverse of Hashmap in Tiles). */
     private static final HashMap<Color, Integer> COLOUR_MAP = new HashMap<>() {{
         put(Color.rgb(253, 101, 105, .25), 0); // Red
@@ -32,10 +34,6 @@ public class SaveLevelUtilities {
         put(Color.rgb(41, 255, 254, .25), 4);  // Cyan
         put(Color.rgb(253, 5, 253, .25), 5);  // Magenta
     }};
-
-    /** File name formula for the levels. */
-    public static final String LEVEL_SAVE_LOCATION = "data/saves/%d_%d.level";
-
     /** New line string. */
     private static final String NEW_LINE = "\n";
 
@@ -74,9 +72,6 @@ public class SaveLevelUtilities {
      * <itemChar> <XPos> <YPos>
      */
     private static final String ITEM_STRING_FORMAT = "%c %d %d%n";
-
-    /** Number of players in the game. */
-    private static final int NO_PLAYERS = 1;
 
     /**
      *  String Format for saving an Entity.
