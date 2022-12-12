@@ -55,12 +55,11 @@ public class ProfileUtilities {
      * @return The highest level of the player
      */
     public static int getLevelFromProfile(int id) {
-        for (Profile profile : PROFILES) {
-            if (profile.getId() == id) {
-                return profile.getHighestLevel();
-            }
+        Profile p = getProfileFromId(id);
+        if (p == null) {
+            return 0;
         }
-        return 0;
+        return p.getHighestLevel();
     }
 
     /**
@@ -81,7 +80,7 @@ public class ProfileUtilities {
      * @param levelNumber New highest level completed
      */
     public static void updateProfile(int id, int levelNumber) {
-        Profile profile = PROFILES.get(id - 1);
+        Profile profile = getProfileFromId(id);
         if (profile != null) {
             if (levelNumber > profile.getHighestLevel()) {
                 profile.setHighestLevel(levelNumber);
@@ -95,7 +94,7 @@ public class ProfileUtilities {
      * @param name New name of the player
      */
     public static void updateProfile(int id, String name) {
-        Profile profile = PROFILES.get(id - 1);
+        Profile profile = getProfileFromId(id);
         profile.setName(name);
     }
 
@@ -106,7 +105,8 @@ public class ProfileUtilities {
      * @param levelNumber New highest level completed
      */
     public static void updateProfile(int id, String name, int levelNumber) {
-        Profile profile = PROFILES.get(id - 1);
+        Profile profile = getProfileFromId(id);
+        assert profile != null;
         profile.setName(name);
         profile.setHighestLevel(levelNumber);
     }
@@ -136,7 +136,12 @@ public class ProfileUtilities {
      * @return String name
      */
     public static String getName(int id) {
-        return PROFILES.get(id - 1).getName();
+        for (Profile p : PROFILES) {
+            if (p.getId() == id) {
+                return p.getName();
+            }
+        }
+        return null;
     }
 
     /**
