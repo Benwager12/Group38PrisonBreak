@@ -86,15 +86,25 @@ public class Game extends Application {
     /** Input that represents opening the loading a level. */
     private static final String LOAD = "load";
 
-    /** Size of the scene. */
+    /** Width of the scene. */
     private static final int WIDTH = 800;
+
+    /** Height of the scene. */
     private static final int HEIGHT = 446;
 
-    /** Key components of the scene. */
+    /** Root of the scene. */
     private static Pane root = null;
+
+    /** The main scene. */
     private static Scene scene = null;
+
+    /** The stage set for the scene. */
     private static Stage primaryStage = null;
 
+    /**
+     * The main method where the program is launched.
+     * @param args The program arguments.
+     */
     public static void main(String[] args) {
         launch(args);
     }
