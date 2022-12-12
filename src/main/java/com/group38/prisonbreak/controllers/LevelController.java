@@ -25,63 +25,63 @@ import javafx.util.Duration;
  */
 public class LevelController {
 
-    /* The original position of the button */
+    /** The original position of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /* The modified position of the button */
+    /** The modified position of the button. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    /*  Size of the Top Pane which holds level information */
+    /**  Size of the Top Pane which holds level information. */
     private static final int LEVEL_TEXT_PANE_SIZE = 46;
 
-    /* Number of seconds in minutes */
+    /** Number of seconds in minutes. */
     private static final int SECONDS_IN_MINUTES = 60;
 
-    /* Max size of a number before it requires 2 digits */
+    /** Max size of a number before it requires 2 digits. */
     private static final int MAX_INT = 9;
 
-    /* String format of the clock to display time in minutes and seconds */
+    /** String format of the clock to display time in minutes and seconds. */
     private static final String CLOCK_TEXT_FORMAT = "0%d";
 
-    /* Utilised to draw items to the screen */
+    /** Utilised to draw items to the screen. */
     private GraphicsContext g;
 
-    /* Fx:id for the displayed level number */
+    /** Fx:id for the displayed level number. */
     @FXML
     private Text levelNumberLabel;
 
-    /* Fx:id for the displayed time */
+    /** Fx:id for the displayed time. */
     @FXML
     private Text timeLabel;
 
-    /* Fx:id for the displayed score number */
+    /** Fx:id for the displayed score number. */
     @FXML
     private Text scoreNumberLabel;
 
-    /* Fx:id for the displayed home button image */
+    /** Fx:id for the displayed home button image. */
     @FXML
     private ImageView homeImage;
 
-    /* Fx:id for the displayed exit button image */
+    /** Fx:id for the displayed exit button image. */
     @FXML
     private ImageView crossImage;
 
-    /* Fx:id for the displayed save button image */
+    /** Fx:id for the displayed save button image. */
     @FXML
     private ImageView saveImage;
 
-    /* Fx:id for the displayed game canvas */
+    /** Fx:id for the displayed game canvas. */
     @FXML
     private Canvas gameCanvas;
 
-    /* Fx:id for the window's main borderpane */
+    /** Fx:id for the window's main borderpane. */
     @FXML
     private BorderPane mainPane;
 
     /**
      * Triggers at the opening of the FXML file and creates the
      * timeline, pane sizing, hover property listeners, sets level/score
-     * information to text and draws the canvas
+     * information to text and draws the canvas.
      */
     @FXML
     public void initialize() {
@@ -196,7 +196,6 @@ public class LevelController {
      * Moves all the entities apart from smart thief.
      */
     private void moveEnemies() {
-        /* Try catch error of moving an entity while the entity is being deleted */
             for (Entity entity : GameManager.getLevel().getEntities()) {
                 if (entity.isAlive() && !(entity instanceof SmartThief)
                         && !(entity instanceof Player)) {

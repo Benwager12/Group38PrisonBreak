@@ -18,49 +18,52 @@ import javafx.scene.layout.StackPane;
  */
 public class SelectProfileController {
 
-    /* The original rotation of the button */
+    /** The original rotation of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /* The modified rotation of the button */
+    /** The modified rotation of the button. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    /* The amount of profiles to show at a given time */
+    /** The amount of profiles to show at a given time. */
     private static final int PROFILES_SHOW = 3;
 
-    /* Fx:id for the menu's home button image */
+    /** Fx:id for the menu's home button image. */
     @FXML
     private ImageView homeImage;
 
-    /* Fx:id for the menu's exit button image */
+    /** Fx:id for the menu's exit button image. */
     @FXML
     private ImageView crossImage;
 
-    /* Fx:id for the menu's left navigating button image */
+    /** Fx:id for the menu's left navigating button image. */
     @FXML
     private ImageView leftArrowButton;
 
-    /* Fx:id for the menu's right navigating button image */
+    /** Fx:id for the menu's right navigating button image. */
     @FXML
     private ImageView rightArrowButton;
 
+    /** Stack pane for the first profile */
     @FXML
     private StackPane selectPane1;
 
+    /** Stack pane for the second profile */
     @FXML
     private StackPane selectPane2;
 
+    /** Stack pane for the third profile */
     @FXML
     private StackPane selectPane3;
 
-    /* Fx:id for the delete button on displayed profile 1 */
+    /** Fx:id for the delete button on displayed profile 1. */
     @FXML
     private ImageView profileCross1;
 
-    /* Fx:id for the delete button on displayed profile 2 */
+    /** Fx:id for the delete button on displayed profile 2. */
     @FXML
     private ImageView profileCross2;
 
-    /* Fx:id for the delete button on displayed profile 3 */
+    /** Fx:id for the delete button on displayed profile 3. */
     @FXML
     private ImageView profileCross3;
 

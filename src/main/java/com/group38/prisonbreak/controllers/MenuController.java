@@ -18,24 +18,26 @@ import java.io.IOException;
  */
 public class MenuController {
 
-    /* The original position of the button */
+    /** The original position of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /* The modified position of the button */
+    /** The modified position of the button. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
-    /* Fx:id for the menu's new game button image */
+
+    /** Fx:id for the menu's new game button image. */
     @FXML
     private ImageView newGameImage;
-    /* Fx:id for the menu's load game button image */
+    /** Fx:id for the menu's load game button image. */
     @FXML
     private ImageView loadGameImage;
-    /* Fx:id for the menu's exit button image */
+    /** Fx:id for the menu's exit button image. */
     @FXML
     private ImageView exitImage;
-    /* Fx:id for the menu's gate image */
+
+    /** Fx:id for the menu's gate image. */
     @FXML
     private ImageView gateImage;
-    /* Fx:id for the menu's message of the day text */
+    /** Fx:id for the menu's message of the day text .*/
     @FXML
     private Text motdTextBox;
 

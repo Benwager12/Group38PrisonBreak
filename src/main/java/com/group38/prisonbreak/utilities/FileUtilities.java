@@ -104,7 +104,6 @@ public class FileUtilities {
             System.exit(-1);
         }
 
-        System.out.println(levelPath);
         // This is the level data
         int levelNumber;
         String[] splitBySlash = levelPath.split("/");
@@ -113,7 +112,6 @@ public class FileUtilities {
         if (levelPath.contains("saves")) {
             levelNumber =
                     Integer.parseInt(levelFileName.split("_")[0]);
-            System.out.println(levelNumber);
         } else {
             String extension = ".level";
             levelNumber =
@@ -122,7 +120,6 @@ public class FileUtilities {
                             levelFileName.length() - extension.length())
                     );
         }
-        System.out.println(levelPath);
         return readInfo(scanner, levelNumber);
     }
 
