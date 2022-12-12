@@ -108,7 +108,6 @@ public class LeaderboardUtilities {
         try {
             PrintWriter myWriter = new PrintWriter(
                     FileUtilities.getResourcePath(FILE_LOCATION));
-            System.out.println(FileUtilities.getResourcePath(FILE_LOCATION));
 
             for (Map.Entry<Integer, LevelLeaderboard> levelHScore
                     : LEADERBOARD.entrySet()) {
