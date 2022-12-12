@@ -67,6 +67,29 @@ public class LevelLeaderboard {
     }
 
     /**
+     * Removes a highscore from a profile
+     * @param id id of the profile to be removed
+     */
+    public void removeFromLeaderboard(int id) {
+        int instancesRemoved = 0;
+
+        // Remove instances of the id and pushes values down
+        for (int i = 0; i < scores.length - instancesRemoved; i++) {
+            if (id == scores[i][0]) {
+                instancesRemoved++;
+            }
+            if (instancesRemoved != 0) {
+                scores[i] = scores[i + instancesRemoved];
+            }
+        }
+
+        // Removes duplicated scores
+        for (int i = scores.length - 1; i > scores.length - instancesRemoved - 1; i--) {
+            scores[i] = new int[2];
+        }
+    }
+
+    /**
      * Gets the current high scores of the level.
      * @return int[] high scores
      */

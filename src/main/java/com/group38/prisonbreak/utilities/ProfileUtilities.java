@@ -153,6 +153,7 @@ public class ProfileUtilities {
      */
     public static void removeProfile(int id) {
         // Removes the profile if it has the id of the given id
+        LeaderboardUtilities.removeProfile(id);
         PROFILES.removeIf(p -> p.getId() == id);
     }
 
