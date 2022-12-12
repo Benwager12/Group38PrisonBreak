@@ -13,7 +13,7 @@ public class Tile {
     private final int[] colourIDs;
 
     /** Array of colours that make up a tile. */
-    private final Color[] colours = new Color[4];
+    private final Color[] colours = new Color[Constants.NO_COLOURS];
 
     /** the Item that's on the tile. */
     private Item item;

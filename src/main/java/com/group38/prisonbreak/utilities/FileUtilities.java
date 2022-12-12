@@ -2,14 +2,22 @@
 
 package com.group38.prisonbreak.utilities;
 
-import com.group38.prisonbreak.*;
+import com.group38.prisonbreak.Constants;
+import com.group38.prisonbreak.Game;
+import com.group38.prisonbreak.GameManager;
+import com.group38.prisonbreak.Level;
+import com.group38.prisonbreak.entities.Player;
 import com.group38.prisonbreak.entities.enemies.FloorThief;
 import com.group38.prisonbreak.entities.enemies.FlyingAssassin;
 import com.group38.prisonbreak.entities.enemies.SmartThief;
-import com.group38.prisonbreak.entities.Player;
-import com.group38.prisonbreak.items.*;
-import javafx.scene.image.Image;
+import com.group38.prisonbreak.items.Bomb;
+import com.group38.prisonbreak.items.Loot;
+import com.group38.prisonbreak.items.Clock;
+import com.group38.prisonbreak.items.Gate;
+import com.group38.prisonbreak.items.Lever;
+import com.group38.prisonbreak.items.Door;
 
+import javafx.scene.image.Image;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -279,7 +287,7 @@ public class FileUtilities {
         for (int h = 0; h < height; h++) {
             for (int w = 0; w < width; w++) {
                 String[] tileColoursString = in.next().split("");
-                int[] tileColours = new int[4];
+                int[] tileColours = new int[Constants.NO_COLOURS];
 
                 for (int i = 0; i < tileColoursString.length; i++) {
                     tileColours[i] = Integer.parseInt(tileColoursString[i]);

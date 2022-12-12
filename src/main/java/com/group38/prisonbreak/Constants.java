@@ -38,6 +38,8 @@ public class Constants {
     /** Character that represents a FlyingAssassin in .Level Files. */
     public static final char FLYING_ASSASSIN_CHAR = 'H';
 
+    private Constants() { }
+
     /** Map of ints to colors used in tiles. */
     public static final HashMap<Integer, Color> COLOUR_MAP = new HashMap<>() {{
         put(0, Color.rgb(253, 101, 105, .25)); // Red
@@ -119,4 +121,7 @@ public class Constants {
 
     /** Position of where entities go upon being 'Killed'. */
     public static final int KILLED_ENTITY_LOCATION = -1;
+
+    /** Number of colours that make up a tile */
+    public static final int NO_COLOURS = 4;
 }
