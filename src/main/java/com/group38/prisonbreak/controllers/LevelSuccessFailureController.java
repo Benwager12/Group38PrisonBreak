@@ -17,40 +17,40 @@ import javafx.scene.layout.HBox;
  */
 public class LevelSuccessFailureController {
 
-    /* The original position of the button */
+    /** The original position of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /* The modified position of the button */
+    /** The modified position of the button. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    /* The amount of levels */
+    /** The amount of levels. */
     private static final int NUMBER_OF_LEVELS = 8;
 
-    /* Fx:id for the menu's home button image */
+    /** Fx:id for the menu's home button image. */
     @FXML
     private ImageView homeImage;
 
-    /* Fx:id for the menu's exit button image */
+    /** Fx:id for the menu's exit button image. */
     @FXML
     private ImageView crossImage;
 
-    /* Fx:id for the menu's next level button image */
+    /** Fx:id for the menu's next level button image. */
     @FXML
     private ImageView nextLevelButton;
 
-    /* Fx:id for the menu's retry button image */
+    /** Fx:id for the menu's retry button image. */
     @FXML
     private ImageView retryArrow;
 
-    /* Fx:id for the menu's profile name text box */
+    /** Fx:id for the menu's profile name text box. */
     @FXML
     private Label profileNameText;
 
-    /* Fx:id for the menu's player score text box */
+    /** Fx:id for the menu's player score text box. */
     @FXML
     private Label playerScoreText;
 
-    /* Fx:id for the Hbox that is the parent of the next level button */
+    /** Fx:id for the Hbox that is the parent of the next level button. */
     @FXML
     private HBox nextLevelHbox;
 
@@ -63,7 +63,10 @@ public class LevelSuccessFailureController {
         profileNameText.setText(ProfileUtilities
                 .getName(GameManager.getCurrentProfileId()));
         playerScoreText.setText(Integer.toString(GameManager
-                .calculateScore(GameManager.getMoney(), GameManager.getTime())));
+                .calculateScore(
+                        GameManager.getMoney(),
+                        GameManager.getTime()))
+        );
 
         /* Removes the next level button if player has completed the last level */
         if (GameManager.getLevel().getLevelNumber() == NUMBER_OF_LEVELS

@@ -19,88 +19,119 @@ import static com.group38.prisonbreak.GameManager.getCurrentProfileId;
  */
 public class LevelMenuController {
 
-	/* The original height of the button */
+	/** The original height of the button. */
 	private static final double ORIGINAL_BUTTON_HEIGHT = 41;
 
-	/* The original width of the button */
+	/** The original width of the button. */
 	private static final double ORIGINAL_BUTTON_WIDTH = 36;
 
-	/* The modified height of the button */
+	/** The modified height of the button. */
 	private static final double MODIFIED_BUTTON_HEIGHT = 54;
 
-	/* The modified width of the button */
+	/** The modified width of the button. */
 	private static final double MODIFIED_BUTTON_WIDTH = 54;
 
-	/* The original position of the button */
+	/** The original position of the button. */
 	private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-	/* The modified position of the button */
+	/** The modified position of the button. */
 	private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-	/* Level number position in the level string e.g. Level1 */
+	/** Level number position in the level string e.g. Level1. */
 	private static final int LEVEL_NUMBER_START = 5;
 
-	/* End position of the level number in the level string */
+	/** End position of the level number in the level string. */
 	private static final int LEVEL_NUMBER_END = 6;
 
-	/* Position of the level number in the fxml */
+	/** Position of the level number in the fxml */
 	private static final int LEVEL_NUMBER_FXML = 10;
 
-	/* level_Button corresponds to the respective level's button image
-	 *
-	 * levelStack corresponds to the respective level's fxml StackPane
-	 * which contains its preview graphic, button and overlay */
-
+	/** level 1's button's image. */
 	@FXML
 	private ImageView level1Button;
 
+	/**
+	 * level 3's fxml StackPane
+	 * containing its preview graphic, button and overlay.
+	 * */
 	@FXML
 	private StackPane levelStack2;
 
+	/** level 2's button's image. */
 	@FXML
 	private ImageView level2Button;
 
+	/**
+	 * level 3's fxml StackPane
+	 * containing its preview graphic, button and overlay.
+	 * */
 	@FXML
 	private StackPane levelStack3;
 
+	/** level 3's button's image. */
 	@FXML
 	private ImageView level3Button;
 
+	/**
+	 * level 4's fxml StackPane
+	 * containing its preview graphic, button and overlay.
+	 * */
 	@FXML
 	private StackPane levelStack4;
 
+	/** level 4's button's image. */
 	@FXML
 	private ImageView level4Button;
 
+	/**
+	 * level 5's fxml StackPane
+	 * containing its preview graphic, button and overlay.
+	 * */
 	@FXML
 	private StackPane levelStack5;
 
+	/** level 5's button's image. */
 	@FXML
 	private ImageView level5Button;
 
+	/**
+	 * level 6's fxml StackPane
+	 * containing its preview graphic, button and overlay.
+	 * */
 	@FXML
 	private StackPane levelStack6;
 
+	/** level 6's button's image. */
 	@FXML
 	private ImageView level6Button;
 
+	/**
+	 * level 7's fxml StackPane
+	 * containing its preview graphic, button and overlay.
+	 * */
 	@FXML
 	private StackPane levelStack7;
 
+	/** level 7's button's image. */
 	@FXML
 	private ImageView level7Button;
 
+	/**
+	 * level 7's fxml StackPane
+	 * containing its preview graphic, button and overlay.
+	 * */
 	@FXML
 	private StackPane levelStack8;
 
+	/** level 8's button's image. */
 	@FXML
 	private ImageView level8Button;
 
-	/* Fx:id for the menu's home button image */
+	/** Fx:id for the menu's home button image. */
 	@FXML
 	private ImageView homeButton;
 
-	/* Fx:id for the menu's exit button image */
+	/** Fx:id for the menu's exit button image. */
 	@FXML
 	private ImageView exitButton;
 

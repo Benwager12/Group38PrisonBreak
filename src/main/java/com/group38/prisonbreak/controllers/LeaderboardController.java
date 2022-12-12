@@ -17,17 +17,17 @@ import javafx.scene.text.Text;
 
 public class LeaderboardController {
 
-    /* The original position of the button */
+    /** The original position of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /* The modified position of the button */
+    /** The modified position of the button. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    /* Fx:id for the menu's exit button image */
+    /** Fx:id for the menu's exit button image. */
     @FXML
     private ImageView crossImage;
 
-    /* Fx:id for the text box used for the leaderboard information */
+    /** Fx:id for the text box used for the leaderboard information. */
     @FXML
     private Text leaderboardText;
 
