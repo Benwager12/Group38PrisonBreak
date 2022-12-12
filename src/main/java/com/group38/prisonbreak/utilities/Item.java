@@ -11,7 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
- *
+ * Implements an Item
  * @author Daniel Banks (2107922)
  */
 public abstract class Item implements Drawable {

@@ -12,10 +12,7 @@ import java.util.Scanner;
  * This class fetches the Message of the day.
  * From CSWEBCAT.SWANSEA.AC.UK using HTTP GET Requests
  * @author Issa (853846)
- * @since 29/11/2022
  */
-
-
 public class MOTD {
 
     /** URL of the web request to get message of the day. */
@@ -34,6 +31,8 @@ public class MOTD {
     /**
      * Publicly accessible get method for the message of the day.
      * @return A string with the message of the day and its time stamp.
+     * @exception InterruptedException If the send request is interrupted
+     * @exception IOException General error if when the send request fails.
      */
     public String getMessageOfTheDay() throws IOException, InterruptedException {
         String puzzle = getPuzzle();

@@ -9,6 +9,10 @@ import com.group38.prisonbreak.Constants;
 import com.group38.prisonbreak.GameManager;
 import javafx.scene.image.Image;
 
+/**
+ * Implements an Entity
+ * @author Daniel Banks (2107922), Ben Wager (2108500)
+ */
 public abstract class Entity {
 
     /** Path of the entity images. */

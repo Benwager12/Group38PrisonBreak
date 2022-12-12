@@ -18,7 +18,6 @@ import java.util.HashMap;
 
 /**
  * Utility that saves a current level to a .level file.
- *
  * @author Daniel Banks (2107922)
  */
 public class SaveLevelUtilities {
