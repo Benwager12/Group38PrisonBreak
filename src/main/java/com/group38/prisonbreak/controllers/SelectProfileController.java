@@ -127,7 +127,9 @@ public class SelectProfileController {
             return;
         }
 
-        int selectedItem = Integer.parseInt(iv.getId().substring(9));
+        String starter = "faceImage";
+
+        int selectedItem = Integer.parseInt(iv.getId().substring(starter.length()));
         Profile profile =
                 ProfileUtilities.
                         getProfiles()[getProfileFromButtonNumber(selectedItem)];
@@ -151,7 +153,9 @@ public class SelectProfileController {
             return;
         }
 
-        int crossNumber = Integer.parseInt(iv.getId().substring(12));
+        String starter = "profileCross";
+
+        int crossNumber = Integer.parseInt(iv.getId().substring(starter.length()));
         int profileNumber = getProfileFromButtonNumber(crossNumber);
 
         Profile selectedProfile = ProfileUtilities.getProfiles()[profileNumber];
