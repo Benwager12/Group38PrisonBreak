@@ -105,6 +105,66 @@ public class LevelMenuController {
 	private ImageView exitButton;
 
 	/**
+	 * Enlarges button when applicable.
+	 * @param img the button to be enlarged.
+	 * @return enlarged/usual button depending on situation.
+	 */
+	private static ChangeListener<Boolean> enlargeButton(ImageView img) {
+		return (observable, oldValue, newValue) -> {
+			if (observable.getValue()) {
+				/* Scale up button */
+				img.setFitHeight(MODIFIED_BUTTON_HEIGHT);
+				img.setFitWidth(MODIFIED_BUTTON_WIDTH);
+
+			} else {
+				/* Maintain original dimensions of button */
+				img.setFitHeight(ORIGINAL_BUTTON_HEIGHT);
+				img.setFitWidth(ORIGINAL_BUTTON_WIDTH);
+			}
+		};
+	}
+
+	/**
+	 * Rotates button when applicable.
+	 * @param img the button to be rotated.
+	 * @return rotated/non-rotated button depending on situation.
+	 */
+	private static ChangeListener<Boolean> rotateButton(ImageView img) {
+		return (observable, oldValue, newValue) -> {
+			if (observable.getValue()) {
+				/* Modify button position */
+				img.setRotate(MODIFIED_BUTTON_ROTATION);
+
+			} else {
+				/* Maintain original button position */
+				img.setRotate(ORIGINAL_BUTTON_ROTATION);
+			}
+		};
+	}
+
+	/**
+	 * Sets overlays such that levels not yet unlocked are disabled for selection.
+	 * @param levelPanes the levels to be displayed in the menu.
+	 */
+	private static void setOverlay(StackPane[] levelPanes) {
+		int highestLevel =
+				ProfileUtilities.getLevelFromProfile(getCurrentProfileId());
+
+		for (StackPane lp : levelPanes) {
+			String levelPaneID = lp.getId();
+
+			/* Extract corresponding level number from fx:id */
+			int levelStackNumber =
+					Integer.parseInt(levelPaneID.substring(LEVEL_NUMBER_FXML));
+
+			/* Remove overlay when player has already completed level */
+			if (levelStackNumber <= highestLevel + 1) {
+				lp.getChildren().remove(2);
+			}
+		}
+	}
+
+	/**
 	 * Triggers at the opening of the FXML file and creates listeners
 	 * and animations for buttons along with creating the overlays for
 	 * locked levels.
@@ -179,66 +239,6 @@ public class LevelMenuController {
 			FileUtilities.getGameInstance().setRoot("overwriteMenu");
 		} else {
 			FileUtilities.getGameInstance().setRoot("loadLevel" + levelNumber);
-		}
-	}
-
-	/**
-	 * Enlarges button when applicable.
-	 * @param img the button to be enlarged.
-	 * @return enlarged/usual button depending on situation.
-	 */
-	private static ChangeListener<Boolean> enlargeButton(ImageView img) {
-		return (observable, oldValue, newValue) -> {
-			if (observable.getValue()) {
-				/* Scale up button */
-				img.setFitHeight(MODIFIED_BUTTON_HEIGHT);
-				img.setFitWidth(MODIFIED_BUTTON_WIDTH);
-
-			} else {
-				/* Maintain original dimensions of button */
-				img.setFitHeight(ORIGINAL_BUTTON_HEIGHT);
-				img.setFitWidth(ORIGINAL_BUTTON_WIDTH);
-			}
-		};
-	}
-
-	/**
-	 * Rotates button when applicable.
-	 * @param img the button to be rotated.
-	 * @return rotated/non-rotated button depending on situation.
-	 */
-	private static ChangeListener<Boolean> rotateButton(ImageView img) {
-		return (observable, oldValue, newValue) -> {
-			if (observable.getValue()) {
-				/* Modify button position */
-				img.setRotate(MODIFIED_BUTTON_ROTATION);
-
-			} else {
-				/* Maintain original button position */
-				img.setRotate(ORIGINAL_BUTTON_ROTATION);
-			}
-		};
-	}
-
-	/**
-	 * Sets overlays such that levels not yet unlocked are disabled for selection.
-	 * @param levelPanes the levels to be displayed in the menu.
-	 */
-	private static void setOverlay(StackPane[] levelPanes) {
-		int highestLevel =
-				ProfileUtilities.getLevelFromProfile(getCurrentProfileId());
-
-		for (StackPane lp : levelPanes) {
-			String levelPaneID = lp.getId();
-
-			/* Extract corresponding level number from fx:id */
-			int levelStackNumber =
-					Integer.parseInt(levelPaneID.substring(LEVEL_NUMBER_FXML));
-
-			/* Remove overlay when player has already completed level */
-			if (levelStackNumber <= highestLevel + 1) {
-				lp.getChildren().remove(2);
-			}
 		}
 	}
 }

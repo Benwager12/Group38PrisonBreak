@@ -16,11 +16,10 @@ import javafx.util.Duration;
 
 public class GameIntroductionController {
 
-    /* Game introduction timeline which tells the game when the video has ended */
-    private Timeline timeline = null;
-
     /* Duration of the video played at the beginning */
     private static final int VIDEO_DURATION = 29;
+    /* Game introduction timeline which tells the game when the video has ended */
+    private Timeline timeline = null;
 
     /**
      * Triggers at the opening of the FXML file and plays video.
@@ -39,10 +38,10 @@ public class GameIntroductionController {
 
     /**
      * On skip button clicked, stop timeline and redirect the level menu.
-     * @param click Trigger on mouse clicked.
+     * @param ignoredClick Trigger on mouse clicked.
      */
     @FXML
-    private void skipClicked(final MouseEvent click) {
+    private void skipClicked(final MouseEvent ignoredClick) {
         timeline.stop();
         FileUtilities.getGameInstance().setRoot("levelMenu");
     }

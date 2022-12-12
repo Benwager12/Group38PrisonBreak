@@ -51,11 +51,27 @@ public abstract class Entity {
     }
 
     /**
+     * Sets the X position.
+     * @param newX X position
+     */
+    protected void setX(int newX) {
+        x = newX;
+    }
+
+    /**
      * Gets the y position.
      * @return Y
      */
     public int getY() {
         return y;
+    }
+
+    /**
+     * Sets the Y position.
+     * @param newY Y position
+     */
+    protected void setY(int newY) {
+        y = newY;
     }
 
     /**
@@ -83,6 +99,17 @@ public abstract class Entity {
     }
 
     /**
+     * Sets EntitySpriteURL.
+     * @param entityName Name of the png to be loaded.
+     */
+    protected void setEntityImage(String entityName) {
+        entityImage =
+                FileUtilities.loadImageFromResource(
+                        String.format(IMAGE_URL, entityName)
+                );
+    }
+
+    /**
      * Gets if the entity is alive.
      * @return boolean - isAlive
      */
@@ -101,35 +128,6 @@ public abstract class Entity {
     }
 
     /**
-     * Checks if entity has Collided with a flying Assassin.
-     * If so; kills it.
-     * @return boolean has Collided with Flying Assassin
-     */
-    protected boolean checkCollision() {
-        if (GameManager.getLevel().hasCollidedWithFlyingAssassin(x, y)) {
-            killEntity();
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Sets the X position.
-     * @param newX X position
-     */
-    protected void setX(int newX) {
-        x = newX;
-    }
-
-    /**
-     * Sets the Y position.
-     * @param newY Y position
-     */
-    protected void setY(int newY) {
-        y = newY;
-    }
-
-    /**
      * Gets the current tile that the entity is on.
      * @return tile
      */
@@ -143,18 +141,20 @@ public abstract class Entity {
     public abstract void move();
 
     /**
+     * Checks if entity has Collided with a flying Assassin.
+     * If so; kills it.
+     * @return boolean has Collided with Flying Assassin
+     */
+    protected boolean checkCollision() {
+        if (GameManager.getLevel().hasCollidedWithFlyingAssassin(x, y)) {
+            killEntity();
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Interacts with an item that's on the current tile.
      */
     protected abstract void itemInteract();
-
-    /**
-     * Sets EntitySpriteURL.
-     * @param entityName Name of the png to be loaded.
-     */
-    protected void setEntityImage(String entityName) {
-        entityImage =
-                FileUtilities.loadImageFromResource(
-                        String.format(IMAGE_URL, entityName)
-                );
-    }
 }

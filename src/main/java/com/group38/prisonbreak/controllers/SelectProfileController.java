@@ -91,6 +91,92 @@ public class SelectProfileController {
     }
 
     /**
+     * Navigate to the right through the stored profiles.
+     * @param ignoredClick Triggered on mouse click.
+     */
+    public void rightArrowClicked(MouseEvent ignoredClick) {
+        profileOffset =
+                Math.min(ProfileUtilities.getNoProfiles()
+                        - PROFILES_SHOW, profileOffset + 1);
+        displayButtons();
+        displayProfiles();
+    }
+
+    /**
+     * Navigate to the left through the stored profiles.
+     * @param ignoredClick Triggered on mouse click.
+     */
+    public void leftArrowClicked(MouseEvent ignoredClick) {
+        profileOffset = Math.max(profileOffset - 1, 0);
+        displayButtons();
+        displayProfiles();
+    }
+
+    /**
+     * Selection of the profile and re-direct the root to
+     * the level selection pane.
+     * @param click Triggered on the click of the mouse.
+     */
+    public void profileSelect(MouseEvent click) {
+        if (!(click.getSource() instanceof ImageView iv)) {
+            return;
+        }
+
+        int selectedItem = Integer.parseInt(iv.getId().substring(9));
+        Profile profile =
+                ProfileUtilities.
+                        getProfiles()[getProfileFromButtonNumber(selectedItem)];
+
+        GameManager.setCurrentProfileId(profile.getId());
+        FileUtilities.getGameInstance().setRoot("levelMenu");
+    }
+
+    /**
+     * Delete the profile from the list of profiles and the
+     * corresponding stored data.
+     * @param click Triggered on mouse click.
+     */
+    public void profileDeleteClick(MouseEvent click) {
+
+        if (click.getEventType() != MouseEvent.MOUSE_CLICKED) {
+            return;
+        }
+
+        if (!(click.getSource() instanceof ImageView iv)) {
+            return;
+        }
+
+        int crossNumber = Integer.parseInt(iv.getId().substring(12));
+        int profileNumber = getProfileFromButtonNumber(crossNumber);
+
+        Profile selectedProfile = ProfileUtilities.getProfiles()[profileNumber];
+
+        ProfileUtilities.removeProfile(selectedProfile.getId());
+        ProfileUtilities.saveProfiles();
+
+        displayProfiles();
+        displayButtons();
+    }
+
+    /**
+     * Rotates button when applicable.
+     * @param img The button to be rotated.
+     * @return Rotated/non-rotated button depending on situation.
+     */
+    private static ChangeListener<Boolean> rotateButton(ImageView img) {
+        return (observable, oldValue, newValue) -> {
+            if (observable.getValue()) {
+                /* Modify button position. */
+                img.setRotate(MODIFIED_BUTTON_ROTATION);
+
+            } else {
+                /* Maintain original button position. */
+                img.setRotate(ORIGINAL_BUTTON_ROTATION);
+            }
+        };
+    }
+
+    /**
      * Displays the profile images on the window.
      */
     private void displayProfiles() {
@@ -132,47 +218,6 @@ public class SelectProfileController {
     }
 
     /**
-     * Navigate to the right through the stored profiles.
-     * @param click Triggered on mouse click.
-     */
-    public void rightArrowClicked(MouseEvent click) {
-        profileOffset =
-                Math.min(ProfileUtilities.getNoProfiles()
-                        - PROFILES_SHOW, profileOffset + 1);
-        displayButtons();
-        displayProfiles();
-    }
-
-    /**
-     * Navigate to the left through the stored profiles.
-     * @param click Triggered on mouse click.
-     */
-    public void leftArrowClicked(MouseEvent click) {
-        profileOffset = Math.max(profileOffset - 1, 0);
-        displayButtons();
-        displayProfiles();
-    }
-
-    /**
-     * Selection of the profile and re-direct the root to
-     * the level selection pane.
-     * @param click Triggered on the click of the mouse.
-     */
-    public void profileSelect(MouseEvent click) {
-        if (!(click.getSource() instanceof ImageView iv)) {
-            return;
-        }
-
-        int selectedItem = Integer.parseInt(iv.getId().substring(9));
-        Profile profile =
-                ProfileUtilities.
-                        getProfiles()[getProfileFromButtonNumber(selectedItem)];
-
-        GameManager.setCurrentProfileId(profile.getId());
-        FileUtilities.getGameInstance().setRoot("levelMenu");
-    }
-
-    /**
      * Returns profile id from selected button press number.
      * @param selectedNumber The number of the selected button that was pressed
      * @return The profile ID
@@ -183,10 +228,10 @@ public class SelectProfileController {
 
     /**
      * On home image clicked, redirect to the main menu.
-     * @param click Trigger on mouse clicked.
+     * @param ignoredClick Trigger on mouse clicked.
      */
     @FXML
-    private void homeClicked(MouseEvent click) {
+    private void homeClicked(MouseEvent ignoredClick) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 
@@ -198,51 +243,6 @@ public class SelectProfileController {
     private void crossClicked(MouseEvent click) {
         click.consume();
         GameManager.exitGame();
-    }
-
-    /**
-     * Rotates button when applicable.
-     * @param img The button to be rotated.
-     * @return Rotated/non-rotated button depending on situation.
-     */
-    private static ChangeListener<Boolean> rotateButton(ImageView img) {
-        return (observable, oldValue, newValue) -> {
-            if (observable.getValue()) {
-                /* Modify button position. */
-                img.setRotate(MODIFIED_BUTTON_ROTATION);
-
-            } else {
-                /* Maintain original button position. */
-                img.setRotate(ORIGINAL_BUTTON_ROTATION);
-            }
-        };
-    }
-
-    /**
-     * Delete the profile from the list of profiles and the
-     * corresponding stored data.
-     * @param click Triggered on mouse click.
-     */
-    public void profileDeleteClick(MouseEvent click) {
-
-        if (click.getEventType() != MouseEvent.MOUSE_CLICKED) {
-            return;
-        }
-
-        if (!(click.getSource() instanceof ImageView iv)) {
-            return;
-        }
-
-        int crossNumber = Integer.parseInt(iv.getId().substring(12));
-        int profileNumber = getProfileFromButtonNumber(crossNumber);
-
-        Profile selectedProfile = ProfileUtilities.getProfiles()[profileNumber];
-
-        ProfileUtilities.removeProfile(selectedProfile.getId());
-        ProfileUtilities.saveProfiles();
-
-        displayProfiles();
-        displayButtons();
     }
 
 }

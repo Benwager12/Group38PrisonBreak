@@ -14,18 +14,14 @@ import java.util.HashMap;
 
 public class Loot extends Item {
 
-    /** The pricing for the first type of loot. */
-    private static final int LOOT_AMOUNT_ONE = 50;
-
-    /** The pricing for the second type of loot. */
-    private static final int LOOT_AMOUNT_TWO = 100;
-
-    /** The pricing for the third type of loot. */
-    private static final int LOOT_AMOUNT_THREE = 150;
-
     /** The pricing for the fourth type of loot. */
     public static final int LOOT_AMOUNT_FOUR = 250;
-
+    /** The pricing for the first type of loot. */
+    private static final int LOOT_AMOUNT_ONE = 50;
+    /** The pricing for the second type of loot. */
+    private static final int LOOT_AMOUNT_TWO = 100;
+    /** The pricing for the third type of loot. */
+    private static final int LOOT_AMOUNT_THREE = 150;
     /** A list of all the paths that loot would use. */
     private static final HashMap<Integer, String> IMAGE_PATH_CACHE =
             new HashMap<>() {{

@@ -74,20 +74,6 @@ public class SmartThief extends Enemy {
     }
 
     /**
-     * Checks if the item it's heading towards still exists.
-     * @return boolean if item exists
-     */
-   private boolean itemExist() {
-        if (positionsToItem.size() == 0) {
-            return false;
-        }
-        int itemXPosition = positionsToItem.get(positionsToItem.size() - 1)[0];
-        int itemYPosition = positionsToItem.get(positionsToItem.size() - 1)[1];
-        return GameManager.getLevel()
-                .getTile(itemXPosition, itemYPosition).getItem() != null;
-   }
-
-    /**
      * Moves the smartThief.
      */
     @Override
@@ -134,4 +120,18 @@ public class SmartThief extends Enemy {
         itemInteract();
         checkCollision();
     }
+
+    /**
+     * Checks if the item it's heading towards still exists.
+     * @return boolean if item exists
+     */
+   private boolean itemExist() {
+        if (positionsToItem.size() == 0) {
+            return false;
+        }
+        int itemXPosition = positionsToItem.get(positionsToItem.size() - 1)[0];
+        int itemYPosition = positionsToItem.get(positionsToItem.size() - 1)[1];
+        return GameManager.getLevel()
+                .getTile(itemXPosition, itemYPosition).getItem() != null;
+   }
 }

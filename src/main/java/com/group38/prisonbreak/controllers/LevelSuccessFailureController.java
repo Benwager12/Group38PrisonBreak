@@ -77,59 +77,6 @@ public class LevelSuccessFailureController {
     }
 
     /**
-     * On home image clicked, redirect the root window.
-     * @param click Trigger on mouse clicked.
-     */
-    @FXML
-    private void homeClicked(MouseEvent click) {
-        FileUtilities.getGameInstance().setRoot("mainMenu");
-    }
-
-    /**
-     * On cross image clicked, exit the game window.
-     * @param click Trigger on mouse clicked.
-     */
-    @FXML
-    private void crossClicked(MouseEvent click) {
-        click.consume();
-        GameManager.exitGame();
-    }
-
-    /**
-     * Restart the level by re-directing the pane to the current root.
-     * @param click Triggered on mouse event.
-     */
-    @FXML
-    private void retryLevelClicked(MouseEvent click) {
-        String currentLevel = Integer.toString(
-                (GameManager.getLevel().getLevelNumber())
-        );
-        GameManager.resetMoney();
-        FileUtilities.getGameInstance().setRoot("loadLevel" + currentLevel);
-    }
-
-    /**
-     * Update the root pane to the new level.
-     * @param click Triggered on mouse event.
-     */
-    @FXML
-    private void goToNextLevel(MouseEvent click) {
-        String nextLevel = Integer.toString(
-                (GameManager.getLevel().getLevelNumber() + 1));
-        GameManager.resetMoney();
-        FileUtilities.getGameInstance().setRoot("loadLevel" + nextLevel);
-    }
-
-    /**
-     * When the leaderboard is clicked, re-direct to the leaderboard.
-     * @param click Triggered on mouse event.
-     */
-    @FXML
-    private void leaderboardClicked(MouseEvent click) {
-        FileUtilities.getGameInstance().setRoot("leaderboard");
-    }
-
-    /**
      * Rotates button when applicable.
      * @param img The button to be rotated.
      * @return Rotated/non-rotated button depending on situation.
@@ -145,5 +92,58 @@ public class LevelSuccessFailureController {
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };
+    }
+
+    /**
+     * On home image clicked, redirect the root window.
+     * @param ignoredClick Trigger on mouse clicked.
+     */
+    @FXML
+    private void homeClicked(MouseEvent ignoredClick) {
+        FileUtilities.getGameInstance().setRoot("mainMenu");
+    }
+
+    /**
+     * On cross image clicked, exit the game window.
+     * @param click Trigger on mouse clicked.
+     */
+    @FXML
+    private void crossClicked(MouseEvent click) {
+        click.consume();
+        GameManager.exitGame();
+    }
+
+    /**
+     * Restart the level by re-directing the pane to the current root.
+     * @param ignoredClick Triggered on mouse event.
+     */
+    @FXML
+    private void retryLevelClicked(MouseEvent ignoredClick) {
+        String currentLevel = Integer.toString(
+                (GameManager.getLevel().getLevelNumber())
+        );
+        GameManager.resetMoney();
+        FileUtilities.getGameInstance().setRoot("loadLevel" + currentLevel);
+    }
+
+    /**
+     * Update the root pane to the new level.
+     * @param ignoredClick Triggered on mouse event.
+     */
+    @FXML
+    private void goToNextLevel(MouseEvent ignoredClick) {
+        String nextLevel = Integer.toString(
+                (GameManager.getLevel().getLevelNumber() + 1));
+        GameManager.resetMoney();
+        FileUtilities.getGameInstance().setRoot("loadLevel" + nextLevel);
+    }
+
+    /**
+     * When the leaderboard is clicked, re-direct to the leaderboard.
+     * @param ignoredClick Triggered on mouse event.
+     */
+    @FXML
+    private void leaderboardClicked(MouseEvent ignoredClick) {
+        FileUtilities.getGameInstance().setRoot("leaderboard");
     }
 }

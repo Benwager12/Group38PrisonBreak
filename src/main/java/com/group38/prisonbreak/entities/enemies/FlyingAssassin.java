@@ -40,44 +40,6 @@ public class FlyingAssassin extends Enemy {
     }
 
     /**
-     * Checks if the flying assassin has collided with an entity.
-     * If it has then it 'Destroys that entity'
-     * If it's collided with the player it ends the game
-     */
-    private void checkCollisions() {
-        // Gets collisions
-        ArrayList<Entity> collidedEntities = getCollision();
-        if (collidedEntities != null) {
-            collidedEntities.forEach(collidedEntity -> {
-                collidedEntity.killEntity();
-                if (collidedEntity instanceof Player) {
-                    hasColliedWithPlayer = true;
-                    GameManager.endGame(false);
-                }
-            });
-        }
-    }
-
-    /**
-     * Gets for a collision between with an entity.
-     * @return Entity object of the entity it's collided with
-     */
-    private ArrayList<Entity> getCollision() {
-        // ArrayList of collisions with the flying assassin
-        ArrayList<Entity> colliedEntities = new ArrayList<>();
-
-        for (Entity entity : GameManager.getLevel().getEntities()) {
-            if (entity != this) {
-                if (entity.getX() == super.getX()
-                        && entity.getY() == super.getY()) {
-                    colliedEntities.add(entity);
-                }
-            }
-        }
-        return colliedEntities;
-    }
-
-    /**
      * Moves the FlyingAssassin.
      * Is called every tick in the enemyTimeLine (in LevelController)
      */
@@ -126,5 +88,41 @@ public class FlyingAssassin extends Enemy {
     @Override
     public Image getEntityImage() {
         return super.getEntityImage();
+    }
+
+    /**
+     * Checks if the flying assassin has collided with an entity.
+     * If it has then it 'Destroys that entity'
+     * If it's collided with the player it ends the game
+     */
+    private void checkCollisions() {
+        // Gets collisions
+        ArrayList<Entity> collidedEntities = getCollision();
+        collidedEntities.forEach(collidedEntity -> {
+            collidedEntity.killEntity();
+            if (collidedEntity instanceof Player) {
+                hasColliedWithPlayer = true;
+                GameManager.endGame(false);
+            }
+        });
+    }
+
+    /**
+     * Gets for a collision between with an entity.
+     * @return Entity object of the entity it's collided with
+     */
+    private ArrayList<Entity> getCollision() {
+        // ArrayList of collisions with the flying assassin
+        ArrayList<Entity> colliedEntities = new ArrayList<>();
+
+        for (Entity entity : GameManager.getLevel().getEntities()) {
+            if (entity != this) {
+                if (entity.getX() == super.getX()
+                        && entity.getY() == super.getY()) {
+                    colliedEntities.add(entity);
+                }
+            }
+        }
+        return colliedEntities;
     }
 }
