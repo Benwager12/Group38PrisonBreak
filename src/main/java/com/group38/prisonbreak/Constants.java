@@ -122,6 +122,6 @@ public class Constants {
     /** Position of where entities go upon being 'Killed'. */
     public static final int KILLED_ENTITY_LOCATION = -1;
 
-    /** Number of colours that make up a tile */
+    /** Number of colours that make up a tile. */
     public static final int NO_COLOURS = 4;
 }
