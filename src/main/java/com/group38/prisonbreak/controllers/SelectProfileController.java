@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 /**
  * SelectProfileController is the controller for the
  * Select-profile.fxml.
+ * @author Tiffany Oamen (2141570), Ben Wager (2108500)
  */
 public class SelectProfileController {
 

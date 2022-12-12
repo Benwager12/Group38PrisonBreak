@@ -73,8 +73,11 @@ public class LeaderboardUtilities {
      * @param profileId profile id of the player
      * @param highestScore high score
      */
-    public static void addNewHighscore(int levelNumber, int profileId,
-                                       int highestScore) {
+    public static void addNewHighscore(
+            int levelNumber,
+            int profileId,
+            int highestScore
+    ) {
         int[] score = new int[] {
                 profileId,
                 highestScore
@@ -84,6 +87,16 @@ public class LeaderboardUtilities {
             LEADERBOARD.put(levelNumber, new LevelLeaderboard(score));
         } else {
             levelScores.addToLeaderboard(score);
+        }
+    }
+
+    /**
+     * Removes a Profile from all the leaderboards
+     * @param profileId Id of the profile to be removed
+     */
+    public static void removeProfile(int profileId) {
+        for (LevelLeaderboard leaderboard : LEADERBOARD.values()) {
+            leaderboard.removeFromLeaderboard(profileId);
         }
     }
 
