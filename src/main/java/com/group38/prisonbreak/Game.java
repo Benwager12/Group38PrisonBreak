@@ -165,7 +165,7 @@ public class Game extends Application {
         if (paneType.startsWith(LOADLEVEL)) {
             GameManager.setLevel(
                     FileUtilities.readLevel(
-                            Integer.parseInt(paneType.substring(9))));
+                            Integer.parseInt(paneType.substring(LOADLEVEL.length()))));
             paneType = paneType.substring(0, paneType.length() - 1);
         }
         FXMLLoader loader = switch (paneType) {

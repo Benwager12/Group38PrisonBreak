@@ -508,8 +508,8 @@ public class Level implements Drawable {
     ) {
 
         for (int col = 0; col < t.getColours().length; col++) {
-            boolean isRight = col == 1 || col == 3;
-            boolean isBottom = col == 2 || col == 3;
+            boolean isRight = col == Constants.RIGHT_ID || col == Constants.LEFT_ID;
+            boolean isBottom = col == Constants.DOWN_ID || col == Constants.LEFT_ID;
 
             g.setFill(t.getColours()[col]);
 
