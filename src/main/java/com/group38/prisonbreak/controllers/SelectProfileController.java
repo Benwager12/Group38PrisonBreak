@@ -17,28 +17,28 @@ import javafx.scene.layout.StackPane;
  */
 public class SelectProfileController {
 
-    /* The original rotation of the button. */
+    /* The original rotation of the button */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /* The modified rotation of the button. */
+    /* The modified rotation of the button */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    /* The amount of profiles to show at a given time. */
+    /* The amount of profiles to show at a given time */
     private static final int PROFILES_SHOW = 3;
 
-    /* Fx:id for the image of a house within FXML file. */
+    /* Fx:id for the menu's home button image */
     @FXML
     private ImageView homeImage;
 
-    /* Fx:id for the image of a cross within FXML file. */
+    /* Fx:id for the menu's exit button image */
     @FXML
     private ImageView crossImage;
 
-    /* Fx:id for the image of a left arrow within FXML file. */
+    /* Fx:id for the menu's left navigating button image */
     @FXML
     private ImageView leftArrowButton;
 
-    /* Fx:id for the image of a right arrow within FXML file. */
+    /* Fx:id for the menu's right navigating button image */
     @FXML
     private ImageView rightArrowButton;
 
@@ -51,15 +51,15 @@ public class SelectProfileController {
     @FXML
     private StackPane selectPane3;
 
-    /* Fx:id for the cross on profile 1 within FXML file. */
+    /* Fx:id for the delete button on displayed profile 1 */
     @FXML
     private ImageView profileCross1;
 
-    /* Fx:id for the cross on profile 2 within FXML file. */
+    /* Fx:id for the delete button on displayed profile 2 */
     @FXML
     private ImageView profileCross2;
 
-    /* Fx:id for the cross on profile 3 within FXML file. */
+    /* Fx:id for the delete button on displayed profile 3 */
     @FXML
     private ImageView profileCross3;
 
@@ -182,7 +182,7 @@ public class SelectProfileController {
     }
 
     /**
-     * On home image clicked redirect to the main menu.
+     * On home image clicked, redirect to the main menu.
      * @param click Trigger on mouse clicked.
      */
     @FXML
