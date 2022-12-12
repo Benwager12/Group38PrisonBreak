@@ -158,6 +158,15 @@ public class SelectProfileController {
         ProfileUtilities.removeProfile(selectedProfile.getId());
         ProfileUtilities.saveProfiles();
 
+        if (profileOffset + PROFILES_SHOW > ProfileUtilities.getNoProfiles()
+                && profileOffset > 1) {
+            profileOffset--;
+        }
+
+        if (ProfileUtilities.getNoProfiles() == 0) {
+            profileOffset = 0;
+        }
+
         displayProfiles();
         displayButtons();
     }
@@ -215,10 +224,12 @@ public class SelectProfileController {
 
         rightArrowButton
                 .setVisible(profileOffset + PROFILES_SHOW
-                        != ProfileUtilities.getNoProfiles());
+                        != ProfileUtilities.getNoProfiles()
+                && ProfileUtilities.getNoProfiles() > PROFILES_SHOW);
         rightArrowButton
                 .setDisable(profileOffset + PROFILES_SHOW
-                        == ProfileUtilities.getNoProfiles());
+                        == ProfileUtilities.getNoProfiles()
+                        && ProfileUtilities.getNoProfiles() <= PROFILES_SHOW);
     }
 
     /**
