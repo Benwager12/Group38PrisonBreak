@@ -227,7 +227,11 @@ public class Level implements Drawable {
      * @param requiresColour If the Entity needs to stay on the same colour
      * @return boolean - If the move is valid
      */
-    public boolean canMove(int posX, int posY, int direction, boolean requiresColour) {
+    public boolean canMove(int posX,
+                           int posY,
+                           int direction,
+                           boolean requiresColour
+    ) {
         if (!requiresColour) {
             // Checks if direction is Up/Down (X)
             boolean isX = direction == Constants.RIGHT_ID

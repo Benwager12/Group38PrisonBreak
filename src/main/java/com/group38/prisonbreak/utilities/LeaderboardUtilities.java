@@ -91,7 +91,7 @@ public class LeaderboardUtilities {
     }
 
     /**
-     * Removes a Profile from all the leaderboards
+     * Removes a Profile from all the leaderboards.
      * @param profileId Id of the profile to be removed
      */
     public static void removeProfile(int profileId) {
