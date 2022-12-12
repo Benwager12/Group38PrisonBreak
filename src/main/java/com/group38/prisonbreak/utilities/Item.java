@@ -11,7 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
- * Implements an Item
+ * Implements an Item.
  * @author Daniel Banks (2107922)
  */
 public abstract class Item implements Drawable {
@@ -22,7 +22,10 @@ public abstract class Item implements Drawable {
     /** The index of the specific image we are displaying. */
     protected int imageIndex;
 
-    /** Defines what happens when a non-player interacts with an Item. */
+    /**
+     * Defines what happens when a non-player interacts with an Item.
+     * @return if the item should be removed on interact
+     * */
     public boolean interact() {
         return interact(false);
     }

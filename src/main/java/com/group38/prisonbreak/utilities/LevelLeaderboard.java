@@ -67,7 +67,7 @@ public class LevelLeaderboard {
     }
 
     /**
-     * Removes a highscore from a profile
+     * Removes a highscore from a profile.
      * @param id id of the profile to be removed
      */
     public void removeFromLeaderboard(int id) {
@@ -84,7 +84,8 @@ public class LevelLeaderboard {
         }
 
         // Removes duplicated scores
-        for (int i = scores.length - 1; i > scores.length - instancesRemoved - 1; i--) {
+        for (int i = scores.length - 1;
+             i > scores.length - instancesRemoved - 1; i--) {
             scores[i] = new int[2];
         }
     }

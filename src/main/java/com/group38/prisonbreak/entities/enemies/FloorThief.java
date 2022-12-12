@@ -63,7 +63,6 @@ public class FloorThief extends Enemy {
 
     /**
      * Finds the Floor thief's next move.
-     *
      * @return An integer array containing the X and Y of the floor thief's next move.
      */
     private int[] findMove() {

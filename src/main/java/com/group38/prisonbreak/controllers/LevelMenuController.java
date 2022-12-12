@@ -43,7 +43,7 @@ public class LevelMenuController {
 	/** End position of the level number in the level string. */
 	private static final int LEVEL_NUMBER_END = 6;
 
-	/** Position of the level number in the fxml */
+	/** Position of the level number in the fxml. */
 	private static final int LEVEL_NUMBER_FXML = 10;
 
 	/** level 1's button's image. */

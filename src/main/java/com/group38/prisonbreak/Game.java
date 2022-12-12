@@ -92,13 +92,13 @@ public class Game extends Application {
     /** Height of the scene. */
     private static final int HEIGHT = 446;
 
-    /** Root of the scene. */
+    /** Root pane of the scene. */
     private static Pane root = null;
 
-    /** The main scene. */
+    /** Scene where components will be added. */
     private static Scene scene = null;
 
-    /** The stage set for the scene. */
+    /** Stage on the scene. */
     private static Stage primaryStage = null;
 
     /**

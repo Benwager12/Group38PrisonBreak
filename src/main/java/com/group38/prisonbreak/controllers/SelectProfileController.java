@@ -43,15 +43,15 @@ public class SelectProfileController {
     @FXML
     private ImageView rightArrowButton;
 
-    /** Stack pane for the first profile */
+    /** Stack pane for the first profile. */
     @FXML
     private StackPane selectPane1;
 
-    /** Stack pane for the second profile */
+    /** Stack pane for the second profile. */
     @FXML
     private StackPane selectPane2;
 
-    /** Stack pane for the third profile */
+    /** Stack pane for the third profile. */
     @FXML
     private StackPane selectPane3;
 
@@ -67,6 +67,7 @@ public class SelectProfileController {
     @FXML
     private ImageView profileCross3;
 
+    /** Offset of the profiles. */
     private int profileOffset = 0;
 
     /**
