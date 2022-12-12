@@ -40,7 +40,8 @@ public class Bomb extends Item {
     /** A second in millis, used for the creation of the timeline. */
     private static final int SECOND_IN_MILLIS = 1000;
     /** A boolean that points out whether the bomb has been exploded. */
-    private boolean explodable = true;    /** The bomb timeline is used for ticking down from 3 to explode. */
+    private boolean explodable = true;
+    /** The bomb timeline is used for ticking down from 3 to explode. */
     private final Timeline bombTimeLine =
             new Timeline(new KeyFrame(
                     Duration.millis(SECOND_IN_MILLIS),
