@@ -19,35 +19,38 @@ import static com.group38.prisonbreak.GameManager.getCurrentProfileId;
  */
 public class LevelMenuController {
 
-	/* Original height of buttons that aren't moused over. */
+	/* The original height of the button */
 	private static final double ORIGINAL_BUTTON_HEIGHT = 41;
 
-	/* Original width of buttons that aren't moused over. */
+	/* The original width of the button */
 	private static final double ORIGINAL_BUTTON_WIDTH = 36;
 
-	/* Height update of buttons that are moused over. */
+	/* The modified height of the button */
 	private static final double MODIFIED_BUTTON_HEIGHT = 54;
 
-	/* Width update of buttons that are moused over. */
+	/* The modified width of the button */
 	private static final double MODIFIED_BUTTON_WIDTH = 54;
 
-	/* Rotation of buttons that aren't moused over. */
+	/* The original position of the button */
 	private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-	/*  Rotation of buttons that are moused over. */
+	/* The modified position of the button */
 	private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-	/* Start position of the level number in a sub string. */
+	/* Level number position in the level string e.g. Level1 */
 	private static final int LEVEL_NUMBER_START = 5;
 
-	/* End position of the level number. */
+	/* End position of the level number in the level string */
 	private static final int LEVEL_NUMBER_END = 6;
 
 	/* Position of the level number in the fxml */
 	private static final int LEVEL_NUMBER_FXML = 10;
 
-	/* levelStack corresponds to the respective level's fxml StackPane
-	 * which contains its preview graphic, button and overlay. */
+	/* level_Button corresponds to the respective level's button image
+	 *
+	 * levelStack corresponds to the respective level's fxml StackPane
+	 * which contains its preview graphic, button and overlay */
+
 	@FXML
 	private ImageView level1Button;
 
@@ -93,11 +96,11 @@ public class LevelMenuController {
 	@FXML
 	private ImageView level8Button;
 
-	/* Fx:id for the home image within FXML file. */
+	/* Fx:id for the menu's home button image */
 	@FXML
 	private ImageView homeButton;
 
-	/* Fx:id for the cross image within FXML file. */
+	/* Fx:id for the menu's exit button image */
 	@FXML
 	private ImageView exitButton;
 
@@ -122,7 +125,7 @@ public class LevelMenuController {
 		homeButton.hoverProperty().addListener(rotateButton(homeButton));
 		exitButton.hoverProperty().addListener(rotateButton(exitButton));
 
-		/* Overlay setting. */
+		/* Overlay setting */
 		StackPane[] levelPanes = {
 				levelStack2, levelStack3,
 				levelStack4, levelStack5,
@@ -133,7 +136,7 @@ public class LevelMenuController {
 	}
 
 	/**
-	 * On home image clicked redirect the root window.
+	 * On home image clicked, redirect the root window.
 	 * @param ignoredMouseEvent trigger on mouse clicked.
 	 */
 	@FXML
@@ -152,7 +155,7 @@ public class LevelMenuController {
 	}
 
 	/**
-	 * [add]
+	 * On level selected, redirects to appropriate level.
 	 * @param mouseEvent Mouse event when clicked, is used to get source.
 	 */
 	@FXML
@@ -160,6 +163,7 @@ public class LevelMenuController {
 		if (!(mouseEvent.getSource() instanceof ImageView iv)) {
 			return;
 		}
+		/* Identify level chosen */
 		String buttonId = iv.getId();
 		String levelNumber = buttonId.substring(LEVEL_NUMBER_START,
 				buttonId.length() - LEVEL_NUMBER_END);
@@ -168,6 +172,7 @@ public class LevelMenuController {
 		int profileId = GameManager.getCurrentProfileId();
 		GameManager.resetMoney();
 
+		/* Start game on chosen level after checking for an existing save */
 		if (SaveLevelUtilities.doesSaveFileExist(profileId, intLevelNumber)) {
 			GameManager.setLevel(FileUtilities.readLevel(intLevelNumber));
 			GameManager.stopTimeLines();
@@ -190,7 +195,7 @@ public class LevelMenuController {
 				img.setFitWidth(MODIFIED_BUTTON_WIDTH);
 
 			} else {
-				/* maintain original dimensions of button */
+				/* Maintain original dimensions of button */
 				img.setFitHeight(ORIGINAL_BUTTON_HEIGHT);
 				img.setFitWidth(ORIGINAL_BUTTON_WIDTH);
 			}
@@ -226,11 +231,11 @@ public class LevelMenuController {
 		for (StackPane lp : levelPanes) {
 			String levelPaneID = lp.getId();
 
-			/* extract corresponding level number from fx:id */
+			/* Extract corresponding level number from fx:id */
 			int levelStackNumber =
 					Integer.parseInt(levelPaneID.substring(LEVEL_NUMBER_FXML));
 
-			/* remove overlay when player has already completed level */
+			/* Remove overlay when player has already completed level */
 			if (levelStackNumber <= highestLevel + 1) {
 				lp.getChildren().remove(2);
 			}
