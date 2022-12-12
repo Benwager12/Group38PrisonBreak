@@ -270,6 +270,18 @@ public class SaveLevelUtilities {
     }
 
     /**
+     * Deletes all the save files of a given profile id.
+     * @param profileId profile id to be deleted
+     */
+    public static void deleteSaves(int profileId) {
+        for (int i = 1; i <= Constants.MAX_NUMBER_LEVELS; i++) {
+            if (doesSaveFileExist(profileId, i)) {
+                getFile(profileId, i).delete();
+            }
+        }
+    }
+
+    /**
      * Writes all the entities' info to the file.
      *
      * @param myWriter printWriter writing to the file

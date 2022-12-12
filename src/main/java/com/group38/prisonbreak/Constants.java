@@ -101,10 +101,13 @@ public class Constants {
      * (How often the clock decreases)
      */
     public static final int CLOCK_TIMELINE_DURATION = 1000;
+
     /** Position of where entities go upon being 'Killed'. */
     public static final int KILLED_ENTITY_LOCATION = -1;
+
     /** Number of colours that make up a tile. */
     public static final int NO_COLOURS = 4;
 
-    private Constants() { }
+    /** Number of levels. */
+    public static final int MAX_NUMBER_LEVELS = 8;
 }
