@@ -45,6 +45,7 @@ public class MOTD {
      * Updates the puzzle variable with the string received from the server
      * @return puzzle to be decoded
      * @exception InterruptedException If the send request is interrupted
+     * @exception IOException General error if when the send request fails.
      */
     private static String getPuzzle() throws IOException, InterruptedException {
 
