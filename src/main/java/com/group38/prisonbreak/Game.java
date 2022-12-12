@@ -100,6 +100,15 @@ public class Game extends Application {
     }
 
     /**
+     * Setting up the stage.
+     */
+    private static void setStage() {
+        scene = new Scene(root, WIDTH, HEIGHT);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    /**
      * The initialization of the scene/stage.
      * @param primaryStage The primary stage that we start on
      */
@@ -200,15 +209,6 @@ public class Game extends Application {
         setStage();
 
         primaryStage.setResizable(paneType.startsWith(LOAD));
-    }
-
-    /**
-     * Setting up the stage.
-     */
-    private static void setStage() {
-        scene = new Scene(root, WIDTH, HEIGHT);
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
 }
