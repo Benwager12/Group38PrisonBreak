@@ -166,7 +166,6 @@ public class ProfileUtilities {
             PrintWriter myWriter = new PrintWriter(
                     FileUtilities.getResourcePath(FILE_LOCATION)
             );
-            System.out.println(FileUtilities.getResourcePath(FILE_LOCATION));
 
             for (Profile profile : PROFILES) {
                 if (!profile.getName().equals("")) {
