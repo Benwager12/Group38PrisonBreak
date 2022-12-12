@@ -35,39 +35,6 @@ public class NewProfileController {
     @FXML
     private TextField enterName;
 
-    /* Stores the profile name */
-    private String profileName = null;
-
-    /**
-     * Triggers at the opening of the FXML file and creates listeners
-     * for hover properties.
-     */
-    @FXML
-    private void initialize() {
-        /* Animate buttons on hover detection */
-        homeImage.hoverProperty().addListener(rotateButton(homeImage));
-        crossImage.hoverProperty().addListener(rotateButton(crossImage));
-    }
-
-    /**
-     * On home image clicked, redirect the root window.
-     * @param click Trigger on mouse clicked.
-     */
-    @FXML
-    private void homeClicked(MouseEvent click) {
-        FileUtilities.getGameInstance().setRoot("mainMenu");
-    }
-
-    /**
-     * On cross image clicked, exit the game window.
-     * @param click Trigger on mouse clicked.
-     */
-    @FXML
-    private void crossClicked(MouseEvent click) {
-        click.consume();
-        GameManager.exitGame();
-    }
-
     /**
      * On enter pressed, create a new profile and re-direct to the game introduction.
      * @param submit The action of pressing the enter key.
@@ -75,7 +42,8 @@ public class NewProfileController {
     @FXML
     public void onEnter(KeyEvent submit) {
         if (submit.getCode().equals(KeyCode.ENTER)) {
-            profileName = enterName.getText();
+            /* Stores the profile name */
+            String profileName = enterName.getText();
             ProfileUtilities.addProfile(profileName);
             GameManager.setCurrentProfileId(ProfileUtilities.getNoProfiles());
             FileUtilities.getGameInstance().setRoot("gameIntro");
@@ -98,5 +66,35 @@ public class NewProfileController {
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };
+    }
+
+    /**
+     * Triggers at the opening of the FXML file and creates listeners
+     * for hover properties.
+     */
+    @FXML
+    private void initialize() {
+        /* Animate buttons on hover detection */
+        homeImage.hoverProperty().addListener(rotateButton(homeImage));
+        crossImage.hoverProperty().addListener(rotateButton(crossImage));
+    }
+
+    /**
+     * On home image clicked, redirect the root window.
+     * @param ignoredClick Trigger on mouse clicked.
+     */
+    @FXML
+    private void homeClicked(MouseEvent ignoredClick) {
+        FileUtilities.getGameInstance().setRoot("mainMenu");
+    }
+
+    /**
+     * On cross image clicked, exit the game window.
+     * @param click Trigger on mouse clicked.
+     */
+    @FXML
+    private void crossClicked(MouseEvent click) {
+        click.consume();
+        GameManager.exitGame();
     }
 }

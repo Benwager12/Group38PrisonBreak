@@ -174,6 +174,23 @@ public class LevelController {
         GameManager.getLevel().draw(g);
     }
 
+    /**
+     * Rotates button when applicable.
+     * @param img the button to be rotated.
+     * @return rotated/non-rotated button depending on situation.
+     */
+    private static ChangeListener<Boolean> rotateButton(ImageView img) {
+        return (observable, oldValue, newValue) -> {
+            if (observable.getValue()) {
+                /* Modify button position */
+                img.setRotate(MODIFIED_BUTTON_ROTATION);
+
+            } else {
+                /* Maintain original button position */
+                img.setRotate(ORIGINAL_BUTTON_ROTATION);
+            }
+        };
+    }
 
     /**
      * Moves all the entities apart from smart thief.
@@ -260,10 +277,10 @@ public class LevelController {
 
     /**
      * On home image clicked, redirect to the main menu.
-     * @param click trigger on mouse clicked.
+     * @param ignoredClick trigger on mouse clicked.
      */
     @FXML
-    private void homeClicked(MouseEvent click) {
+    private void homeClicked(MouseEvent ignoredClick) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
         GameManager.stopTimeLines();
     }
@@ -280,30 +297,12 @@ public class LevelController {
 
     /**
      * Save the level and redirect to the level menu
-     * @param click trigger on mouse clicked.
+     * @param ignoredClick trigger on mouse clicked.
      */
     @FXML
-    private void saveClicked(MouseEvent click) {
+    private void saveClicked(MouseEvent ignoredClick) {
         GameManager.saveLevel();
         FileUtilities.getGameInstance().setRoot("levelMenu");
         GameManager.stopTimeLines();
-    }
-
-    /**
-     * Rotates button when applicable.
-     * @param img the button to be rotated.
-     * @return rotated/non-rotated button depending on situation.
-     */
-    private static ChangeListener<Boolean> rotateButton(ImageView img) {
-        return (observable, oldValue, newValue) -> {
-            if (observable.getValue()) {
-                /* Modify button position */
-                img.setRotate(MODIFIED_BUTTON_ROTATION);
-
-            } else {
-                /* Maintain original button position */
-                img.setRotate(ORIGINAL_BUTTON_ROTATION);
-            }
-        };
     }
 }

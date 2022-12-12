@@ -39,17 +39,13 @@ public class Bomb extends Item {
 
     /** A second in millis, used for the creation of the timeline. */
     private static final int SECOND_IN_MILLIS = 1000;
-
-    /** The bomb timeline is used for ticking down from 3 to explode. */
+    /** A boolean that points out whether the bomb has been exploded. */
+    private boolean explodable = true;    /** The bomb timeline is used for ticking down from 3 to explode. */
     private final Timeline bombTimeLine =
             new Timeline(new KeyFrame(
                     Duration.millis(SECOND_IN_MILLIS),
                     event -> countdownBomb())
             );
-
-    /** A boolean that points out whether the bomb has been exploded. */
-    private boolean explodable = true;
-
     /**
      * The main bomb, this is only utilised if it is a filler
      * bomb by being next to a real bomb.
@@ -142,4 +138,6 @@ public class Bomb extends Item {
             imageIndex = -1;
         }
     }
+
+
 }

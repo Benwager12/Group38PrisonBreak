@@ -30,6 +30,23 @@ public class AskOverwriteController {
     private ImageView crossImage;
 
     /**
+     * Rotates button when applicable.
+     * @param img the button to be rotated.
+     * @return rotated/non-rotated button depending on situation.
+     */
+    private static ChangeListener<Boolean> rotateButton(ImageView img) {
+        return (observable, oldValue, newValue) -> {
+            if (observable.getValue()) {
+                /* Modify button position */
+                img.setRotate(MODIFIED_BUTTON_ROTATION);
+            } else {
+                /* Maintain original button position */
+                img.setRotate(ORIGINAL_BUTTON_ROTATION);
+            }
+        };
+    }
+
+    /**
      * Triggers at the opening of the FXML file and creates listeners
      * for hover properties.
      */
@@ -42,10 +59,10 @@ public class AskOverwriteController {
 
     /**
      * On home image clicked redirect to the main menu.
-     * @param click trigger on mouse clicked.
+     * @param ignoredClick trigger on mouse clicked.
      */
     @FXML
-    private void homeClicked(MouseEvent click) {
+    private void homeClicked(MouseEvent ignoredClick) {
         FileUtilities.getGameInstance().setRoot("mainMenu");
     }
 
@@ -61,10 +78,10 @@ public class AskOverwriteController {
 
     /**
      * On 'yes' button clicked, loads the level with saved progress.
-     * @param click trigger on mouse clicked.
+     * @param ignoredClick trigger on mouse clicked.
      */
     @FXML
-    private void yesClicked(MouseEvent click) {
+    private void yesClicked(MouseEvent ignoredClick) {
 
         /* Sets the level to run from a "saved progress level file" */
         Level savedLevel = FileUtilities.readLevel(
@@ -78,27 +95,10 @@ public class AskOverwriteController {
 
     /**
      * On 'no' button clicked, loads the level from scratch.
-     * @param click trigger on mouse clicked.
+     * @param ignoredClick trigger on mouse clicked.
      */
     @FXML
-    private void noClicked(MouseEvent click) {
+    private void noClicked(MouseEvent ignoredClick) {
         FileUtilities.getGameInstance().setRoot("loadOverwriteLevel");
-    }
-
-    /**
-     * Rotates button when applicable.
-     * @param img the button to be rotated.
-     * @return rotated/non-rotated button depending on situation.
-     */
-    private static ChangeListener<Boolean> rotateButton(ImageView img) {
-        return (observable, oldValue, newValue) -> {
-            if (observable.getValue()) {
-                /* Modify button position */
-                img.setRotate(MODIFIED_BUTTON_ROTATION);
-            } else {
-                /* Maintain original button position */
-                img.setRotate(ORIGINAL_BUTTON_ROTATION);
-            }
-        };
     }
 }

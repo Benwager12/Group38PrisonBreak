@@ -23,29 +23,39 @@ public class MenuController {
 
     /* The modified position of the button */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
-
     /* Fx:id for the menu's new game button image */
     @FXML
     private ImageView newGameImage;
-
     /* Fx:id for the menu's load game button image */
     @FXML
     private ImageView loadGameImage;
-
     /* Fx:id for the menu's exit button image */
     @FXML
     private ImageView exitImage;
-
     /* Fx:id for the menu's gate image */
     @FXML
     private ImageView gateImage;
-
     /* Fx:id for the menu's message of the day text */
     @FXML
     private Text motdTextBox;
 
-    /* Stores the message of the day */
-    private static String message;
+    /**
+     * Rotates button when applicable.
+     * @param img The button to be rotated.
+     * @return Rotated/non-rotated button depending on situation
+     */
+    private static ChangeListener<Boolean> rotateButton(ImageView img) {
+        return (observable, oldValue, newValue) -> {
+            if (observable.getValue()) {
+                /* Modify button position */
+                img.setRotate(MODIFIED_BUTTON_ROTATION);
+
+            } else {
+                /* Maintain original button position */
+                img.setRotate(ORIGINAL_BUTTON_ROTATION);
+            }
+        };
+    }
 
     /**
      * Triggers the initialisation of the listeners for hover properties.
@@ -61,19 +71,19 @@ public class MenuController {
 
     /**
      * When new game is clicked, re-direct the root pane.
-     * @param click Triggered on mouse click.
+     * @param ignoredClick Triggered on mouse click.
      */
     @FXML
-    private void newGameClicked(MouseEvent click) {
+    private void newGameClicked(MouseEvent ignoredClick) {
         FileUtilities.getGameInstance().setRoot("profile");
     }
 
     /**
      * When load game is clicked, re-direct the root pane.
-     * @param click Triggered on mouse click.
+     * @param ignoredClick Triggered on mouse click.
      */
     @FXML
-    private void loadGameClicked(MouseEvent click) {
+    private void loadGameClicked(MouseEvent ignoredClick) {
         FileUtilities.getGameInstance().setRoot("selectProfile");
     }
 
@@ -95,29 +105,12 @@ public class MenuController {
     private void printMOTD() {
         MOTD motd = new MOTD();
         try {
-            message = motd.getMessageOfTheDay();
+            /* Stores the message of the day */
+            String message = motd.getMessageOfTheDay();
             motdTextBox.setText(message);
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    /**
-     * Rotates button when applicable.
-     * @param img The button to be rotated.
-     * @return Rotated/non-rotated button depending on situation
-     */
-    private static ChangeListener<Boolean> rotateButton(ImageView img) {
-        return (observable, oldValue, newValue) -> {
-            if (observable.getValue()) {
-                /* Modify button position */
-                img.setRotate(MODIFIED_BUTTON_ROTATION);
-
-            } else {
-                /* Maintain original button position */
-                img.setRotate(ORIGINAL_BUTTON_ROTATION);
-            }
-        };
     }
 
     /**
@@ -126,6 +119,6 @@ public class MenuController {
      */
     private ChangeListener<Boolean> startMOTDListener() {
         return (observable, oldValue, newValue) -> printMOTD();
-        };
+        }
     }
 
