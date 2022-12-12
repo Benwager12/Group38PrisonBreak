@@ -364,7 +364,7 @@ public class Level implements Drawable {
      * @param baseEntity instance of the entity
      * @param posX X position to check
      * @param posY Y position to check
-     * @return Boolean for SmartThief for whether it wont collide to another entity.
+     * @return Boolean for SmartThief for whether it won't collide to another entity.
      */
     public boolean wontCollide(Entity baseEntity, int posX, int posY) {
         for (Entity entity : entities) {

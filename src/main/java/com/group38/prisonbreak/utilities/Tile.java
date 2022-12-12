@@ -68,14 +68,6 @@ public class Tile {
         return false;
     }
 
-    /**
-     * Sets the item on the tile.
-     * @param item The item to set
-     */
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
     /** Removes the item from the tile. */
     public void removeItem() {
         item = null;
@@ -87,6 +79,14 @@ public class Tile {
      */
     public Item getItem() {
         return item;
+    }
+
+    /**
+     * Sets the item on the tile.
+     * @param item The item to set
+     */
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     /**

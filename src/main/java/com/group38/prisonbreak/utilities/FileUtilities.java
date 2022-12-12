@@ -35,25 +35,14 @@ import java.util.Scanner;
  */
 public class FileUtilities {
 
-    /** An instance of the game. */
-    private static Game gameInstance;
-
     /** Maximum time a level can have. */
     private static final int MAX_LEVEL_TIME = 300;
-
     /** String Format of the plath to a level file. */
     private static final String LEVELS_PATH = "levels/%d.level";
-
     /** String formatting for when a file couldn't be found. */
     private static final String NO_FILE_ERROR = "Can't find file";
-
-    /**
-     * Set the instance of a Game.
-     * @param gameInstance The instance of a Game
-     */
-    public static void setGameInstance(Game gameInstance) {
-        FileUtilities.gameInstance = gameInstance;
-    }
+    /** An instance of the game. */
+    private static Game gameInstance;
 
     /**
      * Returns the current Game.
@@ -63,6 +52,13 @@ public class FileUtilities {
         return FileUtilities.gameInstance;
     }
 
+    /**
+     * Set the instance of a Game.
+     * @param gameInstance The instance of a Game
+     */
+    public static void setGameInstance(Game gameInstance) {
+        FileUtilities.gameInstance = gameInstance;
+    }
 
     /**
      * Returns a Level instance using the level name and id of a profile.
