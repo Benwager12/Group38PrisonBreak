@@ -38,49 +38,49 @@ public class SaveLevelUtilities {
 
     /**
      *  String Format for saving time and score.
-     * <Time> <Score>
+     * &lt;Time&gt; &lt;Score&gt;
      */
     private static final String TIME_SCORE_STRING_FORMAT = "%d %d%n";
 
     /**
      *  String Format for saving the Height and Width of a level.
-     * <Height> <Width>
+     * &lt;Height&gt; &lt;Width&gt;
      */
     private static final String LEVEL_SIZE_STRING_FORMAT = "%d %d%n";
 
     /**
      *  String Format for saving Tiles (Tile colours).
-     * <ColourID><ColourID><ColourID><ColourID>
+     * &lt;ColourID&gt;&lt;ColourID&gt;&lt;ColourID&gt;&lt;ColourID&gt;
      */
     private static final String TILE_STRING_FORMAT = "%d%d%d%d ";
 
     /**
      *  String Format for saving a Player.
-     * <XPos> <YPos> <(Int) Direction>
+     * &lt;XPos&gt; &lt;YPos&gt; &lt;(Int) Direction&gt;
      */
     private static final String PLAYER_STRING_FORMAT = "%d %d %d%n";
 
     /**
      *  String Format for saving an item with metadata.
-     * <itemChar> <XPos> <YPos> <(Int) Metadata>
+     * &lt;itemChar&gt; &lt;xPos&gt; &lt;YPos&gt; &lt;(Int) Metadata&gt;
      */
     private static final String ITEM_STRING_FORMAT_METADATA = "%c %d %d %d%n";
 
     /**
      *  String Format for saving an item with no metadata.
-     * <itemChar> <XPos> <YPos>
+     * &lt;itemChar&gt; &lt;XPos&gt; &lt;YPos&gt;
      */
     private static final String ITEM_STRING_FORMAT = "%c %d %d%n";
 
     /**
      *  String Format for saving an Entity.
-     * <entityChar> <XPos> <YPos> <(Char) Direction>
+     * &lt;entityChar&gt; &lt;XPos&gt; &lt;YPos&gt; &lt;(Char) Direction&gt;
      */
     private static final String ENEMY_STRING_FORMAT = "%c %d %d %c%n";
 
     /**
      *  String Format for saving a Floor Thief.
-     * <entityChar> <XPos> <YPos> <(Char) Direction> <ColourId>
+     * &lt;entityChar&gt; &lt;XPos&gt; &lt;YPos&gt; &lt;(Char) Direction&gt; &lt;ColourId&gt;
      */
     private static final String FLOOR_THIEF_STRING = "%c %d %d %c %d%n";
 
