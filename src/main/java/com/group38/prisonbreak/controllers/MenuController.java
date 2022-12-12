@@ -18,13 +18,13 @@ import java.io.IOException;
  */
 public class MenuController {
 
-    /* The original position of the button. */
+    /* The original position of the button */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /* The modified position of the button. */
+    /* The modified position of the button */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    /* Fx:id for the menu's new game button image. */
+    /* Fx:id for the menu's new game button image */
     @FXML
     private ImageView newGameImage;
 
@@ -32,19 +32,19 @@ public class MenuController {
     @FXML
     private ImageView loadGameImage;
 
-    /* Fx:id for the menu's exit button image. */
+    /* Fx:id for the menu's exit button image */
     @FXML
     private ImageView exitImage;
 
-    /* Fx:id for the main image of the gate on the menu. */
+    /* Fx:id for the menu's gate image */
     @FXML
     private ImageView gateImage;
 
-    /* Fx:id for the text for the message of the day on the menu. */
+    /* Fx:id for the menu's message of the day text */
     @FXML
     private Text motdTextBox;
 
-    /* String to store the message of the day. */
+    /* Stores the message of the day */
     private static String message;
 
     /**
@@ -52,7 +52,7 @@ public class MenuController {
      */
     @FXML
     private void initialize() {
-        // animate buttons on hover detection
+        /* Animate buttons on hover detection */
         newGameImage.hoverProperty().addListener(rotateButton(newGameImage));
         loadGameImage.hoverProperty().addListener(rotateButton(loadGameImage));
         exitImage.hoverProperty().addListener(rotateButton(exitImage));
