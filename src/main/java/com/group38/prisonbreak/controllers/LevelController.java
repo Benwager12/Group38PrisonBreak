@@ -185,8 +185,8 @@ public class LevelController {
                         && !(entity instanceof Player)) {
                     entity.move();
 
-                    /* Draws again if the flying assassin has collided with the player
-                     * So it's visible before games ends.
+                    /* Draws again if the flying assassin has collided with
+                     * the player so it is visible before the game ends
                      */
                     if (entity instanceof FlyingAssassin
                             && ((FlyingAssassin) entity)
@@ -239,7 +239,7 @@ public class LevelController {
         int minutes = GameManager.getTime() / SECONDS_IN_MINUTES;
         int seconds = GameManager.getTime() % SECONDS_IN_MINUTES;
 
-        /* Converting to 0 left padded. */
+        /* Converting to 0 left padded */
         String minutesStr =
                 minutes < MAX_INT ? String.format(CLOCK_TEXT_FORMAT, minutes)
                         : String.valueOf(minutes);
@@ -247,8 +247,10 @@ public class LevelController {
                 seconds < MAX_INT ? String.format(CLOCK_TEXT_FORMAT, seconds)
                         : String.valueOf(seconds);
 
-        /* Displaying to the screen. */
+        /* Displaying to the screen */
         timeLabel.setText(minutesStr + ":" + secondsStr);
+
+        /* End game when no time is left */
         if (GameManager.getTime() <= 0) {
             GameManager.stopTimeLines();
             timeLabel.setText("GAME OVER");
@@ -257,7 +259,7 @@ public class LevelController {
     }
 
     /**
-     * On home image clicked redirect to the main menu.
+     * On home image clicked, redirect to the main menu.
      * @param click trigger on mouse clicked.
      */
     @FXML
@@ -278,7 +280,7 @@ public class LevelController {
 
     /**
      * Save the level and redirect to the level menu
-     * @param click Trigger on mouse clicked.
+     * @param click trigger on mouse clicked.
      */
     @FXML
     private void saveClicked(MouseEvent click) {
@@ -295,11 +297,11 @@ public class LevelController {
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
             if (observable.getValue()) {
-                /* Modify button position. */
+                /* Modify button position */
                 img.setRotate(MODIFIED_BUTTON_ROTATION);
 
             } else {
-                /* Maintain original button position. */
+                /* Maintain original button position */
                 img.setRotate(ORIGINAL_BUTTON_ROTATION);
             }
         };

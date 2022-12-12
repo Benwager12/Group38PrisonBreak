@@ -14,34 +14,33 @@ import java.io.IOException;
  * MenuController is responsible for animating menu buttons,
  * directing button clicks, and presenting the message of the day
  * on the game's starting menu.
- *
  * @author Maisha Begum Chowdhury (2114962), Jennalee Llewellyn (967558)
  */
 public class MenuController {
 
-    /* The original rotation of the button. */
+    /* The original position of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /* The modified rotation of the button. */
+    /* The modified position of the button. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    /* Fx:id for the image of the new game button within FXML file. */
+    /* Fx:id for the menu's new game button image. */
     @FXML
     private ImageView newGameImage;
 
-    /* Fx:id for the image of the load game button within FXML file. */
+    /* Fx:id for the menu's load game button image */
     @FXML
     private ImageView loadGameImage;
 
-    /* Fx:id for the image of the exit button within FXML file. */
+    /* Fx:id for the menu's exit button image. */
     @FXML
     private ImageView exitImage;
 
-    /* Fx:id for the main image of the gate within FXML file. */
+    /* Fx:id for the main image of the gate on the menu. */
     @FXML
     private ImageView gateImage;
 
-    /* Fx:id for the text for the message of the day within FXML file. */
+    /* Fx:id for the text for the message of the day on the menu. */
     @FXML
     private Text motdTextBox;
 
@@ -89,7 +88,7 @@ public class MenuController {
     }
 
     /**
-     * Use the MOTD class to set the message of the day to appropriate
+     * Uses the MOTD class to set the message of the day to appropriate
      * text box.
      */
     @FXML
@@ -105,8 +104,8 @@ public class MenuController {
 
     /**
      * Rotates button when applicable.
-     * @param img the button to be rotated.
-     * @return rotated/non-rotated button depending on situation
+     * @param img The button to be rotated.
+     * @return Rotated/non-rotated button depending on situation
      */
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {

@@ -91,7 +91,7 @@ public class SelectProfileController {
     }
 
     /**
-     *
+     * Displays the profile images on the window.
      */
     private void displayProfiles() {
         Profile[] profiles = ProfileUtilities.getProfiles();
@@ -159,11 +159,6 @@ public class SelectProfileController {
      * @param click Triggered on the click of the mouse.
      */
     public void profileSelect(MouseEvent click) {
-        if (click.getEventType() != MouseEvent.MOUSE_CLICKED) {
-            System.out.println("not gonna happen chief");
-            return;
-        }
-
         if (!(click.getSource() instanceof ImageView iv)) {
             return;
         }
@@ -178,17 +173,17 @@ public class SelectProfileController {
     }
 
     /**
-     *
-     * @param selectedNumber
-     * @return
+     * Returns profile id from selected button press number.
+     * @param selectedNumber The number of the selected button that was pressed
+     * @return The profile ID
      */
     private int getProfileFromButtonNumber(int selectedNumber) {
         return profileOffset + (selectedNumber - 1);
     }
 
     /**
-     * On home image clicked redirect the root window.
-     * @param click trigger on mouse clicked.
+     * On home image clicked redirect to the main menu.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
     private void homeClicked(MouseEvent click) {
@@ -197,7 +192,7 @@ public class SelectProfileController {
 
     /**
      * On cross image clicked, exit the game window.
-     * @param click trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
     private void crossClicked(MouseEvent click) {
@@ -207,8 +202,8 @@ public class SelectProfileController {
 
     /**
      * Rotates button when applicable.
-     * @param img the button to be rotated.
-     * @return rotated/non-rotated button depending on situation.
+     * @param img The button to be rotated.
+     * @return Rotated/non-rotated button depending on situation.
      */
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
@@ -229,6 +224,11 @@ public class SelectProfileController {
      * @param click Triggered on mouse click.
      */
     public void profileDeleteClick(MouseEvent click) {
+
+        if (click.getEventType() != MouseEvent.MOUSE_CLICKED) {
+            return;
+        }
+
         if (!(click.getSource() instanceof ImageView iv)) {
             return;
         }
@@ -245,20 +245,4 @@ public class SelectProfileController {
         displayButtons();
     }
 
-    /**
-     *
-     * @param click Triggered on mouse click.
-     */
-    public void mouseClickName(MouseEvent click) {
-        if (!(click.getSource() instanceof ImageView iv)) {
-            return;
-        }
-        String clickedItem = iv.getId();
-        int id = Integer.parseInt(clickedItem.substring(7));
-        int profileId = getProfileFromButtonNumber(id);
-
-        String name = ProfileUtilities.getName(profileId);
-        int highestLevel =
-                ProfileUtilities.getLevelFromProfile(profileId + 1);
-    }
 }

@@ -41,7 +41,7 @@ public class AskOverwriteController {
     }
 
     /**
-     * On home image clicked redirect the root window.
+     * On home image clicked redirect to the main menu.
      * @param click trigger on mouse clicked.
      */
     @FXML

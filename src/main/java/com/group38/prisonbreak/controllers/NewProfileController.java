@@ -17,17 +17,17 @@ import javafx.scene.input.MouseEvent;
  */
 public class NewProfileController {
 
-    /* The original rotation of the button. */
+    /* The original position of the button. */
     private static final double ORIGINAL_BUTTON_ROTATION = 0;
 
-    /* The modified rotation of the button. */
+    /* The modified position of the button. */
     private static final double MODIFIED_BUTTON_ROTATION = 1.7;
 
-    /* Fx:id for the image of a house within FXML file. */
+    /* Fx:id for the the menu's home button image  */
     @FXML
     private ImageView homeImage;
 
-    /* Fx:id for the image of a cross within FXML file. */
+    /* Fx:id for the menu's exit button image. */
     @FXML
     private ImageView crossImage;
 
@@ -51,7 +51,7 @@ public class NewProfileController {
 
     /**
      * On home image clicked redirect the root window.
-     * @param click trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
     private void homeClicked(MouseEvent click) {
@@ -60,7 +60,7 @@ public class NewProfileController {
 
     /**
      * On cross image clicked, exit the game window.
-     * @param click trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
     private void crossClicked(MouseEvent click) {
@@ -69,8 +69,8 @@ public class NewProfileController {
     }
 
     /**
-     * On enter pressed, create a new profile and re-direct the root pane.
-     * @param submit the action of pressing the enter key.
+     * On enter pressed, create a new profile and re-direct to the game introduction.
+     * @param submit The action of pressing the enter key.
      */
     @FXML
     public void onEnter(KeyEvent submit) {
@@ -80,10 +80,6 @@ public class NewProfileController {
             GameManager.setCurrentProfileId(ProfileUtilities.getNoProfiles());
             FileUtilities.getGameInstance().setRoot("gameIntro");
         }
-    }
-
-    public String getProfileName() {
-        return profileName;
     }
 
     /**
