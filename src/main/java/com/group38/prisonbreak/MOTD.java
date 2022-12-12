@@ -12,10 +12,7 @@ import java.util.Scanner;
  * This class fetches the Message of the day.
  * From CSWEBCAT.SWANSEA.AC.UK using HTTP GET Requests
  * @author Issa (853846)
- * @since 29/11/2022
  */
-
-
 public class MOTD {
 
     /** URL of the web request to get message of the day. */
