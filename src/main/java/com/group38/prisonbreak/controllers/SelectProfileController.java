@@ -183,7 +183,7 @@ public class SelectProfileController {
 
     /**
      * On home image clicked redirect to the main menu.
-     * @param click trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
     private void homeClicked(MouseEvent click) {
@@ -192,7 +192,7 @@ public class SelectProfileController {
 
     /**
      * On cross image clicked, exit the game window.
-     * @param click trigger on mouse clicked.
+     * @param click Trigger on mouse clicked.
      */
     @FXML
     private void crossClicked(MouseEvent click) {
@@ -202,8 +202,8 @@ public class SelectProfileController {
 
     /**
      * Rotates button when applicable.
-     * @param img the button to be rotated.
-     * @return rotated/non-rotated button depending on situation.
+     * @param img The button to be rotated.
+     * @return Rotated/non-rotated button depending on situation.
      */
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {

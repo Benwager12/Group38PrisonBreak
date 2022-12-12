@@ -8,7 +8,6 @@ import com.group38.prisonbreak.items.Door;
 import com.group38.prisonbreak.items.Gate;
 import com.group38.prisonbreak.utilities.Item;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -35,8 +34,6 @@ public class PathFinding {
      * (How close it is to the item)
      */
     private final ArrayList<TileNode> nodesFound = new ArrayList<>();
-
-    public PathFinding() {}
 
     /**
      * Searches for all the items and then finds the shortest path to the closet one.
@@ -291,7 +288,9 @@ public class PathFinding {
                 .wontSetOffBomb(newPositionLeft[0], newPositionLeft[1])) {
             addNode(leftNode);
         }
-        // Recursively calls function again, incrementing distance (from start node)
+        /* Recursively calls function again,
+         * incrementing distance (from start node)
+         */
         return searchForItem(itemXPos, itemYPos, ++distance);
     }
 }

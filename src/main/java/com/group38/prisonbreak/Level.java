@@ -59,6 +59,46 @@ public class Level implements Drawable {
     }
 
     /**
+     * Acts out a single move onto the tile board.
+     *
+     * @param posX The initial X position of the tile.
+     * @param posY The initial Y position of the tile.
+     * @param direction The direction that you want to travel in.
+     * @return The returned position after moving.
+     */
+    public static int[] singleMove(int posX, int posY, int direction) {
+        boolean isX = direction == Constants.RIGHT_ID
+                || direction == Constants.LEFT_ID;
+
+        // Checks if direction is negative (Up/Left)
+        boolean isNegative = direction == Constants.UP_ID
+                || direction == Constants.LEFT_ID;
+
+        // Sets newX and newY
+        int newX = isX ? posX + (isNegative ? -1 : 1) : posX;
+        int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
+
+        return new int[] {newX, newY};
+    }
+
+    /**
+     * Math function to calculate length of any tile.
+     * @param level Level of which tiles we need
+     * @param width Width of the canvas
+     * @param height Height of the canvas
+     * @return An integer representing the calculated side length
+     */
+    public static int getTileSideLength(Level level, int width, int height) {
+        int tileYAmt = level.tiles.length;
+        int tileXAmt = level.tiles[0].length;
+
+        int tileXWidth = width / tileXAmt;
+        int tileYWidth = height / tileYAmt;
+
+        return Math.min(tileXWidth, tileYWidth);
+    }
+
+    /**
      * Gets the ArrayList of all the Entities on the level.
      * @return An ArrayList of Entities
      */
@@ -199,29 +239,6 @@ public class Level implements Drawable {
     }
 
     /**
-     * Acts out a single move onto the tile board.
-     *
-     * @param posX The initial X position of the tile.
-     * @param posY The initial Y position of the tile.
-     * @param direction The direction that you want to travel in.
-     * @return The returned position after moving.
-     */
-    public static int[] singleMove(int posX, int posY, int direction) {
-        boolean isX = direction == Constants.RIGHT_ID
-                || direction == Constants.LEFT_ID;
-
-        // Checks if direction is negative (Up/Left)
-        boolean isNegative = direction == Constants.UP_ID
-                || direction == Constants.LEFT_ID;
-
-        // Sets newX and newY
-        int newX = isX ? posX + (isNegative ? -1 : 1) : posX;
-        int newY = !isX ? posY + (isNegative ? -1 : 1) : posY;
-
-        return new int[] {newX, newY};
-    }
-
-    /**
      * See if a move would be a potentially good idea
      * @param posX Current position X
      * @param posY Current position Y
@@ -330,7 +347,6 @@ public class Level implements Drawable {
         return true;
     }
 
-
     /**
      * Checks if the item is a gate and if it's open.
      * @param item Item to check
@@ -375,23 +391,6 @@ public class Level implements Drawable {
         drawTiles(g);
         drawEntities(g);
         drawItems(g);
-    }
-
-    /**
-     * Math function to calculate length of any tile.
-     * @param level Level of which tiles we need
-     * @param width Width of the canvas
-     * @param height Height of the canvas
-     * @return An integer representing the calculated side length
-     */
-    public static int getTileSideLength(Level level, int width, int height) {
-        int tileYAmt = level.tiles.length;
-        int tileXAmt = level.tiles[0].length;
-
-        int tileXWidth = width / tileXAmt;
-        int tileYWidth = height / tileYAmt;
-
-        return Math.min(tileXWidth, tileYWidth);
     }
 
     /**

@@ -32,15 +32,6 @@ public class MOTD {
     private static final int FIRST_ASCII_VALUE = 65;
 
     /**
-     * Publicly accessible get method for the message of the day.
-     * @return A string with the message of the day and its time stamp.
-     */
-    public String getMessageOfTheDay() throws IOException, InterruptedException {
-        String puzzle = getPuzzle();
-        return getFinalMessage(solvePuzzle(puzzle));
-    }
-
-    /**
      * Private method to fetch the puzzle from the server.
      * Updates the puzzle variable with the string received from the server
      * @return puzzle to be decoded
@@ -58,7 +49,6 @@ public class MOTD {
         return response.body();
 
     }
-
 
     /**
      * Private method to solve the puzzle received from the server.
@@ -110,8 +100,6 @@ public class MOTD {
         return solution.toString();
     }
 
-
-
     /**
      * Private method to fetch the message of the day from server using the solution to the puzzle
      * Sends get request to the server with solution passed in the URL.
@@ -145,6 +133,15 @@ public class MOTD {
         //stop by braces as date documentation starts with brace
         in.useDelimiter("\\(");
         return in.next();
+    }
+
+    /**
+     * Publicly accessible get method for the message of the day.
+     * @return A string with the message of the day and its time stamp.
+     */
+    public String getMessageOfTheDay() throws IOException, InterruptedException {
+        String puzzle = getPuzzle();
+        return getFinalMessage(solvePuzzle(puzzle));
     }
 }
 

@@ -54,6 +54,14 @@ public class Profile {
     }
 
     /**
+     * Sets the players name.
+     * @param name Name of the player
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
      * Gets the highest Level Completed.
      * @return The highest level in the form as an integer
      */
@@ -67,14 +75,6 @@ public class Profile {
      */
     public void setHighestLevel(int highestLevel) {
         this.highestLevel = highestLevel;
-    }
-
-    /**
-     * Sets the players name.
-     * @param name Name of the player
-     */
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**

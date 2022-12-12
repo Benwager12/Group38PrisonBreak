@@ -30,7 +30,8 @@ public class LevelLeaderboard {
     private final int[][] scores = new int[MAX_NUMBER_SCORES][2];
 
     /**
-     * Creates an instance of a leaderboard with only one score, each score holds [profileId, score].
+     * Creates an instance of a leaderboard with only one score
+     * each score holds [profileId, score].
      * @param score a score of the level
      */
     public LevelLeaderboard(int[] score) {

@@ -104,8 +104,8 @@ public class MenuController {
 
     /**
      * Rotates button when applicable.
-     * @param img the button to be rotated.
-     * @return rotated/non-rotated button depending on situation
+     * @param img The button to be rotated.
+     * @return Rotated/non-rotated button depending on situation
      */
     private static ChangeListener<Boolean> rotateButton(ImageView img) {
         return (observable, oldValue, newValue) -> {
