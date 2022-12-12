@@ -130,11 +130,8 @@ public class GameManager {
                     calculateScore(GameManager.money, GameManager.time)
             );
         }
-        System.out.println(hasWon);
         ProfileUtilities.saveProfiles();
         LeaderboardUtilities.saveProfiles();
-       // SaveLevelUtilities.saveLevel(currentProfileId, level);
-
         if (hasWon) {
             FileUtilities.getGameInstance().setRoot("levelWon");
         } else {

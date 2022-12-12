@@ -92,7 +92,6 @@ public class SaveLevelUtilities {
      */
     public static boolean doesSaveFileExist(int profileId, int levelNumber) {
         File file = getFile(profileId, levelNumber);
-        System.out.println(file.exists());
         return (file.exists());
     }
 
@@ -104,7 +103,6 @@ public class SaveLevelUtilities {
      * @param level     instance of the level
      */
     public static void saveLevel(int profileId, Level level) {
-        System.out.println(profileId);
         // Creates a file
         File saveFile = getFile(profileId, level.getLevelNumber());
 
