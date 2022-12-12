@@ -34,6 +34,8 @@ public class MOTD {
     /**
      * Publicly accessible get method for the message of the day.
      * @return A string with the message of the day and its time stamp.
+     * @exception InterruptedException If the send request is interrupted
+     * @exception IOException General error if when the send request fails.
      */
     public String getMessageOfTheDay() throws IOException, InterruptedException {
         String puzzle = getPuzzle();
