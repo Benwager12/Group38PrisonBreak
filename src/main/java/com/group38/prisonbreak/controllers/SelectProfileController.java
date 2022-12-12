@@ -67,6 +67,7 @@ public class SelectProfileController {
     @FXML
     private ImageView profileCross3;
 
+    /** Offset of the profiles. */
     private int profileOffset = 0;
 
     /**
