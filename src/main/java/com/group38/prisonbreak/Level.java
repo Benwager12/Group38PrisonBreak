@@ -187,7 +187,11 @@ public class Level implements Drawable {
      * @param requiresColour If the Entity needs to stay on the same colour
      * @return boolean - If the move is valid
      */
-    public boolean canMove(int posX, int posY, int direction, boolean requiresColour) {
+    public boolean canMove(
+            int posX, int posY,
+            int direction,
+            boolean requiresColour
+    ) {
         if (!requiresColour) {
             // Checks if direction is Up/Down (X)
             boolean isX = direction == Constants.RIGHT_ID
@@ -222,14 +226,18 @@ public class Level implements Drawable {
     }
 
     /**
-     * See if a move would be a potentially good idea
+     * See if a move would be a potentially good idea.
      * @param posX Current position X
      * @param posY Current position Y
      * @param direction Direction that is planned on going
      * @param colourID Colour ID that you have to follow
      * @return An int[] of the new position in the form of {X, Y}.
      */
-    public int[] potentialMove(int posX, int posY, int direction, int colourID) {
+    public int[] potentialMove(
+            int posX, int posY,
+            int direction,
+            int colourID
+    ) {
         int[] move = singleMove(posX, posY, direction);
 
         Tile nTile;
@@ -251,7 +259,7 @@ public class Level implements Drawable {
     }
 
     /**
-     * Finds the position of the next tile an entity
+     * Finds the position of the next tile an entity.
      * should go if they follow colours.
      * @param posX Current X Position
      * @param posY Current Y Position
@@ -259,7 +267,10 @@ public class Level implements Drawable {
      * @param coloursOptional (Optional) Colours of tile to move to
      * @return int array with X and Y position [X Position, Y Position]
      */
-    public int[] moveTo(int posX, int posY, int direction, int... coloursOptional) {
+    public int[] moveTo(
+            int posX, int posY,
+            int direction,
+            int... coloursOptional) {
         int[] colours = coloursOptional.length == 0
                 ? tiles[posY][posX].getColourIDs() : coloursOptional;
 
@@ -344,11 +355,11 @@ public class Level implements Drawable {
     }
 
     /**
-     * Checks if an entity won't collide with another entity
+     * Checks if an entity won't collide with another entity.
      * @param baseEntity instance of the entity
      * @param posX X position to check
      * @param posY Y position to check
-     * @return Boolean for SmartThief for whether it wont collide to another entity.
+     * @return Boolean for SmartThief for whether it won't collide to another entity.
      */
     public boolean wontCollide(Entity baseEntity, int posX, int posY) {
         for (Entity entity : entities) {
@@ -484,9 +495,15 @@ public class Level implements Drawable {
      * @param g The graphics context to apply the colours
      * @param tileXDraw Tile on the X coordinate to draw.
      * @param tileYDraw Tile on the Y coordinate to draw.
+     * @param t Tile to draw the colours on
      * @param tileColourSL The side length of any individual colour.
      */
-    private void colourTiles(GraphicsContext g, int tileXDraw, int tileYDraw, Tile t, int tileColourSL) {
+    private void colourTiles(
+            GraphicsContext g,
+            int tileXDraw, int tileYDraw,
+            Tile t,
+            int tileColourSL
+    ) {
 
         for (int col = 0; col < t.getColours().length; col++) {
             boolean isRight = col == 1 || col == 3;

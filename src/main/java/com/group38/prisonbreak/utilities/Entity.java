@@ -92,7 +92,7 @@ public abstract class Entity {
 
     /**
      * "Kills" the entity.
-     * Moves the entity off-screen (Rather than deletes it to prevent Concurrency Error).
+     * Moves the entity off-screen
      */
     public void killEntity() {
         isAlive = false;
