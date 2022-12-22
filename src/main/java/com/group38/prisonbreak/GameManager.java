@@ -34,6 +34,12 @@ public class GameManager {
     /** Tick timeline for the entities. */
     public static Timeline enemyTimeLine;
 
+    /**
+     * Number of levels.
+     */
+    // If this is going to load the levels dynamically will need to be changed
+    private static int noLevels = 8;
+
     /** Instance of the level that's currently open. */
     private static Level level;
 
@@ -77,6 +83,14 @@ public class GameManager {
             timeTimeLine.stop();
         }
 
+    }
+
+    /**
+     * Gets the number of levels loaded
+     * @return number of levels
+     */
+    public static int getNoLevels() {
+        return noLevels;
     }
 
     /**

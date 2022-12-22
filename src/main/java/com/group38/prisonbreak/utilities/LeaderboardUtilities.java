@@ -1,5 +1,7 @@
 package com.group38.prisonbreak.utilities;
 
+import com.group38.prisonbreak.GameManager;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -34,6 +36,10 @@ public class LeaderboardUtilities {
      * Initialises all the leaderboards.
      */
     public static void initialise() {
+        for (int i = 0; i < GameManager.getNoLevels() + 1; i++) {
+            LEADERBOARD.put(i, new LevelLeaderboard());
+        }
+
         loadLeaderboard();
     }
 
@@ -165,12 +171,16 @@ public class LeaderboardUtilities {
                     in.nextInt(),
                     in.nextInt()
             };
+
             if (levelNumber != currentLevel) {
                 currentLevel = levelNumber;
+            }
+
+            if (LEADERBOARD.containsKey(levelNumber)) {
+                LEADERBOARD.get(levelNumber).addToLeaderboard(score);
+            } else {
                 levelLeaderboard = new LevelLeaderboard(score);
                 LEADERBOARD.put(levelNumber, levelLeaderboard);
-            } else {
-                LEADERBOARD.get(levelNumber).addToLeaderboard(score);
             }
         }
     }
